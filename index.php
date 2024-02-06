@@ -53,7 +53,7 @@
             </div>
                 
             <div class="bouton">
-                <button>Identification</button>
+            <a href="http://stagetier.fr/accueil" class="button-link"><button>Identification</button></a>
             </div>
             
         </div>
