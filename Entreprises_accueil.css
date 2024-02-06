@@ -17,31 +17,6 @@ body {
     position: relative;
 }
 
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-menu li {
-    display: block;
-    text-align: center;
-}
-
-.dropdown-menu li a {
-
-    color: #333;
-    text-decoration: none;
-    text-align: center;
-    display: block;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block; /* Affiche le menu déroulant lorsque le menu est survolé */
-}
 
 
 .header {

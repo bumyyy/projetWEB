@@ -15,12 +15,7 @@
     <nav>
         <ul class="header-nav">
             <li>Stages</li>
-            <li class="dropdown">Entreprises
-                <ul class="dropdown-menu">
-                    <li><a href="Entreprises_rechercher.php">Recherchez</a></li>
-                    <li>Créer une Entreprises</li>
-                </ul>
-            </li>
+            <li >Entreprises</li>
             <li>Pilotes</li>
             <li>Étudiants</li>
             <li>Candidature</li>
