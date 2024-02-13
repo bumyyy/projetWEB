@@ -2,10 +2,10 @@
 
 if (!empty($_POST['mail']) && !empty($_POST['mdp'])) {
     
-    $mail = $_POST['mail'];
-    $mdp = $_POST['mdp'];
+    $mailEncoded = urlencode($_POST['mail']);
+    $mdpEncoded = urlencode($_POST['mdp']);
     $isSame = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=authentification/" . urlencode($mail) . "/" . urlencode($mdp)));
-    print_r($mail);
+
     if ($isSame) {
         // Le mail et le mot de passe correspondent
         //header("Location :http://stagetier.fr/accueil"); // Redirigez vers la page souhaitée
