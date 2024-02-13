@@ -2,29 +2,22 @@
 require_once("./requete.php");
 
 try {
-if(!empty($_GET['demande'])){
-    $url = explode('/',filter_var($_GET['demande'], FILTER_SANITIZE_URL));
-    switch($url[0]){
-        case "authentification" : 
-            getMdp($url[1]);
-            break;
+    if (!empty($_GET['demande'])) {
+        $url = explode('/', filter_var($_GET['demande'], FILTER_SANITIZE_URL));
+        switch ($url[0]) {
+            case "authentification":
+                getMdp($url[1]); // Assurez-vous que la fonction s'appelle bien `getMdp` dans votre fichier `requete.php`
+                break;
+            default:
+                throw new Exception("La demande n'est pas valide");
         }
-
-    
-        break;
-        default :
-            throw new Exception ("La demande n'est pas valide");
-            break;
+    } else {
+        throw new Exception("Problème de récupération de données, mauvaise URL");
     }
-}
-else{
-    throw new Exception ("Probleme de recuperation de données, mauvaise url 222");
-}
-
-
-catch(Exception $e){
-    $erreur =[
+} catch (Exception $e) {
+    $erreur = [
         "message" => $e->getMessage(),
-        "code" => $e->getCode()];
+        "code" => $e->getCode()
+    ];
     print_r($erreur);
 }
