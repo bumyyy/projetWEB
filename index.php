@@ -42,19 +42,20 @@
             
             <form action="verifierLogin.php" method="POST">
                 <div class="champemail">
-                    <input type="email" id="mail" name="Email" placeholder="Email" required>
+                    <input type="email" id="mail" name="mail" placeholder="Email" required>
                 </div>
                 <div class="champmdp">
-                    <input type="password" id="mdp" name="Mot de passe" placeholder="Mot de passe" required>
+                    <input type="password" id="mdp" name="mdp" placeholder="Mot de passe" required>
                 </div>
-            </form>
+           
 
-            <div class="check">
-                <input type="checkbox" id="showPassword" onclick="toggleVisibility()">
-                <label for="showPassword">Afficher le mot de passe</label>
-            </div>
-                
-            <button class="bouton">Identification</button>
+                <div class="check">
+                    <input type="checkbox" id="showPassword" onclick="toggleVisibility()">
+                    <label for="showPassword">Afficher le mot de passe</label>
+                </div>
+                    
+                <button type="submit" class="bouton">Identification</button>
+            </form>
             </div>
             
             <div id="errorMessage" style="color: red; display: none;">Mail ou mot de passe incorrect.</div>
