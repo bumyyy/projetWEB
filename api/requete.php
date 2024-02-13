@@ -2,15 +2,25 @@
 
 
 
-function getMdp($mail){
+function isMdp($mail, $mdp_a_verif) {
     $pdo = getConnexion();
     $req = "SELECT mdp FROM utilisateur WHERE mail = :mail";
     $stmt = $pdo->prepare($req);
     $stmt->bindValue(":mail", $mail);
     $stmt->execute();
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC); 
+
+    // Fermeture du curseur du statement
     $stmt->closeCursor();
-    sendJSON($data);    
+
+    // Vérifiez si un mot de passe a été récupéré et comparez-le
+    if ($data && $mdp_a_verif == $data['mdp']) {
+        // Si le mot de passe correspond
+        sendJSON(['success' => true]);
+    } else {
+        // Si le mot de passe ne correspond pas ou l'utilisateur n'existe pas
+        sendJSON(['success' => false]);
+    }
 }
 
 

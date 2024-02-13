@@ -6,7 +6,7 @@ try {
         $url = explode('/', filter_var($_GET['demande'], FILTER_SANITIZE_URL));
         switch ($url[0]) {
             case "authentification":
-                getMdp($url[1]); // Assurez-vous que la fonction s'appelle bien `getMdp` dans votre fichier `requete.php`
+                isMdp($url[1], $url[2]); // Assurez-vous que la fonction s'appelle bien `getMdp` dans votre fichier `requete.php`
                 break;
             default:
                 throw new Exception("La demande n'est pas valide");
