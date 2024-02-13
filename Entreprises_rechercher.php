@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stage_tier</title>
-    <link rel="stylesheet" href="Entreprises_accueil.css">
+    <link rel="stylesheet" href="Entreprises_rechercher.css">
 </head>
 <body>
     
@@ -28,10 +28,10 @@
 </header>
 
 <div class="content">
-    <h1>Entreprises</h1>
-
-    <input type="text" placeholder="Recherchez une Entreprises">
-
+    <h1>Recherche d'entreprises</h1>
+</div>
+<div class="sub">
+    <input type="text" placeholder="Rechercher entreprises">
     <div class="combox">
     <select name="secteur d'activité" id="act_sec">
         <option value="informatique">informatique</option>
@@ -54,7 +54,34 @@
         <option value="5 étoiles">5 étoiles</option>
         </select>
     </div>
+</div>
 
+<!--La class carre représente ici les blocks dans lequels sont placé les informations lié aux entreprises-->
+<div class="main">
+
+    <div class="carre">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <p>informatique</p>
+                
+        </div>
+        <div class="localité">
+            <h2>Localité</h2>
+            <br>
+            <p>Paris
+            Lyon lyon</p>
+        </div>
+        <div class="secteur">
+            <h2>Note</h2>
+            <div class="rating" data-rating="3">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div> 
+    </div>
 </div>
 
 
