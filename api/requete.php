@@ -1,0 +1,29 @@
+<?php
+
+
+
+function getGuess($mail){
+    $pdo = getConnexion();
+    $req = "SELECT mdp FROM utilisateur WHERE mail = :mail";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":mail", $mail);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    sendJSON($data);    
+}
+
+
+
+
+
+
+function getConnexion(){
+    return new pdo('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
+}
+
+function sendJSON($infos){
+    header("Content-Type: application/json");
+    header("Access-Control-Allow-Origin: *");
+    echo json_encode($infos, JSON_UNESCAPED_UNICODE);
+}
