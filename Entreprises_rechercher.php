@@ -28,7 +28,7 @@
 </header>
 
 <div class="content">
-    <h1>Recherche d'entreprises</h1>
+    
 </div>
 <div class="sub">
     <input type="text" placeholder="Rechercher entreprises">
@@ -82,6 +82,122 @@
             </div>
         </div> 
     </div>
+    <div class="carre">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <p>informatique</p>
+                
+        </div>
+        <div class="localité">
+            <h2>Localité</h2>
+            <br>
+            <p>Paris
+            Lyon lyon</p>
+        </div>
+        <div class="secteur">
+            <h2>Note</h2>
+            <div class="rating" data-rating="3">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div> 
+    </div>
+    <div class="carre">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <p>informatique</p>
+                
+        </div>
+        <div class="localité">
+            <h2>Localité</h2>
+            <br>
+            <p>Paris
+            Lyon lyon</p>
+        </div>
+        <div class="secteur">
+            <h2>Note</h2>
+            <div class="rating" data-rating="3">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div> 
+    </div>
+    <div class="carre">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <p>informatique</p>
+                
+        </div>
+        <div class="localité">
+            <h2>Localité</h2>
+            <br>
+            <p>Paris
+            Lyon lyon</p>
+        </div>
+        <div class="secteur">
+            <h2>Note</h2>
+            <div class="rating" data-rating="3">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div> 
+    </div>
+    <div class="carre">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <p>informatique</p>
+                
+        </div>
+        <div class="localité">
+            <h2>Localité</h2>
+            <br>
+            <p>Paris
+            Lyon lyon</p>
+        </div>
+        <div class="secteur">
+            <h2>Note</h2>
+            <div class="rating" data-rating="3">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div> 
+    </div>
+    <div class="carre">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <p>informatique</p>
+                
+        </div>
+        <div class="localité">
+            <h2>Localité</h2>
+            <br>
+            <p>Paris
+            Lyon lyon</p>
+        </div>
+        <div class="secteur">
+            <h2>Note</h2>
+            <div class="rating" data-rating="3">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div> 
+    </div>
+    
 </div>
 
 
