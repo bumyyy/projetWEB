@@ -34,10 +34,7 @@
 
     <div class="combox">
     <select name="secteur d'activité" id="act_sec">
-        <option value="informatique">informatique</option>
-        <option value="informatique">BTP</option>
-        <option value="informatique">economie</option>
-        <option value="informatique">commerce</option>
+        <?php include 'fillCombox.php'; ?>
         </select>
     <select name="localité" id="localité">
         <option value="Aix-en-Provence">Aix-en-Provence</option>
