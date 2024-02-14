@@ -56,12 +56,25 @@
                     
                 <button type="submit" class="bouton">Identification</button>
             </form>
+            <br>
+            <br>
+            <div id="errorMessage" style="color: red; display: none;">Mail ou mot de passe incorrect.</div>
+
             </div>
             
-            <div id="errorMessage" style="color: red; display: none;">Mail ou mot de passe incorrect.</div>
 
         </div>
     </div>
     
+
+<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    };
+</script>
+
 </body>
 </html>
