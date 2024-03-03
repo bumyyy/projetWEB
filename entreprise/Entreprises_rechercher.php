@@ -54,6 +54,9 @@
         <option value="5 étoiles">5 étoiles</option>
         </select>
     </div>
+    <div class="create">
+        <button>+</button>
+    </div>
 </div>
 
 <!--La class carre représente ici les blocks dans lequels sont placé les informations lié aux entreprises-->
