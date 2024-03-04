@@ -24,11 +24,32 @@ function isMdp($mail, $mdp_a_verif) {
 }
 
 
+function getSecteur() {
+    $pdo = getConnexion();
+    $req = "SELECT nom FROM secteur";
+    $stmt = $pdo->prepare($req);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
 
+function getVille() {
+    $pdo = getConnexion();
+    $req = "SELECT nom FROM ville";
+    $stmt = $pdo->prepare($req);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
 
 
 function getConnexion(){
     try {
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {
