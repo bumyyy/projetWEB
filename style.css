@@ -29,20 +29,6 @@ body {
     width: 100%;
 }
 
-.milieu {
-    margin-left: 5%;
-    height: 100%;
-    width: 20%;
-}
-
-.separator {
-    position: absolute;
-    top: 50px;
-    bottom: 50px;
-    width: 2px;
-    background-color: black;
-}
-
 
 .droite {
     text-align: center;
@@ -86,3 +72,140 @@ body {
 }
 
 
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    /*body {background-color: lightcoral;}*/
+
+    .logo img {
+        width: 20%;
+        height: 30%;
+        margin-bottom: 5%;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gauche {
+        text-align: center;
+        justify-content: center;
+        margin-left: 0%;
+        margin-top: 0%;
+        height: 100%;
+        width: 100%;
+    }
+    
+    
+    .droite {
+        text-align: center;
+        margin-right: 0%;
+        margin-top: 0%;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    /*body {background-color: lightgreen;}*/
+    
+    .logo img {
+        width: 20%;
+        height: 30%;
+        margin-bottom: 5%;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gauche {
+        text-align: center;
+        justify-content: center;
+        margin-left: 0%;
+        margin-top: 0%;
+        height: 100%;
+        width: 100%;
+    }
+    
+    
+    .droite {
+        text-align: center;
+        margin-right: 0%;
+        margin-top: 0%;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+    
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    /*body {background-color: lightblue;}*/
+
+    .container {
+        display: flex;
+        height: 100%;
+        width: 100%; 
+        flex-direction: initial;
+    }
+
+    .logo img {
+        width: 70%;
+        height: 70%;
+    }
+
+    .gauche {
+        text-align: center;
+        justify-content: center;
+        margin-left: 5%;
+        margin-top: 15%;
+        height: 100%;
+        width: 100%;
+    }
+
+    .milieu {
+        margin-left: 5%;
+        height: 100%;
+        width: 20%;
+    }
+    
+    .separator {
+        position: absolute;
+        top: 50px;
+        bottom: 50px;
+        width: 2px;
+        background-color: black;
+    }
+
+        
+    .droite {
+        text-align: center;
+        margin-right: 10%;
+        margin-top: 10%;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    /*body {background-color: orange;}*/
+
+    
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    /*body {background-color: pink;}*/
+  }
