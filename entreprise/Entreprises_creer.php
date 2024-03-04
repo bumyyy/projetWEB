@@ -55,7 +55,7 @@
         </select>
     </div>
     <div class="create">
-        <button>+</button>
+        <button>créer une entreprise</button>
     </div>
 </div>
 

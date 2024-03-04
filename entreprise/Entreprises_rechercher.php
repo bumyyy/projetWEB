@@ -61,7 +61,7 @@
 
 <!--La class carre représente ici les blocks dans lequels sont placé les informations lié aux entreprises-->
 <div class="main">
-
+<div class="ligne">
     <div class="carre">
             <div class="name">
                 <h1>Entreprise1</h1>
@@ -69,7 +69,6 @@
             </div>
         <div class="localité">
             <h2>Localité</h2>
-            <br>
             <p>Paris
             Lyon lyon</p>
         </div>
@@ -83,31 +82,15 @@
                 <span class="star"></span>
             </div>
         </div> 
+        
     </div>
 
-    <div class="carre">
-            <div class="name">
-                <h1>Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <br>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </div>
-        </div> 
+    <div class="mod">
+        <span class="update"></span>
+        <span class="delete"></span>
     </div>
-    
+</div>
+    <div class="ligne">
     <div class="carre">
             <div class="name">
                 <h1>Entreprise1</h1>
@@ -115,7 +98,6 @@
             </div>
         <div class="localité">
             <h2>Localité</h2>
-            <br>
             <p>Paris
             Lyon lyon</p>
         </div>
@@ -129,101 +111,14 @@
                 <span class="star"></span>
             </div>
         </div> 
+        
     </div>
-    
-    <div class="carre">
-            <div class="name">
-                <h1>Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <br>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </div>
-        </div> 
+    <div class="mod">
+        <span class="update"></span>
+        <span class="delete"></span>
     </div>
-    
-    <div class="carre">
-            <div class="name">
-                <h1>Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <br>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </div>
-        </div> 
-    </div>
-    
-    <div class="carre">
-            <div class="name">
-                <h1>Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <br>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </div>
-        </div> 
-    </div>
-    
-    <div class="carre">
-            <div class="name">
-                <h1>Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <br>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </div>
-        </div> 
     </div>
 
-    
     
 </div>
 
