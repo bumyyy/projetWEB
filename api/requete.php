@@ -46,6 +46,60 @@ function getVille() {
     sendJSON($data);
 }
 
+function getEntrepriseBySecteur($secteur){
+    $pdo = getConnexion();
+    $req = "SELECT 
+    entreprise.nom AS nom_entreprise,
+    secteur.nom AS secteur_activite
+FROM entreprise
+INNER JOIN secteur ON entreprise.id_secteur = secteur.id
+WHERE secteur.nom = :secteur";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":secteur", $secteur);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
+
+function getEntrepriseByVille($ville){
+    $pdo = getConnexion();
+    $req = "SELECT 
+    entreprise.nom AS nom_entreprise,
+    GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville
+FROM entreprise
+LEFT JOIN situer ON situer.id_entreprise = entreprise.id
+LEFT JOIN ville ON situer.id_ville = ville.id
+WHERE ville.nom :ville;";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":ville", $ville);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
+
+
+function getEntrepriseByNote($note_min, $note_max){
+    $pdo = getConnexion();
+    $req = "SELECT 
+    entreprise.nom AS nom_entreprise,
+    AVG(evaluer.note) AS moyenne_evaluations
+FROM entreprise
+INNER JOIN evaluer ON entreprise.id = evaluer.id_entreprise
+GROUP BY entreprise.nom
+HAVING AVG(evaluer.note) < :note_max AND AVG(evaluer.note) >= :note_min";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":note_min", $note_min);
+    $stmt->bindValue(":note_max", $note_max);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
 
 function getConnexion(){
     try {

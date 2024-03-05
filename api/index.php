@@ -25,6 +25,24 @@ try {
                         throw new Exception("La demande pour 'combox' n'est pas valide.");
                 }
                 break;
+            case "entreprise":
+                if (!isset($url[1])) {
+                    throw new Exception("La demande pour 'entreprise' n'est pas spécifiée.");
+                }
+                switch ($url[1]) {
+                    case "secteur":
+                        getEntrepriseBySecteur($url[2]);
+                        break;
+                    case "ville":
+                        getEntrepriseByVille($url[2]);
+                        break;
+                    case "note":
+                        getEntrepriseByNote($url[2], $url[3]);
+                        break;
+                    default:
+                        throw new Exception("La demande pour 'entreprise' n'est pas valide.");
+                }
+                break;
 
             default:
                 throw new Exception("La demande n'est pas valide");
