@@ -55,21 +55,36 @@
         </select>
     </div>
     <div class="create">
-        <button>créer une entreprise</button>
+        <button>+</button>
     </div>
 </div>
-
 
 <div class="main">
  <form action="" class="create_entrep">
     <h1>Créer une entreprise</h1>
-    <h2>Nom de l'entreprise</h2>
-    <input type="text" name="nom" id="form_input">
-    <h2>Secteur d'activité</h2>
-    <input type="text" name="Secteur" id="form_input">
-    <h2>localité</h2>
-    <h2>Note</h2>
+    <div class="company">
+        <h2>Nom de l'entreprise</h2>
+        <input type="text" name="nom" id="form_input">
+    </div>
+    <div class="activité">
+        <h2>Secteur d'activité</h2>
+        <select name="secteur" id="Secteur"></select>
+    </div>
+    <h2>Localité</h2>
+    <div class="localite">
+        <input type="text">
+        <input type="button" value="+" id="ville">
+    </div>
 
+    <h2>Note</h2>
+    <div class="rating" data-rating="3">
+    <input type="hidden" id="rating-value" name="rating-value" value="0">
+  <span class="star" data-value="1">&#9733;</span>
+  <span class="star" data-value="2">&#9733;</span>
+  <span class="star" data-value="3">&#9733;</span>
+  <span class="star" data-value="4">&#9733;</span>
+  <span class="star" data-value="5">&#9733;</span>
+    </div>
  </form>
 </div>
 
@@ -82,5 +97,6 @@
     <img src="img/instagram.png" alt="Instagram">
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
+<script src="Entreprises_creer.js"></script>
 </body>
 </html>

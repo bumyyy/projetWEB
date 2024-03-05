@@ -267,7 +267,7 @@ margin-top: 20px;
     background-image: url('img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     background-repeat: no-repeat;
-    margin-bottom: 80%;
+    margin-bottom: 70%;
 }
 .delete{
     display: inline-block;
