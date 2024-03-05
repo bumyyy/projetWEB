@@ -43,6 +43,24 @@ try {
                         throw new Exception("La demande pour 'entreprise' n'est pas valide.");
                 }
                 break;
+                case "stats":
+                    if (!isset($url[1])) {
+                        throw new Exception("La demande pour 'stats' n'est pas spécifiée.");
+                    }
+                    switch ($url[1]) {
+                        case "secteur":
+                            getStatsBySecteur();
+                            break;
+                        case "ville":
+                            getStatsByVille();
+                            break;
+                        case "note":
+                            getStatsByNote($url[2], $url[3]);
+                            break;
+                        default:
+                            throw new Exception("La demande pour 'stats' n'est pas valide.");
+                    }
+                    break;
 
             default:
                 throw new Exception("La demande n'est pas valide");
