@@ -106,9 +106,16 @@ body {
     border-color: #00000000;
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2); /* Ombre de bordure */
 }
-
+.wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 .combox {    
     text-align: center;
+    justify-content: center;
+    min-width: 50%;
 }
 .recherche{
     width: 100%;
@@ -130,22 +137,18 @@ body {
 
 }
 
-.create {
+.create, .search {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.create button{
+    cursor: pointer;
     font-size: 20px;
     height: 30px;
     width: 30px;
     border-radius: 100px;
     border-color: #00000000;
-    margin-left: 5px;
+    margin: 5px;
 }
-
-    
 
 .main{
     display: flex;
@@ -212,14 +215,7 @@ margin-top: 20px;
     font-size: clamp(12.72px,1.6vw,20px);
     margin: 0px;
 }
-.secteur {
-    display: flex;
-    text-align: center;
-    width: 30%;
-    flex-direction: column;
-    justify-content: end;
-   
-}
+
 
 .secteur h2{
     font-size: clamp(19px,2.4vw,36px);
@@ -229,7 +225,7 @@ margin-top: 20px;
 .localité {
     display: flex;
     text-align: center;
-    justify-content: center;
+    justify-content: top;
     max-width:200px;
     width: 30%;
     flex-direction: column;
@@ -256,7 +252,12 @@ margin-top: 20px;
     height: clamp(14px,1.8vw,24px);/* Taille de l'étoile */
     background-image: url('img/etoile.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
+    
 }
+.star.active {
+    background-color: gold; /* Couleur des étoiles actives */
+}
+
 .p{
     margin:0;
 }
