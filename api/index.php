@@ -56,10 +56,12 @@ try {
                             throw new Exception("La demande pour 'stats' n'est pas valide.");
                     }
                     break;
-                case "stage":
-                    if (!isset($url[1])) {
-                        throw new Exception("La demande pour 'stage' n'est pas spécifiée.");
-                    }
+
+            case "stage":
+                if (!isset($url[1])) {
+                    getStage();
+                    break;
+                } else {
                     switch ($url[1]) {
                         case "recherche":
                             getStageRecherche($url[2]);
@@ -67,8 +69,9 @@ try {
                         default:
                             throw new Exception("La demande pour 'stage' n'est pas valide.");
                     }
-                    break;
-
+                }
+                break;
+                    
             default:
                 throw new Exception("La demande n'est pas valide");
         }
