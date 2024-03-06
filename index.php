@@ -27,7 +27,7 @@
             </div>
 
             <div class="logo">
-                <img src="logo web stage_tier.png" alt="LOGO">
+                <img src="logo.png" alt="LOGO">
             </div>
         </div>
 

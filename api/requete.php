@@ -61,7 +61,7 @@ LEFT JOIN ville ON situer.id_ville = ville.id
 LEFT JOIN stage ON stage.id_entreprise = entreprise.id
 LEFT JOIN candidater ON stage.id = candidater.id_stage
 LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
-WHERE ville.nom :ville";
+WHERE ville.nom :ville
 GROUP BY entreprise.id;";
 
     $stmt = $pdo->prepare($req);
@@ -156,7 +156,7 @@ GROUP BY entreprise.id";
 
 function getConnexion(){
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '');
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {
