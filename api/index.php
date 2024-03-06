@@ -55,7 +55,7 @@ try {
                             getStatsByVille();
                             break;
                         case "note":
-                            getStatsByNote($url[2], $url[3]);
+                            getStatsByNote();
                             break;
                         default:
                             throw new Exception("La demande pour 'stats' n'est pas valide.");

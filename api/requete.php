@@ -135,7 +135,7 @@ ORDER BY COUNT(*) DESC";
 }
 
 
-function getStatsByNote($note_min, $note_max){
+function getStatsByNote(){
     $pdo = getConnexion();
     $req = "SELECT 
     secteur.nom AS secteur_activite,
@@ -147,11 +147,8 @@ LEFT JOIN situer ON situer.id_entreprise = entreprise.id
 LEFT JOIN ville ON situer.id_ville = ville.id
 LEFT JOIN stage ON stage.id_entreprise = entreprise.id
 LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
-GROUP BY entreprise.id
-HAVING AVG(evaluer.note) < :note_max AND AVG(evaluer.note) >= :note_min";
+GROUP BY entreprise.id";
     $stmt = $pdo->prepare($req);
-    $stmt->bindValue(":note_min", $note_min);
-    $stmt->bindValue(":note_max", $note_max);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // Fermeture du curseur du statement
