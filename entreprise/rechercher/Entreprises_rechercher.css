@@ -1,0 +1,317 @@
+html, body {
+    height: 100%; /* Assurez-vous que l'élément html et body prennent toute la hauteur */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Organise les enfants en colonne */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.984);
+    background-image: url('img/bg.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+
+
+.header {
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.header-logo img {
+    height: 50px;
+}
+.header-nav {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+.header-nav li {
+    padding-right: 10px;
+    cursor: pointer;
+}
+.header-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+.header-nav li:hover {
+    text-decoration: underline;
+}
+.header-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.header-icons img {
+    height: 24px; /* Ajustez la taille selon vos besoins */
+    cursor: pointer;
+    margin: 5px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+}
+
+.content h1 {
+    text-align: center;
+    font-size: 150%;
+    
+    color: #f0f0f0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    
+}
+
+
+
+.sub {
+    padding: 5px;
+    z-index: 1;
+    display: flex;
+    background-color: #c9c9c9;
+    align-items: center;
+    justify-content: center;
+    position: sticky; /* This is what makes it sticky */
+    top: 0; /* Stick it to the top */
+    
+}
+.sub h1 {
+    text-align: center;
+    font-size: 200%;
+    margin-top: 2%;
+    color: #f0f0f0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.sub input {
+    text-align: left;
+    text-indent: 20px;
+    width: 100%;
+    height: 30px;
+    max-width: 600px;
+    color: #000000;
+    border-radius: 20px;
+    border-color: #00000000;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2); /* Ombre de bordure */
+}
+.wrap{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.combox {    
+    text-align: center;
+    justify-content: center;
+    min-width: 50%;
+}
+.recherche{
+    width: 100%;
+    max-width: 330px;
+    padding-right: 5%;
+}
+.combox select{
+    
+    margin-bottom: 5px;
+    margin-top: 5px;
+    min-width: 100px;
+    min-height: 16px;
+    border-radius: 20px;
+    border-color: #00000000;
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-left: 5px;
+
+
+}
+
+.create, .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 100px;
+    border-color: #00000000;
+    margin: 5px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carre{
+    display: flex;
+    
+    justify-content: space-around;
+    padding: max(3vw,3vw);
+    width: 100%;
+    max-width: 900px;
+    background-color: #f0f0f0;
+    opacity: 50%;
+    border-radius: 15px;
+
+    
+}
+.mod {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    opacity: 50%;
+    border-radius: 1.4vw;
+    width: 4%;
+    height: 100%;
+    margin-left: 1%;
+}
+
+.ligne{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+ height: 100%;
+margin-bottom: 20px;
+margin-top: 20px;
+
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+    width: 35%;
+}
+.name h1{
+    font-size: clamp(19px,2.4vw,36px);
+    margin: 0;
+}
+.h1{
+    padding:0;
+    margin:0;
+}
+.name p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(12.72px,1.6vw,20px);
+    margin: 0px;
+}
+
+
+.secteur h2{
+    font-size: clamp(19px,2.4vw,36px);
+    margin: 0;
+}
+
+.localité {
+    display: flex;
+    text-align: center;
+    justify-content: top;
+    max-width:200px;
+    width: 30%;
+    flex-direction: column;
+
+}
+.localité p {
+    margin: 0px;
+    font-size: clamp(12.72px,1.6vw,20px);
+}
+
+.localité h2 {
+    font-size: clamp(19px,2.4vw,36px);
+    margin: 0;
+}
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.star {
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    height: clamp(14px,1.8vw,24px);/* Taille de l'étoile */
+    background-image: url('img/etoile.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    
+}
+.star.active {
+    background-color: gold; /* Couleur des étoiles actives */
+}
+
+.p{
+    margin:0;
+}
+.update{
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    background-image: url('img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 70%;
+}
+.delete{
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    background-image: url('img/poubelle.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.footer {
+    width: 100%;
+    height: 60px; /* Hauteur du footer */
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: auto; /* Place le footer en bas du contenu */
+}
+
+.footer img {
+    height: 24px; /* Ajustez la taille des icônes si nécessaire */
+    margin: 0 10px;
+    cursor: pointer;
+}
+.footer p {
+    color: #666;
+    font-size: 14px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  
+    .header-nav {
+      flex-direction: column;
+      color: #000000;
+      align-items: center;
+    }
+    .header-nav li {
+        margin-bottom: 20px;
+    }
+    .header-icons
+    {
+        margin-left: 30px;
+    }
+}
