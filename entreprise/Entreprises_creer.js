@@ -24,4 +24,8 @@ const stars = document.querySelectorAll('.star');
       }
     });
   }
+
+  document.getElementById("myform").addEventListener("submit", function(event) {
+    event.preventDefault();
+});
 });

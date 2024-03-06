@@ -60,7 +60,7 @@
 </div>
 
 <div class="main">
- <form action="" class="create_entrep">
+ <form action="Entreprises_accueil.php" class="create_entrep" id="myform" method="POST">
     <h1>Créer une entreprise</h1>
     <div class="company">
         <h2>Nom de l'entreprise</h2>
@@ -75,7 +75,7 @@
         <input type="text">
         <input type="button" value="+" id="ville">
     </div>
-
+<div class="note">
     <h2>Note</h2>
     <div class="rating" data-rating="3">
     <input type="hidden" id="rating-value" name="rating-value" value="0">
@@ -84,6 +84,10 @@
   <span class="star" data-value="3">&#9733;</span>
   <span class="star" data-value="4">&#9733;</span>
   <span class="star" data-value="5">&#9733;</span>
+    </div>
+    </div>
+    <div class="submit">
+        <button type="submit">Soumettre</button>
     </div>
  </form>
 </div>

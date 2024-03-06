@@ -155,6 +155,23 @@ body {
     height: 100%;
 }
 
+.note h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6%;
+}
+.submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.submit button{
+    width: 45%;
+    border-radius: 5vw;
+    border-color: #00000057;
+}
 .create_entrep{
     display: flex;
     flex-direction: column;
@@ -204,8 +221,9 @@ body {
  /*   width: clamp(24px,2.4vw,28px); 
     height: clamp(24px,2.4vw,28px);*/
     background-size: contain;
-    color: gray; /* Définit la couleur des étoiles par défaut */
+    color: rgb(228, 229, 233); /* Définit la couleur des étoiles par défaut */
     cursor: pointer;
+    margin-bottom: 15%;
 }
 .footer {
     width: 100%;
