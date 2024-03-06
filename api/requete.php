@@ -219,6 +219,12 @@ GROUP BY stage.id";
 }
 
 
+
+
+
+
+
+
 function getConnexion(){
     try {
         $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '');
