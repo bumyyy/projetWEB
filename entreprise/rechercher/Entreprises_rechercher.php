@@ -17,12 +17,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'][0] !== true) {
 
 <header class="header">
     <div class="header-logo">
-        <img src="img/logo.png" alt="Logo">
+    <a href="http://stagetier.fr/accueil"><img src="img/logo.png" alt="Logo"></a>
     </div>
     <nav>
         <ul class="header-nav">
             <li>Stages</li>
-            <li>Entreprises</li>
+            <li><a href="http://stagetier.fr/entreprise/rechercher/Entreprises_rechercher.php">Entreprises</a></li>
             <li>Pilotes</li>
             <li>Étudiants</li>
             <li>Candidature</li>
