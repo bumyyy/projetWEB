@@ -8,8 +8,11 @@ try {
         switch ($url[0]) {
             case "authentification":
                 isMdp(urldecode($url[1]), $url[2]); // urldecode pour transformer le %40 en @
+                
                 break;
-            
+            case "utilisateur":
+                getUtilisateur($url[1]);
+                break;
             case "combox":
                 if (!isset($url[1])) {
                     throw new Exception("La demande pour 'combox' n'est pas spécifiée.");

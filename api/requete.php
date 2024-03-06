@@ -23,6 +23,17 @@ function isMdp($mail, $mdp_a_verif) {
     }
 }
 
+function getUtilisateur($mail){
+    $pdo = getConnexion();
+    $req = "SELECT id, type_  FROM utilisateur WHERE mail = :mail";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":mail", $mail);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);    
+}
 
 function getSecteur() {
     $pdo = getConnexion();
