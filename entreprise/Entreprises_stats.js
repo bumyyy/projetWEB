@@ -36,5 +36,6 @@ function Localité(valeurs){
     camembert.style.background = gradientString;
     console.log(camembert.style.background);
     }
-Localité([50,78,25]);
-Secteur([40,36,55]);
+/*les deux lignes en dessous sont responsable de l'appel des fonctions il faut donc recuperer de l'api un tabelau de 3 valeurs*/ 
+Localité([50,18,25]);
+Secteur([58,26,55]);

@@ -76,9 +76,11 @@ body {
 
 .main{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-around;
-    padding-top: 7%;
+    padding-top: 60px;
+
+
 
 }
 
@@ -86,20 +88,25 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: max(3vw,3.2vw);
+    padding-top: 1.7vw;
+    padding-bottom: 1.7vw;
     padding-left: max(3vw,4.5vw);
     padding-right: max(3vw,4.5vw);
     max-width: 900px;
     background-color: #f0f0f0;
     opacity: 50%;
     border-radius: 15px;
+    margin-bottom: 20px;
 
 
     
 }
 .name{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+.name h1 {
+    margin-right: 22px;
 }
 .ligne{
  display: flex;
@@ -114,20 +121,73 @@ margin-top: 20px;
 .downligne{
     display: flex;
     justify-content: space-around;
+  
+}
+
+.diag1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+.alldiag{
+    display: flex;
+    flex-direction: column;
+}
+.diagsect{
+    display: flex;
+    flex-wrap: nowrap;
+}
+.sec1{
+    color: green;
+}
+.sec2{
+    margin-left: 10px;
+    color: orange;
+}
+.sec3{
+    margin-left: 10px;
+    color: red;
+}
+.diagtitle{
+    background-color: #f0f0f07a;
+    width: 100%;
+    text-align: center;
+    border-radius: 60px;
+    margin-bottom: 20px;
+}
+.diagtitle2{
+    background-color: #f0f0f07a;
+    width: 40%;
+    text-align: center;
+    border-radius: 60px;
+    margin-bottom: 20px;
+}
+.diagtitle h1{
+    font-size: 19px;
+}
+.diagtitle2 h1{
+    font-size: 19px;
 }
 .Secteur{
 
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
     border-radius: 50%;
+    margin-bottom: 60px;
 }
 .secteur p {
     text-align: center;
 }
 .Localité{
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
     border-radius: 50%;
+    margin-bottom: 60px;
+}
+.top3{
+
 }
 .rating{
     display: flex;

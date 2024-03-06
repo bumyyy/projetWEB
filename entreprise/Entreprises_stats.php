@@ -58,39 +58,111 @@
     </div>
 
 -->
-    
-<div class="Secteur" id="Secteur"></div>
-<div class="Localité" id="Localité"></div>
+<div class="alldiag">
+<div class="diag1">
+    <div class="diagtitle">
+        <h1>Secteur d'activité</h1>
+    </div>
+    <div class="diagsect">
+<p class="sec1">secteur 1</p> <p class="sec2">secteur 2</p> <p class="sec3">secteur 3</p> 
+    </div>
+    <div class="Secteur" id="Secteur"></div>
+</div>
+<div class="diag1">
+<div class="diagtitle">
+        <h1>Localité</h1>
+    </div>
+    <div class="diagsect">
+    <p class="sec1">secteur 1</p> <p class="sec2">secteur 2</p> <p class="sec3">secteur 3</p> 
+    </div>
+    <div class="Localité" id="Localité"></div>
+</div>
+</div>
 
-
+<div class="top3">
+<div class="diag1">
+<div class="diagtitle2">
+        <h1>TOP 3</h1>
+    </div>
+</div>
     <div class="carre">
-            <div class="name">
-                <h1>Entreprise1</h1>
-                <div class="rating" data-rating="3">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <div class="rating" data-rating="3">
                 <span class="star"></span>
                 <span class="star"></span>
                 <span class="star"></span>
                 <span class="star"></span>
                 <span class="star"></span>
             </div>
-            </div>
-    <div class="downligne">
-        <div class="secteur">
-            <h2>Secteur</h2>
-            <p>secteur</p>
-            
-        </div> 
-        <div class="localité">
-            <h2>Localité</h2>
-            <p>Paris
-            Lyon lyon</p>
         </div>
-        
+        <div class="downligne">
+            <div class="secteur">
+                <h2>Secteur</h2>
+                <p>secteur</p> 
+            </div> 
+            <div class="localité">
+                <h2>Localité</h2>
+                <p>Paris
+                Lyon lyon</p>
+            </div>
         </div> 
-
+        
+    </div>
+    <div class="carre">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <div class="rating" data-rating="3">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+        <div class="downligne">
+            <div class="secteur">
+                <h2>Secteur</h2>
+                <p>secteur</p> 
+            </div> 
+            <div class="localité">
+                <h2>Localité</h2>
+                <p>Paris
+                Lyon lyon</p>
+            </div>
+        </div> 
+        
+    </div>
+    <div class="carre">
+        <div class="name">
+            <h1>Entreprise1</h1>
+            <div class="rating" data-rating="3">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+            </div>
+        </div>
+        <div class="downligne">
+            <div class="secteur">
+                <h2>Secteur</h2>
+                <p>secteur</p> 
+            </div> 
+            <div class="localité">
+                <h2>Localité</h2>
+                <p>Paris
+                Lyon lyon</p>
+            </div>
+        </div> 
+        
+    </div>
 
 
 </div>
+
+
+
 </div>
 <footer class="footer">
     <img src="img/youtube.png" alt="YouTube">
