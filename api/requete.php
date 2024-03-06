@@ -61,7 +61,9 @@ LEFT JOIN ville ON situer.id_ville = ville.id
 LEFT JOIN stage ON stage.id_entreprise = entreprise.id
 LEFT JOIN candidater ON stage.id = candidater.id_stage
 LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
+WHERE ville.nom :ville";
 GROUP BY entreprise.id;";
+
     $stmt = $pdo->prepare($req);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -97,9 +99,64 @@ GROUP BY entreprise.id;";
 }
 
 
+
+function getStatsBySecteur(){
+    $pdo = getConnexion();
+    $req = "SELECT secteur.nom AS nom_secteur,
+    COUNT(*) AS nombre_apparition
+FROM secteur
+INNER JOIN entreprise ON secteur.id = entreprise.id_secteur
+GROUP BY secteur.nom
+ORDER BY COUNT(*) DESC";
+    $stmt = $pdo->prepare($req);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
+
+function getStatsByVille(){
+    $pdo = getConnexion();
+    $req = "SELECT ville.nom AS nom_ville,
+    COUNT(*) AS nombre_entreprise
+FROM ville
+INNER JOIN situer ON situer.id_ville = ville.id
+GROUP BY ville.nom
+ORDER BY COUNT(*) DESC";
+    $stmt = $pdo->prepare($req);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
+
+
+function getStatsByNote(){
+    $pdo = getConnexion();
+    $req = "SELECT 
+    secteur.nom AS secteur_activite,
+    GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville,
+    AVG(evaluer.note) AS moyenne_evaluations
+FROM entreprise
+INNER JOIN secteur ON entreprise.id_secteur = secteur.id
+LEFT JOIN situer ON situer.id_entreprise = entreprise.id
+LEFT JOIN ville ON situer.id_ville = ville.id
+LEFT JOIN stage ON stage.id_entreprise = entreprise.id
+LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
+GROUP BY entreprise.id";
+    $stmt = $pdo->prepare($req);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
+
 function getConnexion(){
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {
