@@ -34,10 +34,13 @@
     <input type="text" placeholder="Rechercher entreprises">
     <div class="combox">
     <select name="secteur d'activité" id="act_sec">
-        <option value="informatique">informatique</option>
-        <option value="informatique">BTP</option>
-        <option value="informatique">economie</option>
-        <option value="informatique">commerce</option>
+        <?php 
+        $data = json_decode("http://localhost/projetWEB/api/index.php?demande=combox/secteur")
+        
+        <option value=" "> </option>
+        ?>
+        
+
         </select>
     <select name="localité" id="localité">
         <option value="Aix-en-Provence">Aix-en-Provence</option>
@@ -90,34 +93,7 @@
         <span class="delete"></span>
     </div>
 </div>
-    <div class="ligne">
-    <div class="carre">
-            <div class="name">
-                <h1>Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-            </div>
-        </div> 
-        
-    </div>
-    <div class="mod">
-        <span class="update"></span>
-        <span class="delete"></span>
-    </div>
-    </div>
+
 
     
 </div>
