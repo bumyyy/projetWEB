@@ -72,7 +72,6 @@ LEFT JOIN ville ON situer.id_ville = ville.id
 LEFT JOIN stage ON stage.id_entreprise = entreprise.id
 LEFT JOIN candidater ON stage.id = candidater.id_stage
 LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
-WHERE ville.nom :ville
 GROUP BY entreprise.id;";
 
     $stmt = $pdo->prepare($req);

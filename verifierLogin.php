@@ -10,10 +10,11 @@ if (!empty($_POST['mail']) && !empty($_POST['mdp'])) {
 
     if ($isSame->success) {
         // Le mail et le mot de passe correspondent
+        session_destroy();
         session_start();
         $_SESSION['loggedin'][0] = true;
-        $_SESSION['loggedin'][1] = $utilisateur->id;
-        $_SESSION['loggedin'][2] = $utilisateur->type_;
+        $_SESSION['loggedin'][1] = $utilisateur[0]->id;
+        $_SESSION['loggedin'][2] = $utilisateur[0]->type_;
 
         header("Location: http://stagetier.fr/accueil"); // Redirigez vers la page souhaitée
     } 

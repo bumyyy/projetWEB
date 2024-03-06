@@ -11,7 +11,7 @@ try {
                 
                 break;
             case "utilisateur":
-                getUtilisateur($url[1]);
+                getUtilisateur(urldecode($url[1]));
                 break;
             case "combox":
                 if (!isset($url[1])) {

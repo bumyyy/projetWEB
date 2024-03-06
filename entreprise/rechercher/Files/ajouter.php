@@ -39,10 +39,14 @@ function setRating(rate, target) {
         
     </div>
 
+    <?php
+    if ($_SESSION['loggedin'][2] != 1){ ?>
     <div class="mod">
         <span class="update"></span>
         <span class="delete"></span>
     </div>
+    <?php }?>
+
 </div>
 
 <?php } ?>

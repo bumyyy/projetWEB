@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="Entreprises_rechercher.css">
 </head>
 <body>
-    
+<?php
+session_start();
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'][0] !== true) {
+    header("location: http://stagetier.fr");
+    exit;
+}    
+?>
+
 <header class="header">
     <div class="header-logo">
         <img src="img/logo.png" alt="Logo">
