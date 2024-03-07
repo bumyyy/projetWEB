@@ -1,14 +1,4 @@
-<script>
-function setRating(rate, target) {
-  const stars = target.querySelectorAll('.star');
-  stars.forEach((star, index) => {
-    star.classList.remove('active'); // Réinitialiser toutes les étoiles
-    if (index < rate) {
-      star.classList.add('active'); // Appliquer la classe active pour "remplir" les étoiles
-    }
-  });
-}
-</script>
+
 
 <?php foreach ($entreprises as $index => $entreprise){  ?>
 <div class="ligne">
@@ -30,8 +20,8 @@ function setRating(rate, target) {
             <span data-value="2" class="star"></span>
             <span data-value="1" class="star"></span>
         </div>
-        <script>setRating(<?php echo $entreprise->moyenne_evaluations; ?>, document.getElementById('rating-<?php echo $index; ?>'));</script>
         </div> 
+        <script>highlightStars(<?php $entreprise->moyenne_evaluations?>);</script>
         <div class="localité">
             <h2>Ont postulé</h2>    
             <p><?php echo $entreprise->nb_stagiaires_postules ?></p>
@@ -48,5 +38,5 @@ function setRating(rate, target) {
     <?php }?>
 
 </div>
-
+<script src="Entreprises_rechercher.js"></script>
 <?php } ?>
