@@ -33,15 +33,6 @@
 <div class="sub">
     <input type="text" placeholder="Rechercher entreprises">
     <div class="combox">
-    <select name="secteur d'activité" id="act_sec">
-        <?php 
-        $data = json_decode("http://localhost/projetWEB/api/index.php?demande=combox/secteur")
-        
-        <option value=" "> </option>
-        ?>
-        
-
-        </select>
     <select name="localité" id="localité">
         <option value="Aix-en-Provence">Aix-en-Provence</option>
         <option value="Marseille">Marseille</option>
@@ -78,11 +69,12 @@
         <div class="secteur">
             <h2>Note</h2>
             <div class="rating" data-rating="3">
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
-                <span class="star"></span>
+            <input type="hidden" id="rating-value" name="rating-value" value="0">
+                <span class="star" data-value="5">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="1">&#9733;</span>
             </div>
         </div> 
         
@@ -107,5 +99,6 @@
     <img src="img/instagram.png" alt="Instagram">
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
+<script src="Entreprises_rechercher.js"></script>
 </body>
 </html>
