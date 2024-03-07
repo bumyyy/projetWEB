@@ -75,7 +75,7 @@ body {
 }
 
 
-
+/*
 .sub {
     padding: 5px;
     z-index: 1;
@@ -83,8 +83,8 @@ body {
     background-color: #c9c9c9;
     align-items: center;
     justify-content: center;
-    position: sticky; /* This is what makes it sticky */
-    top: 0; /* Stick it to the top */
+    position: sticky; 
+    top: 0; 
     
 }
 .sub h1 {
@@ -104,8 +104,9 @@ body {
     color: #000000;
     border-radius: 20px;
     border-color: #00000000;
-    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2); /* Ombre de bordure */
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2); 
 }
+*/
 
 .combox {    
     text-align: center;
@@ -172,6 +173,20 @@ body {
     border-radius: 5vw;
     border-color: #00000057;
 }
+
+.success-message {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+
 .create_entrep{
     display: flex;
     flex-direction: column;

@@ -30,6 +30,7 @@
 <div class="content">
     
 </div>
+<!-- 
 <div class="sub">
     <input type="text" placeholder="Rechercher entreprises">
     <div class="combox">
@@ -57,23 +58,28 @@
     <div class="create">
         <button>+</button>
     </div>
-</div>
+</div>-->
 
 <div class="main">
- <form action="Entreprises_accueil.php" class="create_entrep" id="myform" method="POST">
+ <form class="create_entrep" id="myform" method="POST" > <!-- action="Entreprises_accueil.php" -->
     <h1>Créer une entreprise</h1>
     <div class="company">
         <h2>Nom de l'entreprise</h2>
-        <input type="text" name="nom" id="form_input">
+        <input type="text" name="nom" id="form_input" required>
     </div>
     <div class="activité">
         <h2>Secteur d'activité</h2>
-        <select name="secteur" id="Secteur"></select>
+        <select name="secteur" id="Secteur" required>
+        <option value="informatique">informatique</option>
+        </select>
+        
     </div>
     <h2>Localité</h2>
     <div class="localite">
     <div id="select-container">
-        <select name="localite[]" class="localite-select" id="localite-select"></select>
+        <select name="localite[]" class="localite-select" id="localite-select" required>
+        <option value="informatique">informatique</option>
+        </select>
     </div>
     <input type="button" value="+" id="ville">
 </div>
@@ -90,7 +96,7 @@
     </div>
     </div>
     <div class="submit">
-        <button type="submit">Soumettre</button>
+        <button type="submit" id="submit_btn">Soumettre</button>
     </div>
  </form>
 </div>
