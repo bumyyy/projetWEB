@@ -55,7 +55,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'][0] !== true) {
         <select name="localité">
             <option value="x">Ville</option>
             <?php 
-            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/ville"));
+            $data = json_decode(file_get_contents(" "));
             foreach ($data as $ville) {
                 echo "<option value='{$ville->nom}'>$ville->nom</option>";
             }

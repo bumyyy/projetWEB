@@ -277,6 +277,7 @@ margin-top: 20px;
     background-image: url('img/poubelle.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     background-repeat: no-repeat;
+    cursor: pointer;
 }
 .footer {
     width: 100%;

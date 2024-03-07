@@ -1,6 +1,8 @@
+<script src="http://stagetier.fr/entreprise/rechercher/Files/ajouter.js"></script>
 
-
-<?php foreach ($entreprises as $index => $entreprise){  ?>
+<?php 
+header('Access-Control-Allow-Origin: http://stagetier.fr');
+foreach ($entreprises as $index => $entreprise){  ?>
 <div class="ligne">
     <div class="carre">
         <div class="name">
@@ -33,10 +35,9 @@
     if ($_SESSION['loggedin'][2] != 1){ ?>
     <div class="mod">
         <span class="update"></span>
-        <span class="delete"></span>
+        <span onclick="confirmerSuppression('<?php echo $entreprise->id_entreprise; ?>');" class="delete"></span>
     </div>
     <?php }?>
 
 </div>
-<script src="Entreprises_rechercher.js"></script>
 <?php } ?>

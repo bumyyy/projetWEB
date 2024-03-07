@@ -60,6 +60,7 @@ function getVille() {
 function getAllEntreprise(){
     $pdo = getConnexion();
     $req = "SELECT 
+    entreprise.id AS id_entreprise,
     entreprise.nom AS nom_entreprise,
     secteur.nom AS secteur_activite,
     GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville,
@@ -85,6 +86,7 @@ GROUP BY entreprise.id;";
 function getEntrepriseByRecherche($recherche){
     $pdo = getConnexion();
     $req = "SELECT 
+    entreprise.id AS id_entreprise,
     entreprise.nom AS nom_entreprise,
     secteur.nom AS secteur_activite,
     GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville,
@@ -162,6 +164,19 @@ GROUP BY entreprise.id";
     // Fermeture du curseur du statement
     $stmt->closeCursor();
     sendJSON($data);
+}
+
+function deleteEntreprise($idEntreprise){
+    $pdo = getConnexion();
+    $req = "DELETE FROM entreprise WHERE id = :id;";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":id",$idEntreprise);
+    $stmt->execute();
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    if ($stmt->rowCount() > 0) //retourne le nombre de lignes affectées par la dernière requête
+    {http_response_code(200);}
+    else {http_response_code(500);}
 }
 
 function getConnexion(){

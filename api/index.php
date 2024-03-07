@@ -41,22 +41,40 @@ try {
                         throw new Exception("La demande pour 'entreprise' n'est pas valide.");
                 }
                 break;
-                case "stats":
+            case "stats":
+                if (!isset($url[1])) {
+                    throw new Exception("La demande pour 'stats' n'est pas spécifiée.");
+                }
+                switch ($url[1]) {
+                    case "secteur":
+                        getStatsBySecteur();
+                        break;
+                    case "ville":
+                        getStatsByVille();
+                        break;
+                    case "note":
+                        getStatsByNote();
+                        break;
+                    default:
+                        throw new Exception("La demande pour 'stats' n'est pas valide.");
+                }
+                break;
+                case "supprimer":
                     if (!isset($url[1])) {
-                        throw new Exception("La demande pour 'stats' n'est pas spécifiée.");
+                        throw new Exception("La demande pour 'supprimer' n'est pas spécifiée.");
                     }
                     switch ($url[1]) {
-                        case "secteur":
-                            getStatsBySecteur();
+                        case "entreprise":
+                            deleteEntreprise($url[2]);
                             break;
                         case "ville":
-                            getStatsByVille();
+                            
                             break;
                         case "note":
-                            getStatsByNote();
+                            
                             break;
                         default:
-                            throw new Exception("La demande pour 'stats' n'est pas valide.");
+                            throw new Exception("La demande pour 'supprimer' n'est pas valide.");
                     }
                     break;
 
