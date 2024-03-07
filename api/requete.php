@@ -174,9 +174,9 @@ function deleteEntreprise($idEntreprise){
     $stmt->execute();
     // Fermeture du curseur du statement
     $stmt->closeCursor();
-    if ($stmt->rowCount() > 0) //retourne le nombre de lignes affectées par la dernière requête
-    {http_response_code(200);}
-    else {http_response_code(500);}
+    if ($stmt->rowCount() > 0){ //retourne le nombre de lignes affectées par la dernière requête
+    sendJSON(['success' => true]);}
+    else { sendJSON(['success' => false]);}
 }
 
 function getConnexion(){

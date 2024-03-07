@@ -29,13 +29,12 @@ async function confirmerSuppression(idEntreprise) {
       const response = await fetch(url, {
         method: 'POST'
       });
-
-      // Vérification si la réponse est dans la plage 200-299
-      if (response.status >= 200 && response.status < 300) {
+      if (response.ok) {
         console.log('Suppression réussie');
         alert("Suppression réussie !");
       } else {
         // Si la réponse n'est pas dans la plage 200-299, affichez une erreur
+        alert("Erreur.");
         throw new Error('Réponse réseau non ok');
       }
     } catch (error) {
