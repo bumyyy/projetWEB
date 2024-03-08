@@ -8,10 +8,12 @@
 </head>
 <body>
 <?php
+/*
 if(!isset($_COOKIE['CookieSession'])) {
     header("location: http://stagetier.fr");
     exit;
 }
+*/
 ?>
 <header class="header">
     <div class="header-logo">

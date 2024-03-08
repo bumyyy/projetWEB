@@ -4,7 +4,7 @@
 
 function isMdp($mail, $mdp_a_verif) {
     $pdo = getConnexion();
-    $req = "SELECT mdp FROM utilisateur WHERE mail = :mail";
+    $req = "SELECT mdp,type_ FROM utilisateur WHERE mail = :mail";
     $stmt = $pdo->prepare($req);
     $stmt->bindValue(":mail", $mail);
     $stmt->execute();
@@ -17,7 +17,7 @@ function isMdp($mail, $mdp_a_verif) {
     // Vérifiez si un mot de passe a été récupéré et comparez-le
     if ($data && $mdpHashVerif == $data['mdp']) {  //utilisée pour vérifier si le mot de passe fourni par l'utilisateur correspond au hash du mot de passe stocké dans la base de données
         // Si le mot de passe correspond
-        sendJSON(['success' => true]);
+        sendJSON(['success' => true, 'type_' => $data['type_']] );
     } else {
         // Si le mot de passe ne correspond pas ou l'utilisateur n'existe pas
         sendJSON(['success' => false]);
