@@ -256,11 +256,14 @@ margin-top: 20px;
 
 .star {
     display: inline-block;
-    font-size: clamp(30px,3vw,40px);
+    font-size: clamp(16px,3vw,40px);
  /*   width: clamp(24px,2.4vw,28px); 
     height: clamp(24px,2.4vw,28px);*/
     background-size: contain;
     color: rgb(160, 160, 160); /* Définit la couleur des étoiles par défaut */
+}
+.note{
+    font-size: clamp(12px,1.8vw,25px);
 }
 .p{
     margin:0;
@@ -317,5 +320,9 @@ margin-top: 20px;
     .header-icons
     {
         margin-left: 30px;
+        padding: 0  ;
+    }
+    .header-icons img{
+        padding: 0;
     }
 }

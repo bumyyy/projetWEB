@@ -9,9 +9,11 @@ function highlightStars(value) {
       } else {
         star.style.color = 'rgb(160, 160, 160)'; // Change color to gray
       }
-    });
-  }
-highlightStars(4);
 
+    });
+    let note = document.getElementById("note");
+    note.textContent=value;
+  }
+highlightStars('3.6');
 
 });

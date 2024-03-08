@@ -76,7 +76,9 @@
                 <span class="star" data-value="2">&#9733;</span>
                 <span class="star" data-value="1">&#9733;</span>
             </div>
+            <div class="note" id="note">0</div>
         </div> 
+
         
     </div>
 
