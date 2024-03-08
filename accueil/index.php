@@ -8,8 +8,7 @@
 </head>
 <body>
 <?php
-session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'][0] !== true) {
+if(!isset($_COOKIE['CookieSession'])) {
     header("location: http://stagetier.fr");
     exit;
 }

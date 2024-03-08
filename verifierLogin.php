@@ -10,11 +10,24 @@ if (!empty($_POST['mail']) && !empty($_POST['mdp'])) {
 
     if ($isSame->success) {
         // Le mail et le mot de passe correspondent
-        session_destroy();
-        session_start();
-        $_SESSION['loggedin'][0] = true;
-        $_SESSION['loggedin'][1] = $utilisateur[0]->id;
-        $_SESSION['loggedin'][2] = $utilisateur[0]->type_;
+        $token = bin2hex(openssl_random_pseudo_bytes(16)); // Génère un token sécurisé
+        $expire = time() + (10 * 60);
+        $path = '/'; //Accesssible dans tout le domaine
+        $domain = 'stagetier.fr';
+        $secure = false; //  Si mis à true, le cookie ne sera envoyé que sur une connexion sécurisée (HTTPS).
+        $httponly = false; //Si mis à true, le cookie ne sera accessible que par le protocole HTTP.
+        $UserType = $utilisateur->type_;
+
+        // Création d'un tableau avec les informations à stocker
+        $data = [
+            'token' => $token,
+            'utilisateur' => $UserType
+        ];
+
+        // Conversion du tableau en chaîne JSON
+        $jsonData = json_encode($data);
+
+        setcookie("CookieSession", $token, $expire, $path, $domain, $secure, $httponly);
 
         header("Location: http://stagetier.fr/accueil"); // Redirigez vers la page souhaitée
     } 

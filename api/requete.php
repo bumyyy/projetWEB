@@ -13,8 +13,9 @@ function isMdp($mail, $mdp_a_verif) {
     // Fermeture du curseur du statement
     $stmt->closeCursor();
 
+    $mdpHashVerif = hash('sha256', $mdp_a_verif);
     // Vérifiez si un mot de passe a été récupéré et comparez-le
-    if ($data && $mdp_a_verif == $data['mdp']) {
+    if ($data && $mdpHashVerif == $data['mdp']) {  //utilisée pour vérifier si le mot de passe fourni par l'utilisateur correspond au hash du mot de passe stocké dans la base de données
         // Si le mot de passe correspond
         sendJSON(['success' => true]);
     } else {

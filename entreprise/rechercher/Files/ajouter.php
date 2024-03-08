@@ -32,7 +32,7 @@ foreach ($entreprises as $index => $entreprise){  ?>
     </div>
 
     <?php
-    if ($_SESSION['loggedin'][2] != 1){ ?>
+    if ($utilisateur != 1 ){ ?>
     <div class="mod">
         <span class="update"></span>
         <span onclick="confirmerSuppression('<?php echo $entreprise->id_entreprise; ?>');" class="delete"></span>

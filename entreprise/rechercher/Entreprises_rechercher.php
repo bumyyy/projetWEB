@@ -8,11 +8,10 @@
 </head>
 <body>
 <?php
-session_start();
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'][0] !== true) {
+if(isset($_COOKIE['CookieSession'])) {
     header("location: http://stagetier.fr");
     exit;
-}    
+}
 ?>
 
 <header class="header">
@@ -55,7 +54,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'][0] !== true) {
         <select name="localité">
             <option value="x">Ville</option>
             <?php 
-            $data = json_decode(file_get_contents(" "));
+            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/ville"));
             foreach ($data as $ville) {
                 echo "<option value='{$ville->nom}'>$ville->nom</option>";
             }
