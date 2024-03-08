@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Stage_tier</title>
-
-    <!-- JAVASCRIPT MDP -->
-    <script>
-        function toggleVisibility() {
-            var mdpInput = document.getElementById("mdp");
-            if (mdpInput.type === "password") {
-                mdpInput.type = "text";
-            } else {
-                mdpInput.type = "password";
-            }
-        }
-    </script>
-
 </head>
 <body>
+
+ <!-- JAVASCRIPT MDP -->
+ <script>
+    function toggleVisibility() {
+        var mdpInput = document.getElementById("mdp");
+        if (mdpInput.type === "password") {
+            mdpInput.type = "text";
+        } else {
+            mdpInput.type = "password";
+        }
+    }
+</script>
+
     <div class="container">
         <div class="gauche">
             <div class="titre">
