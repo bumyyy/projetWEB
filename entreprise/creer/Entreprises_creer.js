@@ -1,39 +1,45 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // Récupérer les éléments du DOM
-  const selectContainer = document.getElementById('select-container');
-  const villeButton = document.getElementById('ville');
+    // Récupérer les éléments du DOM
+    const selectContainer = document.getElementById('select-container');
+    const villeButton = document.getElementById('ville');
 
-  // Gérer l'événement click sur le bouton +
-  villeButton.addEventListener('click', () => {
-      // Vérifier le nombre d'éléments select déjà présents
-      const selects = selectContainer.querySelectorAll('select.localite-select');
-      if (selects.length >= 10) {
-          alert("Vous avez atteint la limite de 10 villes.");
-          return; // Arrêter l'exécution si la limite est atteinte
-      }
+    // Gérer l'événement click sur le bouton +
+    villeButton.addEventListener('click', () => {
+        // Vérifier le nombre d'éléments select déjà présents
+        const selects = selectContainer.querySelectorAll('select.localite-select');
+        if (selects.length >= 10) {
+            alert("Vous avez atteint la limite de 10 villes.");
+            return; // Arrêter l'exécution si la limite est atteinte
+        }
 
-      // Créer un nouveau select
-      const newSelect = document.createElement('select');
-      newSelect.name = 'localite[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
-      newSelect.classList.add('localite-select');
+        // Appeler votre API pour obtenir les données des villes
+        fetch('/api/index.php?demande=combox/ville')
+            .then(response => response.json())
+            .then(data => {
+                // Créer un nouveau select
+                const newSelect = document.createElement('select');
+                newSelect.name = 'localite[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
+                newSelect.classList.add('localite-select');
 
-      // Ajouter le nouveau select au conteneur
-      selectContainer.appendChild(newSelect);
+                // Ajouter chaque ville comme option au nouveau select
+                data.forEach(ville => {
+                    const option = document.createElement('option');
+                    option.value = ville.id;
+                    option.textContent = ville.nom;
+                    newSelect.appendChild(option);
+                });
 
-      // Créer un nouvel input pour le bouton +
-      const newButton = document.createElement('input');
-      newButton.type = 'button';
-      newButton.value = '+';
-      newButton.id = 'ville'; // Garder le même ID pour l'événement click
+                // Ajouter le nouveau select au conteneur
+                selectContainer.appendChild(newSelect);
 
-      // Ajouter un gestionnaire d'événements pour le nouvel input
-      newButton.addEventListener('click', () => {
-          newSelect.focus(); // Focaliser le nouveau select après avoir ajouté le bouton
-      });
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des villes :', error);
+            });
+    });
 
-      // Ajouter le nouvel input au conteneur
-      selectContainer.appendChild(newButton);
-  });
+
+    
 
   // Afficher le bouton + après le chargement de la page
   villeButton.style.display = 'block';
@@ -61,9 +67,5 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   }
 
-
-
-
-
-    
 });
+

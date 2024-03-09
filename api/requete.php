@@ -26,7 +26,7 @@ function isMdp($mail, $mdp_a_verif) {
 
 function getSecteur() {
     $pdo = getConnexion();
-    $req = "SELECT nom FROM secteur";
+    $req = "SELECT id, nom FROM secteur";
     $stmt = $pdo->prepare($req);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -37,7 +37,7 @@ function getSecteur() {
 
 function getVille() {
     $pdo = getConnexion();
-    $req = "SELECT nom FROM ville";
+    $req = "SELECT id, nom FROM ville";
     $stmt = $pdo->prepare($req);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);

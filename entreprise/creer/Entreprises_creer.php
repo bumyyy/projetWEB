@@ -70,15 +70,31 @@
     <div class="activité">
         <h2>Secteur d'activité</h2>
         <select name="secteur" id="Secteur" required>
-        <option value="informatique">informatique</option>
-        </select>
-        
+        <?php
+        // Appeler votre API pour récupérer les secteurs d'activité
+        $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/secteur"));
+
+        // Parcourir les données récupérées et créer les options pour le menu déroulant
+        foreach ($data as $secteur) {
+            echo "<option value='{$secteur->nom}'>$secteur->nom</option>";
+        }
+        ?>
+    </select>   
     </div>
     <h2>Localité</h2>
     <div class="localite">
     <div id="select-container">
         <select name="localite[]" class="localite-select" id="localite-select" required>
-        <option value="informatique">informatique</option>
+        <?php
+        // Modifier votre PHP pour qu'il génère le contenu des options pour un select
+            // Appeler votre API pour récupérer les secteurs d'activité
+            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/ville"));
+
+            // Générer les options pour le select
+            foreach ($data as $ville) {
+                echo "<option value='{$ville->nom}'>$ville->nom</option>";
+            }
+        ?>
         </select>
     </div>
     <input type="button" value="+" id="ville">
