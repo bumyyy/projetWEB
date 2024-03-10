@@ -8,12 +8,10 @@
 </head>
 <body>
 <?php
-/*
-if(!isset($_COOKIE['CookieSession'])) {
-    header("location: http://stagetier.fr");
-    exit;
-}
-*/
+require_once __DIR__ . "/../../vendor/autoload.php";
+use App\UserSessionManager;
+$sessionManager = new UserSessionManager();
+$sessionManager->verifySession();   
 ?>
 <header class="header">
     <div class="header-logo">

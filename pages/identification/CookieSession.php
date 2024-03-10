@@ -3,12 +3,21 @@ require_once __DIR__ . "/../../vendor/autoload.php";
 
 use App\UserSessionManager;
 
-// Création d'une instance de UserSessionManager
-$sessionManager = new UserSessionManager();
+// Récupération du corps de la requête POST et décodage du JSON
+$input = file_get_contents('php://input');
+$data = json_decode($input, true); // true pour obtenir un tableau associatif
 
-// À placer au début de chaque script qui nécessite une vérification de session
-//$sessionManager->verifySession();
+// Vérifier que data contient bien la clé 'typeUtilisateur'
+if (isset($data['typeUtilisateur'])) {
+    $typeUtilisateur = $data['typeUtilisateur'];
 
-$sessionManager->startSession(bin2hex(openssl_random_pseudo_bytes(16)), dataResponse.type_); // Générer un token sécurisé
+    // Création d'une instance de UserSessionManager
+    $sessionManager = new UserSessionManager();
 
-?>
+    // Démarrer une session avec le type d'utilisateur
+    $token = bin2hex(openssl_random_pseudo_bytes(16));
+    $sessionManager->startSession($token, $typeUtilisateur);
+
+} 
+
+

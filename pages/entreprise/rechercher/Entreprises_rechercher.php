@@ -8,10 +8,13 @@
 </head>
 <body>
 <?php
-if(isset($_COOKIE['CookieSession'])) {
-    header("location: http://stagetier.fr");
-    exit;
-}
+require_once __DIR__ . "/../../vendor/autoload.php";
+use App\UserSessionManager;
+$sessionManager = new UserSessionManager();
+$sessionManager->verifySession();  
+
+$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/chemin/vers/vos/templates');
+$twig = new \Twig\Environment($loader);
 ?>
 
 <header class="header">
@@ -44,12 +47,12 @@ if(isset($_COOKIE['CookieSession'])) {
         <div class="combox">
         <select name="act_sec">
             <option value="x">Secteur</option>
-            <?php 
-            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/secteur"));
-            foreach ($data as $secteur) {
-                echo "<option value='{$secteur->nom}'>$secteur->nom</option>";
-            }
-            ?>
+
+            {% $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/secteur")) %}
+            {% foreach ($data as $secteur)  %}
+                <option value='{{$secteur->nom}}'>{{ $secteur->nom }}</option>; 
+            {% } %}
+            
             </select>
         <select name="localité">
             <option value="x">Ville</option>

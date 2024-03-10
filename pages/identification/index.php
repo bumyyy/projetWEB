@@ -7,19 +7,7 @@
     <title>Stage_tier</title>
 </head>
 <body>
-
- <!-- JAVASCRIPT MDP -->
- <script>
-    function toggleVisibility() {
-        var mdpInput = document.getElementById("mdp");
-        if (mdpInput.type === "password") {
-            mdpInput.type = "text";
-        } else {
-            mdpInput.type = "password";
-        }
-    }
-</script>
-
+    
     <div class="container">
         <div class="gauche">
             <div class="titre">
@@ -40,7 +28,7 @@
                 <h2>S'identifier</h2>
             </div>
             
-            <form action="verifierLogin.php" method="POST">
+            <form id="login" method="POST">
                 <div class="champemail">
                     <input type="email" id="mail" name="mail" placeholder="Email" required>
                 </div>
@@ -66,5 +54,19 @@
         </div>
     </div>
     
+<!-- JAVASCRIPT MDP -->
+<script>
+    function toggleVisibility() {
+        var mdpInput = document.getElementById("mdp");
+        if (mdpInput.type === "password") {
+            mdpInput.type = "text";
+        } else {
+            mdpInput.type = "password";
+        }
+    }
+</script>
+
+<script src = "verifierLogin.js"></script>
+
 </body>
 </html>
