@@ -67,26 +67,30 @@
         <h2>Nom de l'entreprise</h2>
         <input type="text" name="nom" id="form_input" required>
     </div>
-    <div class="activité">
-        <h2>Secteur d'activité</h2>
-        <select name="secteur" id="Secteur" required>
-        <?php
-        // Appeler votre API pour récupérer les secteurs d'activité
-        $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/secteur"));
 
-        // Parcourir les données récupérées et créer les options pour le menu déroulant
-        foreach ($data as $secteur) {
-            echo "<option value='{$secteur->nom}'>$secteur->nom</option>";
-        }
-        ?>
-    </select>   
+    <h2>Secteur d'activité</h2>
+<div class="activite">
+    <div id="secteur-container">
+        <select name="secteur" class="secteur-select" id="secteur-select" required>
+            <?php
+            // Appeler votre API pour récupérer les secteurs d'activité
+            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/secteur"));
+
+            // Parcourir les données récupérées et créer les options pour le menu déroulant
+            foreach ($data as $secteur) {
+                echo "<option value='{$secteur->nom}'>$secteur->nom</option>";
+            }
+            ?>
+        </select>
     </div>
-    <h2>Localité</h2>
-    <div class="localite">
-    <div id="select-container">
+    <input type="button" value="+" id="secteur">
+</div>
+
+<h2>Localité</h2>
+<div class="localite">
+    <div id="localite-container">
         <select name="localite[]" class="localite-select" id="localite-select" required>
-        <?php
-        // Modifier votre PHP pour qu'il génère le contenu des options pour un select
+            <?php
             // Appeler votre API pour récupérer les secteurs d'activité
             $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/ville"));
 
@@ -94,11 +98,12 @@
             foreach ($data as $ville) {
                 echo "<option value='{$ville->nom}'>$ville->nom</option>";
             }
-        ?>
+            ?>
         </select>
     </div>
     <input type="button" value="+" id="ville">
 </div>
+
 
 <div class="note">
     <h2>Note</h2>
