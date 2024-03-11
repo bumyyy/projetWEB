@@ -65,10 +65,8 @@ $sessionManager->verifySession();
 
 </div>
 
-<div id="main" class="main">
-
-</div>
-
+<div id="main" class="main"></div>
+<div id="pagination"></div>
 
 <footer class="footer">
     <img src="img/youtube.png" alt="YouTube">

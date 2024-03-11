@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    let currentPage = getCurrentPage();
+    // Modifier l'URL pour inclure la pagination
+    window.location.hash = `page=${currentPage}`;
+
     document.getElementById('form').addEventListener('submit', function(e) {
         e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
         document.getElementById('main').innerHTML = ''; // reset la page
@@ -7,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataVille = document.getElementById('ville').value;
         let dataNote = document.getElementById('rate').value;
         let dataSearch = document.getElementById('search').value;
-        let URL = dataSearch !== "" 
+        let URL_ = dataSearch !== "" 
             ? `http://localhost/projetWEB/api/index.php?demande=entreprise/recherche/${dataSearch}` 
             : "http://localhost/projetWEB/api/index.php?demande=entreprise";
-        fetch(URL)
+        fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {
             return fetch(`filterSearch.php`, {
@@ -68,12 +73,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 "</div>";
                 highlightStars(entreprise.moyenne_evaluations);
                 document.getElementById('main').innerHTML += html;
+                
             })
-            
+            updatePage(finalData.entreprises.length);
         })
         .catch(error => console.error('Error:', error));
     });
 });
+
+
+function getCurrentPage() {
+    const hashParams = new URLSearchParams(window.location.hash.slice(1)); // Retire le '#' et parse
+    return parseInt(hashParams.get('page') || '1', 10);
+}
+
+function updatePage(dataLength) {
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = ''; // Nettoyez les boutons précédents
+    let currentPage = getCurrentPage();
+    
+    // Bouton de page précédente
+    if (currentPage > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = 'Précédent';
+        prevBtn.onclick = () => {
+            window.location.search = `?page=${currentPage - 1}`;
+        };
+        paginationContainer.appendChild(prevBtn);
+    }
+    
+    // Bouton de page suivante
+    if (dataLength === 5) { // Supposons que moins de 5 signifie qu'il n'y a pas de page suivante
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Suivant';
+        nextBtn.onclick = () => {
+            window.location.search = `?page=${currentPage + 1}`;
+        };
+        paginationContainer.appendChild(nextBtn);
+    }
+}
+
 
 function highlightStars(value) {
     const stars = document.querySelectorAll('.star');
