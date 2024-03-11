@@ -7,14 +7,11 @@
     <link rel="stylesheet" href="Entreprises_rechercher.css">
 </head>
 <body>
-<?php
-require_once __DIR__ . "/../../vendor/autoload.php";
+<?php 
+require_once __DIR__ . "/../../../vendor/autoload.php";
 use App\UserSessionManager;
 $sessionManager = new UserSessionManager();
-$sessionManager->verifySession();  
-
-$loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/chemin/vers/vos/templates');
-$twig = new \Twig\Environment($loader);
+$sessionManager->verifySession(); 
 ?>
 
 <header class="header">
@@ -39,33 +36,18 @@ $twig = new \Twig\Environment($loader);
 <div class="content">
     
 </div>
-<form method="POST">
+<form id="form" method="POST">
 <div class="sub">
     
-            <input type="text" name="rechercher" placeholder="Rechercher entreprises">
+        <input type="text" id="search" placeholder="Rechercher entreprises">
 
         <div class="combox">
-        <select name="act_sec">
-            <option value="x">Secteur</option>
-
-            {% $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/secteur")) %}
-            {% foreach ($data as $secteur)  %}
-                <option value='{{$secteur->nom}}'>{{ $secteur->nom }}</option>; 
-            {% } %}
+            <div id="comboboxSecteur"></div>
             
-            </select>
-        <select name="localité">
-            <option value="x">Ville</option>
-            <?php 
-            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/ville"));
-            foreach ($data as $ville) {
-                echo "<option value='{$ville->nom}'>$ville->nom</option>";
-            }
-            ?>
-            </select>
+            <div id="comboboxVille"></div>
 
-        <select name="rate">
-            <option value="x">Note</option>
+        <select id="rate" >
+            <option value="x">note</option>
             <option value="1">1 étoile</option>
             <option value="2">2 étoiles</option>
             <option value="3">3 étoiles</option>
@@ -83,20 +65,7 @@ $twig = new \Twig\Environment($loader);
 
 </div>
 
-<!--Le block de code qui permet de réaliser l'algorithme de filtre-->
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include "Files/rechercher.php";
-}
-?>
-
-<!--La classe carre représente ici les blocks dans lequels sont placé les informations lié aux entreprises-->
-<div class="main">
-        <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            include "Files/ajouter.php";
-        }
-        ?>
+<div id="main" class="main">
 
 </div>
 
@@ -110,4 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
 </body>
+<script src="fillCombobox.js"></script>
+<script src="fillMain.js"></script>
+<script src="editCompany.js"></script>
 </html>

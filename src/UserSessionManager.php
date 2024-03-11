@@ -19,6 +19,17 @@ class UserSessionManager {
 
     }
 
+    public function getUser() {
+        if (!isset($_COOKIE[$this->cookieName])) {
+            $data = json_decode($_COOKIE[$this->cookieName]);
+            if ($data && isset($data->utilisateur)) {
+                return $data->utilisateur;
+
+            }
+        }
+
+    }
+
     // Méthode pour démarrer une session avec un cookie
     public function startSession($token, $userType, $expire = 600, $path = '/', $domain = 'stagetier.fr', $secure = false, $httponly = false) {
         
