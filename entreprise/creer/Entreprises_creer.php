@@ -146,8 +146,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Appeler la fonction pour insérer les données
     insererEntreprise($nom_entreprise, $secteur_nom, $ville_nom, $note);
 
-    echo "Les données ont été insérées avec succès.";
-
 }
 
 
@@ -195,6 +193,16 @@ function insererEntreprise($nom_entreprise, $secteur_nom, $ville_nom, $note) {
     $pdo = null;
 }
 
+
+function getConnexion(){
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+    } catch (PDOException $e) {
+        die("Erreur de connexion à la base de données: " . $e->getMessage());
+    }
+}
 
 
 

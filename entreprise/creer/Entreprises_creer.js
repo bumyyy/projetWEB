@@ -114,8 +114,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Gérer la soumission du formulaire
     const form = document.querySelector('form');
-
-    form.addEventListener('submit', (event) => {
+    
+        document.getElementById('myform').addEventListener('submit', (event) => {
         if (!isRatingSelected) {
             event.preventDefault(); // Empêcher la soumission du formulaire si aucune note n'a été sélectionnée
             alert('Veuillez sélectionner une note.'); // Afficher un message d'erreur
