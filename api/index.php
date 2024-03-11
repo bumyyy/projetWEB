@@ -75,6 +75,7 @@ try {
             default:
                 throw new Exception("La demande n'est pas valide");
         }
+        
     } else {
         throw new Exception("Problème de récupération de données, mauvaise URL");
     }
