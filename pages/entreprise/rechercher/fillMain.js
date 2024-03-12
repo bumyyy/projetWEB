@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataVille = document.getElementById('ville').value;
         let dataNote = document.getElementById('rate').value;
         let dataSearch = document.getElementById('search').value;
+        
         let URL_ = dataSearch !== "" 
             ? `http://localhost/projetWEB/api/index.php?demande=entreprise/recherche/${dataSearch}` 
             : "http://localhost/projetWEB/api/index.php?demande=entreprise";
@@ -35,7 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(finalData => {
             console.log(finalData);
             let userType = finalData.userType;
-            finalData.entreprises.forEach ((entreprise, index) => {  
+            let tabnote = [];
+            finalData.entreprises.forEach ((entreprise) => {  
+                tabnote.push(entreprise.moyenne_evaluations);
                 let html =
                 "<div class='completeEntreprise' onclick='toggleSubdivision(this)'>" +
                 "<div class='ligne'>" +
@@ -77,12 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 "<div id='myModal' class='popup'>"+
                     "<div class='fermer'><button id='closebtn'>x</button></div>"+
                     "<div class='name_popup'>"+
-                    "<h1>Entreprise1</h1>"+
-                    "<p>informatique</p>"+
+                    "<h1>"+entreprise.nom_entreprise+"</h1>"+
+                    "<p>"+entreprise.secteur_activite+"</p>"+
                     "</div>"+
                     "<div class='localité_popup'>"+
                     "<h2>Localité</h2>"+
-                    "<p>Paris<br>Lyon<br>Lyon</p>"+
+                    "<p>"+entreprise.ville+"</p>"+
                     "</div>"+
                     "<div class='secteur_popup'>"+
                     "<h2>Note</h2>"+
@@ -100,8 +103,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     "<a href='https://google.com'>google</a>"+
                     "</div>"+
                 "</div>";
-                console.log(html);
-                highlightStars(entreprise.moyenne_evaluations);
+                console.log(tabnote);
+                highlightStars(tabnote);
                 document.getElementById('main').innerHTML += html;
                 
             })
@@ -109,6 +112,47 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error:', error));
     });
+
+
+
+
+
+//coloris les etoiles en fonction du nom des entreprises et du tableau de note
+function highlightStars(tabnote) {
+    const stars = document.querySelectorAll('.star');
+    for(let a = 1;a<(stars.length/10)+1;a++){
+      let idebut = 0;
+      let ifin = 10;
+      if (a !=1){
+        let b=a-1;
+        idebut+=(10*b);
+        ifin+=(10*b);
+      }
+      for(let i= idebut;i<ifin;i++){
+          const starValue = parseInt(stars[i].getAttribute('data-value'));
+          if (starValue <= parseInt(tabnote[a-1])) {
+            stars[i].style.color = '#ffc107'; // Change color to yellow
+          } else {
+            stars[i].style.color = 'rgb(160, 160, 160)'; // Change color to gray
+          }
+        }
+      }
+  
+      let elements = document.querySelectorAll('[id="note"]');
+    
+    for(let i=0;i<elements.length/2;i++){
+      let c = i*2;
+      elements[c].textContent=parseFloat(tabnote[i]).toFixed(1);
+      elements[c+1].textContent=parseFloat(tabnote[i]).toFixed(1);
+    }
+  
+  }
+
+
+
+
+
+
 });
 
 
@@ -143,15 +187,29 @@ function updatePage(dataLength) {
     }
 }
 
+    
+  //recuperer le nom des entreprise
+  function entrepriseName(){
+  let elements = document.querySelectorAll('h1#entrepriseName');
+  let tab = [];
+  elements.forEach(element =>{
+    let tabs = element.textContent.trim();
+    tab.push(tabs);
+  })
+  
+  
+  }
 
-function highlightStars(value) {
-    const stars = document.querySelectorAll('.star');
-    stars.forEach(star => {
-      const starValue = parseInt(star.getAttribute('data-value'));
-      if (starValue <= value) {
-        star.style.color = '#ffc107'; // Change color to yellow
-      } else {
-        star.style.color = 'rgb(160, 160, 160)'; // Change color to gray
-      }
-    });
-  };
+  
+  function toggleSubdivision(division) {
+    let subdivision = division.querySelector('.popup');
+    let computedStyle = window.getComputedStyle(subdivision);
+
+    if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
+        subdivision.style.display = 'block';
+        document.body.classList.add('no-scroll'); // Ajouter une classe pour désactiver le défilement
+    } else {
+        subdivision.style.display = 'none';
+        document.body.classList.remove('no-scroll'); // Retirer la classe pour activer le défilement
+    }
+}

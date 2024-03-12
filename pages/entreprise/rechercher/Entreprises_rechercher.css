@@ -177,7 +177,12 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
+#comboboxSecteur{
+    max-width: 100px;
+}
+#comboboxSecteur select{
+    max-width: 100px;
+}
 .carre{
     display: flex;
     justify-content: space-around;
@@ -213,8 +218,9 @@ body {
  align-items: center;
  width: 100%;
  height: 100%;
-margin-bottom: 20px;
-margin-top: 20px;
+ margin-top: 4%;
+ padding-left: 4%;
+ padding-right: 4%;
 
 }
 
@@ -295,6 +301,10 @@ margin-top: 20px;
     height: 100%;
    margin-bottom: 20px;
    margin-top: 20px;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
 .rating {
     display: flex;
@@ -377,4 +387,11 @@ margin-top: 20px;
     .header-icons img{
         padding: 0;
     }
+    .ligne{
+        
+        margin-top: 3%;
+        padding-left: 0;
+        padding-right: 0;
+       
+       }
 }
