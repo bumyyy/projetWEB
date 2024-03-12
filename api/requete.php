@@ -218,28 +218,48 @@ GROUP BY stage.id";
     sendJSON($data);
 }
 
-function addCompany($nom_entreprise,$ville_id, $secteur_id, $note) {
+function addCompany($nom_entreprise, $ville_ids, $secteur_id, $note) {
     $pdo = getConnexion();
-    $req = "
-    START TRANSACTION;
 
-    INSERT INTO entreprise (nom, id_secteur) VALUES (:nom_entreprise, :secteur_id);
-    SET @entreprise_id = LAST_INSERT_ID();
+    try {
+        $pdo->beginTransaction();
 
-    INSERT INTO situer (id_entreprise, id_ville) VALUES (@entreprise_id, :ville_id);
+        // Insérer l'entreprise
+        $req_entreprise = "INSERT INTO entreprise (nom, id_secteur) VALUES (:nom_entreprise, :secteur_id)";
+        $stmt_entreprise = $pdo->prepare($req_entreprise);
+        $stmt_entreprise->bindValue(":nom_entreprise", $nom_entreprise);
+        $stmt_entreprise->bindValue(":secteur_id", $secteur_id);
+        $stmt_entreprise->execute();
 
-    INSERT INTO evaluer (id_entreprise, id_utilisateur, note) VALUES (@entreprise_id, 1, :note);
+        // Récupérer l'ID de l'entreprise insérée
+        $entreprise_id = $pdo->lastInsertId();
 
-    COMMIT;
-    ";
-    $stmt = $pdo->prepare($req);
-    $stmt->bindValue(":ville_id", $ville_id);
-    $stmt->bindValue(":nom_entreprise", $nom_entreprise);
-    $stmt->bindValue(":secteur_id", $secteur_id);
-    $stmt->bindValue(":note", $note);
-    $stmt->execute();
-    $stmt->closeCursor();
+        // Insérer les relations entre l'entreprise et les villes
+        $req_situer = "INSERT INTO situer (id_entreprise, id_ville) VALUES (:entreprise_id, :ville_id)";
+        $stmt_situer = $pdo->prepare($req_situer);
 
+        $ville_ids = explode(',', $ville_ids);
+        foreach ($ville_ids as $ville_id) {
+            $stmt_situer->bindValue(":entreprise_id", $entreprise_id);
+            $stmt_situer->bindValue(":ville_id", $ville_id);
+            $stmt_situer->execute();
+        }
+
+        // Insérer l'évaluation de l'entreprise
+        $req_evaluer = "INSERT INTO evaluer (id_entreprise, id_utilisateur, note) VALUES (:entreprise_id, 1, :note)";
+        $stmt_evaluer = $pdo->prepare($req_evaluer);
+        $stmt_evaluer->bindValue(":entreprise_id", $entreprise_id);
+        $stmt_evaluer->bindValue(":note", $note);
+        $stmt_evaluer->execute();
+
+        // Valider la transaction
+        $pdo->commit();
+
+    } catch (PDOException $e) {
+        // En cas d'erreur, annuler la transaction
+        $pdo->rollBack();
+        echo "Erreur : " . $e->getMessage();
+    }
 }
 
 function getConnexion(){
