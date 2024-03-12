@@ -77,6 +77,24 @@ try {
                             throw new Exception("La demande pour 'supprimer' n'est pas valide.");
                     }
                     break;
+                case "ajouter":
+                    if (!isset($url[1])) {
+                        throw new Exception("La demande pour 'ajouter' n'est pas spécifiée.");
+                    }
+                    switch ($url[1]) {
+                        case "entreprise":
+                            addCompany($url[2], $url[3], $url[4], $url[5]);
+                            break;
+                        case "ville":
+                            
+                            break;
+                        case "note":
+                            
+                            break;
+                        default:
+                            throw new Exception("La demande pour 'supprimer' n'est pas valide.");
+                    }
+                    break;
 
             default:
                 throw new Exception("La demande n'est pas valide");
