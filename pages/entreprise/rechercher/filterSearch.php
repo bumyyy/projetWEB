@@ -29,19 +29,14 @@ if ($note != "x"){
     });}
 
 
-if(isset($_COOKIE['CookieSession'])) {
-    $cookie = urldecode($_COOKIE['CookieSession']);
-    $data = json_decode($cookie);
-    $utilisateur = $data->utilisateur;
-}
+
 
 $response = [
     'entreprises' => array_values($entreprises), // Réindexe et inclut les entreprises filtrées
-    'userType' => $utilisateur // Inclut le type d'utilisateur
+    'userType' => 2 // Inclut le type d'utilisateur
 ];
 
 echo json_encode($response); // Encodage et envoi de la réponse
-?>
 
 
 

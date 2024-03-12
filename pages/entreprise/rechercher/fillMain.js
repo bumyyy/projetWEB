@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(finalData);
             let userType = finalData.userType;
             finalData.entreprises.forEach ((entreprise, index) => {  
-                let html = 
+                let html =
+                "<div class='completeEntreprise' onclick='toggleSubdivision(this)'>" +
                 "<div class='ligne'>" +
                 "    <div class='carre'>" +
                 "        <div class='name'>" +
@@ -49,13 +50,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 "        </div>" +
                 "        <div class='localité'>" +
                 "            <h2>Note</h2>" +
-                "            <div class='rating' id='rating-'"+index+">" +
-                "            <span data-value='5' class='star'></span>" +
-                "            <span data-value='4' class='star'></span>" +
-                "            <span data-value='3' class='star'></span>" +
-                "            <span data-value='2' class='star'></span>" +
-                "            <span data-value='1' class='star'></span>" +
+                "            <div class='rating'>"+
+                "            <input type='hidden' id='rating-value' name='rating-value' value='0'>"
+                "            <span class='star' data-value='5'>&#9733;</span>" +
+                "            <span class='star' data-value='4'>&#9733;</span>" +
+                "            <span class='star' data-value='3'>&#9733;</span>" +
+                "            <span class='star' data-value='2'>&#9733;</span>" +
+                "            <span class='star' data-value='1'>&#9733;</span>" +
                 "        </div>"+
+                "        <div class='note' id='note'>0</div>"
                 "        </div>"+
                 "        <div class='localité'>"+
                 "            <h2>Ont postulé</h2>"    +
@@ -70,6 +73,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 "   </div>";
                 };
                 html +=
+                "<div id='myModal' class='popup'>"+
+                "<div id='myModal' class='popup'>"+
+                    "<div class='fermer'><button id='closebtn'>x</button></div>"+
+                    "<div class='name_popup'>"+
+                    "<h1>Entreprise1</h1>"+
+                    "<p>informatique</p>"+
+                    "</div>"+
+                    "<div class='localité_popup'>"+
+                    "<h2>Localité</h2>"+
+                    "<p>Paris<br>Lyon<br>Lyon</p>"+
+                    "</div>"+
+                    "<div class='secteur_popup'>"+
+                    "<h2>Note</h2>"+
+                    "<div class='rating' data-rating='3'>"+
+                        "<input type='hidden' id='rating-value' name='rating-value' value='0'>"+
+                        "<span class='star' data-value='5'>&#9733;</span>"+
+                        "<span class='star' data-value='4'>&#9733;</span>"+
+                        "<span class='star' data-value='3'>&#9733;</span>"+
+                        "<span class='star' data-value='2'>&#9733;</span>"+
+                        "<span class='star'' data-value='1'>&#9733;</span>"+
+                    "</div>"+
+                    "<div class='note' id='note'>0</div>"+
+                    "</div>"+
+                    "<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>"+
+                    "<a href='https://google.com'>google</a>"+
+                "</div>"+
                 "</div>";
                 highlightStars(entreprise.moyenne_evaluations);
                 document.getElementById('main').innerHTML += html;
