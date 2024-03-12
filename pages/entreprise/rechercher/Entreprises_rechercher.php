@@ -59,7 +59,7 @@ $sessionManager->verifySession();
     <div class="wrap">
         <button type="submit" class="search">=</button>
     </form>
-        <button class="create">+</button>
+        <button onclick="window.location.href='/pages/entreprise/creer/Entreprises_creer.php'" class="create">+</button>
     </div>
         
 
@@ -81,9 +81,17 @@ $sessionManager->verifySession();
     <img src="img/instagram.png" alt="Instagram">
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
+<!-- Popup -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p>L'entreprise a été créée avec succès !</p>
+    </div>
+</div>
 </body>
 <script src="fillCombobox.js"></script>
 <script src="pagination.js"></script>
 <script src="fillMain.js"></script>
 <script src="editCompany.js"></script>
+<script src="popup.js"></script>
 </html>

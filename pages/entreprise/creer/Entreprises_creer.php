@@ -83,7 +83,6 @@
             ?>
         </select>
     </div>
-    <input type="button" value="+" id="secteur">
 </div>
 
 <h2>Localité</h2>

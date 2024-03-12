@@ -63,13 +63,7 @@
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
 
-<!-- Popup -->
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <p>L'entreprise a été créée avec succès !</p>
-    </div>
-</div>
+
 
 <script src="Entreprises_accueil.js"></script>
 </body>

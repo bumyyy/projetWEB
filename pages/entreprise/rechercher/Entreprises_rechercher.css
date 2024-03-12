@@ -301,6 +301,34 @@ margin-top: 20px;
     padding: 10px;
 }
 
+
+.popup {
+    display: none; /* Le popup est caché par défaut */
+    position: fixed; /* Le popup reste fixé sur l'écran */
+    top: 50%; /* Position verticale au milieu de l'écran */
+    left: 50%; /* Position horizontale au milieu de l'écran */
+    transform: translate(-50%, -50%); /* Centrer le popup */
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    width: 100%; /* Pleine largeur */
+    height: 100%; /* Pleine hauteur */
+}
+
+.popup-content {
+    background-color: white; /* Fond blanc */
+    padding: 20px; /* Espacement intérieur */
+    border-radius: 5px; /* Coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ombre légère */
+    position: relative; /* Position relative pour le bouton de fermeture */
+}
+
+.close {
+    position: absolute; /* Position absolue pour le bouton de fermeture */
+    top: 10px; /* Position du haut */
+    right: 10px; /* Position de droite */
+    cursor: pointer; /* Curseur pointeur au survol */
+}
+
+
 @media only screen and (max-width: 768px) {
   
     .header-nav {
@@ -341,3 +369,4 @@ margin-top: 20px;
     color: #fff;
     background: #0085b6;
   }
+

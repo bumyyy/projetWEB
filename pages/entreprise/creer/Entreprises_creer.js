@@ -1,3 +1,6 @@
+let villesSelectionnees = [];
+villesSelectionnees[0] = document.getElementById('localite-select').value;  
+
 document.addEventListener("DOMContentLoaded", function() {
     // Récupérer les éléments du DOM
     const secteurContainer = document.getElementById('secteur-container');
@@ -43,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Ajouter le nouveau select au conteneur
                     localiteContainer.appendChild(newSelect);
 
-                    // Mettre à jour le tableau des sélections de villes lors de l'ajout du nouveau select
                     updateVillesSelectionnees();
     
                 })
@@ -57,13 +59,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Fonction pour mettre à jour le tableau des sélections de villes
     function updateVillesSelectionnees() {
-        villesSelectionnees = []; // Réinitialiser le tableau
+        villesSelectionnees = [];
         const selects = document.querySelectorAll('.localite-select');
         selects.forEach(select => {
             if (select.value !== "") {
                 villesSelectionnees.push(select.value); // Ajouter la valeur du select au tableau si elle est sélectionnée
-            }
+            }            
         });
+        return villesSelectionnees;
     }
 
     // Afficher le bouton + après le chargement de la page
@@ -120,7 +123,7 @@ document.getElementById('myform').addEventListener('submit', (event) => {
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
-                window.location.href = "/entreprise/accueil/Entreprises_accueil.php?success=1";
+                window.location.href = "/pages/entreprise/rechercher/Entreprises_rechercher.php?success=1";
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);
