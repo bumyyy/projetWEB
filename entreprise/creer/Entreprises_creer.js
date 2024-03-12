@@ -11,11 +11,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Gérer l'événement click sur le bouton + pour le secteur d'activité
     secteurButton.addEventListener('click', () => {
+        // Incrémenter le compteur
+        secteurSelectCount++;
         addSecteurSelect();
     });
 
     // Gérer l'événement click sur le bouton + pour la localité
     villeButton.addEventListener('click', () => {
+        // Incrémenter le compteur
+        localiteSelectCount++;
         addLocaliteSelect();
     });
 
@@ -25,9 +29,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
-                    const newSelect = document.createElement('select');
-                    newSelect.name = 'secteur[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
-                    newSelect.classList.add('secteur-select');
+                        const newSelect = document.createElement('select');
+                        newSelect.name = 'secteur[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
+                        newSelect.id = secteurSelectCount;
+                        newSelect.classList.add('secteur-select');
     
                     // Ajouter chaque secteur d'activité comme option au nouveau select
                     data.forEach(secteur => {
@@ -40,8 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Ajouter le nouveau select au conteneur
                     secteurContainer.appendChild(newSelect);
     
-                    // Incrémenter le compteur
-                    secteurSelectCount++;
+        
                 })
                 .catch(error => {
                     console.error('Erreur lors de la récupération des secteurs d\'activité :', error);
@@ -60,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Créer un nouveau select
                     const newSelect = document.createElement('select');
                     newSelect.name = 'localite[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
+                    newSelect.id = localiteSelectCount;
                     newSelect.classList.add('localite-select');
     
                     // Ajouter chaque localité comme option au nouveau select
@@ -73,8 +78,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     // Ajouter le nouveau select au conteneur
                     localiteContainer.appendChild(newSelect);
     
-                    // Incrémenter le compteur
-                    localiteSelectCount++;
                 })
                 .catch(error => {
                     console.error('Erreur lors de la récupération des localités :', error);
@@ -124,3 +127,28 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+document.getElementById('myform').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Récupérer les valeurs des champs de formulaire
+    let nom_entreprise = document.getElementById('form_input').value;
+    let secteur_nom = document.getElementById('secteur-select').value;
+    let ville_nom = document.getElementById('localite-select').value;
+    let note = document.getElementById('rating-value').value;
+
+    // Envoyer les données via une requête fetch
+    fetch(`http://localhost/projetWEB/api/index.php?demande=entreprise/creer/${nom_entreprise}/${ville_nom}/${secteur_nom}/${note}`)
+        .then(response => {
+            if (response.ok) {
+                // Rediriger l'utilisateur en cas de succès
+                window.location.href = "/entreprise/accueil/Entreprises_accueil.php?success=1";
+            } else {
+                // Traiter les erreurs éventuelles
+                console.error('Erreur lors de la requête fetch : ', response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la requête fetch : ', error);
+        });
+});

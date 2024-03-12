@@ -218,11 +218,33 @@ GROUP BY stage.id";
     sendJSON($data);
 }
 
+function addCompany($nom_entreprise,$ville_id, $secteur_id, $note) {
+    $pdo = getConnexion();
+    $req = "
+    START TRANSACTION;
 
+    INSERT INTO entreprise (nom, id_secteur) VALUES (:nom_entreprise, :secteur_id);
+    SET @entreprise_id = LAST_INSERT_ID();
+
+    INSERT INTO situer (id_entreprise, id_ville) VALUES (@entreprise_id, :ville_id);
+
+    INSERT INTO evaluer (id_entreprise, id_utilisateur, note) VALUES (@entreprise_id, 1, :note);
+
+    COMMIT;
+    ";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":ville_id", $ville_id);
+    $stmt->bindValue(":nom_entreprise", $nom_entreprise);
+    $stmt->bindValue(":secteur_id", $secteur_id);
+    $stmt->bindValue(":note", $note);
+    $stmt->execute();
+    $stmt->closeCursor();
+
+}
 
 function getConnexion(){
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '');
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {

@@ -34,6 +34,9 @@ try {
                     case "recherche":
                         getEntrepriseByRecherche($url[2]);
                         break;
+                    case "creer":
+                        addCompany($url[2], $url[3], $url[4], $url[5]);
+                        break;
                     default:
                         throw new Exception("La demande pour 'entreprise' n'est pas valide.");
                 }

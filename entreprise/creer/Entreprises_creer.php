@@ -61,7 +61,7 @@
 </div>-->
 
 <div class="main">
- <form class="create_entrep" id="myform" method="POST" action="/entreprise/accueil/Entreprises_accueil.php?success=1"> <!-- action="Entreprises_accueil.php" -->
+ <form class="create_entrep" id="myform" method="POST" > <!-- action="Entreprises_accueil.php" -->
     <h1>Créer une entreprise</h1>
     <div class="company">
         <h2>Nom de l'entreprise</h2>
@@ -78,7 +78,7 @@
 
             // Parcourir les données récupérées et créer les options pour le menu déroulant
             foreach ($data as $secteur) {
-                echo "<option value='{$secteur->nom}'>$secteur->nom</option>";
+                echo "<option value='{$secteur->id}'>$secteur->nom</option>";
             }
             ?>
         </select>
@@ -96,7 +96,7 @@
 
             // Générer les options pour le select
             foreach ($data as $ville) {
-                echo "<option value='{$ville->nom}'>$ville->nom</option>";
+                echo "<option value='{$ville->id}'>$ville->nom</option>";
             }
             ?>
         </select>
