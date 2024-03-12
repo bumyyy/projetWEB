@@ -110,6 +110,10 @@
       <div class="note" id="note">0</div>
     </div>
     <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>
+    <a href="https://google.com">google</a>
+  </div>
+  
+  <div>
   </div>
 </div>
 
@@ -167,191 +171,10 @@
       <div class="note" id="note">0</div>
     </div>
     <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>
+    <a href="https://google.com">google</a>
   </div>
 
 </div>
-
-
-<div class="completeEntreprise" onclick="toggleSubdivision(this)">
-<div class="ligne">
-    <div class="carre" >
-            <div class="name">
-                <h1 id="entrepriseName">Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-            <input type="hidden" id="rating-value" name="rating-value" value="0">
-                <span class="star" data-value="5">&#9733;</span>
-                <span class="star" data-value="4">&#9733;</span>
-                <span class="star" data-value="3">&#9733;</span>
-                <span class="star" data-value="2">&#9733;</span>
-                <span class="star" data-value="1">&#9733;</span>
-            </div>
-            <div class="note" id="note">0</div>
-        </div> 
-    </div>
-    <div class="mod">
-        <span class="update"></span>
-        <span class="delete"></span>
-    </div>
-</div>
-
-<div id="myModal" class="popup">
-    <div class="fermer"><button id="closebtn">x</button></div>
-    <div class="name_popup">
-      <h1>Entreprise1</h1>
-      <p>informatique</p>
-    </div>
-    <div class="localité_popup">
-      <h2>Localité</h2>
-      <p>Paris<br>Lyon<br>Lyon</p>
-    </div>
-    <div class="secteur_popup">
-      <h2>Note</h2>
-      <div class="rating" data-rating="3">
-        <input type="hidden" id="rating-value" name="rating-value" value="0">
-        <span class="star" data-value="5">&#9733;</span>
-        <span class="star" data-value="4">&#9733;</span>
-        <span class="star" data-value="3">&#9733;</span>
-        <span class="star" data-value="2">&#9733;</span>
-        <span class="star" data-value="1">&#9733;</span>
-      </div>
-      <div class="note" id="note">0</div>
-    </div>
-    <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>
-  </div>
-</div>
-
-<div class="completeEntreprise" onclick="toggleSubdivision(this)">
-<div class="ligne">
-    <div class="carre" >
-            <div class="name">
-                <h1 id="entrepriseName">Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-            <input type="hidden" id="rating-value" name="rating-value" value="0">
-                <span class="star" data-value="5">&#9733;</span>
-                <span class="star" data-value="4">&#9733;</span>
-                <span class="star" data-value="3">&#9733;</span>
-                <span class="star" data-value="2">&#9733;</span>
-                <span class="star" data-value="1">&#9733;</span>
-            </div>
-            <div class="note" id="note">0</div>
-        </div> 
-    </div>
-    <div class="mod">
-        <span class="update"></span>
-        <span class="delete"></span>
-    </div>
-</div>
-
-<div id="myModal" class="popup">
-    <div class="fermer"><button id="closebtn">x</button></div>
-    <div class="name_popup">
-      <h1>Entreprise1</h1>
-      <p>informatique</p>
-    </div>
-    <div class="localité_popup">
-      <h2>Localité</h2>
-      <p>Paris<br>Lyon<br>Lyon</p>
-    </div>
-    <div class="secteur_popup">
-      <h2>Note</h2>
-      <div class="rating" data-rating="3">
-        <input type="hidden" id="rating-value" name="rating-value" value="0">
-        <span class="star" data-value="5">&#9733;</span>
-        <span class="star" data-value="4">&#9733;</span>
-        <span class="star" data-value="3">&#9733;</span>
-        <span class="star" data-value="2">&#9733;</span>
-        <span class="star" data-value="1">&#9733;</span>
-      </div>
-      <div class="note" id="note">0</div>
-    </div>
-    <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>
-  </div>
-</div>
-
-<div class="completeEntreprise" onclick="toggleSubdivision(this)">
-<div class="ligne">
-    <div class="carre" >
-            <div class="name">
-                <h1 id="entrepriseName">Entreprise1</h1>
-                <p>informatique</p>
-            </div>
-        <div class="localité">
-            <h2>Localité</h2>
-            <p>Paris
-            Lyon lyon</p>
-        </div>
-        <div class="secteur">
-            <h2>Note</h2>
-            <div class="rating" data-rating="3">
-            <input type="hidden" id="rating-value" name="rating-value" value="0">
-                <span class="star" data-value="5">&#9733;</span>
-                <span class="star" data-value="4">&#9733;</span>
-                <span class="star" data-value="3">&#9733;</span>
-                <span class="star" data-value="2">&#9733;</span>
-                <span class="star" data-value="1">&#9733;</span>
-            </div>
-            <div class="note" id="note">0</div>
-        </div> 
-    </div>
-    <div class="mod">
-        <span class="update"></span>
-        <span class="delete"></span>
-    </div>
-</div>
-
-<div id="myModal" class="popup">
-    <div class="fermer"><button id="closebtn">x</button></div>
-    <div class="name_popup">
-      <h1>Entreprise1</h1>
-      <p>informatique</p>
-    </div>
-    <div class="localité_popup">
-      <h2>Localité</h2>
-      <p>Paris<br>Lyon<br>Lyon</p>
-    </div>
-    <div class="secteur_popup">
-      <h2>Note</h2>
-      <div class="rating" data-rating="3">
-        <input type="hidden" id="rating-value" name="rating-value" value="0">
-        <span class="star" data-value="5">&#9733;</span>
-        <span class="star" data-value="4">&#9733;</span>
-        <span class="star" data-value="3">&#9733;</span>
-        <span class="star" data-value="2">&#9733;</span>
-        <span class="star" data-value="1">&#9733;</span>
-      </div>
-      <div class="note" id="note">0</div>
-    </div>
-    <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
 
 
 
