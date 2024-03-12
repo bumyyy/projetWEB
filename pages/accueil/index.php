@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+<?php
+require_once __DIR__ . "/../../vendor/autoload.php";
+use App\UserSessionManager;
+$sessionManager = new UserSessionManager();
+$sessionManager->verifySession();   
+?>
 <header class="header">
     <div class="header-logo">
         <a href="Stagetier.fr"></a><img src="img/logo.png" alt="Logo"></a> 
@@ -15,7 +20,7 @@
     <nav>
         <ul class="header-nav">
             <a href=""></a><li>Stages</li>
-            <li>Entreprises</li>
+            <li><a href="http://stagetier.fr/pages/entreprise/rechercher/Entreprises_rechercher.php">Entreprises</a></li>
             <li>Pilotes</li>
             <li>Étudiants</li>
             <li>Candidature</li>

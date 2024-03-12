@@ -4,7 +4,7 @@
 
 function isMdp($mail, $mdp_a_verif) {
     $pdo = getConnexion();
-    $req = "SELECT mdp FROM utilisateur WHERE mail = :mail";
+    $req = "SELECT mdp,type_ FROM utilisateur WHERE mail = :mail";
     $stmt = $pdo->prepare($req);
     $stmt->bindValue(":mail", $mail);
     $stmt->execute();
@@ -13,16 +13,28 @@ function isMdp($mail, $mdp_a_verif) {
     // Fermeture du curseur du statement
     $stmt->closeCursor();
 
+    $mdpHashVerif = hash('sha256', $mdp_a_verif);
     // Vérifiez si un mot de passe a été récupéré et comparez-le
-    if ($data && $mdp_a_verif == $data['mdp']) {
+    if ($data && $mdpHashVerif == $data['mdp']) {  //utilisée pour vérifier si le mot de passe fourni par l'utilisateur correspond au hash du mot de passe stocké dans la base de données
         // Si le mot de passe correspond
-        sendJSON(['success' => true]);
+        sendJSON(['success' => true, 'type_' => $data['type_']] );
     } else {
         // Si le mot de passe ne correspond pas ou l'utilisateur n'existe pas
         sendJSON(['success' => false]);
     }
 }
 
+function getUtilisateur($mail){
+    $pdo = getConnexion();
+    $req = "SELECT id, type_  FROM utilisateur WHERE mail = :mail";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":mail", $mail);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);    
+}
 
 function getSecteur() {
     $pdo = getConnexion();
@@ -49,6 +61,7 @@ function getVille() {
 function getAllEntreprise(){
     $pdo = getConnexion();
     $req = "SELECT 
+    entreprise.id AS id_entreprise,
     entreprise.nom AS nom_entreprise,
     secteur.nom AS secteur_activite,
     GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville,
@@ -61,7 +74,6 @@ LEFT JOIN ville ON situer.id_ville = ville.id
 LEFT JOIN stage ON stage.id_entreprise = entreprise.id
 LEFT JOIN candidater ON stage.id = candidater.id_stage
 LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
-WHERE ville.nom :ville;
 GROUP BY entreprise.id;";
 
     $stmt = $pdo->prepare($req);
@@ -75,6 +87,7 @@ GROUP BY entreprise.id;";
 function getEntrepriseByRecherche($recherche){
     $pdo = getConnexion();
     $req = "SELECT 
+    entreprise.id AS id_entreprise,
     entreprise.nom AS nom_entreprise,
     secteur.nom AS secteur_activite,
     GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville,
@@ -155,68 +168,19 @@ GROUP BY entreprise.id";
 }
 
 
-function getStage(){
+function deleteEntreprise($idEntreprise){
     $pdo = getConnexion();
-    $req = "SELECT 
-    stage.nom AS nom_offre,
-    entreprise.nom AS nom_entreprise,
-    GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
-    GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
-    promotion.nom AS type_promotion_concerne,
-    stage.date_debut AS date_debut_offre, 
-    stage.date_fin AS date_fin_offre,
-    DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage, -- Calcul de la durée du stage en jour
-    stage.remuneration AS remuneration_base,
-    stage.nb_place AS nombre_places_offertes,
-    COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
-FROM stage
-INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
-LEFT JOIN rechercher ON stage.id = rechercher.id_stage
-LEFT JOIN competence ON competence.id = rechercher.id_competence
-LEFT JOIN ville ON stage.id_ville = ville.id
-LEFT JOIN promotion ON stage.id_promotion = promotion.id
-LEFT JOIN candidater ON stage.id = candidater.id_stage
-GROUP BY stage.id";
+    $req = "DELETE FROM entreprise WHERE id = :id;";
     $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":id",$idEntreprise);
     $stmt->execute();
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // Fermeture du curseur du statement
     $stmt->closeCursor();
-    sendJSON($data);
+    if ($stmt->rowCount() > 0){ //retourne le nombre de lignes affectées par la dernière requête
+    sendJSON(['success' => true]);}
+    else { sendJSON(['success' => false]);}
 }
 
-
-function getStageRecherche($recherche){
-    $pdo = getConnexion();
-    $req = "SELECT 
-    stage.nom AS nom_offre,
-    entreprise.nom AS nom_entreprise,
-    GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
-    GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
-    promotion.nom AS type_promotion_concerne,
-    stage.date_debut AS date_debut_offre, 
-    stage.date_fin AS date_fin_offre,
-    DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage, -- Calcul de la durée du stage en jour
-    stage.remuneration AS remuneration_base,
-    stage.nb_place AS nombre_places_offertes,
-    COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
-FROM stage
-INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
-LEFT JOIN rechercher ON stage.id = rechercher.id_stage
-LEFT JOIN competence ON competence.id = rechercher.id_competence
-LEFT JOIN ville ON stage.id_ville = ville.id
-LEFT JOIN promotion ON stage.id_promotion = promotion.id
-LEFT JOIN candidater ON stage.id = candidater.id_stage
-WHERE stage.nom LIKE :recherche
-GROUP BY stage.id";
-    $stmt = $pdo->prepare($req);
-    $stmt->bindValue(":recherche", '%' . $recherche . '%');
-    $stmt->execute();
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // Fermeture du curseur du statement
-    $stmt->closeCursor();
-    sendJSON($data);
-}
 
 function addCompany($nom_entreprise, $ville_ids, $secteur_id, $note) {
     $pdo = getConnexion();
@@ -237,6 +201,7 @@ function addCompany($nom_entreprise, $ville_ids, $secteur_id, $note) {
         // Insérer les relations entre l'entreprise et les villes
         $req_situer = "INSERT INTO situer (id_entreprise, id_ville) VALUES (:entreprise_id, :ville_id)";
         $stmt_situer = $pdo->prepare($req_situer);
+
         $ville_ids = explode(',', $ville_ids);
         foreach ($ville_ids as $ville_id) {
             $stmt_situer->bindValue(":entreprise_id", $entreprise_id);
@@ -261,9 +226,10 @@ function addCompany($nom_entreprise, $ville_ids, $secteur_id, $note) {
     }
 }
 
+
 function getConnexion(){
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '');
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {

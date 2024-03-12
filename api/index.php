@@ -8,8 +8,11 @@ try {
         switch ($url[0]) {
             case "authentification":
                 isMdp(urldecode($url[1]), $url[2]); // urldecode pour transformer le %40 en @
+                
                 break;
-            
+            case "utilisateur":
+                getUtilisateur(urldecode($url[1]));
+                break;
             case "combox":
                 if (!isset($url[1])) {
                     throw new Exception("La demande pour 'combox' n'est pas spécifiée.");
@@ -41,22 +44,58 @@ try {
                         throw new Exception("La demande pour 'entreprise' n'est pas valide.");
                 }
                 break;
-                case "stats":
+            case "stats":
+                if (!isset($url[1])) {
+                    throw new Exception("La demande pour 'stats' n'est pas spécifiée.");
+                }
+                switch ($url[1]) {
+                    case "secteur":
+                        getStatsBySecteur();
+                        break;
+                    case "ville":
+                        getStatsByVille();
+                        break;
+                    case "note":
+                        getStatsByNote();
+                        break;
+                    default:
+                        throw new Exception("La demande pour 'stats' n'est pas valide.");
+                }
+                break;
+                case "supprimer":
                     if (!isset($url[1])) {
-                        throw new Exception("La demande pour 'stats' n'est pas spécifiée.");
+                        throw new Exception("La demande pour 'supprimer' n'est pas spécifiée.");
                     }
                     switch ($url[1]) {
-                        case "secteur":
-                            getStatsBySecteur();
+                        case "entreprise":
+                            deleteEntreprise($url[2]);
                             break;
                         case "ville":
-                            getStatsByVille();
+                            
                             break;
                         case "note":
-                            getStatsByNote();
+                            
                             break;
                         default:
-                            throw new Exception("La demande pour 'stats' n'est pas valide.");
+                            throw new Exception("La demande pour 'supprimer' n'est pas valide.");
+                    }
+                    break;
+                case "ajouter":
+                    if (!isset($url[1])) {
+                        throw new Exception("La demande pour 'ajouter' n'est pas spécifiée.");
+                    }
+                    switch ($url[1]) {
+                        case "entreprise":
+                            addCompany($url[2], $url[3], $url[4], $url[5]);
+                            break;
+                        case "ville":
+                            
+                            break;
+                        case "note":
+                            
+                            break;
+                        default:
+                            throw new Exception("La demande pour 'supprimer' n'est pas valide.");
                     }
                     break;
 
