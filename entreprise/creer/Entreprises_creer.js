@@ -113,7 +113,10 @@ document.getElementById('myform').addEventListener('submit', (event) => {
     // Récupérer les valeurs des champs de formulaire
     let nom_entreprise = document.getElementById('form_input').value;
     let secteur_nom = document.getElementById('secteur-select').value;
+    let ville_nom = document.getElementById('localite-select').value;
     let note = document.getElementById('rating-value').value;
+
+
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
     fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
