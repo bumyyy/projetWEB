@@ -34,9 +34,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         option.textContent = ville.nom;
                         newSelect.appendChild(option);
                     });
+
+                    // Ajouter l'événement change pour mettre à jour le tableau de sélection de villes
+                    newSelect.addEventListener('change', () => {
+                        updateVillesSelectionnees();
+                    });
     
                     // Ajouter le nouveau select au conteneur
                     localiteContainer.appendChild(newSelect);
+
+                    // Mettre à jour le tableau des sélections de villes lors de l'ajout du nouveau select
+                    updateVillesSelectionnees();
     
                 })
                 .catch(error => {
@@ -45,6 +53,17 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             alert("Vous avez atteint la limite de 5 villes.");
         }
+    }
+
+    // Fonction pour mettre à jour le tableau des sélections de villes
+    function updateVillesSelectionnees() {
+        villesSelectionnees = []; // Réinitialiser le tableau
+        const selects = document.querySelectorAll('.localite-select');
+        selects.forEach(select => {
+            if (select.value !== "") {
+                villesSelectionnees.push(select.value); // Ajouter la valeur du select au tableau si elle est sélectionnée
+            }
+        });
     }
 
     // Afficher le bouton + après le chargement de la page
@@ -94,11 +113,10 @@ document.getElementById('myform').addEventListener('submit', (event) => {
     // Récupérer les valeurs des champs de formulaire
     let nom_entreprise = document.getElementById('form_input').value;
     let secteur_nom = document.getElementById('secteur-select').value;
-    let ville_nom = document.getElementById('localite-select').value;
     let note = document.getElementById('rating-value').value;
 
-    // Envoyer les données via une requête fetch
-    fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${ville_nom}/${secteur_nom}/${note}`)
+    // Envoyer une requête fetch pour chaque valeur de ville_nom
+    fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
@@ -112,3 +130,4 @@ document.getElementById('myform').addEventListener('submit', (event) => {
             console.error('Erreur lors de la requête fetch : ', error);
         });
 });
+
