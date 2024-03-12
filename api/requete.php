@@ -233,8 +233,8 @@ function addCompany($nom_entreprise,$ville_id, $secteur_id, $note) {
     COMMIT;
     ";
     $stmt = $pdo->prepare($req);
-    $stmt->bindValue(":ville_id", $ville_id);
     $stmt->bindValue(":nom_entreprise", $nom_entreprise);
+    $stmt->bindValue(":ville_id", $ville_id);
     $stmt->bindValue(":secteur_id", $secteur_id);
     $stmt->bindValue(":note", $note);
     $stmt->execute();
@@ -244,7 +244,7 @@ function addCompany($nom_entreprise,$ville_id, $secteur_id, $note) {
 
 function getConnexion(){
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {

@@ -6,15 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const villeButton = document.getElementById('ville');
 
     // Variables pour suivre le nombre de sélections
-    let secteurSelectCount = 0;
     let localiteSelectCount = 0;
-
-    // Gérer l'événement click sur le bouton + pour le secteur d'activité
-    secteurButton.addEventListener('click', () => {
-        // Incrémenter le compteur
-        secteurSelectCount++;
-        addSecteurSelect();
-    });
 
     // Gérer l'événement click sur le bouton + pour la localité
     villeButton.addEventListener('click', () => {
@@ -23,38 +15,6 @@ document.addEventListener("DOMContentLoaded", function() {
         addLocaliteSelect();
     });
 
-    function addSecteurSelect() {
-        if (secteurSelectCount < 4) {
-            fetch('/api/index.php?demande=combox/secteur')
-                .then(response => response.json())
-                .then(data => {
-                    // Créer un nouveau select
-                        const newSelect = document.createElement('select');
-                        newSelect.name = 'secteur[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
-                        newSelect.id = secteurSelectCount;
-                        newSelect.classList.add('secteur-select');
-    
-                    // Ajouter chaque secteur d'activité comme option au nouveau select
-                    data.forEach(secteur => {
-                        const option = document.createElement('option');
-                        option.value = secteur.id;
-                        option.textContent = secteur.nom;
-                        newSelect.appendChild(option);
-                    });
-    
-                    // Ajouter le nouveau select au conteneur
-                    secteurContainer.appendChild(newSelect);
-    
-        
-                })
-                .catch(error => {
-                    console.error('Erreur lors de la récupération des secteurs d\'activité :', error);
-                });
-        } else {
-            alert("Vous avez atteint la limite de 5 secteurs.");
-        }
-    }
-    
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
         if (localiteSelectCount < 4) {
@@ -138,7 +98,7 @@ document.getElementById('myform').addEventListener('submit', (event) => {
     let note = document.getElementById('rating-value').value;
 
     // Envoyer les données via une requête fetch
-    fetch(`http://localhost/projetWEB/api/index.php?demande=entreprise/creer/${nom_entreprise}/${ville_nom}/${secteur_nom}/${note}`)
+    fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${ville_nom}/${secteur_nom}/${note}`)
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
