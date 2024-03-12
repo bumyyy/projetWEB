@@ -66,11 +66,12 @@ $sessionManager->verifySession();
 </div>
 
 
-<nav id="main" class="main">
+<ul class="main" id="main">
+</ul>
 
-<div id="pagination-numbers"></div>
+<nav class="pagination-container">
+  <div id="pagination-numbers"></div>
 </nav>
-
 
 <footer class="footer">
     <img src="img/youtube.png" alt="YouTube">
@@ -82,7 +83,7 @@ $sessionManager->verifySession();
 </footer>
 </body>
 <script src="fillCombobox.js"></script>
+<script src="pagination.js"></script>
 <script src="fillMain.js"></script>
 <script src="editCompany.js"></script>
-
 </html>

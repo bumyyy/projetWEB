@@ -316,3 +316,28 @@ margin-top: 20px;
         margin-left: 30px;
     }
 }
+
+.hidden {
+    display: none;
+  }
+
+  .pagination-number,
+  .pagination-button{
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    margin: 0.25rem 0.25rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: .2rem;
+    background: #fff;
+  }
+  .pagination-number:hover,
+  .pagination-button:not(.disabled):hover {
+    background: #0085b6;
+  }
+  .pagination-number.active {
+    color: #fff;
+    background: #0085b6;
+  }

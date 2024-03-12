@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let userType = finalData.userType;
             finalData.entreprises.forEach ((entreprise, index) => {  
                 let html = 
-                "<div class='ligne'>" +
+                "<li class='ligne'>" +
                 "    <div class='carre'>" +
                 "        <div class='name'>" +
                 "            <h1>"+entreprise.nom_entreprise+"</h1>" +
@@ -65,12 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 "   </div>";
                 };
                 html +=
-                "</div>";
+                "</li>";
                 highlightStars(entreprise.moyenne_evaluations);
                 document.getElementById('main').innerHTML += html;
-                
             })
-            updatePage(finalData.entreprises.length);
+            pagination();
         })
         .catch(error => console.error('Error:', error));
     });
@@ -88,3 +87,5 @@ function highlightStars(value) {
       }
     });
   };
+
+  

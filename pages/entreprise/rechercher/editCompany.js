@@ -18,7 +18,7 @@ async function confirmerSuppression(idEntreprise) {
         console.log('Suppression réussie');
         alert("Suppression réussie !");
       } else {
-        // Si la réponse n'est pas dans la plage 200-299, affichez une erreur
+        // Si la réponse n'est pas dans la plage 2 00-299, affichez une erreur
         alert("Erreur.");
         throw new Error('Réponse réseau non ok');
       }
