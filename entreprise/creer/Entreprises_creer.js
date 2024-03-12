@@ -120,8 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
             event.preventDefault(); // Empêcher la soumission du formulaire si aucune note n'a été sélectionnée
             alert('Veuillez sélectionner une note.'); // Afficher un message d'erreur
             return false;
-        }
-
+        } 
     });
 });
 
