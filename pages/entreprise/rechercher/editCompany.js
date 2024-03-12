@@ -32,3 +32,6 @@ async function confirmerSuppression(idEntreprise) {
   }
 }
 
+function update(){
+  alert('modif');
+}

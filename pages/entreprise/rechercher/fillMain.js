@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (userType != 1){
                 html +=
                 "   <div class='mod'>"+
-                "       <span class='update'></span>"+
+                "       <span onclick=update() class='update'></span>"+
                 "       <span onclick=confirmerSuppression("+entreprise.id_entreprise+") class='delete'></span>"+
                 "   </div>";
                 };
