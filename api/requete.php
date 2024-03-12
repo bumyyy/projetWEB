@@ -38,7 +38,7 @@ function getUtilisateur($mail){
 
 function getSecteur() {
     $pdo = getConnexion();
-    $req = "SELECT nom FROM secteur";
+    $req = "SELECT id, nom FROM secteur ORDER BY nom ASC";
     $stmt = $pdo->prepare($req);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -49,7 +49,7 @@ function getSecteur() {
 
 function getVille() {
     $pdo = getConnexion();
-    $req = "SELECT nom FROM ville";
+    $req = "SELECT id, nom FROM ville ORDER BY nom ASC";
     $stmt = $pdo->prepare($req);
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -167,6 +167,7 @@ GROUP BY entreprise.id";
     sendJSON($data);
 }
 
+
 function deleteEntreprise($idEntreprise){
     $pdo = getConnexion();
     $req = "DELETE FROM entreprise WHERE id = :id;";
@@ -224,7 +225,6 @@ function addCompany($nom_entreprise, $ville_ids, $secteur_id, $note) {
         echo "Erreur : " . $e->getMessage();
     }
 }
-
 
 
 function getConnexion(){
