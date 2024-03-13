@@ -85,6 +85,7 @@ body {
     background-color: #c9c9c9;
     align-items: center;
     justify-content: center;
+    justify-content: space-around;
     position: sticky; /* This is what makes it sticky */
     top: 0; /* Stick it to the top */
     
@@ -111,6 +112,8 @@ body {
 
 .combox {    
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 .recherche{
     width: 100%;
@@ -128,6 +131,22 @@ body {
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2);
     text-align: center;
     margin-left: 5px;
+}
+.wrap{
+    display: flex;
+}
+.wrap img{
+    width: 21px;
+    height: 21px;
+}
+.search{
+    height: 37px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border-color: #00000000;
+    margin-left: 15px;
 }
 .popup {
     display: none;
@@ -159,6 +178,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 30px;
+    width: 37px;
+    border-color: #00000000;
+    margin-left: 15px;
 }
 
 .create button{
@@ -178,7 +201,6 @@ body {
     align-items: center;
 }
 #comboboxSecteur{
-    max-width: 100px;
 }
 #comboboxSecteur select{
     max-width: 100px;
@@ -394,4 +416,10 @@ body {
         padding-right: 0;
        
        }
+    .combox{
+        flex-direction: column;
+    }
+    .wrap{
+        flex-direction: column  ;
+    }
 }

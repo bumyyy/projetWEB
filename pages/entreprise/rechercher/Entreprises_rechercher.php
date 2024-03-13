@@ -52,7 +52,7 @@
         </div>
     
     <div class="wrap">
-        <button type="submit" class="search">=</button>
+        <button type="submit" class="search"><img src="img\loupe.png"></button>
     </form>
         <button class="create">+</button>
     </div>

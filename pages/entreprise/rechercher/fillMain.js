@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json()) 
         .then(finalData => {
-            console.log(finalData);
             let userType = finalData.userType;
             let tabnote = [];
             finalData.entreprises.forEach ((entreprise) => {  
@@ -103,11 +102,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     "<a href='https://google.com'>google</a>"+
                     "</div>"+
                 "</div>";
-                console.log(tabnote);
-                highlightStars(tabnote);
+                
                 document.getElementById('main').innerHTML += html;
                 
             })
+            highlightStars(tabnote);
             updatePage(finalData.entreprises.length);
         })
         .catch(error => console.error('Error:', error));
@@ -120,14 +119,13 @@ document.addEventListener('DOMContentLoaded', function() {
 //coloris les etoiles en fonction du nom des entreprises et du tableau de note
 function highlightStars(tabnote) {
     const stars = document.querySelectorAll('.star');
-    for(let a = 1;a<(stars.length/10)+1;a++){
-      let idebut = 0;
-      let ifin = 10;
-      if (a !=1){
-        let b=a-1;
-        idebut+=(10*b);
-        ifin+=(10*b);
-      }
+    
+    for (let a = 1; a <= stars.length / 10; a++) {
+        let idebut = (a - 1) * 10;
+        let ifin = (a * 10);
+        if (ifin > stars.length) {
+            ifin = stars.length;
+        }
       for(let i= idebut;i<ifin;i++){
           const starValue = parseInt(stars[i].getAttribute('data-value'));
           if (starValue <= parseInt(tabnote[a-1])) {
