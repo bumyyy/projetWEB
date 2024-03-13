@@ -11,7 +11,8 @@
 require_once __DIR__ . "/../../../vendor/autoload.php";
 use App\UserSessionManager;
 $sessionManager = new UserSessionManager();
-$sessionManager->verifySession(); 
+$sessionManager->verifySession();
+$utilisateur = $sessionManager->getUserType();
 ?>
 
 <header class="header">
@@ -59,7 +60,9 @@ $sessionManager->verifySession();
     <div class="wrap">
         <button type="submit" class="search">=</button>
     </form>
+        <?php if($utilisateur != 1){ ?>
         <button onclick="window.location.href='/pages/entreprise/creer/Entreprises_creer.php'" class="create">+</button>
+        <?php } ?>  
     </div>
         
 

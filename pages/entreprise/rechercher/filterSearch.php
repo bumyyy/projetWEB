@@ -1,6 +1,10 @@
 <?php
 header('Content-Type:application/json');
 
+require_once __DIR__ . "/../../../vendor/autoload.php";
+use App\UserSessionManager;
+$sessionManager = new UserSessionManager();
+
 // Récupération du corps de la requête POST et décodage du JSON
 $input = file_get_contents('php://input');
 $data = json_decode($input); // true pour obtenir un tableau associatif
@@ -29,11 +33,7 @@ if ($note != "x"){
     });}
 
 
-if(isset($_COOKIE['CookieSession'])) {
-    $cookie = urldecode($_COOKIE['CookieSession']);
-    $data = json_decode($cookie);
-    $utilisateur = $data->utilisateur;
-}
+$utilisateur = $sessionManager->getUserType();
 
 $response = [
     'entreprises' => array_values($entreprises), // Réindexe et inclut les entreprises filtrées

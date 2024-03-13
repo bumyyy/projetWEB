@@ -19,15 +19,13 @@ class UserSessionManager {
 
     }
 
-    public function getUser() {
-        if (!isset($_COOKIE[$this->cookieName])) {
-            $data = json_decode($_COOKIE[$this->cookieName]);
-            if ($data && isset($data->utilisateur)) {
-                return $data->utilisateur;
-
-            }
+    public function getUserType() {
+        if(isset($_COOKIE['CookieSession'])) {
+            $cookie = urldecode($_COOKIE['CookieSession']);
+            $data = json_decode($cookie);
+            return $data->utilisateur;
         }
-
+        return false;
     }
 
     // Méthode pour démarrer une session avec un cookie
