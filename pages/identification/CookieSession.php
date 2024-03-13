@@ -8,16 +8,20 @@ $input = file_get_contents('php://input');
 $data = json_decode($input, true); // true pour obtenir un tableau associatif
 
 // Vérifier que data contient bien la clé 'typeUtilisateur'
-if (isset($data['typeUtilisateur'])) {
-    $typeUtilisateur = $data['typeUtilisateur'];
+if ($data['userType'] == 1) {
+    $userPromo = 0;
+}
+else{
+    $userPromo = $data['userPromo'];
+}
 
-    // Création d'une instance de UserSessionManager
-    $sessionManager = new UserSessionManager();
+// Création d'une instance de UserSessionManager
+$sessionManager = new UserSessionManager();
 
-    // Démarrer une session avec le type d'utilisateur
-    $token = bin2hex(openssl_random_pseudo_bytes(16));
-    $sessionManager->startSession($token, $typeUtilisateur);
+// Démarrer une session avec le type d'utilisateur
+$token = bin2hex(openssl_random_pseudo_bytes(16));
+$sessionManager->startSession($token, $data['userType'], $data['userFirstName'], $data['userLastName'], $userPromo);
 
-} 
+
 
 

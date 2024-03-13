@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "            <p>"+entreprise.nb_stagiaires_postules+"</p>"+
                 "        </div>"+
                 "    </div>";
-                if (userType != 1){
+                if (userType != 3){
                 html +=
                 "   <div class='mod'>"+
                 "       <span onclick=update() class='update'></span>"+
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('main').innerHTML += html;
             })
             highlightStars(tabnote);
-            updatePage(finalData.entreprises.length);
+            pagination();
         })
         .catch(error => console.error('Error:', error));
     });
@@ -146,39 +146,6 @@ function highlightStars(tabnote) {
 
 
 });
-
-
-function getCurrentPage() {
-    const hashParams = new URLSearchParams(window.location.hash.slice(1)); // Retire le '#' et parse
-    return parseInt(hashParams.get('page') || '1', 10);
-}
-
-function updatePage(dataLength) {
-    const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = ''; // Nettoyez les boutons précédents
-    let currentPage = getCurrentPage();
-    
-    // Bouton de page précédente
-    if (currentPage > 1) {
-        const prevBtn = document.createElement('button');
-        prevBtn.textContent = 'Précédent';
-        prevBtn.onclick = () => {
-            window.location.search = `?page=${currentPage - 1}`;
-        };
-        paginationContainer.appendChild(prevBtn);
-    }
-    
-    // Bouton de page suivante
-    if (dataLength === 5) { // Supposons que moins de 5 signifie qu'il n'y a pas de page suivante
-        const nextBtn = document.createElement('button');
-        nextBtn.textContent = 'Suivant';
-        nextBtn.onclick = () => {
-            window.location.search = `?page=${currentPage + 1}`;
-        };
-        paginationContainer.appendChild(nextBtn);
-    }
-}
-
     
   //recuperer le nom des entreprise
   function entrepriseName(){

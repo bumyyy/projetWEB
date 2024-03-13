@@ -1,7 +1,7 @@
 <?php
 header('Content-Type:application/json');
 
-require_once __DIR__ . "/../../../vendor/autoload.php";
+require_once "C:\\www\\projetWEB\\vendor\\autoload.php";
 use App\UserSessionManager;
 $sessionManager = new UserSessionManager();
 
@@ -37,7 +37,7 @@ $utilisateur = $sessionManager->getUserType();
 
 $response = [
     'entreprises' => array_values($entreprises), // Réindexe et inclut les entreprises filtrées
-    'userType' => 2 // Inclut le type d'utilisateur
+    'userType' => $utilisateur
 ];
 
 echo json_encode($response); // Encodage et envoi de la réponse

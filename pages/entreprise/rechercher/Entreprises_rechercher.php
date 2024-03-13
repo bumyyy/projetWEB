@@ -8,7 +8,7 @@
 </head>
 <body>
 <?php 
-require_once __DIR__ . "/../../../vendor/autoload.php";
+require_once "C:\\www\\projetWEB\\vendor\\autoload.php";
 use App\UserSessionManager;
 $sessionManager = new UserSessionManager();
 $sessionManager->verifySession();
@@ -58,7 +58,7 @@ $utilisateur = $sessionManager->getUserType();
     <div class="wrap">
         <button type="submit" class="search"><img src="img\loupe.png"></button>
     </form>
-        <?php if($utilisateur != 1){ ?>
+        <?php if($utilisateur != 3){ ?>
         <button onclick="window.location.href='/pages/entreprise/creer/Entreprises_creer.php'" class="create">+</button>
         <?php } ?>  
     </div>

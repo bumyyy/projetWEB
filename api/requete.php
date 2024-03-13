@@ -4,7 +4,7 @@
 
 function isMdp($mail, $mdp_a_verif) {
     $pdo = getConnexion();
-    $req = "SELECT mdp,type_ FROM utilisateur WHERE mail = :mail";
+    $req = "SELECT mdp,type_, nom, prenom, id_promotion FROM utilisateur WHERE mail = :mail";
     $stmt = $pdo->prepare($req);
     $stmt->bindValue(":mail", $mail);
     $stmt->execute();
@@ -17,7 +17,10 @@ function isMdp($mail, $mdp_a_verif) {
     // Vérifiez si un mot de passe a été récupéré et comparez-le
     if ($data && $mdpHashVerif == $data['mdp']) {  //utilisée pour vérifier si le mot de passe fourni par l'utilisateur correspond au hash du mot de passe stocké dans la base de données
         // Si le mot de passe correspond
-        sendJSON(['success' => true, 'type_' => $data['type_']] );
+        sendJSON(['success' => true, 'type_' => $data['type_'],
+        'nom' => $data['nom'],
+        'prenom' => $data['prenom'],
+        'id_promotion' => $data['id_promotion']] );
     } else {
         // Si le mot de passe ne correspond pas ou l'utilisateur n'existe pas
         sendJSON(['success' => false]);
@@ -229,7 +232,7 @@ function addCompany($nom_entreprise, $ville_ids, $secteur_id, $note) {
 
 function getConnexion(){
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=stagecesi;charset=utf8;port=3306', 'mathis', 'm');
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {

@@ -11,14 +11,16 @@ document.getElementById('login').addEventListener('submit', function(e) {
         fetch(`http://localhost/projetWEB/api/index.php?demande=authentification/${mailEncoded}/${mdpEncoded}`)
         .then(response => response.json())
         .then(dataResponse => {
-            console.log(dataResponse);
             if (dataResponse.success === true) {
                 fetch(`CookieSession.php`, {
                     method: 'POST',
                     headers: { // indique au serveur que les données envoyées dans le corps de la requête (body) sont au format JSON
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ typeUtilisateur: dataResponse.type_ }),
+                    body: JSON.stringify({ userType: dataResponse.type_, 
+                        userFirstName: dataResponse.prenom, 
+                        userLastName: dataResponse.nom, 
+                        userPromo: dataResponse.id_promotion}),
                 })
                 window.location.href = 'http://stagetier.fr/pages/accueil';
             } else {
