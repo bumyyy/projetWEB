@@ -37,6 +37,9 @@ try {
                     case "recherche":
                         getEntrepriseByRecherche($url[2]);
                         break;
+                    case "selectionner":
+                        getEntrepriseByID($url[2]);
+                        break;
                     case "creer":
                         addCompany($url[2], $url[3], $url[4], $url[5]);
                         break;
@@ -44,24 +47,24 @@ try {
                         throw new Exception("La demande pour 'entreprise' n'est pas valide.");
                 }
                 break;
-            case "stats":
-                if (!isset($url[1])) {
-                    throw new Exception("La demande pour 'stats' n'est pas spécifiée.");
-                }
-                switch ($url[1]) {
-                    case "secteur":
-                        getStatsBySecteur();
-                        break;
-                    case "ville":
-                        getStatsByVille();
-                        break;
-                    case "note":
-                        getStatsByNote();
-                        break;
-                    default:
-                        throw new Exception("La demande pour 'stats' n'est pas valide.");
-                }
-                break;
+                case "stats":
+                    if (!isset($url[1])) {
+                        throw new Exception("La demande pour 'stats' n'est pas spécifiée.");
+                    }
+                    switch ($url[1]) {
+                        case "secteur":
+                            getStatsBySecteur();
+                            break;
+                        case "ville":
+                            getStatsByVille();
+                            break;
+                        case "note":
+                            getStatsByNote();
+                            break;
+                        default:
+                            throw new Exception("La demande pour 'stats' n'est pas valide.");
+                    }
+                    break;
                 case "supprimer":
                     if (!isset($url[1])) {
                         throw new Exception("La demande pour 'supprimer' n'est pas spécifiée.");
@@ -95,7 +98,25 @@ try {
                             
                             break;
                         default:
-                            throw new Exception("La demande pour 'supprimer' n'est pas valide.");
+                            throw new Exception("La demande pour 'ajouter' n'est pas valide.");
+                    }
+                    break;
+                case "modifier":
+                    if (!isset($url[1])) {
+                        throw new Exception("La demande pour 'modifer' n'est pas spécifiée.");
+                    }
+                    switch ($url[1]) {
+                        case "entreprise":
+                            editCompany($url[2], $url[3], $url[4], $url[5], $url[6]);
+                            break;
+                        case "ville":
+                            
+                            break;
+                        case "note":
+                            
+                            break;
+                        default:
+                            throw new Exception("La demande pour 'modifier' n'est pas valide.");
                     }
                     break;
 

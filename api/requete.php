@@ -112,6 +112,33 @@ GROUP BY entreprise.id;";
 }
 
 
+function getEntrepriseByID($id_entreprise){
+    $pdo = getConnexion();
+    $req = "SELECT 
+    entreprise.id AS id_entreprise,
+    entreprise.nom AS nom_entreprise,
+    secteur.nom AS secteur_activite,
+    GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville,
+    COUNT(DISTINCT candidater.id_stage) AS nb_stagiaires_postules,
+    AVG(evaluer.note) AS moyenne_evaluations
+FROM entreprise
+INNER JOIN secteur ON entreprise.id_secteur = secteur.id
+LEFT JOIN situer ON situer.id_entreprise = entreprise.id
+LEFT JOIN ville ON situer.id_ville = ville.id
+LEFT JOIN stage ON stage.id_entreprise = entreprise.id
+LEFT JOIN candidater ON stage.id = candidater.id_stage
+LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
+WHERE entreprise.id like :id_entreprise;";
+    $stmt = $pdo->prepare($req);
+    $stmt->bindValue(":id_entreprise", $id_entreprise);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Fermeture du curseur du statement
+    $stmt->closeCursor();
+    sendJSON($data);
+}
+
+
 
 function getStatsBySecteur(){
     $pdo = getConnexion();
@@ -226,10 +253,62 @@ function addCompany($nom_entreprise, $ville_ids, $secteur_id, $note) {
     }
 }
 
+function editCompany($id_entreprise, $nom_entreprise, $ville_ids, $secteur_id, $note) {
+    $pdo = getConnexion();
+
+    try {
+        $pdo->beginTransaction();
+
+        // Modifier l'entreprise
+        $req_entreprise = "UPDATE entreprise SET nom = :nom_entreprise, id_secteur = :secteur_id WHERE id = :id_entreprise";
+        $stmt_entreprise = $pdo->prepare($req_entreprise);
+        $stmt_entreprise->bindValue(":id_entreprise", $id_entreprise);
+        $stmt_entreprise->bindValue(":nom_entreprise", $nom_entreprise);
+        $stmt_entreprise->bindValue(":secteur_id", $secteur_id);
+        $stmt_entreprise->execute();
+
+        // Modifier les relations entre l'entreprise et les villes
+        // Premièrement, supprimer toutes les anciennes relations pour cette entreprise
+        $req_delete_situer = "DELETE FROM situer WHERE id_entreprise = :id_entreprise";
+        $stmt_delete_situer = $pdo->prepare($req_delete_situer);
+        $stmt_delete_situer->bindValue(":id_entreprise", $id_entreprise);
+        $stmt_delete_situer->execute();
+
+        // Ensuite, insérer les nouvelles relations
+        $req_situer = "INSERT INTO situer (id_entreprise, id_ville) VALUES (:id_entreprise, :ville_id)";
+        $stmt_situer = $pdo->prepare($req_situer);
+        $ville_ids = explode(',', $ville_ids);
+        foreach ($ville_ids as $ville_id) {
+            $stmt_situer->bindValue(":id_entreprise", $id_entreprise);
+            $stmt_situer->bindValue(":ville_id", $ville_id);
+            $stmt_situer->execute();
+        }
+
+        // Modifier l'évaluation de l'entreprise
+        $req_evaluer = "UPDATE evaluer SET note = :note WHERE id_entreprise = :id_entreprise AND id_utilisateur = 1";
+        $stmt_evaluer = $pdo->prepare($req_evaluer);
+        $stmt_evaluer->bindValue(":entreprise_id", $entreprise_id);
+        //$stmt_evaluer->bindValue(":id_utilisateur", $id_utilisateur); // Remplacez id_utilisateur par l'identifiant de l'utilisateur réel
+        $stmt_evaluer->bindValue(":note", $note);
+        $stmt_evaluer->execute();
+
+
+        // Valider la transaction
+        $pdo->commit();
+
+    } catch (PDOException $e) {
+        // En cas d'erreur, annuler la transaction
+        $pdo->rollBack();
+        echo "Erreur : " . $e->getMessage();
+    }
+}
+
+
+
 
 function getConnexion(){
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
+        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {

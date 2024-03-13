@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stage_tier</title>
-    <link rel="stylesheet" href="Entreprises_creer.css">
+    <link rel="stylesheet" href="Entreprises_modifier.css">
 </head>
 <body>
     
@@ -62,7 +62,7 @@
 
 <div class="main">
  <form class="create_entrep" id="myform" method="POST" > <!-- action="Entreprises_accueil.php" -->
-    <h1>Créer une entreprise</h1>
+    <h1>Modifier une entreprise</h1>
     <div class="company">
         <h2>Nom de l'entreprise</h2>
         <input type="text" name="nom" id="form_input" required>
@@ -130,6 +130,6 @@
     <img src="img/instagram.png" alt="Instagram">
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
-<script src="Entreprises_creer.js"></script>
+<script src="Entreprises_modifier.js"></script>
 </body>
 </html>
