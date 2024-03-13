@@ -6,7 +6,7 @@ document.getElementById('pagination-numbers').innerHTML = ''; // reset la page
 //First, get all the elements we’ll need:
 const paginationNumbers = document.getElementById("pagination-numbers");
 const paginatedList = document.getElementById("main");
-const listItems = paginatedList.querySelectorAll("li");
+const listItems = paginatedList.querySelectorAll(".completeEntreprise");
 console.log(paginationNumbers, paginatedList, listItems);
 
 const paginationLimit = 5;
