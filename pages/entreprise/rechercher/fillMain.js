@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let userType = finalData.userType;
             finalData.entreprises.forEach ((entreprise, index) => {  
                 let html = 
-                "<li class='ligne'>" +
+                "<li class='ligne' id='"+entreprise.id_entreprise   +"'>" +
                 "    <div class='carre'>" +
                 "        <div class='name'>" +
                 "            <h1>"+entreprise.nom_entreprise+"</h1>" +
