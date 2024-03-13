@@ -37,11 +37,10 @@ $utilisateur = $sessionManager->getUserType();
 
 $response = [
     'entreprises' => array_values($entreprises), // Réindexe et inclut les entreprises filtrées
-    'userType' => $utilisateur // Inclut le type d'utilisateur
+    'userType' => 2 // Inclut le type d'utilisateur
 ];
 
 echo json_encode($response); // Encodage et envoi de la réponse
-?>
 
 
 

@@ -34,9 +34,7 @@ $utilisateur = $sessionManager->getUserType();
     </div>
 </header>
 
-<div class="content">
-    
-</div>
+
 <form id="form" method="POST">
 <div class="sub">
     
@@ -58,7 +56,7 @@ $utilisateur = $sessionManager->getUserType();
         </div>
     
     <div class="wrap">
-        <button type="submit" class="search">=</button>
+        <button type="submit" class="search"><img src="img\loupe.png"></button>
     </form>
         <?php if($utilisateur != 1){ ?>
         <button onclick="window.location.href='/pages/entreprise/creer/Entreprises_creer.php'" class="create">+</button>

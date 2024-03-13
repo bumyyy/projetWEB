@@ -229,7 +229,7 @@ function addCompany($nom_entreprise, $ville_ids, $secteur_id, $note) {
 
 function getConnexion(){
     try {
-        $pdo = new PDO('mysql:host=localhost;dbname=stagetier;charset=utf8;port=3306', 'root', '1234');
+        $pdo = new PDO('mysql:host=localhost;dbname=stagecesi;charset=utf8;port=3306', 'mathis', 'm');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $e) {
