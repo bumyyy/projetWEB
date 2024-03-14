@@ -1,5 +1,8 @@
 <?php
 require_once("./requete.php");
+include_once 'Password.php';
+include_once 'Combox.php';
+include_once 'Company.php';
 
 try {
     if (!empty($_GET['demande'])) {
@@ -7,8 +10,8 @@ try {
         
         switch ($url[0]) {
             case "authentification":
-                isMdp(urldecode($url[1]), $url[2]); // urldecode pour transformer le %40 en @
-                
+                $password = new Password();
+                $password->isPassword(urldecode($url[1]), $url[2]); // urldecode pour transformer le %40 en @               
                 break;
             case "utilisateur":
                 getUtilisateur(urldecode($url[1]));
@@ -16,29 +19,35 @@ try {
             case "combox":
                 if (!isset($url[1])) {
                     throw new Exception("La demande pour 'combox' n'est pas spécifiée.");
+                    break;
                 }
+                $combox = new Combox();
                 switch ($url[1]) {
                     case "secteur":
-                        getSecteur();
+                        $combox->secteur();
                         break;
                     case "ville":
-                        getVille();
+                        $combox->ville();
+                        break;
+                    case "note":
+                        $combox->note();
                         break;
                     default:
                         throw new Exception("La demande pour 'combox' n'est pas valide.");
                 }
                 break;
             case "entreprise":
+                $company = new Company();
                 if (!isset($url[1])) {
-                    getAllEntreprise();
+                    $company->allCompany();
                     break;
                 }
                 switch ($url[1]) {
                     case "recherche":
-                        getEntrepriseByRecherche($url[2]);
+                        $company->companyBySearch($url[2]);
                         break;
                     case "creer":
-                        addCompany($url[2], $url[3], $url[4], $url[5]);
+                        $company->addCompany($url[2], $url[3], $url[4], $url[5]);
                         break;
                     default:
                         throw new Exception("La demande pour 'entreprise' n'est pas valide.");

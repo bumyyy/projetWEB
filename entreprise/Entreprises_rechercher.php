@@ -174,13 +174,7 @@
 
 </div>
 
-
-
-
-
 </div>
-
-
 
 <footer class="footer">
     <img src="img/youtube.png" alt="YouTube">

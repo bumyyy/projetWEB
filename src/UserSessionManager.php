@@ -56,7 +56,7 @@ class UserSessionManager {
     }
 
     // Méthode pour démarrer une session avec un cookie
-    public function startSession($token, $userType, $userFirstName, $userLastName, $userPromo, $expire = 600, $path = '/', $domain = 'stagetier.fr', $secure = false, $httponly = false) {
+    public function startSession($token, $userType, $userFirstName, $userLastName, $userPromo, $expire = 10000      , $path = '/', $domain = 'stagetier.fr', $secure = false, $httponly = false) {
         
         // Création d'un tableau avec les informations à stocker
         $data = [
