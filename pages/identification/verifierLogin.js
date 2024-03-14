@@ -8,7 +8,7 @@ document.getElementById('login').addEventListener('submit', function(e) {
         var mailEncoded = encodeURIComponent(mail);
         var mdpEncoded = encodeURIComponent(mdp);
         
-        fetch(`http://localhost/projetWEB/api/index.php?demande=authentification/${mailEncoded}/${mdpEncoded}`)
+        fetch(`http://localhost/api/index.php?demande=authentification/${mailEncoded}/${mdpEncoded}`)
         .then(response => response.json())
         .then(dataResponse => {
             if (dataResponse.success === true) {

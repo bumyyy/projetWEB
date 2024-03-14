@@ -10,7 +10,7 @@ Si la requête est réussie, elle renvoie un objet Response contenant les donné
 async function confirmerSuppression(idEntreprise) {
   if (confirm("Voulez-vous vraiment supprimer ?")) {
     try {
-      const url = `http://localhost/projetWEB/api/index.php?demande=supprimer/entreprise/${idEntreprise}`;
+      const url = `http://localhost/api/index.php?demande=supprimer/entreprise/${idEntreprise}`;
       const response = await fetch(url, {
         method: 'POST'
       });

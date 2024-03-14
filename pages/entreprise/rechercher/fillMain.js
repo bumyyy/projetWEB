@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataSearch = document.getElementById('search').value;
         
         let URL_ = dataSearch !== "" 
-            ? `http://localhost/projetWEB/api/index.php?demande=entreprise/recherche/${dataSearch}` 
-            : "http://localhost/projetWEB/api/index.php?demande=entreprise";
+            ? `/api/index.php?demande=entreprise/recherche/${dataSearch}` 
+            : "/api/index.php?demande=entreprise";
         fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {
@@ -144,6 +144,18 @@ function highlightStars(tabnote) {
 
 
 
+  function toggleSubdivision(division) {
+    let subdivision = division.querySelector('.popup');
+    let computedStyle = window.getComputedStyle(subdivision);
+
+    if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
+        subdivision.style.display = 'block';
+        document.body.classList.add('no-scroll'); // Ajouter une classe pour désactiver le défilement
+    } else {
+        subdivision.style.display = 'none';
+        document.body.classList.remove('no-scroll'); // Retirer la classe pour activer le défilement
+    }
+}
 
 });
     
@@ -160,15 +172,3 @@ function highlightStars(tabnote) {
   }
 
   
-  function toggleSubdivision(division) {
-    let subdivision = division.querySelector('.popup');
-    let computedStyle = window.getComputedStyle(subdivision);
-
-    if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
-        subdivision.style.display = 'block';
-        document.body.classList.add('no-scroll'); // Ajouter une classe pour désactiver le défilement
-    } else {
-        subdivision.style.display = 'none';
-        document.body.classList.remove('no-scroll'); // Retirer la classe pour activer le défilement
-    }
-}
