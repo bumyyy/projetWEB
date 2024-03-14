@@ -101,36 +101,35 @@ document.addEventListener("DOMContentLoaded", function() {
     // Gérer la soumission du formulaire
     const form = document.querySelector('form');
     
-        document.getElementById('myform').addEventListener('submit', (event) => {
+    document.getElementById('myform').addEventListener('submit', (event) => {
         if (!isRatingSelected) {
             event.preventDefault(); // Empêcher la soumission du formulaire si aucune note n'a été sélectionnée
             alert('Veuillez sélectionner une note.'); // Afficher un message d'erreur
             return false;
         } 
-    });
-});
+        event.preventDefault();
 
+        // Récupérer les valeurs des champs de formulaire
+        let nom_entreprise = document.getElementById('form_input').value;
+        let secteur_nom = document.getElementById('secteur-select').value;
+        let note = document.getElementById('rating-value').value;
 
-document.getElementById('myform').addEventListener('submit', (event) => {
-    event.preventDefault();
+        // Envoyer une requête fetch pour chaque valeur de ville_nom
+        fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
+            .then(response => {
+                if (response.ok) {
+                    // Rediriger l'utilisateur en cas de succès
+                    window.location.href = "/entreprise/rechercher/Entreprises_rechercher.php?success=1";
+                } else {
+                    // Traiter les erreurs éventuelles
+                    alert("Erreur, regardez la console.");
+                    console.error('Erreur lors de la requête fetch : ', response.statusText);
+                }
+            })
+            .catch(error => {
+                alert("Erreur, regardez la console.");
+                console.error('Erreur lors de la requête fetch : ', error);
+            });
 
-    // Récupérer les valeurs des champs de formulaire
-    let nom_entreprise = document.getElementById('form_input').value;
-    let secteur_nom = document.getElementById('secteur-select').value;
-    let note = document.getElementById('rating-value').value;
-
-    // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
-        .then(response => {
-            if (response.ok) {
-                // Rediriger l'utilisateur en cas de succès
-                window.location.href = "/entreprise/rechercher/Entreprises_rechercher.php?success=1";
-            } else {
-                // Traiter les erreurs éventuelles
-                console.error('Erreur lors de la requête fetch : ', response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la requête fetch : ', error);
-        });
+     });
 });

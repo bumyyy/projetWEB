@@ -6,15 +6,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const id_entreprise = urlParams.get('id');
 
-    // Vérifier si l'ID de l'entreprise a été récupéré avec succès
-    if (id_entreprise) {
-        // Rediriger vers la page de modification de l'entreprise avec l'ID inclus dans l'URL
-        window.location.href = `/entreprise/modifier/Entreprises_modifier.php?id=${id_entreprise}`;
-    } else {
-        // Si l'ID de l'entreprise n'a pas été trouvé, affichez un message d'erreur ou prenez une autre action
-        console.error('ID de l\'entreprise non trouvé dans l\'URL.');
+    // Vérifier si l'ID de l'entreprise est présent dans l'URL
+    if (!id_entreprise) {
+        // Rediriger vers la page de modification de l'entreprise avec un ID inclus dans l'URL
+        window.location.href = `/entreprise/modifier/Entreprises_modifier.php?id=1`;
     }
-
+    
     const secteurContainer = document.getElementById('secteur-container');
     const secteurButton = document.getElementById('secteur');
     const localiteContainer = document.getElementById('localite-container');
@@ -114,27 +111,35 @@ document.addEventListener("DOMContentLoaded", function() {
     fetchDataAndPopulateForm(id_entreprise);
 
     function fetchDataAndPopulateForm(id_entreprise) {
-        fetch(`/api/index.php?demande=entreprise/selectionner/${id_entreprise}`)
-            .then(response => response.json())
-            .then(data => {
-                // Remplir le formulaire avec les données de l'entreprise
-                document.getElementById('form_input').value = data.nom_entreprise;
-                document.getElementById('secteur-select').value = data.secteur_nom;
-                document.getElementById('rating-value').value = data.note;
 
-                // Remplir les sélections de villes si l'entreprise a plusieurs villes
-                if (Array.isArray(data.villesSelectionnees) && data.villesSelectionnees.length > 0) {
-                    data.villesSelectionnees.forEach(villeId => {
-                        addLocaliteSelect(); // Ajouter un select pour chaque ville
-                        // Sélectionner la ville dans le select correspondant
-                        const select = document.getElementById('localite-container').lastChild;
-                        select.value = villeId;
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('Erreur lors de la récupération des données de l\'entreprise : ', error);
-            });
+    // Vérifier si id_entreprise est un nombre valide
+    if (isNaN(id_entreprise) || id_entreprise <= 0) {
+        console.error('ID d\'entreprise invalide.');
+        return;
+    }
+
+    fetch(`/api/index.php?demande=entreprise/selectionner/${id_entreprise}`)
+        .then(response => response.json())
+        .then(data => {
+            // Remplir le formulaire avec les données de l'entreprise
+            console.log(data);
+            document.getElementById('form_input').value = data[0].nom_entreprise;
+            document.getElementById('secteur-select').value = data[0].secteur_activite;
+            document.getElementById('rating-value').value = data[0].moyenne_evaluations;
+
+            // Remplir les sélections de villes si l'entreprise a plusieurs villes
+            if (Array.isArray(data.villesSelectionnees) && data.villesSelectionnees.length > 0) {
+                data.villesSelectionnees.forEach(villeId => {
+                    addLocaliteSelect(); // Ajouter un select pour chaque ville
+                    // Sélectionner la ville dans le select correspondant
+                    const select = document.getElementById('localite-container').lastChild;
+                    select.value = villeId;
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération des données de l\'entreprise : ', error);
+        });
     }
     
 
