@@ -74,7 +74,7 @@
         <select name="secteur[]" class="secteur-select" id="secteur-select" required>
             <?php
             // Appeler votre API pour récupérer les secteurs d'activité
-            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/secteur"));
+            $data = json_decode(file_get_contents("http://localhost/api/index.php?demande=combox/secteur"));
 
             // Parcourir les données récupérées et créer les options pour le menu déroulant
             foreach ($data as $secteur) {
@@ -91,7 +91,7 @@
         <select name="localite[]" class="localite-select" id="localite-select" required>
             <?php
             // Appeler votre API pour récupérer les secteurs d'activité
-            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/ville"));
+            $data = json_decode(file_get_contents("http://localhost/api/index.php?demande=combox/ville"));
 
             // Générer les options pour le select
             foreach ($data as $ville) {
