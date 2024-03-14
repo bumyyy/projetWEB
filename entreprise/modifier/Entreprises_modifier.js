@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
-        if (localiteSelectCount < 4) {
+        if (localiteSelectCount < 5) {
             fetch('/api/index.php?demande=combox/ville')
                 .then(response => response.json())
                 .then(data => {
@@ -124,8 +124,42 @@ document.addEventListener("DOMContentLoaded", function() {
             // Remplir le formulaire avec les données de l'entreprise
             console.log(data);
             document.getElementById('form_input').value = data[0].nom_entreprise;
-            document.getElementById('secteur-select').value = data[0].secteur_activite;
-            document.getElementById('rating-value').value = data[0].moyenne_evaluations;
+            
+            // Sélectionner le secteur d'activité dans le menu déroulant
+            const secteurSelect = document.getElementById('secteur-select');
+            const secteurNom = data[0].secteur_activite;
+
+            console.log("Secteur récupéré : ", secteurNom);
+            for (let i = 0; i < secteurSelect.options.length; i++) {
+                console.log("Option ", i, ": ", secteurSelect.options[i].textContent);
+                if (secteurSelect.options[i].textContent.trim() === secteurNom.trim()) {
+                    secteurSelect.selectedIndex = i;
+                    console.log("Option sélectionnée : ", secteurSelect.options[i].textContent);
+                    break;
+                }
+            }
+
+            // Sélectionner la ville dans le menu déroulant
+            const localiteSelect = document.getElementById('localite-select');
+            const villeNom = data[0].ville;
+
+            console.log("Ville récupérée : ", villeNom);
+            for (let i = 0; i < localiteSelect.options.length; i++) {
+                console.log("Option ", i, ": ", localiteSelect.options[i].textContent);
+                if (localiteSelect.options[i].textContent.trim() === villeNom.trim()) {
+                    localiteSelect.selectedIndex = i;
+                    console.log("Option sélectionnée : ", localiteSelect.options[i].textContent);
+                    break;
+                }
+            }
+
+            // Mettre à jour la moyenne des évaluations et colorer les étoiles
+            const moyenneEvaluations = parseFloat(data[0].moyenne_evaluations);
+            document.getElementById('rating-value').value = moyenneEvaluations;
+            highlightStars(moyenneEvaluations);
+
+
+
 
             // Remplir les sélections de villes si l'entreprise a plusieurs villes
             if (Array.isArray(data.villesSelectionnees) && data.villesSelectionnees.length > 0) {
