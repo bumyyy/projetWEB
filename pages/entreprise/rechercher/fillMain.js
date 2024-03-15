@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataSearch = document.getElementById('search').value;
         
         let URL_ = dataSearch !== "" 
-            ? `/api/index.php?demande=entreprise/recherche/${dataSearch}` 
-            : "/api/index.php?demande=entreprise";
+            ? `/api/index.php?demande=company/search/${dataSearch}` 
+            : "/api/index.php?demande=company";
         fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {

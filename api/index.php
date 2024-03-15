@@ -1,5 +1,4 @@
 <?php
-require_once("./requete.php");
 include_once 'Query.php';
 
 try {
@@ -7,12 +6,13 @@ try {
         $url = explode('/', filter_var($_GET['demande'], FILTER_SANITIZE_URL));
         
         switch ($url[0]) {
-            case "authentification":
+            case "authentication":
                 $password = new Password();
                 $password->isPassword(urldecode($url[1]), $url[2]); // urldecode pour transformer le %40 en @               
                 break;
-            case "utilisateur":
-                getUtilisateur(urldecode($url[1]));
+            case "user":
+                $user = new User();
+                $user->getUserByMail($url[1]);
                 break;
             case "combox":
                 if (!isset($url[1])) {
@@ -21,106 +21,41 @@ try {
                 }
                 $combox = new Combox();
                 switch ($url[1]) {
-                    case "secteur":
-                        $combox->secteur();
+                    case "sector":
+                        $combox->sector();
                         break;
-                    case "ville":
-                        $combox->ville();
+                    case "country":
+                        $combox->country();
                         break;
-                    case "note":
-                        $combox->note();
+                    case "rate":
+                        $combox->rate();
                         break;
                     default:
                         throw new Exception("La demande pour 'combox' n'est pas valide.");
                 }
                 break;
-            case "entreprise":
+            case "company":
                 $company = new Company();
                 if (!isset($url[1])) {
                     $company->allCompany();
                     break;
                 }
                 switch ($url[1]) {
-                    case "recherche":
+                    case "search":
                         $company->companyBySearch($url[2]);
                         break;
-                    case "creer":
+                    case "create":
                         $company->addCompany($url[2], $url[3], $url[4], $url[5]);
                         break;
+                    case "delete":
+                        $company->deleteCompany($url[2]);
+                        break;
+                        
                     default:
                         throw new Exception("La demande pour 'entreprise' n'est pas valide.");
                 }
                 break;
-            case "stats":
-                if (!isset($url[1])) {
-                    throw new Exception("La demande pour 'stats' n'est pas spécifiée.");
-                }
-                switch ($url[1]) {
-                    case "secteur":
-                        getStatsBySecteur();
-                        break;
-                    case "ville":
-                        getStatsByVille();
-                        break;
-                    case "note":
-                        getStatsByNote();
-                        break;
-                    default:
-                        throw new Exception("La demande pour 'stats' n'est pas valide.");
-                }
-                break;
-                case "supprimer":
-                    if (!isset($url[1])) {
-                        throw new Exception("La demande pour 'supprimer' n'est pas spécifiée.");
-                    }
-                    switch ($url[1]) {
-                        case "entreprise":
-                            deleteEntreprise($url[2]);
-                            break;
-                        case "ville":
-                            
-                            break;
-                        case "note":
-                            
-                            break;
-                        default:
-                            throw new Exception("La demande pour 'supprimer' n'est pas valide.");
-                    }
-                    break;
-                case "ajouter":
-                    if (!isset($url[1])) {
-                        throw new Exception("La demande pour 'ajouter' n'est pas spécifiée.");
-                    }
-                    switch ($url[1]) {
-                        case "entreprise":
-                            addCompany($url[2], $url[3], $url[4], $url[5]);
-                            break;
-                        case "ville":
-                            
-                            break;
-                        case "note":
-                            
-                            break;
-                        default:
-                            throw new Exception("La demande pour 'supprimer' n'est pas valide.");
-                    }
-                    break;
 
-            case "stage":
-                if (!isset($url[1])) {
-                    getStage();
-                    break;
-                } else {
-                    switch ($url[1]) {
-                        case "recherche":
-                            getStageRecherche($url[2]);
-                            break;
-                        default:
-                            throw new Exception("La demande pour 'stage' n'est pas valide.");
-                    }
-                }
-                break;
-                    
             default:
                 throw new Exception("La demande n'est pas valide");
         }
