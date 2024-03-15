@@ -1,8 +1,6 @@
 <?php
 require_once("./requete.php");
-include_once 'Password.php';
-include_once 'Combox.php';
-include_once 'Company.php';
+include_once 'Query.php';
 
 try {
     if (!empty($_GET['demande'])) {

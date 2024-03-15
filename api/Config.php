@@ -8,7 +8,7 @@ class Config {
 	  private const DBNAME = 'stagetier';
 	  // Data Source Network
 	  private $dsn = 'mysql:host=' . self::DBHOST . ';dbname=' . self::DBNAME . '';
-	  // conn variable
+	  // connexion variable
 	  protected $conn = null;
 
 	  // Constructor Function

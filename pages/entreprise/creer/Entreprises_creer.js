@@ -106,31 +106,27 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Veuillez sélectionner une note.'); // Afficher un message d'erreur
             return false;
         } 
+
+        event.preventDefault();
+
+        // Récupérer les valeurs des champs de formulaire
+        let nom_entreprise = document.getElementById('form_input').value;
+        let secteur_nom = document.getElementById('secteur-select').value;
+        let note = document.getElementById('rating-value').value;
+
+        // Envoyer une requête fetch pour chaque valeur de ville_nom
+        fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
+            .then(response => {
+                if (response.ok) {
+                    // Rediriger l'utilisateur en cas de succès
+                    window.location.href = "/pages/entreprise/rechercher/Entreprises_rechercher.php?success=1";
+                } else {
+                    // Traiter les erreurs éventuelles
+                    console.error('Erreur lors de la requête fetch : ', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la requête fetch : ', error);
+            });
     });
 });
-
-
-document.getElementById('myform').addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    // Récupérer les valeurs des champs de formulaire
-    let nom_entreprise = document.getElementById('form_input').value;
-    let secteur_nom = document.getElementById('secteur-select').value;
-    let note = document.getElementById('rating-value').value;
-
-    // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
-        .then(response => {
-            if (response.ok) {
-                // Rediriger l'utilisateur en cas de succès
-                window.location.href = "/pages/entreprise/rechercher/Entreprises_rechercher.php?success=1";
-            } else {
-                // Traiter les erreurs éventuelles
-                console.error('Erreur lors de la requête fetch : ', response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la requête fetch : ', error);
-        });
-});
-
