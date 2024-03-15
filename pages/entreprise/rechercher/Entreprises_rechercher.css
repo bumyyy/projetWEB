@@ -159,6 +159,7 @@ body {
     padding-top: 2%;
     border-radius: 50px;
     z-index: 10;
+    opacity: 100%;
 }
 form{
     height: auto; /* Permet à l'élément de s'adapter dynamiquement à son contenu */
@@ -219,8 +220,7 @@ form{
     width: 90%;
     height: clamp(90px,11vw,130px);
     max-width: 900px;
-    background-color: #f0f0f0;
-    opacity: 50%;
+    background-color: #f0f0f081;
     border-radius: 15px;
 
     
@@ -230,8 +230,7 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0;
-    opacity: 50%;
+    background-color: #f0f0f081;
     border-radius: 1.4vw;
     width: 4%;
     padding: max(2.4vw,2.4vw);
