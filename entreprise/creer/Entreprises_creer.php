@@ -101,6 +101,7 @@
         </select>
     </div>
     <input type="button" value="+" id="ville">
+    <input type="button" value="-" id="moins">
 </div>
 
 

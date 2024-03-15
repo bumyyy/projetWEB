@@ -13,8 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Gérer l'événement click sur le bouton + pour la localité
     villeButton.addEventListener('click', () => {
-        // Incrémenter le compteur
-        localiteSelectCount++;
         addLocaliteSelect();
     });
 
@@ -48,6 +46,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     // Mettre à jour le tableau des sélections de villes lors de l'ajout du nouveau select
                     updateVillesSelectionnees();
+
+                    // Incrémenter le compteur
+                    localiteSelectCount++;
+
+                    // Mettre à jour l'affichage du bouton moins
+                    updateMoinsButtonDisplay();
     
                 })
                 .catch(error => {
@@ -72,6 +76,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Afficher le bouton + après le chargement de la page
     villeButton.style.display = 'block';
+
+
+    
+    const moinsButton = document.getElementById('moins'); // Sélectionnez le bouton moins
+
+    // Gérer l'événement click sur le bouton -
+    moinsButton.addEventListener('click', () => {
+        localiteSelectCount--; // Décrémentez le compteur
+        removeLocaliteSelect(); // Supprimer le select localité
+    });
+
+    
+    // Fonction pour supprimer un select de localité
+    function removeLocaliteSelect() {
+        const selectToRemove = document.getElementById(localiteSelectCount); // Sélectionnez le dernier select ajouté
+        if (selectToRemove) {
+            console.log("Sélecteur à supprimer : ", selectToRemove);
+            selectToRemove.remove(); // Supprimez-le s'il existe
+
+            // Mettre à jour l'affichage du bouton moins
+            updateMoinsButtonDisplay();
+
+            // Mettre à jour les villes sélectionnées
+            updateVillesSelectionnees();
+        }
+    }  
+
+    updateMoinsButtonDisplay()
+
+    // Fonction pour mettre à jour l'affichage du bouton moins
+    function updateMoinsButtonDisplay() {
+        // Désactiver le bouton - s'il ne reste qu'un seul select (celui de base)
+        if (localiteSelectCount < 1) {
+            moinsButton.style.display = "none";
+        } else {
+            moinsButton.style.display = "block";
+        }
+    }
 
     // Gérer les étoiles de notation
     const stars = document.querySelectorAll('.star');
