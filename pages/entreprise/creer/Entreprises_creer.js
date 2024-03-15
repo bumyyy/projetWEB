@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
         if (localiteSelectCount < 4) {
-            fetch('/api/index.php?demande=combox/ville')
+            fetch('/api/index.php?demande=combox/country')
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let note = document.getElementById('rating-value').value;
 
         // Envoyer une requête fetch pour chaque valeur de ville_nom
-        fetch(`/api/index.php?demande=entreprise/creer/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
+        fetch(`/api/index.php?demande=company/create/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
             .then(response => {
                 if (response.ok) {
                     // Rediriger l'utilisateur en cas de succès

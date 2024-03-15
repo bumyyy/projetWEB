@@ -18,13 +18,13 @@ class Password extends Config {
     // Vérifiez si un mot de passe a été récupéré et comparez-le
     if ($data && $passwordHashed == $data['mdp']) {  //utilisée pour vérifier si le mot de passe fourni par l'utilisateur correspond au hash du mot de passe stocké dans la base de données
         // Si le mot de passe correspond
-        sendJSON(['success' => true, 'type_' => $data['type_'],
+        parent::sendJSON(['success' => true, 'type_' => $data['type_'],
         'nom' => $data['nom'],
         'prenom' => $data['prenom'],
         'id_promotion' => $data['id_promotion']]) ;
     } else {
         // Si le mot de passe ne correspond pas ou l'utilisateur n'existe pas
-        sendJSON(['success' => false]);
+        parent::sendJSON(['success' => false]);
     }
   }
 
@@ -33,25 +33,25 @@ class Password extends Config {
 
 class Combox extends Config {
 
-    public function secteur() {
+    public function sector() {
         $sql = 'SELECT id, nom FROM secteur ORDER BY nom ASC';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 
-        sendJSON($data);
+        parent::sendJSON($data);
     }
 
-    public function ville() {
+    public function country() {
         $sql = 'SELECT id, nom FROM ville ORDER BY nom ASC';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 
-        sendJSON($data);
+        parent::sendJSON($data);
     }
 
-    public function note() {
+    public function rate() {
         $data = 'a faire';
-        sendJSON($data);
+        parent::sendJSON($data);
     }
 
 }
@@ -78,7 +78,7 @@ class Company extends Config {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 
-        sendJSON($data);
+        parent::sendJSON($data);
     }
 
     public function companyBySearch($search) {
@@ -101,7 +101,7 @@ class Company extends Config {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['recherche' => '%'.$search.'%']); //permet de bind values et d'ajouter les % pour le like
         $data = $stmt->fetchAll(); 
-        sendJSON($data);
+        parent::sendJSON($data);
     }
 
     public function addCompany($companyName, $countryIds, $sectorId, $rate) {
@@ -133,9 +133,25 @@ class Company extends Config {
 
     public function editCompany($mail, $password) {
         $data = 'a faire'; 
-        sendJSON($data);
+    }
+
+    public function deleteCompany($companyId) {
+        $sql = "DELETE FROM entreprise WHERE id = :id;";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $companyId]);
     }
 
 }
 
 
+class User extends Config {
+
+    public function getUserByMail($mail) {
+        $sql = "SELECT id, type_  FROM utilisateur WHERE mail = :mail";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(["mail" => $mail]); 
+        $data = $stmt->fetchAll(); 
+        parent::sendJSON($data);
+    }
+
+}

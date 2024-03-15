@@ -7,7 +7,17 @@
     <link rel="stylesheet" href="Entreprises_creer.css">
 </head>
 <body>
-    
+<?php
+require_once "C:\\www\\projetWEB\\vendor\\autoload.php";
+use App\UserSessionManager;
+$sessionManager = new UserSessionManager();
+$sessionManager->verifySession();
+$utilisateur = $sessionManager->getUserType();
+if ($utilisateur == 3){
+?>
+<script> window.location.href='/pages/entreprise/rechercher/Entreprises_rechercher.php';</script>    
+<?php } ?>
+
 <header class="header">
     <div class="header-logo">
         <img src="img/logo.png" alt="Logo">
@@ -74,7 +84,7 @@
         <select name="secteur[]" class="secteur-select" id="secteur-select" required>
             <?php
             // Appeler votre API pour récupérer les secteurs d'activité
-            $data = json_decode(file_get_contents("http://localhost/api/index.php?demande=combox/secteur"));
+            $data = json_decode(file_get_contents("http://localhost/api/index.php?demande=combox/sector"));
 
             // Parcourir les données récupérées et créer les options pour le menu déroulant
             foreach ($data as $secteur) {
@@ -91,7 +101,7 @@
         <select name="localite[]" class="localite-select" id="localite-select" required>
             <?php
             // Appeler votre API pour récupérer les secteurs d'activité
-            $data = json_decode(file_get_contents("http://localhost/api/index.php?demande=combox/ville"));
+            $data = json_decode(file_get_contents("http://localhost/api/index.php?demande=combox/country"));
 
             // Générer les options pour le select
             foreach ($data as $ville) {
