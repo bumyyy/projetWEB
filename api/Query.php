@@ -1,7 +1,7 @@
 <?php
 
 // Include config.php file
-include_once 'config.php';
+include_once 'Config.php';
 
 // Database hérite de la classe Config
 // Lorsque vous appelez le constructeur d'une classe enfant qui étend une classe parente, 
@@ -104,15 +104,16 @@ class Company extends Config {
         parent::sendJSON($data);
     }
 
+   
     public function addCompany($companyName, $countryIds, $sectorId, $rate) {
-        $this->$conn->beginTransaction();
+        $this->conn->beginTransaction();
         
         $sqlCompany = "INSERT INTO entreprise (nom, id_secteur) VALUES (:nom_entreprise, :secteur_id)";
         $stmtCompany = $this->conn->prepare($sqlCompany);
         $stmtCompany->execute(['nom_entreprise' => $companyName ,
                         'secteur_id' => $sectorId]); //permet de bind values
         
-        $companyId = $this->$conn->lastInsertId();
+        $companyId = $this->conn->lastInsertId();
 
         $sqlLocation ="INSERT INTO situer (id_entreprise, id_ville) VALUES (:entreprise_id, :ville_id)";
         $stmtLocation = $this->conn->prepare($sqlLocation);
@@ -128,7 +129,7 @@ class Company extends Config {
         $stmtRating->execute(['entreprise_id' => $companyId ,
                               'note' => $rate]); //permet de bind values
 
-        $this->$conn->commit();
+        $this->conn->commit();
     }
 
     public function editCompany($mail, $password) {
