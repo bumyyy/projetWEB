@@ -140,35 +140,17 @@ function highlightStars(tabnote) {
   
   }
 
-
-
-
-
   function toggleSubdivision(division) {
     let subdivision = division.querySelector('.popup');
     let computedStyle = window.getComputedStyle(subdivision);
 
     if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
         subdivision.style.display = 'block';
-        document.body.classList.add('no-scroll'); // Ajouter une classe pour désactiver le défilement
+        document.body.classList.add('no-scroll');
     } else {
         subdivision.style.display = 'none';
-        document.body.classList.remove('no-scroll'); // Retirer la classe pour activer le défilement
+        document.body.classList.remove('no-scroll');
     }
 }
 
-});
-    
-  //recuperer le nom des entreprise
-  function entrepriseName(){
-  let elements = document.querySelectorAll('h1#entrepriseName');
-  let tab = [];
-  elements.forEach(element =>{
-    let tabs = element.textContent.trim();
-    tab.push(tabs);
-  })
-  
-  
-  }
-
-  
+});//fin du domloadcontent
