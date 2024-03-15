@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stage_tier</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
-<?php
-require_once __DIR__ . "/../../vendor/autoload.php";
-use App\UserSessionManager;
-$sessionManager = new UserSessionManager();
-$sessionManager->verifySession();   
-?>
+
 <header class="header">
     <div class="header-logo">
-        <a href="Stagetier.fr"></a><img src="img/logo.png" alt="Logo"></a> 
+        <a href="Stagetier.fr"><img src="img/logo.png" alt="Logo"></a> 
     </div>
     <nav>
         <ul class="header-nav">
@@ -28,10 +25,19 @@ $sessionManager->verifySession();
     </nav>
     <div class="header-icons">
         <img src="img/reglage.png" alt="Réglages">
-        <img src="img/profile.png" alt="Profil">
+        <img src="img/profile.png" id="profile" alt="Profil">
     </div>
 </header>
 
+<div class="profil-content" id="informations">
+    <div>
+        <h2 class="text">Vos Informtaions</h2>
+        <div class="div1"><p>Nom :</p></div>
+        <div class="div2"><p>Prénom :</p></div>
+        <div><p>Type :</p></div>
+        <button class="btn" id="deco" type="submit" value="Déconnexion">Déconnexion</button>
+    </div>
+</div>
 
 <div class="content">
     <h1>Nous transformons les moments gênants en opportunités de carrière</h1>
@@ -46,6 +52,6 @@ $sessionManager->verifySession();
     <a href="https://www.instagram.com"><img src="img/instagram.png" alt="Instagram"></a>
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
-
+<script src="index.js"></script>
 </body>
 </html>
