@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_} !-f
+RewriteRule ^(.*)\.php$ index.php?r=$1 [QSA,L]
