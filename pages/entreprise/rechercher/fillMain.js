@@ -1,4 +1,19 @@
+function toggleSubdivision(division) {
+        let subdivision = division.querySelector('.popup');
+        let computedStyle = window.getComputedStyle(subdivision);
+    
+        if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
+            subdivision.style.display = 'block';
+            document.body.classList.add('no-scroll');
+        } else {
+            subdivision.style.display = 'none';
+            document.body.classList.remove('no-scroll');
+        }
+    }
+    
 document.addEventListener('DOMContentLoaded', function() {
+
+    
     document.getElementById('form').addEventListener('submit', function(e) {
         e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
         document.getElementById('main').innerHTML = ''; // reset la page
@@ -67,7 +82,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 "   <div class='mod'>"+
                 "       <span onclick=update() class='update'></span>"+
                 "       <span onclick=confirmerSuppression("+entreprise.id_entreprise+") class='delete'></span>"+
-                "   </div>"+
                 "   </div>";
                 };
                 html +=
@@ -96,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     "<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>"+
                     "<a href='https://google.com'>google</a>"+
                     "</div>"+
+                "</div>"+
                 "</div>";
                 
                 document.getElementById('main').innerHTML += html;
@@ -140,35 +155,6 @@ function highlightStars(tabnote) {
   
   }
 
-
-
-
-
-  function toggleSubdivision(division) {
-    let subdivision = division.querySelector('.popup');
-    let computedStyle = window.getComputedStyle(subdivision);
-
-    if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
-        subdivision.style.display = 'block';
-        document.body.classList.add('no-scroll'); // Ajouter une classe pour désactiver le défilement
-    } else {
-        subdivision.style.display = 'none';
-        document.body.classList.remove('no-scroll'); // Retirer la classe pour activer le défilement
-    }
-}
-
-});
-    
-  //recuperer le nom des entreprise
-  function entrepriseName(){
-  let elements = document.querySelectorAll('h1#entrepriseName');
-  let tab = [];
-  elements.forEach(element =>{
-    let tabs = element.textContent.trim();
-    tab.push(tabs);
-  })
   
-  
-  }
 
-  
+});//fin du domloadcontent
