@@ -390,12 +390,12 @@ form{
 
 .footer img {
     height: 24px; /* Ajustez la taille des icônes si nécessaire */
-    margin: 0 10px;
+    margin: 0 8px;
     cursor: pointer;
 }
 .footer p {
     color: #666;
-    font-size: 14px;
+    font-size: 1vw;
     padding: 10px;
 }
 .popdown {
@@ -472,21 +472,35 @@ form{
     .wrap{
         flex-direction: column  ;
     }
+    .main{
+        padding: 0;
+    }
 }
-
+@media only screen and (max-width: 300px) {
+    .header-icons
+    {
+        margin-left: 0;
+    }
+    .footer p {
+    padding-right: 0;
+    margin-right: 0;
+    }
+}
 .hidden {
     display: none;
   }
 
   .pagination-number,
   .pagination-button{
-    font-size: 1.1rem;
+    font-size: max(1.8vw,19px);
     background-color: transparent;
     border: none;
     margin: 0.25rem 0.25rem;
     cursor: pointer;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 8vw;
+    max-width: 45px;
+    width: 8vw;
+    max-height: 45px;
     border-radius: .2rem;
     background: #fff;
   }
