@@ -174,7 +174,7 @@ form{
 }
 .fermer button{
     width: 60px;
-    height: 60px;
+    height: 40px;
     font-size: 25px;
     background-color: #d3d3d3;
     border-radius: 50px;
@@ -398,9 +398,23 @@ form{
     font-size: 14px;
     padding: 10px;
 }
+.popdown {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #d3d3d3;
+    padding: 4%;
+    padding-top: 2%;
+    border-radius: 50px;
+    z-index: 10;
+}
+.lien_popup{
+    text-align: center;
+}
 
-
-.popup {
+.popup {/*popup de creation entreprise*/
     display: none; /* Le popup est caché par défaut */
     position: fixed; /* Le popup reste fixé sur l'écran */
     top: 50%; /* Position verticale au milieu de l'écran */

@@ -1,5 +1,5 @@
 function toggleSubdivision(division) {
-        let subdivision = division.querySelector('.popup');
+        let subdivision = division.querySelector('.popdown');
         let computedStyle = window.getComputedStyle(subdivision);
     
         if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "   </div>";
                 };
                 html +=
-                "<div id='myModal' class='popup'>"+
+                "<div id='myModal' class='popdown'>"+
                     "<div class='fermer'><button id='closebtn'>x</button></div>"+
                     "<div class='name_popup'>"+
                     "<h1>"+entreprise.nom_entreprise+"</h1>"+
@@ -108,7 +108,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     "<div class='note' id='note'>0</div>"+
                     "</div>"+
                     "<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>"+
-                    "<a href='https://google.com'>google</a>"+
+                    "<div class='lien_popup'>"+
+                    "<a href='http://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
+                    "</div>"+
                     "</div>"+
                 "</div>"+
                 "</div>";
