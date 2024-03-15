@@ -145,7 +145,7 @@ function highlightStars(tabnote) {
           if (starValue <= parseInt(tabnote[a-1])) {
             stars[i].style.color = '#ffc107'; // Change color to yellow
           } else {
-            stars[i].style.color = 'rgb(160, 160, 160)'; // Change color to gray
+            stars[i].style.color = 'rgb(179,179,179)'; // Change color to gray
           }
         }
       }
