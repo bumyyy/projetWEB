@@ -284,10 +284,11 @@ function editCompany($id_entreprise, $nom_entreprise, $ville_ids, $secteur_id, $
             $stmt_situer->execute();
         }
 
+
         // Modifier l'évaluation de l'entreprise
         $req_evaluer = "UPDATE evaluer SET note = :note WHERE id_entreprise = :id_entreprise AND id_utilisateur = 1";
         $stmt_evaluer = $pdo->prepare($req_evaluer);
-        $stmt_evaluer->bindValue(":entreprise_id", $entreprise_id);
+        $stmt_evaluer->bindValue(":id_entreprise", $id_entreprise);
         //$stmt_evaluer->bindValue(":id_utilisateur", $id_utilisateur); // Remplacez id_utilisateur par l'identifiant de l'utilisateur réel
         $stmt_evaluer->bindValue(":note", $note);
         $stmt_evaluer->execute();
