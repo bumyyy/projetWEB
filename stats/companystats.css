@@ -136,20 +136,15 @@ margin-top: 20px;
     flex-direction: column;
 }
 .diagsect{
+
+}
+.diagloc{
     display: flex;
     flex-wrap: nowrap;
 }
-.sec1{
-    color: green;
+.loc0,.loc1,.loc2,.loc3{
 }
-.sec2{
-    margin-left: 10px;
-    color: orange;
-}
-.sec3{
-    margin-left: 10px;
-    color: red;
-}
+
 .diagtitle{
     background-color: #f0f0f07a;
     width: 100%;

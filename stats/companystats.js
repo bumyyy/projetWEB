@@ -43,10 +43,16 @@ document.addEventListener('DOMContentLoaded', function() {
           .then(data => {
             let tableau_couleurs = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'black', 'white', 'gray', 'turquoise', 'brown', 'cyan', 'purple', 'salmon', 'indigo', 'lavender', 'coral', 'beige', 'lemon'];            let couleurs=[];
             let diagtab=[];
+            let html = "";
+            let sectittre;
             for(let i=0;i<data.length;i++){
                 diagtab.push(data[i].nombre_apparition);
                 couleurs.push(tableau_couleurs[i]);
-                
+                html = "";
+                html += "<p class='sec"+i+"' id='sec"+i+"'>"+data[i].nom_secteur+"</p>";
+                document.getElementById("diagsect").innerHTML+= html;
+                sectittre = document.getElementById(`sec${i}`);
+                sectittre.style.color = `${tableau_couleurs[i]}`;
             }
             Secteur(diagtab,couleurs);
           })
@@ -68,13 +74,20 @@ function statville(){
     .then(data => {
       let tableau_couleurs = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'black', 'white', 'gray', 'turquoise', 'brown', 'cyan', 'purple', 'salmon', 'indigo', 'lavender', 'coral', 'beige', 'lemon'];            let couleurs=[];
       let diagtab=[];
+      let html = "";
+      let villetittre;
       for(let i=0;i<data.length;i++){
           diagtab.push(data[i].nombre_entreprise);
           couleurs.push(tableau_couleurs[i]);
-          
+          html = "";
+          html += "<p class='loc"+i+"' id='loc"+i+"'>"+data[i].nom_ville+"</p>";
+          document.getElementById("diagloc").innerHTML+= html;
+          villetittre = document.getElementById(`loc${i}`);
+          villetittre.style.color = `${tableau_couleurs[i]}`;
+          if(i!=data.length-1){
+          villetittre.style.marginRight ="10px";
+          }
       }
-      console.log(diagtab);
-      console.log(couleurs);
       Localité(diagtab,couleurs);
     })
     .catch(error => {
