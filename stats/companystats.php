@@ -37,10 +37,12 @@
     <div class="diagtitle">
         <h1>Secteur d'activité</h1>
     </div>
+    <div class="diagcomplet">
     <div class="diagsect" id="diagsect">
 <!--<p class="sec1">secteur 1</p> <p class="sec2">secteur 2</p> <p class="sec3">secteur 3</p> -->
     </div>
     <div class="Secteur" id="Secteur"></div>
+    </div>
 </div>
 <div class="diag1">
 <div class="diagtitle">

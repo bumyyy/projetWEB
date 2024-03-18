@@ -56,6 +56,8 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    margin: 0;
+
 }
 .header-icons img {
     height: 24px; /* Ajustez la taille selon vos besoins */
@@ -136,7 +138,8 @@ margin-top: 20px;
     flex-direction: column;
 }
 .diagsect{
-
+    text-align: center;
+    margin-left: 40px;
 }
 .diagloc{
     display: flex;
@@ -165,12 +168,19 @@ margin-top: 20px;
 .diagtitle2 h1{
     font-size: 19px;
 }
+.diagcomplet{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
 .Secteur{
 
     width: 260px;
     height: 260px;
     border-radius: 50%;
-    margin-bottom: 60px;
 }
 .secteur p {
     text-align: center;
@@ -182,7 +192,7 @@ margin-top: 20px;
     margin-bottom: 60px;
 }
 .top3{
-
+    
 }
 .rating {
     display: flex;
@@ -245,5 +255,23 @@ margin-top: 20px;
       .header-icons
       {
           margin-left: 30px;
+          padding: 0  ;
+          margin: 0;
       }
+      .footer p{
+        padding-right: 0;
+        font-size: 4px;
+      }
+      .header-icons img{
+          padding: 0;
+      } 
+
+      .diagcomplet{
+        flex-direction: column;
+    }
+}   
+@media only screen and (max-width: 360px) {
+    .top3{
+        width: 100%;
+    }
 }
