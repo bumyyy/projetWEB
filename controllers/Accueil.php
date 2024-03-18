@@ -3,7 +3,7 @@
 class Accueil extends Controller {
     
     public function index(){
-        $this->loadModel('User');
+        //$this->loadModel('User');
         //$user = $this->User->getUserByMail('carla.barde@email.com');
 
         $this->render('index');

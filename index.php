@@ -2,6 +2,7 @@
 
 // constante du chemin vers notre projet
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+define('HOST', "//".$_SERVER['HTTP_HOST']);
 
 require_once(ROOT.'/app/Model.php');
 require_once(ROOT.'/app/Controller.php');
@@ -13,7 +14,7 @@ $urlParams = explode('/', $_GET['p']);
 if($urlParams[0] != ''){
     $controller = ucfirst($urlParams[0]); //pour mettre la premiere lettr en maj pour apres appeller la classe
      
-    if( $urlParams[1] != ''){ //si l'action n'est pas specifiée dans l'url, on appelle l'index
+    if( count($urlParams)>1 && $urlParams[1] != ''){ //si l'action n'est pas specifiée dans l'url, on appelle l'index
         $action = $urlParams[1];
     }else{
         $action = 'index';

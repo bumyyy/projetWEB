@@ -7,7 +7,7 @@ class User extends Model {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(["mail" => $mail]); 
         $data = $stmt->fetchAll(); 
-        return $data;
+        parent::sendJSON($data);
     }
 
 }
