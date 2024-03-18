@@ -46,7 +46,7 @@ class ApiManager extends Controller{
                 break;
 
             case 'deleteCompany':
-                $this->Company->$action($field1);
+                //a faire
                 break;
             
             default:

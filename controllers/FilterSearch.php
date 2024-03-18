@@ -14,14 +14,14 @@ class FilterSearch extends Controller{
         // Filtrer les entreprises par secteur
         if ($secteur != "x"){
             $entreprises = array_filter($entreprises, function ($entreprise) use ($secteur) {
-                return $entreprise['secteur_activite'] == $secteur;
+                return $entreprise['id_secteur'] == $secteur;
             });
         }
             
         // Filtrer les entreprises par ville
         if ($ville != "x"){
             $entreprises = array_filter($entreprises, function ($entreprise) use ($ville) {
-                return $entreprise['ville'] == $ville;
+                return $entreprise['id_ville'] == $ville;
             });
         }
         

@@ -7,7 +7,9 @@ class Company extends Model {
         entreprise.id AS id_entreprise,
         entreprise.nom AS nom_entreprise,
         secteur.nom AS secteur_activite,
+        secteur.id AS id_secteur,
         GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ',') AS ville,
+        GROUP_CONCAT(DISTINCT ville.id SEPARATOR ',') AS id_ville,
         COUNT(DISTINCT candidater.id_stage) AS nb_stagiaires_postules,
         AVG(evaluer.note) AS moyenne_evaluations
         FROM entreprise
@@ -29,7 +31,9 @@ class Company extends Model {
         entreprise.id AS id_entreprise,
         entreprise.nom AS nom_entreprise,
         secteur.nom AS secteur_activite,
+        secteur.id AS id_secteur,
         GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville,
+        GROUP_CONCAT(DISTINCT ville.id SEPARATOR ',') AS id_ville,
         COUNT(DISTINCT candidater.id_stage) AS nb_stagiaires_postules,
         AVG(evaluer.note) AS moyenne_evaluations
         FROM entreprise

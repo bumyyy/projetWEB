@@ -1,5 +1,6 @@
 let villesSelectionnees = [];
-villesSelectionnees[0] = document.getElementById('localite-select').value;  
+villesSelectionnees[0] = document.getElementById('comboboxVille').value;
+ROOT = 'http://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
     // Récupérer les éléments du DOM
@@ -21,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
         if (localiteSelectCount < 4) {
-            fetch('/api/index.php?demande=combox/country')
+            fetch(`${ROOT}/ApiManager/combox/country`)
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
                     const newSelect = document.createElement('select');
                     newSelect.name = 'localite[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
                     newSelect.id = localiteSelectCount;
-                    newSelect.classList.add('localite-select');
+                    newSelect.classList.add('comboboxVille');
     
                     // Ajouter chaque localité comme option au nouveau select
                     data.forEach(ville => {
@@ -60,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour mettre à jour le tableau des sélections de villes
     function updateVillesSelectionnees() {
         villesSelectionnees = [];
-        const selects = document.querySelectorAll('.localite-select');
+        const selects = document.querySelectorAll('.comboboxVille');
         selects.forEach(select => {
             if (select.value !== "") {
                 villesSelectionnees.push(select.value); // Ajouter la valeur du select au tableau si elle est sélectionnée
@@ -111,15 +112,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Récupérer les valeurs des champs de formulaire
         let nom_entreprise = document.getElementById('form_input').value;
-        let secteur_nom = document.getElementById('secteur-select').value;
+        let secteur_id = document.getElementById('comboboxSecteur').value;
         let note = document.getElementById('rating-value').value;
+        console.log(secteur_id, note, villesSelectionnees);
 
         // Envoyer une requête fetch pour chaque valeur de ville_nom
-        fetch(`/api/index.php?demande=company/create/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
+        fetch(`${ROOT}/ApiManager/company/addCompany/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}`)
             .then(response => {
                 if (response.ok) {
                     // Rediriger l'utilisateur en cas de succès
-                    window.location.href = "/pages/entreprise/rechercher/Entreprises_rechercher.php?success=1";
+                    //window.location.href = `${ROOT}/company`;
                 } else {
                     // Traiter les erreurs éventuelles
                     console.error('Erreur lors de la requête fetch : ', response.statusText);

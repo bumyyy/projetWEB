@@ -13,7 +13,7 @@ async function confirmerSuppression(idEntreprise) {
 
   if (confirm("Voulez-vous vraiment supprimer ?")) {
     try {
-      const url = `${ROOT}/ApiManager/company/delete/${idEntreprise}`;
+      const url = `${ROOT}/ApiManager/company/deleteCompany/${idEntreprise}`;
       const response = await fetch(url, {
         method: 'POST'
       });
