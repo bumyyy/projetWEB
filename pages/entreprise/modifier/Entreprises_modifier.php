@@ -4,20 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stage_tier</title>
-    <link rel="stylesheet" href="Entreprises_creer.css">
+    <link rel="stylesheet" href="Entreprises_modifier.css">
 </head>
 <body>
-<?php
-require_once "C:\\www\\projetWEB\\vendor\\autoload.php";
-use App\UserSessionManager;
-$sessionManager = new UserSessionManager();
-$sessionManager->verifySession();
-$utilisateur = $sessionManager->getUserType();
-if ($utilisateur == 3){
-?>
-
-<?php } ?>
-
+    
 <header class="header">
     <div class="header-logo">
         <img src="img/logo.png" alt="Logo">
@@ -72,7 +62,7 @@ if ($utilisateur == 3){
 
 <div class="main">
  <form class="create_entrep" id="myform" method="POST" > <!-- action="Entreprises_accueil.php" -->
-    <h1>Créer une entreprise</h1>
+    <h1>Modifier une entreprise</h1>
     <div class="company">
         <h2>Nom de l'entreprise</h2>
         <input type="text" name="nom" id="form_input" required>
@@ -84,7 +74,7 @@ if ($utilisateur == 3){
         <select name="secteur[]" class="secteur-select" id="secteur-select" required>
             <?php
             // Appeler votre API pour récupérer les secteurs d'activité
-            $data = json_decode(file_get_contents("http://stagetier.fr/api/index.php?demande=combox/sector"));
+            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/secteur"));
 
             // Parcourir les données récupérées et créer les options pour le menu déroulant
             foreach ($data as $secteur) {
@@ -101,7 +91,7 @@ if ($utilisateur == 3){
         <select name="localite[]" class="localite-select" id="localite-select" required>
             <?php
             // Appeler votre API pour récupérer les secteurs d'activité
-            $data = json_decode(file_get_contents("http://stagetier.fr/api/index.php?demande=combox/city"));
+            $data = json_decode(file_get_contents("http://localhost/projetWEB/api/index.php?demande=combox/ville"));
 
             // Générer les options pour le select
             foreach ($data as $ville) {
@@ -141,6 +131,6 @@ if ($utilisateur == 3){
     <img src="img/instagram.png" alt="Instagram">
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
-<script src="Entreprises_creer.js"></script>
+<script src="Entreprises_modifier.js"></script>
 </body>
 </html>
