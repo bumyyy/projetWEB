@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const id_entreprise = urlParams.get('id');
 
-
-    
     const secteurContainer = document.getElementById('secteur-container');
     const secteurButton = document.getElementById('secteur');
     const localiteContainer = document.getElementById('localite-container');
@@ -159,6 +157,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    localiteContainer.addEventListener('change', () => {
+        updateVillesSelectionnees();
+    });
 
     const moinsButton = document.getElementById('moins'); // Sélectionnez le bouton moins
 
@@ -293,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let note = document.getElementById('rating-value').value;
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`/api/index.php?demande=modifier/entreprise/${id_entreprise}/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
+    fetch(`/api/index.php?demande=company/edit/${id_entreprise}/${nom_entreprise}/${villesSelectionnees}/${secteur_nom}/${note}`)
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès

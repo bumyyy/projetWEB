@@ -62,6 +62,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    localiteContainer.addEventListener('change', () => {
+        updateVillesSelectionnees();
+    });
+
     // Fonction pour mettre à jour le tableau des sélections de villes
     function updateVillesSelectionnees() {
         villesSelectionnees = [];
@@ -102,8 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
             updateVillesSelectionnees();
         }
     }  
-
-    updateMoinsButtonDisplay()
 
     // Fonction pour mettre à jour l'affichage du bouton moins
     function updateMoinsButtonDisplay() {

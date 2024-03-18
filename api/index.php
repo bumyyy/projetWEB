@@ -47,8 +47,12 @@ try {
                     case "create":
                         $company->addCompany($url[2], $url[3], $url[4], $url[5]);
                         break;
+                    case "select":
+                        $company->selectCompany($url[2]);
+                        break;
                     case "edit":
-                        $company->editCompany();
+                        $company->editCompany($url[2], $url[3], $url[4], $url[5], $url[6]);
+                        break;
                     case "delete":
                         $company->deleteCompany($url[2]);
                         break;
