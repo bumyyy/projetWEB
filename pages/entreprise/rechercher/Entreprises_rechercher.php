@@ -1,16 +1,4 @@
-<?php 
-session_start();
-if(isset($_SESSION["message"]) && $_SESSION["message"]=="Deleted") {
-    echo "<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(function() {
-            document.getElementById('btnsubmit').click();
-        }, 600);
-    });
-    </script>";
-    unset($_SESSION["message"]);
-}
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -86,4 +74,17 @@ if(isset($_SESSION["message"]) && $_SESSION["message"]=="Deleted") {
 <script src="fillCombobox.js"></script>
 <script src="fillMain.js"></script>
 <script src="editCompany.js"></script>
+<?php 
+session_start();
+if(isset($_SESSION["message"]) && $_SESSION["message"]=="Deleted") {
+    echo "<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.getElementById('btnsubmit').click();
+        }, 600);
+    });
+    </script>";
+    unset($_SESSION["message"]);
+}
+?>
 </html>
