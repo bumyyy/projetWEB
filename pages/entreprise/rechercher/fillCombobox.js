@@ -16,5 +16,5 @@ function getDataApi(URL, id, name) {
 
 document.addEventListener('DOMContentLoaded', function() {
     getDataApi('/api/index.php?demande=combox/sector', 'comboboxSecteur', 'secteur');
-    getDataApi('/api/index.php?demande=combox/country', 'comboboxVille', 'ville');
+    getDataApi('/api/index.php?demande=combox/city', 'comboboxVille', 'ville');
 });

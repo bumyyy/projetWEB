@@ -4,12 +4,17 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita98db6b14e5111b8d80e5c7d15535f3e
+class ComposerStaticInitd929c001f093a87f6f9b727d193c7436
 {
     public static $files = array (
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '89efb1254ef2d1c5d80096acd12c4098' => __DIR__ . '/..' . '/twig/twig/src/Resources/core.php',
+        'ffecb95d45175fd40f75be8a23b34f90' => __DIR__ . '/..' . '/twig/twig/src/Resources/debug.php',
+        'c7baa00073ee9c61edf148c51917cfb4' => __DIR__ . '/..' . '/twig/twig/src/Resources/escaper.php',
+        'f844ccf1d25df8663951193c3fc307c8' => __DIR__ . '/..' . '/twig/twig/src/Resources/string_loader.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -64,9 +69,9 @@ class ComposerStaticInita98db6b14e5111b8d80e5c7d15535f3e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita98db6b14e5111b8d80e5c7d15535f3e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita98db6b14e5111b8d80e5c7d15535f3e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInita98db6b14e5111b8d80e5c7d15535f3e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd929c001f093a87f6f9b727d193c7436::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd929c001f093a87f6f9b727d193c7436::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitd929c001f093a87f6f9b727d193c7436::$classMap;
 
         }, null, ClassLoader::class);
     }

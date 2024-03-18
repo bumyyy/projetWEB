@@ -4,7 +4,7 @@ class Config {
 	  // Database Details
 	  private const DBHOST = 'localhost';
 	  private const DBUSER = 'root';
-	  private const DBPASS = '1234';
+	  private const DBPASS = '';
 	  private const DBNAME = 'stagetier';
 	  // Data Source Network
 	  private $dsn = 'mysql:host=' . self::DBHOST . ';dbname=' . self::DBNAME . '';

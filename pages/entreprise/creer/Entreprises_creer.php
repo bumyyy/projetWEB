@@ -84,7 +84,7 @@ if ($utilisateur == 3){
         <select name="secteur[]" class="secteur-select" id="secteur-select" required>
             <?php
             // Appeler votre API pour récupérer les secteurs d'activité
-            $data = json_decode(file_get_contents("http://localhost/api/index.php?demande=combox/sector"));
+            $data = json_decode(file_get_contents("http://stagetier.fr/api/index.php?demande=combox/sector"));
 
             // Parcourir les données récupérées et créer les options pour le menu déroulant
             foreach ($data as $secteur) {
@@ -101,7 +101,7 @@ if ($utilisateur == 3){
         <select name="localite[]" class="localite-select" id="localite-select" required>
             <?php
             // Appeler votre API pour récupérer les secteurs d'activité
-            $data = json_decode(file_get_contents("http://localhost/api/index.php?demande=combox/country"));
+            $data = json_decode(file_get_contents("http://stagetier.fr/api/index.php?demande=combox/city"));
 
             // Générer les options pour le select
             foreach ($data as $ville) {

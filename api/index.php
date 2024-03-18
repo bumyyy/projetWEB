@@ -24,8 +24,8 @@ try {
                     case "sector":
                         $combox->sector();
                         break;
-                    case "country":
-                        $combox->country();
+                    case "city":
+                        $combox->city();
                         break;
                     case "rate":
                         $combox->rate();

@@ -22,7 +22,7 @@ document.getElementById('login').addEventListener('submit', function(e) {
                         userLastName: dataResponse.nom, 
                         userPromo: dataResponse.id_promotion}),
                 })
-                window.location.href = 'http://stagetier.fr/pages/accueil';
+                window.location.href = '/pages/accueil';
             } else {
                 document.getElementById('errorMessage').style.display = 'block';
             }

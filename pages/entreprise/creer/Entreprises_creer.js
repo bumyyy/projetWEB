@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
-        if (localiteSelectCount < 4) {
-            fetch('/api/index.php?demande=combox/country')
+        if (localiteSelectCount < 5) {
+            fetch('/api/index.php?demande=combox/city')
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
