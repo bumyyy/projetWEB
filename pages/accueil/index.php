@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stage_tier</title>
     <link rel="stylesheet" href="style.css">
-    
+    <script src="index.js" defer></script>
 </head>
 <body>
 
@@ -52,6 +51,6 @@
     <a href="https://www.instagram.com"><img src="img/instagram.png" alt="Instagram"></a>
     <p>© 2024 Stage_Tier - Tous droits réservés</p>
 </footer>
-<script src="index.js"></script>
+
 </body>
 </html>

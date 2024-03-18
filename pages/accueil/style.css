@@ -73,6 +73,7 @@ body {
     border-radius: 5%;
     padding: 10px;
     width: 250px;
+    display: none;
 }
 
 .div1{

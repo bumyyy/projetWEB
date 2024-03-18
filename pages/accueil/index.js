@@ -1,9 +1,23 @@
 // Fonction pour afficher le popup
-function openProfil() {
-    document.getElementById("profil").style.display = "block";
-}
+let profil = document.getElementById('profile');
+let infos = document.getElementById('informations');
+let deco=document.getElementById("deco");
+profil.addEventListener('click', () =>{
+    if (infos.style.display == 'block'){
+        infos.style.display = "none";
+    }
+    else{
+    infos.style.display = "block";
+    deco.focus();
+    }
+});
+deco.addEventListener('blur', () =>{
+    infos.style.display = "none";
+});
+
+
   
 // Fonction pour fermer le popup
 //function closeProfil() {
-    //document.getElementById("popup").style.display = "none";
+//    document.getElementById("informations").style.display = "none";
 //}
