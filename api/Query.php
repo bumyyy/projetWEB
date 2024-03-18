@@ -67,13 +67,14 @@ class Company extends Config {
         GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ',') AS ville,
         COUNT(DISTINCT candidater.id_stage) AS nb_stagiaires_postules,
         AVG(evaluer.note) AS moyenne_evaluations
-        FROM entreprise
+        FROM entreprise 
         INNER JOIN secteur ON entreprise.id_secteur = secteur.id
         LEFT JOIN situer ON situer.id_entreprise = entreprise.id
         LEFT JOIN ville ON situer.id_ville = ville.id
         LEFT JOIN stage ON stage.id_entreprise = entreprise.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
         LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
+        WHERE hide = 0
         GROUP BY entreprise.id;";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(); 
@@ -189,7 +190,7 @@ class Company extends Config {
     }
 
     public function deleteCompany($companyId) {
-        $sql = "DELETE FROM entreprise WHERE id = :id;";
+        $sql = "UPDATE entreprise SET hide = 1 WHERE id = :id;";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $companyId]);
     }

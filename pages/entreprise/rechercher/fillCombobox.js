@@ -15,6 +15,6 @@ function getDataApi(URL, id, name) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    getDataApi('http://localhost/projetWEB/api/index.php?demande=combox/secteur', 'comboboxSecteur', 'secteur');
-    getDataApi('http://localhost/projetWEB/api/index.php?demande=combox/ville', 'comboboxVille', 'ville');
+    getDataApi('http://localhost/api/index.php?demande=combox/sector', 'comboboxSecteur', 'secteur');
+    getDataApi('http://localhost/api/index.php?demande=combox/country', 'comboboxVille', 'ville');
 });

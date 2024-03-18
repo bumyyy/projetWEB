@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataSearch = document.getElementById('search').value;
         
         let URL_ = dataSearch !== "" 
-            ? `http://localhost/projetWEB/api/index.php?demande=entreprise/recherche/${dataSearch}` 
-            : "http://localhost/projetWEB/api/index.php?demande=entreprise";
+            ? `http://localhost/api/index.php?demande=company/recherche/${dataSearch}` 
+            : "http://localhost/api/index.php?demande=company";
         fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {
