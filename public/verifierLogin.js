@@ -14,7 +14,7 @@ document.getElementById('login').addEventListener('submit', function(e) {
         .then(response => response.json())
         .then(dataResponse => {
             if (dataResponse.success === true) {
-                fetch(`${ROOT}/SessionManager/startSession/${dataResponse.id}`)
+                fetch(`${ROOT}/SessionManager/startSession/${dataResponse.id}/${dataResponse.type_}/${dataResponse.nom}/${dataResponse.prenom}/${dataResponse.id_promotion}`)
                 window.location.href = `${ROOT}/accueil`;
             } else {
                 document.getElementById('errorMessage').style.display = 'block';

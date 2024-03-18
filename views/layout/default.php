@@ -15,7 +15,7 @@
     <nav>
         <ul class="header-nav">
             <a href=""></a><li>Stages</li>
-            <li><a href="http://stagetier.fr/pages/entreprise/rechercher/Entreprises_rechercher.php">Entreprises</a></li>
+            <li><a href="<?php echo HOST; ?>/company/">Entreprises</a></li>
             <li>Pilotes</li>
             <li>Étudiants</li>
             <li>Candidature</li>

@@ -13,6 +13,7 @@ function toggleSubdivision(division) {
     
 document.addEventListener('DOMContentLoaded', function() {
 
+    ROOT = 'http://stagetier.fr';
     
     document.getElementById('form').addEventListener('submit', function(e) {
         e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
@@ -24,29 +25,27 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataSearch = document.getElementById('search').value;
         
         let URL_ = dataSearch !== "" 
-            ? `/api/index.php?demande=company/search/${dataSearch}` 
-            : "/api/index.php?demande=company";
+            ? `${ROOT}/ApiManager/company/companyBySearch/${dataSearch}` 
+            : `${ROOT}/ApiManager/company/allCompany/`;
         fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {
-            return fetch(`filterSearch.php`, {
+            return fetch(`${ROOT}/FilterSearch/filter/${encodeURIComponent(dataSecteur)}/${encodeURIComponent(dataVille)}/${encodeURIComponent(dataNote)}`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json', 
                 },
                 body: JSON.stringify({
                     data: dataResponse, 
-                    secteur: dataSecteur,
-                    ville: dataVille,
-                    rate: dataNote
                 })
             });
         })
-        .then(response => response.json()) 
+        .then(finalData => finalData.json()) 
         .then(finalData => {
             let userType = finalData.userType;
             let tabnote = [];
-            finalData.entreprises.forEach ((entreprise) => {  
+
+            finalData.entreprises.forEach ((entreprise) => { 
                 tabnote.push(entreprise.moyenne_evaluations);
                 let html =
                 "<div class='completeEntreprise'>" +

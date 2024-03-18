@@ -8,9 +8,12 @@ Si la requête est réussie, elle renvoie un objet Response contenant les donné
 */
 
 async function confirmerSuppression(idEntreprise) {
+
+  ROOT = 'http://stagetier.fr';
+
   if (confirm("Voulez-vous vraiment supprimer ?")) {
     try {
-      const url = `http://localhost/api/index.php?demande=company/delete/${idEntreprise}`;
+      const url = `${ROOT}/ApiManager/company/delete/${idEntreprise}`;
       const response = await fetch(url, {
         method: 'POST'
       });
