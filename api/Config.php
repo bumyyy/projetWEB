@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Config {
 	  // Database Details
 	  private const DBHOST = 'localhost';

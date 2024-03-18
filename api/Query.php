@@ -1,7 +1,7 @@
 <?php
 
 // Include config.php file
-include_once 'Config.php';
+require_once 'Config.php';
 
 // Database hérite de la classe Config
 // Lorsque vous appelez le constructeur d'une classe enfant qui étend une classe parente, 
@@ -193,6 +193,7 @@ class Company extends Config {
         $sql = "UPDATE entreprise SET hide = 1 WHERE id = :id;";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $companyId]);
+        $_SESSION["message"] = "Deleted";
     }
 
 }

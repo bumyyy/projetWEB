@@ -1,3 +1,16 @@
+<?php 
+session_start();
+if(isset($_SESSION["message"]) && $_SESSION["message"]=="Deleted") {
+    echo "<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.getElementById('btnsubmit').click();
+        }, 600);
+    });
+    </script>";
+    unset($_SESSION["message"]);
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -50,7 +63,7 @@
         </div>
     
     <div class="wrap">
-        <button type="submit" class="search"><img src="img\loupe.png"></button>
+        <button type="submit" class="search" id="btnsubmit"><img src="img\loupe.png"></button>
     </form>
         <button class="create">+</button>
     </div>

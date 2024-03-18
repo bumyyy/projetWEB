@@ -10,13 +10,14 @@ Si la requête est réussie, elle renvoie un objet Response contenant les donné
 async function confirmerSuppression(idEntreprise) {
   if (confirm("Voulez-vous vraiment supprimer ?")) {
     try {
-      const url = `http://localhost/api/index.php?demande=supprimer/entreprise/${idEntreprise}`;
+      const url = `http://stagetier.fr/api/index.php?demande=company/delete/${idEntreprise}`;
+      console.log(url);
       const response = await fetch(url, {
         method: 'POST'
       });
       if (response.ok) {
-        console.log('Suppression réussie');
-        alert("Suppression réussie !");
+        window.location.reload();
+
       } else {
         // Si la réponse n'est pas dans la plage 200-299, affichez une erreur
         alert("Erreur.");
