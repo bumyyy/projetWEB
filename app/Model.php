@@ -1,6 +1,6 @@
 <?php
 
-class Config {
+abstract class Model { //cette classe ne sera accessible quepar ses enfants
 	  // Database Details
 	  private const DBHOST = 'localhost';
 	  private const DBUSER = 'root';
