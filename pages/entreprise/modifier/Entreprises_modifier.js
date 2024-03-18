@@ -6,11 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const id_entreprise = urlParams.get('id');
 
-    // Vérifier si l'ID de l'entreprise est présent dans l'URL
-    if (!id_entreprise) {
-        // Rediriger vers la page de modification de l'entreprise avec un ID inclus dans l'URL
-        window.location.href = `/entreprise/modifier/Entreprises_modifier.php?id=1`;
-    }
+
     
     const secteurContainer = document.getElementById('secteur-container');
     const secteurButton = document.getElementById('secteur');
@@ -28,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
         if (localiteSelectCount < 4) {
-            fetch('/api/index.php?demande=combox/ville')
+            fetch('/api/index.php?demande=combox/city')
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
@@ -114,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
         villes.forEach((ville, index) => {
             if (localiteSelectCount < 5) {
                 // Effectuer la requête fetch pour récupérer les données des villes
-                fetch('/api/index.php?demande=combox/ville')
+                fetch('/api/index.php?demande=combox/city')
                     .then(response => response.json())
                     .then(data => {
                         // Créer un nouveau select
@@ -211,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    fetch(`/api/index.php?demande=entreprise/selectionner/${id_entreprise}`)
+    fetch(`/api/index.php?demande=company/select/${id_entreprise}`)
         .then(response => response.json())
         .then(data => {
             // Remplir le formulaire avec les données de l'entreprise
@@ -301,7 +297,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
-                window.location.href = "/entreprise/accueil/Entreprises_accueil.php?success=1";
+                window.location.href = "/pages/entreprise/rechercher/Entreprises_rechercher.php?success=1";
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);

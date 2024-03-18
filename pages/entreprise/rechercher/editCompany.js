@@ -32,6 +32,6 @@ async function confirmerSuppression(idEntreprise) {
   }
 }
 
-function update(){
-  alert('modif');
+function update(idEntreprise) {
+  window.location.href = "/pages/entreprise/modifier/Entreprises_modifier.php?id=" + idEntreprise;
 }
