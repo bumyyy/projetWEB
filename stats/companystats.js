@@ -134,6 +134,14 @@ statville();
 
 
 function Secteur(valeurs, couleurs){ 
+  if (valeurs.length !== couleurs.length) {
+    throw new Error('valeurs and couleurs must have the same length');
+  }
+  
+  if (valeurs.length === 0) {
+    throw new Error('valeurs array is empty');
+  }
+  
   let camembert = document.getElementById('Secteur');
   let total = valeurs.reduce((a,b) => a+b,0);
   let gradientString = 'conic-gradient(';
@@ -149,8 +157,7 @@ function Secteur(valeurs, couleurs){
   gradientString = gradientString.slice(0, -2);
   gradientString += ')';
   camembert.style.background = gradientString;
-  console.log(gradientString);
-  console.log(camembert.style.background);
+
 }
 
 
@@ -178,6 +185,5 @@ function Localité(valeurs, couleurs){
   gradientString = gradientString.slice(0, -2);
   gradientString += ')';
   camembert.style.background = gradientString;
-  console.log(gradientString);
-  console.log(camembert.style.background);
+
 }
