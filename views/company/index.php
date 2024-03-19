@@ -31,6 +31,7 @@
     <?php if ($utilisateur != 3) { ?>
         <button onclick="window.location.href='<?php echo HOST; ?>/company/create'" class="create">+</button>
     <?php } ?>
+         <button onclick="stat()" class="create"><img src="<?php echo HOST; ?>/public/img/tableau-statistique.png"></button>
     </div>
 
 

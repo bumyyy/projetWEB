@@ -53,6 +53,18 @@ class ApiManager extends Controller{
                 $this->Company->$action($field1);
                 break;
             
+            case 'statSector':
+                $this->Company->$action();
+                break;
+
+            case 'statCity':
+                $this->Company->$action();
+                break;
+
+            case 'statop3':
+                $this->Company->$action();
+                break;
+                
             default:
                 echo "Action for 'company' not define";
                 break;

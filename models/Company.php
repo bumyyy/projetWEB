@@ -145,5 +145,61 @@ class Company extends Model {
         $stmt->execute(['id' => $companyId]);
         $_SESSION["message"] = "Deleted";
     }
+    
+
+    public function statSector(){
+        $req = "SELECT secteur.nom AS nom_secteur,
+        COUNT(*) AS nombre_apparition
+    FROM secteur
+    INNER JOIN entreprise ON secteur.id = entreprise.id_secteur
+    GROUP BY secteur.nom
+    ORDER BY COUNT(*) DESC";
+        $stmt = $this->conn->prepare($req);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Fermeture du curseur du statement
+        $stmt->closeCursor();
+        parent::sendJSON($data);
+    }
+    
+    public function statCity(){
+        $req = "SELECT ville.nom AS nom_ville,
+        COUNT(*) AS nombre_entreprise
+    FROM ville
+    INNER JOIN situer ON situer.id_ville = ville.id
+    GROUP BY ville.nom
+    ORDER BY COUNT(*) DESC";
+        $stmt = $this->conn->prepare($req);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Fermeture du curseur du statement
+        $stmt->closeCursor();
+        parent::sendJSON($data);
+    }
+    
+    
+    public function statop3(){
+        $req = "SELECT 
+        entreprise.nom AS nom_entrprise,
+        secteur.nom AS secteur_activite,
+        GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS ville,
+        AVG(evaluer.note) AS moyenne_evaluations
+    FROM entreprise
+    INNER JOIN secteur ON entreprise.id_secteur = secteur.id
+    LEFT JOIN situer ON situer.id_entreprise = entreprise.id
+    LEFT JOIN ville ON situer.id_ville = ville.id
+    LEFT JOIN stage ON stage.id_entreprise = entreprise.id
+    LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
+    GROUP BY entreprise.id
+    ORDER BY moyenne_evaluations DESC
+    LIMIT 3";
+        $stmt = $this->conn->prepare($req);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Fermeture du curseur du statement
+        $stmt->closeCursor();
+        parent::sendJSON($data);
+    }
+
 
 }

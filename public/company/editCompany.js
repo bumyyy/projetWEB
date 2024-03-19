@@ -365,3 +365,6 @@ function update(idEntreprise){
   window.location.href = "/company/edit?id=" + idEntreprise
 }
 
+function stat() {
+    window.location.href = "/company/stats"
+}
