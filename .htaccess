@@ -1,7 +1,7 @@
 RewriteEngine On
 
 # Ne pas appliquer la réécriture aux fichiers avec les extensions spécifiées
-RewriteCond %{REQUEST_URI} !\.(js|css|png)$
+RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg)$
 
 # Appliquer la règle de réécriture pour toutes les autres requêtes
 RewriteRule ^(.*)$ index.php?p=$1 [QSA]

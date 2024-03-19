@@ -16,7 +16,7 @@
         <ul class="header-nav">
             <a href=""></a><li>Stages</li>
             <li><a href="<?php echo HOST; ?>/company/">Entreprises</a></li>
-            <li>Pilotes</li>
+            <li><a href="<?php echo HOST; ?>/pilot/">Pilotes</a></li>
             <li>Étudiants</li>
             <li>Candidature</li>
         </ul>
