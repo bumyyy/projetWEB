@@ -6,7 +6,7 @@ class Accueil extends Controller {
         //$this->loadModel('User');
         //$user = $this->User->getUserByMail('carla.barde@email.com');
 
-        $this->render('index');
+        $this->render('index');     
     }
 
     public function lire($id){
