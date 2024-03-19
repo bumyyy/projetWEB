@@ -23,7 +23,7 @@ class ApiManager extends Controller{
     
     }
 
-    public function company($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = ""){
+    public function company($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
 
         $this->loadModel('Company');
 
@@ -37,12 +37,16 @@ class ApiManager extends Controller{
                 $this->Company->$action($field1);
                 break;
 
+            case 'selectCompany':
+                $this->Company->$action($field1);
+                break;
+
             case 'addCompany':
                 $this->Company->$action($field1, $field2, $field3, $field4);
                 break;
 
             case 'editCompany':
-                //a faire
+                $this->Company->$action($field1, $field2, $field3, $field4, $field5);
                 break;
 
             case 'deleteCompany':

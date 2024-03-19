@@ -11,7 +11,7 @@
 
 <div class="main">
  <form class="create_entrep" id="myform" method="POST" > <!-- action="Entreprises_accueil.php" -->
-    <h1>Créer une entreprise</h1>
+    <h1>Modifier une entreprise</h1>
     <div class="company">
         <h2>Nom de l'entreprise</h2>
         <input type="text" name="nom" id="form_input" required>
@@ -52,7 +52,7 @@
     </div>
 </form>
 <script src="<?php echo HOST; ?>/public/company/fillCombobox.js"></script>
-<script src="<?php echo HOST; ?>/public/company/createCompany.js"></script>
+<script src="<?php echo HOST; ?>/public/company/editCompany.js"></script>
 
 </div>
 

@@ -10,7 +10,7 @@ public function sector() {
     parent::sendJSON($data);
 }
 
-public function country() {
+public function city() {
     $sql = 'SELECT id, nom FROM ville ORDER BY nom ASC';
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(); 

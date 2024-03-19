@@ -9,4 +9,8 @@ class Company extends Controller{
     public function create(){
         $this->render('create');
     }
+
+    public function edit(){
+        $this->render('edit');
+    }
 }

@@ -266,7 +266,7 @@ body {
     border-color: #00000057;
 }
 
-#secteur, #ville {
+#secteur, #ville, #moins {
     margin-left: 10px; /* Espacement entre le select et l'input */
     margin-bottom: 10px;
     border-radius: 2vw;
