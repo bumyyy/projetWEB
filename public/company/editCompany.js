@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     document.getElementById('myform').addEventListener('submit', (event) => {
-      
+
     // Récupérer les valeurs des champs de formulaire
     let nom_entreprise = document.getElementById('form_input').value;
     let secteur_id = document.getElementById('comboboxSecteur').value;
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
-                //window.location.href = `${ROOT}/company`;
+                // window.location.href = `${ROOT}/company/`;
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);
