@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
     const moinsButton = document.getElementById('moins'); // Sélectionnez le bouton moins
+    moinsButton.style.display = "none";
 
     // Gérer l'événement click sur le bouton -
     moinsButton.addEventListener('click', () => {
