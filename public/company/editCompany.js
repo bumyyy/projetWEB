@@ -11,15 +11,15 @@ async function confirmerSuppression(idEntreprise) {
 
   ROOT = 'http://stagetier.fr';
 
-  if (confirm("Voulez-vous vraiment supprimer ?")) {
+  if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
     try {
       const url = `${ROOT}/ApiManager/company/deleteCompany/${idEntreprise}`;
       const response = await fetch(url, {
         method: 'POST'
       });
       if (response.ok) {
-        console.log('Suppression réussie');
-        alert("Suppression réussie !");
+        console.log('Entreprise rendue invisible');
+        window.location.reload();
       } else {
         // Si la réponse n'est pas dans la plage 2 00-299, affichez une erreur
         alert("Erreur.");
@@ -38,3 +38,4 @@ async function confirmerSuppression(idEntreprise) {
 function update(){
   alert('modif');
 }
+

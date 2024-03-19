@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class Company extends Model {
 
     public function allCompany() {
@@ -19,8 +19,9 @@ class Company extends Model {
         LEFT JOIN stage ON stage.id_entreprise = entreprise.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
         LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
+        WHERE hide = 0
         GROUP BY entreprise.id;";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->conn->prepare($sql); 
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);

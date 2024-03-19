@@ -222,6 +222,11 @@ main {
     border-radius: 2vw;
     border-color: #00000057;
 }
+#secteur-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .star {
     display: inline-block;
     font-size: clamp(30px,3vw,40px);

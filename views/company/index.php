@@ -26,7 +26,7 @@
             </div>
 
             <div class="wrap">
-                <button type="submit" class="search"><img src="<?php echo HOST; ?>/public/img/loupe.png"></button>
+                <button type="submit" class="search" id="btnsubmit"><img src="<?php echo HOST; ?>/public/img/loupe.png"></button>
     </form>
     <?php if ($utilisateur != 3) { ?>
         <button onclick="window.location.href='<?php echo HOST; ?>/company/create'" class="create">+</button>
@@ -64,8 +64,9 @@ if (isset ($_SESSION["message"]) && $_SESSION["message"] == "Deleted") {
     echo "<script>
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
+            alert('Entreprise caché avec succès!');
             document.getElementById('btnsubmit').click();
-        }, 600);
+        }, 1000);
     });
     </script>";
     unset($_SESSION["message"]);
