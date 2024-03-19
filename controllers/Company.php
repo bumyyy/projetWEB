@@ -13,4 +13,8 @@ class Company extends Controller{
     public function edit(){
         $this->render('edit');
     }
+
+    public function stats(){
+        $this->render('stats');
+    }
 }
