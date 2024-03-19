@@ -1,3 +1,21 @@
+html, body {
+    height: 100%; /* Assurez-vous que l'élément html et body prennent toute la hauteur */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Organise les enfants en colonne */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.984);
+    background-image: url('http://stagetier.fr/public/img/bg.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
 
 .content h1 {
     text-align: center;
@@ -94,7 +112,7 @@
 }
 form{
     height: auto; /* Permet à l'élément de s'adapter dynamiquement à son contenu */
-    z-index: 1000;
+    z-index: 20;
     position: sticky; /* This is what makes it sticky */
     top: 0; /* Stick it to the top */
 
@@ -316,10 +334,10 @@ form{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #d3d3d3;
-    padding: 4%;
+    padding: 9%;
     padding-top: 2%;
     border-radius: 50px;
-    z-index: 10;
+    z-index: 30;
 }
 .lien_popup{
     text-align: center;
