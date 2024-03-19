@@ -197,36 +197,64 @@ main {
     border-radius: 2vw;
     border-color: #00000057;
 }
-.localite{
+
+.activite, .localite {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: self-start;
+    width: 100%;
+    gap: 10px; /* Espacement entre les éléments */
 }
-.localite input {
-    border-radius: 2vw;
-    border-color: #00000057;
-}
-.activité{
+
+#secteur-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 70%;
 }
+
+#localite-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+}
+
 .comboboxSecteur {
-    width: 85%;
-    border-radius: 2vw;
-    border-color: #00000057;
-}
-.comboboxVille{
-    width: 85%;
-    border-radius: 2vw;
-    border-color: #00000057;
-}
-#secteur-container{
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Empile les éléments verticalement */
+    border-radius: 2vw;
+    border-color: #00000057;
 }
+
+.comboboxVille {
+    display: flex;
+    justify-content: center;
+    flex-direction: column; /* Empile les éléments verticalement */
+    border-radius: 2vw;
+    border-color: #00000057;
+}
+
+
+#secteur-container select, #localite-container select {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.activite input, .localite input {
+    border-radius: 2vw;
+    border-color: #00000057;
+}
+
+#secteur, #ville, #moins {
+    margin-left: 10px; /* Espacement entre le select et l'input */
+    margin-bottom: 10px;
+    border-radius: 2vw;
+}
+
 .star {
     display: inline-block;
     font-size: clamp(30px,3vw,40px);
