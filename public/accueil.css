@@ -1,0 +1,16 @@
+
+.content h1 {
+    text-align: center;
+    justify-content: center;
+}
+
+.content {
+    flex: 1; /* Permet au contenu de remplir l'espace disponible */
+    display: flex; /* Active flexbox pour le contenu */
+    flex-direction: column; /* Organise les enfants du contenu en colonne */
+    justify-content: center; /* Centre le contenu verticalement */
+    align-items: center; /* Centre le contenu horizontalement */
+}
+
+
+
