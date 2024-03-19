@@ -84,9 +84,10 @@ class Company extends Model {
     }
 
     public function deleteCompany($companyId) {
-        $sql = "DELETE FROM entreprise WHERE id = :id;";
+        $sql = "UPDATE entreprise SET hide = 1 WHERE id = :id;";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id' => $companyId]);
+        $_SESSION["message"] = "Deleted";
     }
 
 }

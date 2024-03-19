@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (starValue <= value) {
                 star.style.color = '#ffc107'; // Change color to yellow
             } else {
-                star.style.color = '#e4e5e9'; // Change color to gray
+                star.style.color = 'rgb(180, 180, 180 )'; // Change color to gray
             }
         });
     }
