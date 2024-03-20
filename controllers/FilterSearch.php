@@ -70,7 +70,7 @@ class FilterSearch extends Controller{
         // Filtrer les pilotes par ville
         if ($ville != "x"){
             $pilotes = array_filter($pilotes, function ($pilote) use ($ville) {
-                return $pilote['id_ville'] == $ville;
+                return $pilote['id_centre'] == $ville;
             });
         }
         
