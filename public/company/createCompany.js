@@ -151,8 +151,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let nom_entreprise = document.getElementById('form_input').value;
     let secteur_id = document.getElementById('comboboxSecteur').value;
     let note = document.getElementById('rating-value').value;
-    console.log("Données :", nom_entreprise, secteur_id, note, villesSelectionnees);
-
+    let idUser = document.getElementById('userData').getAttribute('data-user');    
+    console.log("Données :", nom_entreprise, secteur_id, note, villesSelectionnees, idUser);
     const secteurSelect = document.getElementById('comboboxSecteur');
     
     if (!isRatingSelected) {
@@ -190,5 +190,3 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-
-s
