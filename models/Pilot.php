@@ -9,8 +9,10 @@ class Pilot extends Model {
         utilisateur.prenom AS prenom_pilote, 
         utilisateur.mail AS mail_pilote,
         utilisateur.type_, 
+        promotion.id AS id_promotion,
         promotion.nom AS nom_promotion, 
-        ville.nom AS centre
+        ville.id AS id_centre,
+        ville.nom AS nom_centre
         FROM utilisateur
         JOIN promotion ON utilisateur.id_promotion = promotion.id
         LEFT JOIN ville ON promotion.id_ville = ville.id
