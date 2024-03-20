@@ -49,6 +49,49 @@ class FilterSearch extends Controller{
         // Encodage et envoi de la réponse
         echo json_encode($response);
     }
+
+
+    public function filterPilot($promotion, $ville){
+
+        // Récupérer le contenu JSON de la requête
+        $jsonData = file_get_contents('php://input');
+    
+        // Décoder le contenu JSON en tableau associatif
+        $pilotes = json_decode($jsonData, true);
+        $pilotes = $pilotes['data'];
+    
+        // Filtrer les pilotes par promotion
+        if ($promotion != "x"){
+            $pilotes = array_filter($pilotes, function ($pilote) use ($promotion) {
+                return $pilote['id_promotion'] == $promotion;
+            });
+        }
+            
+        // Filtrer les pilotes par ville
+        if ($ville != "x"){
+            $pilotes = array_filter($pilotes, function ($pilote) use ($ville) {
+                return $pilote['id_ville'] == $ville;
+            });
+        }
+        
+
+        // Démarrer la session si elle n'est pas déjà démarrée
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    
+        // Récupérer le type d'utilisateur depuis la session
+        $utilisateur = isset($_SESSION['userData']['type']) ? $_SESSION['userData']['type'] : null;
+        
+        // Préparer la réponse
+        $response = [
+            'pilotes' => array_values($pilotes), // Réindexe et inclut les entreprises filtrées
+            'userType' => $utilisateur
+        ];
+        
+        // Encodage et envoi de la réponse
+        echo json_encode($response);
+    }
     
     
 }

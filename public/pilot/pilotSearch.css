@@ -9,7 +9,7 @@ html, body {
 body {
     font-family: Arial, sans-serif;
     background-color: rgba(255, 255, 255, 0.984);
-    background-image: url('http://stagetier.fr/public/img/bg.png');
+    background-image: url('http://stagetier.fr/public/img/ppilote.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -83,8 +83,6 @@ body {
 }
 .wrap{
     display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .wrap img{
     width: 21px;
@@ -139,7 +137,6 @@ form{
     align-items: center;
     border-radius: 30px;
     width: 37px;
-    height: 37px;
     border-color: #00000000;
     margin-left: 15px;
 }
@@ -161,7 +158,7 @@ form{
     align-items: center;
 }
 
-#comboboxSecteur select{
+#comboboxPromo select{
     max-width: 100px;
 }
 .carre{
@@ -316,7 +313,7 @@ form{
     background-image: url('http://stagetier.fr/public/img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     background-repeat: no-repeat;
-    margin-bottom: 80%;
+    margin-bottom: 70%;
     cursor: pointer;
 }
 .delete{
@@ -327,18 +324,8 @@ form{
     background-size: contain;
     cursor: pointer;
     background-repeat: no-repeat;
-    
 }
-.statmod{
-    display: inline-block;
-    width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
-    height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
-    background-image: url('http://stagetier.fr/public/img/tableau-statistique.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
-    background-size: contain;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    margin-left: 15px;
-}
+
 .popdown {
     display: none;
     position: fixed;

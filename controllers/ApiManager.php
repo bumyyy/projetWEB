@@ -72,4 +72,25 @@ class ApiManager extends Controller{
 
     }
 
+    public function pilot($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+
+        $this->loadModel('Pilot');
+
+        switch ($action) {
+
+            case 'allPilot':
+                $this->Pilot->$action();
+                break;
+
+            case 'pilotBySearch':
+                $this->Pilot->$action($field1);
+                break;
+            
+            default:
+                echo "Action for 'pilot' not define";
+                break;
+        }
+
+    }
+
 }

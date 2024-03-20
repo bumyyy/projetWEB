@@ -1,5 +1,5 @@
 <head>
-    <link rel="stylesheet" href="<?php echo HOST; ?>/public/company/companySearch.css">
+    <link rel="stylesheet" href="<?php echo HOST; ?>/public/pilot/pilotSearch.css">
 </head>
 
 <body>
@@ -8,21 +8,12 @@
     <form id="form" method="POST">
         <div class="sub">
 
-            <input type="text" id="search" placeholder="Rechercher entreprises">
+            <input type="text" id="search" placeholder="Rechercher pilotes">
 
             <div class="combox">
-                <div id="comboboxSecteur"></div>
+                <div id="comboboxPromo"></div>
 
                 <div id="comboboxVille"></div>
-
-                <select id="rate">
-                    <option value="x">note</option>
-                    <option value="1">1 étoile</option>
-                    <option value="2">2 étoiles</option>
-                    <option value="3">3 étoiles</option>
-                    <option value="4">4 étoiles</option>
-                    <option value="5">5 étoiles</option>
-                </select>
             </div>
 
             <div class="wrap">
@@ -53,9 +44,9 @@
     </div>
 </body>
 
-<script src="<?php echo HOST; ?>/public/company/fillCombobox.js"></script>
+<script src="<?php echo HOST; ?>/public/pilot/fillCombobox.js"></script>
 <script src="<?php echo HOST; ?>/public/company/pagination.js"></script>
-<script src="<?php echo HOST; ?>/public/company/fillMain.js"></script>
+<script src="<?php echo HOST; ?>/public/pilot/fillMain.js"></script>
 <script src="<?php echo HOST; ?>/public/company/editCompany.js"></script>
 <script src="<?php echo HOST; ?>/public/company/popup.js"></script>
 <?php
