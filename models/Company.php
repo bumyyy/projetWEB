@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class Company extends Model {
 
     public function allCompany() {
