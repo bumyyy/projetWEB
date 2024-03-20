@@ -12,7 +12,7 @@
     {% endblock %}
     </title>
 
-    <link rel="stylesheet" href=" /public/layout.css">
+    <link rel="stylesheet" href="/public/layout.css">
 
     {% block otherCSS %}
     {% endblock %}
@@ -23,23 +23,25 @@
     {% block session %}
     {% endblock %}
 
-<header class="header">
+<header>
     {% block header %}
-    <div class="header-logo">
-        <a href="Stagetier.fr"></a><img src=" /public/img/logo.png" alt="Logo"></a> 
-    </div>
-    <nav>
-        <ul class="header-nav">
-            <a href=""></a><li>Stages</li>
-            <li><a href=" /company/">Entreprises</a></li>
-            <li><a href=" /pilot/">Pilotes</a></li>
-            <li>Étudiants</li>
-            <li>Candidature</li>
-        </ul>
-    </nav>
-    <div class="header-icons">
-        <img src=" /public/img/reglage.png" alt="Réglages">
-        <img src="/public/img/profile.png" alt="Profil">
+    <div class="header">
+        <div class="header-logo">
+            <a href="/accueil/"><img src="/public/img/logo.png" alt="Logo"></a></img> 
+        </div>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="/stage/">Stages</a></li>
+                <li><a href="/company/">Entreprises</a></li>
+                <li><a href="/pilot/">Pilotes</a></li>
+                <li><a href="/student/">Étudiants</a></li>
+                <li><a href="/applied/">Candidatures</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <img src="/public/img/reglage.png" alt="Réglages">
+            <img src="/public/img/profile.png" alt="Profil">
+        </div>
     </div>
     {% endblock %}
 </header>
@@ -49,14 +51,16 @@
     {% endblock %}
 
 
-<footer class="footer">
+<footer>
     {% block footer %}
-    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src=" /public/img/youtube.png" alt="YouTube"></a>
-    <a href="https://www.linkedin.com/in/anne-portal-7683bb241/"><img src=" /public/img/linkedin.png" alt="LinkedIn"></a>
-    <a href="https://www.facebook.com/watch/?v=715780357288539"><img src=" /public/img/facebook.png" alt="Facebook"></a>
-    <a href="https://twitter.com/ZemmourEric/"><img src=" /public/img/twitter.png" alt="Twitter"></a>
-    <a href="https://www.instagram.com/bde_cesi_aix/"><img src=" /public/img/instagram.png" alt="Instagram"></a>
-    <p>© 2024 Stage_Tier - Tous droits réservés</p>
+    <div class="footer">
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="/public/img/youtube.png" alt="YouTube"></a>
+        <a href="https://www.linkedin.com/in/anne-portal-7683bb241/"><img src="/public/img/linkedin.png" alt="LinkedIn"></a>
+        <a href="https://www.facebook.com/watch/?v=715780357288539"><img src="/public/img/facebook.png" alt="Facebook"></a>
+        <a href="https://twitter.com/ZemmourEric/"><img src="/public/img/twitter.png" alt="Twitter"></a>
+        <a href="https://www.instagram.com/bde_cesi_aix/"><img src="/public/img/instagram.png" alt="Instagram"></a>
+        <p>© 2024 Stage_Tier - Tous droits réservés</p>
+    </div>
     {% endblock %}
 </footer>
 

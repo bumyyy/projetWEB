@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo HOST; ?>/public/login.css">
+    <link rel="stylesheet" href="/public/login.css">
     <title>Stage_tier</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
             </div>
 
             <div class="logo">
-                <img src="<?php echo HOST; ?>/public/img/logo.png" alt="LOGO">
+                <img src="/public/img/logo.png" alt="LOGO">
             </div>
         </div>
 
@@ -66,7 +66,7 @@
     }
 </script>
 
-<script src = "<?php echo HOST; ?>/public/verifierLogin.js"></script>
+<script src = "/public/verifierLogin.js"></script>
 
 </body>
 </html>

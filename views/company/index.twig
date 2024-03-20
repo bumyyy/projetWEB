@@ -1,9 +1,14 @@
-<head>
-    <link rel="stylesheet" href="/public/company/companySearch.css">
-</head>
+{% extends "layout.twig" %}
 
-<body>
-    <?php $utilisateur = 1 ?>
+{% block title %}
+    Entreprises
+{% endblock %}
+
+{% block otherCSS %}
+    <link rel="stylesheet" href="/public/company/companySearch.css">
+{% endblock %}
+
+{% block body %}
 
     <form id="form" method="POST">
         <div class="sub">
@@ -26,12 +31,12 @@
             </div>
 
             <div class="wrap">
-                <button type="submit" class="search" id="btnsubmit"><img src="<?php echo HOST; ?>/public/img/loupe.png"></button>
+                <button type="submit" class="search" id="btnsubmit"><img src="/public/img/loupe.png"></button>
     </form>
-    <?php if ($utilisateur != 3) { ?>
-        <button onclick="window.location.href='<?php echo HOST; ?>/company/create'" class="create">+</button>
-    <?php } ?>
-         <button onclick="stat()" class="create"><img src="<?php echo HOST; ?>/public/img/tableau-statistique.png"></button>
+    {# <?php if ($utilisateur != 3) { ?> #}
+        <button onclick="window.location.href='/company/create'" class="create">+</button>
+    {# <?php } ?> #}
+         <button onclick="stat()" class="create"><img src="/public/img/tableau-statistique.png"></button>
     </div>
 
 
@@ -52,14 +57,16 @@
             <p>L'entreprise a été créée avec succès !</p>
         </div>
     </div>
-</body>
+{% endblock %}
 
-<script src="<?php echo HOST; ?>/public/company/fillCombobox.js"></script>
-<script src="<?php echo HOST; ?>/public/company/pagination.js"></script>
-<script src="<?php echo HOST; ?>/public/company/fillMain.js"></script>
-<script src="<?php echo HOST; ?>/public/company/editCompany.js"></script>
-<script src="<?php echo HOST; ?>/public/company/popup.js"></script>
-<?php
+{% block otherJS %}
+<script src="/public/company/fillCombobox.js"></script>
+<script src="/public/company/pagination.js"></script>
+<script src="/public/company/fillMain.js"></script>
+<script src="/public/company/editCompany.js"></script>
+<script src="/public/company/popup.js"></script>
+
+{# <?php
 session_start();
 if (isset ($_SESSION["message"]) && $_SESSION["message"] == "Deleted") {
     echo "<script>
@@ -72,6 +79,6 @@ if (isset ($_SESSION["message"]) && $_SESSION["message"] == "Deleted") {
     </script>";
     unset($_SESSION["message"]);
 }
-?>
+?> #}
 
-</html>
+{% endblock %}
