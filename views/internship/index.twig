@@ -1,0 +1,104 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+    Entreprises
+{% endblock %}
+
+{% block otherCSS %}
+    <link rel="stylesheet" href="/public/internship/internshipSearch.css">
+{% endblock %}
+
+{% block body %}
+
+    <form id="form" method="POST">
+        <div class="sub">
+
+            <input type="text" id="search" placeholder="Rechercher entreprises">
+
+            <div class="combox">
+                <div id="comboboxSecteur"></div>
+
+                <div id="comboboxVille"></div>
+
+                <div id="comboboxPromo"></div>
+
+                <select id="rate">
+                    <option value="x">durée</option>
+                    <option value="1">0-2 mois</option>
+                    <option value="2">2-4 mois</option>
+                    <option value="3">4-6 mois</option>
+                    <option value="4">6-8 mois</option>
+                    <option value="5">8-10 mois</option>
+                    <option value="6">10-12 mois</option>
+                </select>
+
+                <select id="rate">
+                    <option value="x">date</option>
+                    <option value="1">janvier</option>
+                    <option value="2">février</option>
+                    <option value="3">mars</option>
+                    <option value="4">avril</option>
+                    <option value="5">mai</option>
+                    <option value="6">juin</option>
+                    <option value="7">juillet</option>
+                    <option value="8">août</option>
+                    <option value="9">septembre</option>
+                    <option value="10">octobre</option>
+                    <option value="11">novembre</option>
+                    <option value="12">décembre</option>
+                </select>
+
+            </div>
+
+            <div class="wrap">
+                <button type="submit" class="search" id="btnsubmit"><img src="/public/img/loupe.png"></button>
+    </form>
+    {% if utilisateur != 3 %}
+        <button onclick="window.location.href='/company/create'" class="create">+</button>
+    {% endif %} 
+         <button onclick="stat()" class="create"><img src="/public/img/tableau-statistique.png"></button>
+        </div>
+
+
+    </div>
+
+
+    <ul class="main" id="main">
+    </ul>
+
+    <nav class="pagination-container">
+        <div id="pagination-numbers"></div>
+    </nav>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p>L'entreprise a été créée avec succès !</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block otherJS %}
+<script src="/public/internship/fillCombobox.js"></script>
+<script src="/public/company/pagination.js"></script>
+<script src="/public/internship/fillMain.js"></script>
+<!--<script src="/public/company/editCompany.js"></script>-->
+<script src="/public/company/popup.js"></script>
+
+{# <?php
+session_start();
+if (isset ($_SESSION["message"]) && $_SESSION["message"] == "Deleted") {
+    echo "<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            alert('Entreprise caché avec succès!');
+            document.getElementById('btnsubmit').click();
+        }, 1000);
+    });
+    </script>";
+    unset($_SESSION["message"]);
+}
+?> #}
+
+{% endblock %}

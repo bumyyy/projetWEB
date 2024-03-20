@@ -89,6 +89,26 @@ class ApiManager extends Controller{
             case 'selectInternship':
                 $this->Internship->$action($field1);
                 break;
+
+            case 'statSkill':
+                $this->Internship->$action();
+                break;
+
+            case 'statCity':
+                $this->Internship->$action();
+                break;
+
+            case 'statPromo':
+                $this->Internship->$action();
+                break;
+
+            case 'statDuration':
+                $this->Internship->$action();
+                break;
+
+            case 'statWish':
+                $this->Internship->$action();
+                break;
             
             default:
                 echo "Action for 'internship' not define";

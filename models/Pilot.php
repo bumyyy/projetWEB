@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class Pilot extends Model {
 
     public function allPilot() {
