@@ -36,59 +36,21 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "<li class='ligne' id='"+pilote.id_pilote   +"'>" +
             "    <div class='carre' onclick='toggleSubdivision(this)'>" +
             "        <div class='name'>" +
-            "            <h1 id='entrepriseName'>"+pilote.nom_pilote+"</h1>" +
-            "            <p>"+pilote.secteur_activite+"</p>" +
+            "            <h1 id='entrepriseName'>Nom</h1>" +
+            "            <p>"+pilote.nom_pilote+"</p>" +
             "        </div>" +
             "        <div class='localité'>" +
-            "            <h2>Localité</h2>" +
-            "            <p>"+pilote.ville+"</p>" +
+            "            <h2>Prénom</h2>" +
+            "            <p>"+pilote.prenom_pilote+"</p>" +
             "        </div>" +
-            "        <div class='secteur'>" +
-            "            <h2>Note</h2>" +
-            "            <div class='rating'>"+
-            "            <input type='hidden' id='rating-value' name='rating-value' value='0'>"+
-            "            <span class='star' data-value='5'>&#9733;</span>" +
-            "            <span class='star' data-value='4'>&#9733;</span>" +
-            "            <span class='star' data-value='3'>&#9733;</span>" +
-            "            <span class='star' data-value='2'>&#9733;</span>" +
-            "            <span class='star' data-value='1'>&#9733;</span>" +
-            "        </div>"+
-            "        <div class='note' id='note'>0</div>"+
-            "        </div>"+            
+            "        <div class='localité'>" +
+            "            <h2>Centre</h2>" +
+            "            <p>"+pilote.nom_centre+"</p>" +
+            "        </div>"+          
             "        <div class='localité'>"+
-            "            <h2>Ont postulé</h2>"+
-            "            <p>"+pilote.nb_stagiaires_postules+"</p>"+
+            "            <h2>Promotion</h2>"+
+            "            <p>"+pilote.nom_promotion+"</p>"+
             "        </div>"+
-            "<div id='myModal' class='popdown'>"+
-            "<div class='fermer'><button id='closebtn'>x</button></div>"+
-            "<div class='name_popup'>"+
-            "<h1>"+pilote.nom_entreprise+"</h1>"+
-            "<p>"+pilote.secteur_activite+"</p>"+
-            "</div>"+
-            "<div class='localité_popup'>"+
-            "<h2>Localité</h2>"+
-            "<p>"+pilote.centre+"</p>"+
-            "</div>"+
-            "<div class='secteur_popup'>"+
-            "<h2>Note</h2>"+
-            "<div class='rating' data-rating='3'>"+
-                "<input type='hidden' id='rating-value' name='rating-value' value='0'>"+
-                "<span class='star' data-value='5'>&#9733;</span>"+
-                "<span class='star' data-value='4'>&#9733;</span>"+
-                "<span class='star' data-value='3'>&#9733;</span>"+
-                "<span class='star' data-value='2'>&#9733;</span>"+
-                "<span class='star'' data-value='1'>&#9733;</span>"+
-            "</div>"+
-            "<div class='note' id='note'>0</div>"+
-            "</div>"+
-            "<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>"+
-            "<div class='lien_popup'>"+
-            "<a href='http://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
-            "</div>"+
-            "</div>"+
-        
-
-
             "    </div>";
             if (userType != 3){
             html +=
