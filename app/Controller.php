@@ -15,13 +15,5 @@ abstract class Controller{
 
         require_once(ROOT.'/views/'.strtolower(get_class($this)).'/'.$fichier.'.php');
         
-        $content = ob_get_clean();
-
-        if(get_class($this) == 'Login'){
-            require_once(ROOT.'/views/layout/noLayout.php');
-        }else{
-            require_once(ROOT.'/views/layout/default.php');
-        }
-
     }
 }

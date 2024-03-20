@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stage_tier</title>
     <link rel="stylesheet" href="<?php echo HOST; ?>/public/accueil.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="/public/style.css">
+    <script src="/public/index.js" defer></script>
 </head>
 
 <body>
 
 <header class="header">
     <div class="header-logo">
-        <a href="Stagetier.fr"><img src="img/logo.png" alt="Logo"></a> 
+        <a href="Stagetier.fr"><img src="/public/img/logo.png" alt="Logo"></a> 
     </div>
     <nav>
         <ul class="header-nav">
@@ -25,8 +25,8 @@
         </ul>
     </nav>
     <div class="header-icons">
-        <img src="img/reglage.png" alt="Réglages">
-        <img src="img/profile.png" id="profile" alt="Profil">
+        <img src="/public/img/reglage.png" alt="Réglages">
+        <img src="/public/img/profile.png" id="profile" alt="Profil">
     </div>
 </header>
 
