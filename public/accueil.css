@@ -3,6 +3,11 @@
     justify-content: center;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(239, 236, 151, 0.984);
+}
+
 .content {
     flex: 1; /* Permet au contenu de remplir l'espace disponible */
     display: flex; /* Active flexbox pour le contenu */

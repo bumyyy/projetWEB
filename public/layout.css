@@ -7,11 +7,6 @@ html, body {
     flex-direction: column; /* Organise les enfants en colonne */
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: rgba(239, 236, 151, 0.984);
-}
-
 .header {
     background-color: #f0f0f0;
     padding: 10px 20px;
