@@ -4,10 +4,10 @@ class Pilot extends Model {
 
     public function allPilot() {
         $sql = "SELECT 
-        utilisateur.id, 
-        utilisateur.nom, 
-        utilisateur.prenom, 
-        utilisateur.mail, 
+        utilisateur.id AS id_pilote, 
+        utilisateur.nom AS nom_pilote, 
+        utilisateur.prenom AS prenom_pilote, 
+        utilisateur.mail AS mail_pilote,
         utilisateur.type_, 
         promotion.nom AS nom_promotion, 
         ville.nom AS centre
@@ -24,10 +24,10 @@ class Pilot extends Model {
 
     public function pilotBySearch($search) {
         $sql = "SELECT 
-        utilisateur.id, 
-        utilisateur.nom, 
-        utilisateur.prenom, 
-        utilisateur.mail, 
+        utilisateur.id AS id_pilote, 
+        utilisateur.nom AS nom_pilote, 
+        utilisateur.prenom AS prenom_pilote, 
+        utilisateur.mail AS mail_pilote, 
         utilisateur.type_, 
         promotion.nom AS nom_promotion, 
         ville.nom AS centre
@@ -46,10 +46,10 @@ class Pilot extends Model {
 
     public function selectPilot($pilotId) {
         $sql = "SELECT 
-        utilisateur.id, 
-        utilisateur.nom, 
-        utilisateur.prenom, 
-        utilisateur.mail, 
+        utilisateur.id AS id_pilote, 
+        utilisateur.nom AS nom_pilote, 
+        utilisateur.prenom AS prenom_pilote, 
+        utilisateur.mail AS mail_pilote,
         utilisateur.type_, 
         promotion.nom AS nom_promotion, 
         ville.nom AS centre
