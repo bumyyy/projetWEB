@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="index.js" defer></script>
 </head>
+
+
 <body>
 
 <header class="header">
