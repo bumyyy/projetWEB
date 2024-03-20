@@ -42,7 +42,7 @@ class ApiManager extends Controller{
                 break;
 
             case 'addCompany':
-                $this->Company->$action($field1, $field2, $field3, $field4);
+                $this->Company->$action($field1, $field2, $field3, $field4, $field5);
                 break;
 
             case 'editCompany':

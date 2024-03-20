@@ -20,7 +20,7 @@ class Company extends Controller{
             echo 'Vous ne pouvez pas acceder à cette page';
         }
         else {
-            $this->render('create');
+            $this->render('create', ['utilisateur' => $_SESSION['userData']['id']]);
         }
     }
 
