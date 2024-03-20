@@ -47,7 +47,7 @@
 <script src="<?php echo HOST; ?>/public/pilot/fillCombobox.js"></script>
 <script src="<?php echo HOST; ?>/public/company/pagination.js"></script>
 <script src="<?php echo HOST; ?>/public/pilot/fillMain.js"></script>
-<script src="<?php echo HOST; ?>/public/company/editCompany.js"></script>
+<script src="<?php echo HOST; ?>/public/company/editPilot.js"></script>
 <script src="<?php echo HOST; ?>/public/company/popup.js"></script>
 <?php
 session_start();

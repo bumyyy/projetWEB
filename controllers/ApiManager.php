@@ -78,6 +78,10 @@ class ApiManager extends Controller{
 
         switch ($action) {
 
+            case 'addPilot':
+                $this->Pilot->$action($field1, $field2, $field3, $field4, $field5);
+                break;
+
             case 'allPilot':
                 $this->Pilot->$action();
                 break;
