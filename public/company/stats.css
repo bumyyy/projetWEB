@@ -133,10 +133,20 @@ margin-top: 20px;
 .diagsect{
     text-align: center;
     margin-left: 40px;
+    background-color: #d9d9d9dc;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+    border-radius: 60px;
+    padding: 2%;
+    margin-left: 25px;
 }
 .diagloc{
-    display: flex;
-    flex-wrap: nowrap;
+    text-align: center;
+    margin-left: 40px;
+    background-color: #d9d9d9dc;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+    border-radius: 60px;
+    padding: 2%;
+    margin-left: 25px;
 }
 .loc0,.loc1,.loc2,.loc3{
 }
@@ -173,6 +183,7 @@ margin-top: 20px;
 
     width: 260px;
     height: 260px;
+    min-width: 260px;
     border-radius: 50%;
 }
 .secteur p {

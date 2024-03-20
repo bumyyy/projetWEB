@@ -13,9 +13,8 @@ ROOT = 'http://stagetier.fr';
 document.addEventListener("DOMContentLoaded", function() {
 
     // Récupérer les éléments du DOM
-    const urlParams = new URLSearchParams(window.location.search);
-    const id_entreprise = urlParams.get('id');
-    
+    let id_entreprise = document.getElementById('idCompany').getAttribute('idCompany');
+
     // Récupérer les éléments du DOM
     const localiteContainer = document.getElementById('localite-container');
     const villeButton = document.getElementById('ville');
@@ -362,7 +361,7 @@ async function confirmerSuppression(idEntreprise) {
 }
 
 function update(idEntreprise){
-  window.location.href = "/company/edit?id=" + idEntreprise
+  window.location.href = "/company/edit/" + idEntreprise
 }
 
 function stat() {
