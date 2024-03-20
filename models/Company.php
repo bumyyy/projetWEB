@@ -19,7 +19,7 @@ class Company extends Model {
         LEFT JOIN stage ON stage.id_entreprise = entreprise.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
         LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
-        WHERE hide = 0
+        WHERE company.hide = 0
         GROUP BY entreprise.id;";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(); 
@@ -155,7 +155,8 @@ class Company extends Model {
     FROM secteur
     INNER JOIN entreprise ON secteur.id = entreprise.id_secteur
     GROUP BY secteur.nom
-    ORDER BY COUNT(*) DESC";
+    ORDER BY COUNT(*) DESC
+    LIMIT 5";
         $stmt = $this->conn->prepare($req);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
