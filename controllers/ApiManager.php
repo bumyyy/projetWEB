@@ -72,6 +72,31 @@ class ApiManager extends Controller{
 
     }
 
+    public function internship($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+
+        $this->loadModel('Internship');
+
+        switch ($action) {
+
+            case 'allInternship':
+                $this->Internship->$action();
+                break;
+
+            case 'internshipBySearch':
+                $this->Internship->$action($field1);
+                break;
+
+            case 'selectInternship':
+                $this->Internship->$action($field1);
+                break;
+            
+            default:
+                echo "Action for 'internship' not define";
+                break;
+        }
+
+    }
+
     public function pilot($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
 
         $this->loadModel('Pilot');
