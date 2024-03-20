@@ -12,4 +12,5 @@ class SessionManager extends Controller{
                                 'promo' => $promo];
 
     }
+
 }

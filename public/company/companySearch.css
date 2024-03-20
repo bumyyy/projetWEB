@@ -244,7 +244,9 @@ form{
 
 }
 .localité p {
+    word-wrap: break-word;
     margin: 0px;
+    height: 100%;
     font-size: clamp(12.72px,1.6vw,20px);
 }
 

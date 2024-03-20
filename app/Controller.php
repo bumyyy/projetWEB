@@ -10,6 +10,8 @@ abstract class Controller{
 
         // Créez et configurez l'environnement Twig
         $this->twig = new \Twig\Environment($loader);
+
+        session_start();
     }
 
     public function loadModel(string $model){
@@ -18,10 +20,8 @@ abstract class Controller{
     }
 
     public function render(string $fichier, array $data = []){
-        //extract($data); // On va pouvoir utiliser ces données dans la view avec comme variable le nom du tableau en entrée
-
         // Chargez le template et affichez-le avec les données fournies
-        echo $this->twig->render( strtolower(get_class($this)) . '/' . $fichier . '.twig' );
+        echo $this->twig->render( strtolower(get_class($this)) . '/' . $fichier . '.twig' , $data );
 
     }
 }

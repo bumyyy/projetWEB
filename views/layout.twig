@@ -33,9 +33,15 @@
             <ul class="header-nav">
                 <li><a href="/stage/">Stages</a></li>
                 <li><a href="/company/">Entreprises</a></li>
-                <li><a href="/pilot/">Pilotes</a></li>
-                <li><a href="/student/">Étudiants</a></li>
-                <li><a href="/applied/">Candidatures</a></li>
+                {% if utilisateur == 1 %}
+                    <li><a href="/pilot/">Pilotes</a></li>
+                {% endif %} 
+                {% if utilisateur != 3 %}
+                    <li><a href="/student/">Étudiants</a></li>
+                {% endif %} 
+                {% if utilisateur != 2 %}
+                    <li><a href="/applied/">Candidatures</a></li>
+                {% endif %} 
             </ul>
         </nav>
         <div class="header-icons">
@@ -67,7 +73,4 @@
     {% endblock %}
 
 </body>
-
-
-
 </html>
