@@ -24,7 +24,7 @@ class Company extends Controller{
         }
     }
 
-    public function edit(){
+    public function edit($idCompany){
         if ( !isset($_SESSION['userData']) ){
             header('Location: http://stagetier.fr/login/');
             exit(0);
@@ -33,7 +33,7 @@ class Company extends Controller{
             echo 'Vous ne pouvez pas acceder à cette page';
         }
         else {
-            $this->render('edit');
+            $this->render('edit' , ['idCompany' => $idCompany]);
         }
     }
 

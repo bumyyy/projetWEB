@@ -67,7 +67,8 @@ class Company extends Model {
         LEFT JOIN stage ON stage.id_entreprise = entreprise.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
         LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
-        WHERE entreprise.id LIKE :id_entreprise;";
+        WHERE entreprise.id LIKE :id_entreprise
+        GROUP BY entreprise.id;";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id_entreprise' => $companyId]);    //permet de bind values
         $data = $stmt->fetchAll(); 
