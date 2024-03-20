@@ -4,10 +4,10 @@
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('HOST', "//".$_SERVER['HTTP_HOST']);
 
-require_once(ROOT.'/app/Model.php');
-require_once(ROOT.'/app/Controller.php');
+require_once ROOT.'/app/Model.php';
+require_once ROOT.'/app/Controller.php';
 
-require_once "C:\\www\\projetWEB\\vendor\\autoload.php";
+require_once ROOT.'/vendor/autoload.php';
 
 //On sépare les parametres
 $urlParams = explode('/', $_GET['p']);

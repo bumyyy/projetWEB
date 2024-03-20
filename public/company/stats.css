@@ -1,14 +1,7 @@
-html, body {
-    height: 100%; /* Assurez-vous que l'élément html et body prennent toute la hauteur */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column; /* Organise les enfants en colonne */
-}
+
 
 body {
     font-family: Arial, sans-serif;
-    background-color: rgba(255, 255, 255, 0.984);
     background-image: url('/public/img/bg.png');
     background-attachment: fixed;
     background-size: cover;

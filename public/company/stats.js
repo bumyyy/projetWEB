@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
           })
           .then(data => {
-            let tableau_couleurs = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'black', 'white', 'gray', 'turquoise', 'brown', 'cyan', 'purple', 'salmon', 'indigo', 'lavender', 'coral', 'beige', 'lemon'];            let couleurs=[];
+            let tableau_couleurs = ['#924156', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'black', 'white', 'gray', 'turquoise', 'brown', 'cyan', 'purple', 'salmon', 'indigo', 'lavender', 'coral', 'beige', 'lemon'];            let couleurs=[];
             let diagtab=[];
             let html = "";
             let sectittre;
