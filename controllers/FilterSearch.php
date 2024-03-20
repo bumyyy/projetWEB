@@ -63,7 +63,7 @@ class FilterSearch extends Controller{
         // Filtrer les pilotes par promotion
         if ($promotion != "x"){
             $pilotes = array_filter($pilotes, function ($pilote) use ($promotion) {
-                return $pilote['id_promotion'] == $promotion;
+                return $pilote['nom_promotion'] == $promotion;
             });
         }
             
@@ -85,7 +85,7 @@ class FilterSearch extends Controller{
         
         // Préparer la réponse
         $response = [
-            'pilotes' => array_values($pilotes), // Réindexe et inclut les entreprises filtrées
+            'pilotes' =>    array_values($pilotes), // Réindexe et inclut les entreprises filtrées
             'userType' => $utilisateur
         ];
         

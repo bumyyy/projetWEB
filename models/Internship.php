@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 class Internship extends Model {
 
     public function allInternship() {
