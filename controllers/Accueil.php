@@ -3,13 +3,13 @@
 class Accueil extends Controller {
     
     public function index(){
-        //$this->loadModel('User');
-        //$user = $this->User->getUserByMail('carla.barde@email.com');
-
-        $this->render('index');
+        if ( isset($_SESSION['userData'])) {
+            $this->render('index', ['utilisateur' => $_SESSION['userData']['type']]);
+            } else {
+                header('Location: http://stagetier.fr/login/');
+                exit(0);
+            }
     }
 
-    public function lire($id){
-        echo $id;
-    }
+
 }

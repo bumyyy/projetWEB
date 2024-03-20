@@ -42,7 +42,7 @@ class ApiManager extends Controller{
                 break;
 
             case 'addCompany':
-                $this->Company->$action($field1, $field2, $field3, $field4);
+                $this->Company->$action($field1, $field2, $field3, $field4, $field5);
                 break;
 
             case 'editCompany':
@@ -67,6 +67,31 @@ class ApiManager extends Controller{
                 
             default:
                 echo "Action for 'company' not define";
+                break;
+        }
+
+    }
+
+    public function internship($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+
+        $this->loadModel('Internship');
+
+        switch ($action) {
+
+            case 'allInternship':
+                $this->Internship->$action();
+                break;
+
+            case 'internshipBySearch':
+                $this->Internship->$action($field1);
+                break;
+
+            case 'selectInternship':
+                $this->Internship->$action($field1);
+                break;
+            
+            default:
+                echo "Action for 'internship' not define";
                 break;
         }
 

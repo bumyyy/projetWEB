@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class Company extends Model {
 
     public function allCompany() {
@@ -67,7 +67,8 @@ class Company extends Model {
         LEFT JOIN stage ON stage.id_entreprise = entreprise.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
         LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
-        WHERE entreprise.id LIKE :id_entreprise;";
+        WHERE entreprise.id LIKE :id_entreprise
+        GROUP BY entreprise.id;";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id_entreprise' => $companyId]);    //permet de bind values
         $data = $stmt->fetchAll(); 
@@ -76,7 +77,7 @@ class Company extends Model {
 
 
    
-    public function addCompany($companyName, $countryIds, $sectorId, $rate) {
+    public function addCompany($companyName, $countryIds, $sectorId, $rate, $id_user) {
         $this->conn->beginTransaction();
         
         $sqlCompany = "INSERT INTO entreprise (nom, id_secteur) VALUES (:nom_entreprise, :secteur_id)";
@@ -95,10 +96,11 @@ class Company extends Model {
                                     'ville_id' => $countryId]);
         }
 
-        $sqlRating = "INSERT INTO evaluer (id_entreprise, id_utilisateur, note) VALUES (:entreprise_id, 1, :note)";
+        $sqlRating = "INSERT INTO evaluer (id_entreprise, id_utilisateur, note) VALUES (:entreprise_id, :id_user, :note)";
         $stmtRating = $this->conn->prepare($sqlRating);
         $stmtRating->execute(['entreprise_id' => $companyId ,
-                              'note' => $rate]); //permet de bind values
+                              'note' => $rate, 
+                            'id_user' => $id_user]); //permet de bind values
 
         $this->conn->commit();
     }
