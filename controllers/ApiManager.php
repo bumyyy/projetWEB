@@ -85,6 +85,10 @@ class ApiManager extends Controller{
             case 'pilotBySearch':
                 $this->Pilot->$action($field1);
                 break;
+
+            case 'selectPilot':
+                $this->Pilot->$action($field1);
+                break;
             
             default:
                 echo "Action for 'pilot' not define";
