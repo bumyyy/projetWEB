@@ -7,6 +7,15 @@ html, body {
     flex-direction: column; /* Organise les enfants en colonne */
 }
 
+body {
+    display: flex;
+    flex-direction: column; /* Ajout pour clarifier l'organisation en colonne */
+    min-height: 100vh; /* Utilise plutôt min-height pour couvrir tout l'écran */
+    font-family: Arial, sans-serif;
+    /* Autres styles */
+}
+
+
 .header {
     background-color: #f0f0f0;
     padding: 10px 20px;
@@ -43,7 +52,7 @@ html, body {
     padding-right: 25px;
 }
 .main{
-    height: 100%;
+    flex-grow: 1;
 }
 .footer {
     width: 100%;
