@@ -1,15 +1,6 @@
-html, body {
-    height: 100%; /* Assurez-vous que l'élément html et body prennent toute la hauteur */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column; /* Organise les enfants en colonne */
-}
-
 body {
     font-family: Arial, sans-serif;
-    background-color: rgba(255, 255, 255, 0.984);
-    background-image: url('http://stagetier.fr/public/img/etudiant.jpg');
+    background-image: url('http://stagetier.fr/public/img/candidat.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -83,6 +74,8 @@ body {
 }
 .wrap{
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .wrap img{
     width: 21px;
@@ -137,6 +130,7 @@ form{
     align-items: center;
     border-radius: 30px;
     width: 37px;
+    height: 37px;
     border-color: #00000000;
     margin-left: 15px;
 }
@@ -158,7 +152,7 @@ form{
     align-items: center;
 }
 
-#comboboxPromo select{
+#comboboxSecteur select{
     max-width: 100px;
 }
 .carre{
@@ -250,7 +244,9 @@ form{
 
 }
 .localité p {
+    word-wrap: break-word;
     margin: 0px;
+    height: 100%;
     font-size: clamp(12.72px,1.6vw,20px);
 }
 
@@ -313,7 +309,7 @@ form{
     background-image: url('http://stagetier.fr/public/img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     background-repeat: no-repeat;
-    margin-bottom: 70%;
+    margin-bottom: 80%;
     cursor: pointer;
 }
 .delete{
@@ -324,8 +320,18 @@ form{
     background-size: contain;
     cursor: pointer;
     background-repeat: no-repeat;
+    
 }
-
+.statmod{
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    background-image: url('http://stagetier.fr/public/img/tableau-statistique.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    margin-left: 15px;
+}
 .popdown {
     display: none;
     position: fixed;
