@@ -123,10 +123,6 @@ class ApiManager extends Controller{
 
         switch ($action) {
 
-            case 'addPilot':
-                $this->Pilot->$action($field1, $field2, $field3, $field4, $field5);
-                break;
-
             case 'allPilot':
                 $this->Pilot->$action();
                 break;
@@ -137,6 +133,11 @@ class ApiManager extends Controller{
 
             case 'selectPilot':
                 $this->Pilot->$action($field1);
+                break;
+
+            
+            case 'addPilot':
+                $this->Pilot->$action($field1, $field2, $field3, $field4, $field5);
                 break;
             
             default:
@@ -168,10 +169,34 @@ class ApiManager extends Controller{
                 break;
             
             default:
-                echo "Action for 'pilot' not define";
+                echo "Action for 'student' not define";
                 break;
         }
 
+    }
+
+    public function application($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+
+        $this->loadModel('Application');
+
+        switch ($action) {
+
+            case 'allApplication':
+                $this->Application->$action();
+                break;
+
+            case 'applicationBySearch':
+                $this->Application->$action($field1);
+                break;
+
+            case 'selectApplication':
+                $this->Application->$action($field1);
+                break;
+            
+            default:
+                echo "Action for 'application' not define";
+                break;
+        }
     }
 
 }

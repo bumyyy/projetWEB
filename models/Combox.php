@@ -38,4 +38,12 @@ class Combox extends Model {
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
+
+    public function state() {
+        $sql = 'SELECT DISTINCT(etat) FROM candidater';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(); 
+        $data = $stmt->fetchAll(); 
+        parent::sendJSON($data);
+    }
 }

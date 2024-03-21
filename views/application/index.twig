@@ -15,21 +15,20 @@
     <form id="form" method="POST">
         <div class="sub">
 
-            <input type="text" id="search" placeholder="Rechercher étudiants">
+            <input type="text" id="search" placeholder="Rechercher candidatures">
 
             <div class="combox">
+                <input type="checkbox">Favoris</input>
                 <div id="comboboxPromo">
                     <select name="promo" class="comboboxVille" id="promo" required>
-                        <option value = 'x'>promotion</option>
-                        <option value = 'A1'>A1</option>
-                        <option value = 'A2'>A2</option>
-                        <option value = 'A3'>A3</option>
-                        <option value = 'A4'>A4</option>
-                        <option value = 'A5'>A5</option>
+                        <option value = 'x'>etat</option>
+                        <option value = '0'>En attente</option>
+                        <option value = '1'>Accepté / En cours</option>
+                        <option value = '2'>Refusé</option>
+                        <option value = '3'>Terminé</option>
                     </select>
                 </div>
 
-                <div id="comboboxVille"></div>
             </div>
 
             <div class="wrap">
