@@ -30,4 +30,12 @@ class Combox extends Model {
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
+
+    public function skill() {
+        $sql = 'SELECT id, nom FROM competence';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(); 
+        $data = $stmt->fetchAll(); 
+        parent::sendJSON($data);
+    }
 }

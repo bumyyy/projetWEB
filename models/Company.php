@@ -155,7 +155,8 @@ class Company extends Model {
     FROM secteur
     INNER JOIN entreprise ON secteur.id = entreprise.id_secteur
     GROUP BY secteur.nom
-    ORDER BY COUNT(*) DESC";
+    ORDER BY COUNT(*) DESC
+    LIMIT 5";
         $stmt = $this->conn->prepare($req);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
