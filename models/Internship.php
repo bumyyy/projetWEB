@@ -27,7 +27,7 @@ class Internship extends Model {
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
-        GROUP BY stage.id;";
+        GROUP BY stage.id, competence.id;   ";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 
@@ -72,6 +72,7 @@ class Internship extends Model {
         entreprise.nom AS nom_entreprise,
         GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
         ville.id AS id_ville,
+        ville.nom AS nom_ville,
         GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
         promotion.nom AS type_promotion_concerne,
         stage.date_debut AS date_debut_offre, 
@@ -128,8 +129,58 @@ class Internship extends Model {
         $this->conn->commit();
     }
     
+    public function edit($stageId, $villesSelectionnees, $nom, $entreprise, $localite, $promo, $dateDebut, $dateFin, $prix, $place) {
+        $this->conn->beginTransaction();
 
+        // Préparer la requête SQL pour la mise à jour
+        $sqlInternship = "UPDATE stage 
+                            SET nom = :nom, 
+                                id_entreprise = :id_entreprise, 
+                                id_ville = :id_ville, 
+                                id_promotion = (SELECT id FROM promotion WHERE nom = :id_promotion AND id_ville = :id_ville), 
+                                date_debut = :date_debut, 
+                                date_fin = :date_fin, 
+                                remuneration = :remuneration, 
+                                nb_place = :nb_place
+                            WHERE id = :stage_id";
+        $stmtInternship = $this->conn->prepare($sqlInternship);
+        
+        // Exécuter la requête de mise à jour
+        $stmtInternship->execute([
+            'nom' => $nom,
+            'id_entreprise' => $entreprise, // Assurez-vous que c'est bien l'ID de l'entreprise et non celui du stage
+            'id_ville' => $localite,
+            'id_promotion' => $promo,
+            'date_debut' => $dateDebut,
+            'date_fin' => $dateFin,
+            'remuneration' => $prix,
+            'nb_place' => $place,
+            'stage_id' => $stageId
+        ]);
+
+        // Supposant que vous voulez également mettre à jour les compétences liées au stage
+        // Il est possible que vous souhaitiez d'abord supprimer les anciennes relations
+        // $sqlDeleteComp = "DELETE FROM rechercher WHERE id_stage = :stage_id";
+        // $stmtDeleteComp = $this->conn->prepare($sqlDeleteComp);
+        // $stmtDeleteComp->execute(['stage_id' => $stageId]);
+
+        // Ajouter / Mettre à jour les compétences pour ce stage
+        $idsCompetence = explode(',', $villesSelectionnees); // Supposition: $villesSelectionnees contient les ID des compétences
+        $sqlRechercher = "INSERT INTO rechercher (id_stage, id_competence) VALUES (:stage_id, :competence_id)
+                            ON DUPLICATE KEY UPDATE id_competence = VALUES(id_competence);";
+        $stmtRechercher = $this->conn->prepare($sqlRechercher);
+
+        foreach ($idsCompetence as $idCompetence) {
+            $stmtRechercher->execute([
+                'stage_id' => $stageId,
+                'competence_id' => $idCompetence
+            ]);
+        }
+
+        $this->conn->commit();
+    }
     
+
     public function statSkill(){
         $req = "SELECT 
         competence.nom AS nom_competence,
