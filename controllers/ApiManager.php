@@ -113,6 +113,10 @@ class ApiManager extends Controller{
             case 'statWish':
                 $this->Internship->$action();
                 break;
+
+            case 'edit':
+                $this->Internship->$action($field1, $field2, $field3, $field4, $field5, $field6, $field7, $field8, $field9, $field10);
+                break;
             
             default:
                 echo "Action for 'internship' not define";

@@ -17,42 +17,73 @@
 
 <div class="main">
     <form class="create_entrep" id="myform" method="POST" > <!-- action="Entreprises_accueil.php" -->
-        <h1>Modifier une entreprise</h1>
+        
+        <h1>Modifier un stage</h1>
         <div class="company">
-            <h2>Nom de l'entreprise</h2>
-            <input type="text" name="nom" id="form_input" required>
+            <h2>Nom du stage</h2>
+            <input type="text" name="nom" id="nom" required>
         </div>
 
-        <h2>Secteur d'activité</h2>
+        <h2>Localité</h2>
     <div class="activite">
-        <div id="secteur-container">
-            <select name="secteur[]" class="comboboxSecteur" id="comboboxSecteur" required>
+            <div id="localite-container">
+            <select name="localite[]" class="comboboxVille" id="comboboxVille" required>
             </select>
         </div>
     </div>
 
-    <h2>Localité</h2>
+    <h2>Entreprise</h2>
+    <div class="activite">
+            <div id="localite-container">
+            <select name="localite[]" class="entreprise" id="entreprise" required>
+            </select>
+        </div>
+    </div>
+
+    <h2>Compétences</h2>
     <div class="localite">
-        <div id="localite-container">
-            <select name="localite[]" class="comboboxVille" id="comboboxVille" required>
+        <div id="secteur-container">
+            <select name="secteur[]" class="comboboxSecteur" id="comboboxSecteur" required>
             </select>
         </div>
         <input type="button" value="+" id="ville">
         <input type="button" value="-" id="moins">
     </div>
 
+    <h2>Promotion</h2>
+        <div class="localite">
+            <div id="localite-container">
+                <select name="localite[]" class="comboboxVille" id="promo" required>
+                <option value = 'x'>promotion</option>
+                <option value = 'A1'>A1</option>
+                <option value = 'A2'>A2</option>
+                <option value = 'A3'>A3</option>
+                <option value = 'A4'>A4</option>
+                <option value = 'A5'>A5</option>
+                </select>
+            </div>
+        </div>
 
-    <div class="note">
-        <h2>Note</h2>
-        <div class="rating" data-rating="3">
-        <input type="hidden" id="rating-value" name="rating-value" value="0">
-    <span class="star" data-value="1">&#9733;</span>
-    <span class="star" data-value="2">&#9733;</span>
-    <span class="star" data-value="3">&#9733;</span>
-    <span class="star" data-value="4">&#9733;</span>
-    <span class="star" data-value="5">&#9733;</span>
-        </div>
-        </div>
+    <h2>Date de début</h2>
+    <div class="activite">
+         <input type="date" name="nom" id="dateDebut" required>
+    </div>
+
+    <h2>Date de fin</h2>
+    <div class="activite">
+         <input type="date" name="nom" id="dateFin" required>
+    </div>
+
+    <h2>Base de rémunération</h2>
+    <div class="activite">
+         <input type="number" name="nom" id="prix" required>
+    </div>
+
+    <h2>Nombre de places</h2>
+    <div class="activite">
+         <input type="text" name="nom" id="place" required>
+    </div>
+
         <div class="submit">
             <button type="submit" id="submit_btn">Soumettre</button>
         </div>
@@ -61,6 +92,7 @@
 {% endblock %}
 
 {% block otherJS %}
-<script src="/public/company/fillCombobox.js"></script>
-<script src="/public/company/editCompany.js"></script>
+<script src="/public/internship/fillComboboxEdit.js"></script>
+<script src="/public/internship/fillCombobox.js"></script>
+<script src="/public/internship/edit.js"></script>
 {% endblock %}

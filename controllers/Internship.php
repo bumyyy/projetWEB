@@ -10,7 +10,7 @@ class Internship extends Controller {
         $this->render('create');
     }
 
-    public function edit() {
-        $this->render('edit');
+    public function edit($idCompany ) {
+        $this->render('edit', ['idCompany' => $idCompany]);
     }
 }
