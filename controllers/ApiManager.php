@@ -97,14 +97,14 @@ class ApiManager extends Controller{
 
     }
 
-    public function pilot($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+    public function pilot($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = "", $field6 = ""){
 
         $this->loadModel('Pilot');
 
         switch ($action) {
 
             case 'addPilot':
-                $this->Pilot->$action($field1, $field2, $field3, $field4, $field5);
+                $this->Pilot->$action($field1, $field2, $field3, $field4, $field5, $field6);
                 break;
 
             case 'allPilot':
