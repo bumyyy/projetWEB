@@ -54,6 +54,52 @@ body {
 .main{
     flex-grow: 1;
 }
+
+.content h1 {
+    text-align: center;
+    justify-content: center;
+}
+
+.content {
+    flex: 1; /* Permet au contenu de remplir l'espace disponible */
+    display: flex; /* Active flexbox pour le contenu */
+    flex-direction: column; /* Organise les enfants du contenu en colonne */
+    justify-content: center; /* Centre le contenu verticalement */
+    align-items: center; /* Centre le contenu horizontalement */
+}
+
+.text{
+    text-align: center;
+    margin-top: 20px;
+}
+.profil-content{
+    position: fixed;
+    background-color: #f0f0f0;
+    border: solid 2px black;
+    right: 1%;
+    top: 15%;
+    border-radius: 5%;
+    padding: 10px;
+    width: 250px;
+    display: none;
+}
+
+.div1{
+   display: inline-flex;
+   margin-right: 25%;
+
+}
+
+.div2{
+    display: inline-flex;
+}
+ 
+.btn{
+    background-color: transparent;
+    border: solid 2px black;
+    border-radius: 5%;
+}
+
 .footer {
     width: 100%;
     height: 60px; /* Hauteur du footer */

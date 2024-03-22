@@ -6,7 +6,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
     e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
     document.getElementById('main').innerHTML = ''; // reset la page
 
-    let dataPromo = document.getElementById('promotion').value;
+    let dataPromo = document.getElementById('promo').value;
     let dataVille = document.getElementById('ville').value;
     let dataSearch = document.getElementById('search').value;
     

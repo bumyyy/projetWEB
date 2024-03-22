@@ -118,14 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
   
   document.getElementById("myform").addEventListener("submit", (event) => {
     // Récupérer les valeurs des champs de formulaire
+    
     let namePilot = document.getElementById("form_input1").value;
     let surnamePilot = document.getElementById("form_input2").value;
+    
     let id_ville = document.getElementById("comboboxCentre").value;
     let pilotMail = document.getElementById("pilotMail").value;
     let pilotMdp = document.getElementById("pilotMdp").value;
-    let id_promotion = document.getElementById("comboboxPromo").value;
-    
-    
+    let name_promotion = document.getElementById("comboboxPromo").value;
+    alert(namePilot + " " + surnamePilot + " " + id_ville + " " + pilotMail + " " +pilotMdp  + " " + name_promotion)
     const secteurSelect = document.getElementById('comboboxCentre');
     
     // Vérifier si aucun secteur n'a été sélectionné
@@ -143,11 +144,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`${ROOT}/ApiManager/pilot/addPilot/${namePilot}/${surnamePilot}/${pilotMail}/${pilotMdp}/${id_promotion}/${id_ville}`)
+    fetch(`${ROOT}/ApiManager/pilot/addPilot/${namePilot}/${surnamePilot}/${pilotMail}/${pilotMdp}/${id_ville}/${name_promotion}`)
         .then(response => {
             if (response.ok) {
                 alert('Votre pilot a été ajouté.');
-                // Rediriger l'utilisateur en cas de succès
+                // Rediriger l'utilisaxteur en cas de succès
                 //window.location.href = `${ROOT}/company`;
             } else {
                 // Traiter les erreurs éventuelles

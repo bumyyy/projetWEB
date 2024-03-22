@@ -17,7 +17,16 @@
             <input type="text" id="search" placeholder="Rechercher pilotes">
 
             <div class="combox">
-                <div id="comboboxPromo"></div>
+                <div id="comboboxPromo">
+                    <select name="promo" class="comboboxVille" id="promo" required>
+                        <option value = 'x'>promotion</option>
+                        <option value = 'A1'>A1</option>
+                        <option value = 'A2'>A2</option>
+                        <option value = 'A3'>A3</option>
+                        <option value = 'A4'>A4</option>
+                        <option value = 'A5'>A5</option>
+                    </select>
+                </div>
 
                 <div id="comboboxVille"></div>
             </div>
@@ -26,7 +35,7 @@
                 <button type="submit" class="search" id="btnsubmit"><img src="/public/img/loupe.png"></button>
     </form>
     {# <?php if ($utilisateur != 3) { ?> #}
-        <button onclick="window.location.href='/company/create'" class="create">+</button>
+        <button onclick="window.location.href='/pilot/create'" class="create">+</button>
     {# <?php } ?> #}
     </div>
 
