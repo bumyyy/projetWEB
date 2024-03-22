@@ -73,12 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
-    
-    
-    
-    
-    
-    
-    
     });//fin du domloadcontent
+
+    
+
     

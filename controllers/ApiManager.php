@@ -150,7 +150,7 @@ class ApiManager extends Controller{
         }
     }
 
-    public function student($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = "", $field6 = ""){
+    public function student($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = "", $field6 = "", $field7 = ""){
 
         $this->loadModel('Student');
 
@@ -169,6 +169,14 @@ class ApiManager extends Controller{
                 break;
 
             case 'addStudent':
+                $this->Student->$action($field1, $field2, $field3, $field4, $field5, $field6);
+                break;
+
+            case 'deleteStudent':
+                $this->Student->$action($field1);
+                break;
+
+            case 'editStudent':
                 $this->Student->$action($field1, $field2, $field3, $field4, $field5, $field6);
                 break;
             

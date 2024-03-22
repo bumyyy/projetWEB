@@ -45,7 +45,7 @@ class Company extends Model {
         LEFT JOIN candidater ON stage.id = candidater.id_stage
         LEFT JOIN evaluer ON entreprise.id = evaluer.id_entreprise
         WHERE entreprise.nom like :recherche
-        AND  entreprise.hide = 0
+        AND entreprise.hide = 0
         GROUP BY entreprise.id;";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['recherche' => '%'.$search.'%']); //permet de bind values et d'ajouter les % pour le like
