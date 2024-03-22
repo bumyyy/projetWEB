@@ -97,7 +97,37 @@ class Internship extends Model {
     }
 
 
+    public function addInternship($idsCompetence, $nomOffre, $idEntreprise, $idVille, $idPromotion, $dateDebut, $dateFin, $remuneration, $nbPlace){
+        
+        $this->conn->beginTransaction();
+        
+        $sqlInternship = " INSERT INTO stage (nom, id_entreprise, id_ville, id_promotion, date_debut, date_fin, remuneration, nb_place)
+        SELECT :nom, :id_entreprise, :id_ville, (SELECT id FROM promotion WHERE nom = :id_promotion AND id_ville = :id_ville), :date_debut, :date_fin, :remuneration, :nb_place
+        ";
+        $stmtInternship = $this->conn->prepare($sqlInternship);
+        $stmtInternship->execute([  'nom' => $nomOffre,
+                                    'id_entreprise' => $idEntreprise,
+                                    'id_ville' => $idVille,
+                                    'id_promotion' => $idPromotion, 
+                                    'date_debut' => $dateDebut, 
+                                    'date_fin' => $dateFin, 
+                                    'remuneration' => $remuneration,
+                                    'nb_place' => $nbPlace]); //permet de bind values
+        
+        $internshipId = $this->conn->lastInsertId();
 
+        $sqlRechercher ="INSERT INTO rechercher (id_stage, id_competence) VALUES (:stage_id, :competence_id)";
+        $stmtRechercher = $this->conn->prepare($sqlRechercher);
+
+        $idsCompetence = explode(',', $idsCompetence);
+        foreach ($idsCompetence as $idCompetence) {
+            $stmtRechercher->execute([  'stage_id' => $internshipId ,
+                                        'competence_id' => $idCompetence]);
+        }
+
+        $this->conn->commit();
+    }
+    
 
     
     public function statSkill(){

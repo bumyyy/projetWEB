@@ -1,0 +1,97 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+    Création Stages
+{% endblock %}
+
+{% block otherCSS %}
+    <link rel="stylesheet" href="/public/company/createCompany.css">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    
+</div>
+
+<div id="userData" data-user="{{ utilisateur }}" style="display:none;"></div>
+
+    <div class="main">
+    <form class="create_entrep" id="myform" method="POST" > <!-- action="Entreprises_accueil.php" -->
+        <h1>Créer un stage</h1>
+        <div class="company">
+            <h2>Nom du stage</h2>
+            <input type="text" name="nom" id="nom" required>
+        </div>
+
+        <h2>Localité</h2>
+    <div class="activite">
+            <div id="localite-container">
+            <select name="localite[]" class="comboboxVille" id="comboboxVille" required>
+            </select>
+        </div>
+    </div>
+
+    <h2>Entreprise</h2>
+    <div class="activite">
+            <div id="localite-container">
+            <select name="localite[]" class="entreprise" id="entreprise" required>
+            </select>
+        </div>
+    </div>
+
+    <h2>Compétences</h2>
+    <div class="localite">
+        <div id="secteur-container">
+            <select name="secteur[]" class="comboboxSecteur" id="comboboxSecteur" required>
+            </select>
+        </div>
+        <input type="button" value="+" id="ville">
+        <input type="button" value="-" id="moins">
+    </div>
+
+    <h2>Promotion</h2>
+        <div class="localite">
+            <div id="localite-container">
+                <select name="localite[]" class="comboboxVille" id="promo" required>
+                <option value = 'x'>promotion</option>
+                <option value = 'A1'>A1</option>
+                <option value = 'A2'>A2</option>
+                <option value = 'A3'>A3</option>
+                <option value = 'A4'>A4</option>
+                <option value = 'A5'>A5</option>
+                </select>
+            </div>
+        </div>
+
+    <h2>Date de début</h2>
+    <div class="activite">
+         <input type="date" name="nom" id="dateDebut" required>
+    </div>
+
+    <h2>Date de fin</h2>
+    <div class="activite">
+         <input type="date" name="nom" id="dateFin" required>
+    </div>
+
+    <h2>Base de rémunération</h2>
+    <div class="activite">
+         <input type="number" name="nom" id="prix" required>
+    </div>
+
+    <h2>Nombre de places</h2>
+    <div class="activite">
+         <input type="text" name="nom" id="place" required>
+    </div>
+    
+
+        <div class="submit">
+            <button type="submit" id="submit_btn">Soumettre</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block otherJS %}
+<script src="/public/internship/fillCombobox.js"></script>
+<script src="/public/internship/create.js"></script>
+{% endblock %}
