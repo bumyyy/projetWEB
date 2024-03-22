@@ -51,7 +51,7 @@ class FilterSearch extends Controller{
     }
     
 
-    public function filterInternship($competence, $ville){
+    public function filterInternship($competence, $ville, $promotion, $duree, $date){
 
         // Récupérer le contenu JSON de la requête
         $jsonData = file_get_contents('php://input');
@@ -73,7 +73,7 @@ class FilterSearch extends Controller{
                 return $stage['id_ville'] == $ville;
             });
         }
-        /*
+        
         // Filtrer les stages par promotion
         if ($promotion != "x"){
             $stages = array_filter($stages, function ($stage) use ($promotion) {
@@ -110,7 +110,7 @@ class FilterSearch extends Controller{
                 $moisDebut = date('m', strtotime($stage['date_debut_offre'])); // Extrait le mois en format "01", "02", etc.
                 return $moisDebut == $date; // Comparaison directe avec la valeur de date sélectionnée
             });
-        }*/
+        }
 
         // Démarrer la session si elle n'est pas déjà démarrée
         if (session_status() === PHP_SESSION_NONE) {

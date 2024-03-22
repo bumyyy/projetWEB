@@ -1,4 +1,4 @@
-/*
+    /*
 function toggleSubdivision(division) {
     let subdivision = division.querySelector('.popdown');
     let computedStyle = window.getComputedStyle(subdivision);
@@ -34,7 +34,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
     fetch(URL_)
     .then(response => response.json())
     .then(dataResponse => {
-        return fetch(`${ROOT}/FilterSearch/filterInternship/${encodeURIComponent(dataSecteur)}/${encodeURIComponent(dataVille)}`, {
+        return fetch(`${ROOT}/FilterSearch/filterInternship/${dataSecteur}/${dataVille}/${dataPromo}/${dataNote}/${dataDate}`, {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json', 
@@ -48,9 +48,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
     .then(finalData => finalData.json()) 
     .then(finalData => {
         let userType = finalData.userType;
-        //let tabnote = [];
-
-        finalData.stages.forEach ((stage) => { 
+        finalData.pilotes.forEach ((stage) => {
             //tabnote.push(stage.moyenne_evaluations);
             let html =
             "<div class='completeEntreprise'>" +
@@ -60,7 +58,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "            <h1 id='entrepriseName'>"+stage.nom_offre+"</h1>" +
             "            <p>"+stage.nom_entreprise+"</p>" +
             "        </div>" +
-       /*     "        <div class='localité'>" +
+            "        <div class='localité'>" +
             "            <h2>"+stage.localites+"</h2>" +
             "            <p>"+stage.competences_requises+"</p>" +
             "        </div>" +
@@ -104,9 +102,6 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "<a href='http://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
             "</div>"+
             "</div>"+
-        
-*/
-
             "    </div>";
             
             if (userType != 3){
@@ -127,41 +122,6 @@ document.getElementById('form').addEventListener('submit', function(e) {
     })
     .catch(error => console.error('Error:', error));
 });
-
-
-
-
-
-//coloris les etoiles en fonction du nom des entreprises et du tableau de note
-function highlightStars(tabnote) {
-const stars = document.querySelectorAll('.star');
-
-for (let a = 1; a <= stars.length / 10; a++) {
-    let idebut = (a - 1) * 10;
-    let ifin = (a * 10);
-    if (ifin > stars.length) {
-        ifin = stars.length;
-    }
-  for(let i= idebut;i<ifin;i++){
-      const starValue = parseInt(stars[i].getAttribute('data-value'));
-      if (starValue <= parseInt(tabnote[a-1])) {
-        stars[i].style.color = '#ffc107'; // Change color to yellow
-      } else {
-        stars[i].style.color = 'rgb(179,179,179)'; // Change color to gray
-      }
-    }
-  }
-
-  let elements = document.querySelectorAll('[id="note"]');
-
-for(let i=0;i<elements.length/2;i++){
-  let c = i*2;
-  elements[c].textContent=parseFloat(tabnote[i]).toFixed(1);
-  elements[c+1].textContent=parseFloat(tabnote[i]).toFixed(1);
-}
-
-}
-
 
 
 });//fin du domloadcontent
