@@ -27,7 +27,7 @@ class Internship extends Model {
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
-        GROUP BY stage.id, competence.id, ville.id;";
+        GROUP BY stage.id;";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 
