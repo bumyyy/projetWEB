@@ -13,4 +13,12 @@ class SessionManager extends Controller{
 
     }
 
+    public function logout() {
+        // Détruisez la session ou supprimez les éléments nécessaires
+        session_destroy(); // Cela détruit toutes les données associées à la session actuelle
+    
+        header('location:http://stagetier.fr/accueil/');
+    }
+
+
 }

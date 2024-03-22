@@ -16,10 +16,10 @@ class ApiManager extends Controller{
         
     }
 
-    public function combox($field){
+    public function combox($field, $field1 = ""){
 
         $this->loadModel('Combox');
-        $this->Combox->$field();
+        $this->Combox->$field($field1);
     
     }
 
@@ -72,7 +72,7 @@ class ApiManager extends Controller{
 
     }
 
-    public function internship($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+    public function internship($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = "", $field6 = "",$field7 = "", $field8 = "", $field9 = "", $field10 = ""){
 
         $this->loadModel('Internship');
 
@@ -88,6 +88,10 @@ class ApiManager extends Controller{
 
             case 'selectInternship':
                 $this->Internship->$action($field1);
+                break;
+
+            case 'addInternship':
+                $this->Internship->$action($field1, $field2, $field3, $field4, $field5, $field6, $field7, $field8, $field9);
                 break;
 
             case 'statSkill':

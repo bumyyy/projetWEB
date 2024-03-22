@@ -14,6 +14,7 @@ function getDataApi(URL, id, name) {
     .catch(error => console.error('Error fetching data:', error));
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
     ROOT = 'http://stagetier.fr';
     getDataApi(`${ROOT}/ApiManager/combox/skill`, 'comboboxSecteur', 'competence');
