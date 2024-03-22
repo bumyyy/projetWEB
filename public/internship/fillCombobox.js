@@ -18,5 +18,4 @@ document.addEventListener('DOMContentLoaded', function() {
     ROOT = 'http://stagetier.fr';
     getDataApi(`${ROOT}/ApiManager/combox/skill`, 'comboboxSecteur', 'competence');
     getDataApi(`${ROOT}/ApiManager/combox/city`, 'comboboxVille', 'ville');
-    getDataApi(`${ROOT}/ApiManager/combox/promotion`, 'comboboxPromo', 'promotion');
 });

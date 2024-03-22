@@ -12,7 +12,7 @@ class Internship extends Model {
         ville.id AS id_ville,
         GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
         promotion.id AS id_promotion,
-        promotion.nom AS type_promotion_concerne,
+        promotion.nom AS nom_promotion,
         stage.date_debut AS date_debut_offre, 
         stage.date_fin AS date_fin_offre,
         DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage, -- Calcul de la durée du stage en jour

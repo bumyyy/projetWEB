@@ -23,20 +23,23 @@ document.getElementById('form').addEventListener('submit', function(e) {
 
     let dataSecteur = document.getElementById('competence').value;
     let dataVille = document.getElementById('ville').value;
+    let dataPromo = document.getElementById('promo').value;
     let dataNote = document.getElementById('rate').value;
+    let dataDate = document.getElementById('date').value;
     let dataSearch = document.getElementById('search').value;
     
     let URL_ = dataSearch !== "" 
-        ? `${ROOT}/ApiManager/company/companyBySearch/${dataSearch}` 
+        ? `${ROOT}/ApiManager/internship/internshipBySearch/${dataSearch}` 
         : `${ROOT}/ApiManager/internship/allInternship/`;
     fetch(URL_)
     .then(response => response.json())
     .then(dataResponse => {
-        return fetch(`${ROOT}/FilterSearch/filter/${encodeURIComponent(dataSecteur)}/${encodeURIComponent(dataVille)}/${encodeURIComponent(dataNote)}`, {
+        return fetch(`${ROOT}/FilterSearch/filterInternship/${encodeURIComponent(dataSecteur)}/${encodeURIComponent(dataVille)}`, {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json', 
             },
+            
             body: JSON.stringify({
                 data: dataResponse, 
             })
@@ -57,12 +60,12 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "            <h1 id='entrepriseName'>"+stage.nom_offre+"</h1>" +
             "            <p>"+stage.nom_entreprise+"</p>" +
             "        </div>" +
-            "        <div class='localité'>" +
+       /*     "        <div class='localité'>" +
             "            <h2>"+stage.localites+"</h2>" +
             "            <p>"+stage.competences_requises+"</p>" +
             "        </div>" +
             "        <div class='secteur'>" +
-            "            <h2>"+stage.type_promotion_concerne+"</h2>" +
+            "            <h2>"+stage.nom_promotion+"</h2>" +
             "            <p>"+stage.date_debut_offre+"</p>" +
             "            <p>"+stage.date_fin_offre+"</p>" +
             "        </div>"+
@@ -73,9 +76,8 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "        <div class='localité'>"+
             "            <h2>"+stage.nombre_places_offertes+"</h2>"+
             "            <p>"+stage.nombre_etudiants_postules+"</p>"+
-            "        </div>"+ 
-            "        </div>"+            
-       /*     "<div id='myModal' class='popdown'>"+
+            "        </div>"+        
+            "<div id='myModal' class='popdown'>"+
             "<div class='fermer'><button id='closebtn'>x</button></div>"+
             "<div class='name_popup'>"+
             "<h1>"+stage.nom_entreprise+"</h1>"+
@@ -102,15 +104,16 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "<a href='http://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
             "</div>"+
             "</div>"+
-        */
-
+        
+*/
 
             "    </div>";
+            
             if (userType != 3){
             html +=
             "   <div class='mod'>"+
-            "       <span onclick=update("+stage.id_entreprise+") class='update'></span>"+
-            "       <span onclick=confirmerSuppression("+stage.id_entreprise+") class='delete'></span>"+
+            "       <span onclick=update("+stage.id_offre+") class='update'></span>"+
+            "       <span onclick=confirmerSuppression("+stage.id_offre+") class='delete'></span>"+
             "   </div>";
             };
             html +=
