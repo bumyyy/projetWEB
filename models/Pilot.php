@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 class Pilot extends Model {
 
     public function allPilot() {
@@ -17,6 +17,7 @@ class Pilot extends Model {
         JOIN promotion ON utilisateur.id_promotion = promotion.id
         LEFT JOIN ville ON promotion.id_ville = ville.id
         WHERE utilisateur.type_ = 2 -- Type pilote
+        AND utilisateur.hide = 0
         ORDER BY utilisateur.nom;";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(); 
@@ -37,6 +38,7 @@ class Pilot extends Model {
         JOIN promotion ON utilisateur.id_promotion = promotion.id
         LEFT JOIN ville ON promotion.id_ville = ville.id
         WHERE utilisateur.type_ = 2 -- Type pilote
+        AND utilisateur.hide = 0
         AND (utilisateur.nom LIKE :recherche -- Remplacez par le critère de recherche sur le nom
         OR utilisateur.prenom LIKE :recherche) 
         ORDER BY utilisateur.nom";
@@ -46,7 +48,7 @@ class Pilot extends Model {
         parent::sendJSON($data);
     }
 
-    public function selectPilot($pilotId) {
+    public function selectStudent($pilotId) {
         $sql = "SELECT 
         utilisateur.id AS id_pilote, 
         utilisateur.nom AS nom_pilote, 
@@ -59,6 +61,7 @@ class Pilot extends Model {
         JOIN promotion ON utilisateur.id_promotion = promotion.id
         LEFT JOIN ville ON promotion.id_ville = ville.id
         WHERE utilisateur.type_ = 2 -- Type pilote
+        AND utilisateur.hide = 0
         AND utilisateur.id LIKE :id_utilisateur";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id_utilisateur' => $pilotId]);    //permet de bind values
