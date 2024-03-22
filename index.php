@@ -12,14 +12,15 @@ $urlParams = explode('/', $_GET['p']);
 
 //On regarde si le parametre existe
 if($urlParams[0] != ''){
-    $controller = ucfirst($urlParams[0]); //pour mettre la premiere lettr en maj pour apres appeller la classe
+    //si un paramètre existe 
+    $controller = ucfirst($urlParams[0]); //pour mettre la premiere lettre en maj pour apres appeller la classe
      
     if( count($urlParams)>1 && $urlParams[1] != ''){ //si l'action n'est pas specifiée dans l'url, on appelle l'index
         $action = $urlParams[1];
     }else{
         $action = 'index';
     }
-
+    
     require_once(ROOT.'/controllers/'.$controller.'.php'); //on appelle la classe associée
     $controller = new $controller(); //ex : Accueil = new Accueil
     

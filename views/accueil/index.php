@@ -33,10 +33,12 @@
 <div class="profil-content" id="informations">
     <div>
         <h2 class="text">Vos Informtaions</h2>
-        <div class="div1"><p>Nom :</p></div>
-        <div class="div2"><p>Prénom :</p></div>
-        <div><p>Type :</p></div>
-        <button class="btn" id="deco" type="submit" value="Déconnexion">Déconnexion</button>
+        <div class="div1"><p>Nom :<?php //$_SESSION['userData']['nom']?></p></div>
+        <div class="div2"><p>Prénom :<?php //$_SESSION['userData']['prenom']?></p></div>
+        <div><p>Type :<?php //$_SESSION['userData']['type']?></p></div>
+        <form action="/Logout" method="post">
+            <button class="btn" id="deco" type="submit" value="Déconnexion">Déconnexion</button>
+        </form>
     </div>
 </div>
 
