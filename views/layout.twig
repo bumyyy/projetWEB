@@ -46,17 +46,28 @@
         </nav>
         <div class="header-icons">
             <img src="/public/img/reglage.png" alt="Réglages">
-            <img src="/public/img/profile.png" alt="Profil">
+            <img src="/public/img/profile.png" alt="Profil" id="profile">
         </div>
     </div>
 
 <div class="profil-content" id="informations">
     <div>
         <h2 class="text">Vos Informations</h2>
-        <div class="div1"><p>Nom :</p></div>
-        <div class="div2"><p>Prénom :</p></div>
-        <div><p>Type :</p></div>
-        <button class="btn" id="deco" type="submit" value="Déconnexion">Déconnexion</button>
+        <div class="div1"><p>Nom : {{ userName|upper }}</p></div>
+        <div class="div2"><p>Prénom : {{ userFirstName }}</p></div>
+        <div>
+            <p>Type : 
+                {% if userType == 1 %}
+                    Administrateur
+                {% elseif userType == 2 %}
+                    Pilote
+                {% elseif userType == 3 %}
+                    Étudiant
+                {% endif %}
+            </p>
+        </div>
+        {# <button class="btn" id="deco" type='submit' value="Déconnexion">Déconnexion</button> #}
+        <a href="/SessionManager/logout" class="btn">Déconnexion</a>
     </div>
 </div>
     {% endblock %}

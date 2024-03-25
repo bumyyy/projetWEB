@@ -16,10 +16,10 @@ class ApiManager extends Controller{
         
     }
 
-    public function combox($field){
+    public function combox($field, $field1 = ""){
 
         $this->loadModel('Combox');
-        $this->Combox->$field();
+        $this->Combox->$field($field1);
     
     }
 
@@ -72,7 +72,7 @@ class ApiManager extends Controller{
 
     }
 
-    public function internship($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+    public function internship($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = "", $field6 = "",$field7 = "", $field8 = "", $field9 = "", $field10 = ""){
 
         $this->loadModel('Internship');
 
@@ -88,6 +88,10 @@ class ApiManager extends Controller{
 
             case 'selectInternship':
                 $this->Internship->$action($field1);
+                break;
+
+            case 'addInternship':
+                $this->Internship->$action($field1, $field2, $field3, $field4, $field5, $field6, $field7, $field8, $field9);
                 break;
 
             case 'statSkill':
@@ -108,6 +112,14 @@ class ApiManager extends Controller{
 
             case 'statWish':
                 $this->Internship->$action();
+                break;
+
+            case 'edit':
+                $this->Internship->$action($field1, $field2, $field3, $field4, $field5, $field6, $field7, $field8, $field9, $field10);
+                break;
+
+            case 'delete':
+                $this->Internship->$action($field1);
                 break;
             
             default:
@@ -152,7 +164,7 @@ class ApiManager extends Controller{
         }
     }
 
-    public function student($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = "", $field6 = ""){
+    public function student($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = "", $field6 = "", $field7 = ""){
 
         $this->loadModel('Student');
 
@@ -171,6 +183,14 @@ class ApiManager extends Controller{
                 break;
 
             case 'addStudent':
+                $this->Student->$action($field1, $field2, $field3, $field4, $field5, $field6);
+                break;
+
+            case 'deleteStudent':
+                $this->Student->$action($field1);
+                break;
+
+            case 'editStudent':
                 $this->Student->$action($field1, $field2, $field3, $field4, $field5, $field6);
                 break;
             
@@ -201,6 +221,31 @@ class ApiManager extends Controller{
             
             default:
                 echo "Action for 'application' not define";
+                break;
+        }
+    }
+
+
+    public function favorite($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+
+        $this->loadModel('Favorite');
+
+        switch ($action) {
+
+            case 'allFavorite':
+                $this->Favorite->$action();
+                break;
+
+            case 'addFavorite':
+                $this->Favorite->$action($field1);
+                break;
+
+            case 'deleteFavorite':
+                $this->Favorite->$action($field1);
+                break;
+            
+            default:
+                echo "Action for 'favorite' not define";
                 break;
         }
     }

@@ -17,6 +17,7 @@ class Student extends Model {
         JOIN promotion ON utilisateur.id_promotion = promotion.id
         LEFT JOIN ville ON promotion.id_ville = ville.id
         WHERE utilisateur.type_ = 3 -- Type étudiant
+        AND utilisateur.hide = 0
         ORDER BY utilisateur.nom;";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(); 
@@ -39,8 +40,9 @@ class Student extends Model {
         JOIN promotion ON utilisateur.id_promotion = promotion.id
         LEFT JOIN ville ON promotion.id_ville = ville.id
         WHERE utilisateur.type_ = 3 -- Type student
-        AND (utilisateur.nom LIKE :recherche -- Remplacez par le critère de recherche sur le nom
-        OR utilisateur.prenom LIKE :recherche) 
+        AND ( (utilisateur.nom LIKE :recherche -- Remplacez par le critère de recherche sur le nom
+        OR utilisateur.prenom LIKE :recherche) )
+        AND utilisateur.hide = 0
         ORDER BY utilisateur.nom";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['recherche' => '%'.$search.'%']); //permet de bind values et d'ajouter les % pour le like
@@ -48,7 +50,7 @@ class Student extends Model {
         parent::sendJSON($data);
     }
 
-    public function selectStudent($pilotId) {
+    public function selectStudent($studentId) {
         $sql = "SELECT 
         utilisateur.id AS id_student, 
         utilisateur.nom AS nom_student, 
@@ -56,14 +58,16 @@ class Student extends Model {
         utilisateur.mail AS mail_student,
         utilisateur.type_, 
         promotion.nom AS nom_promotion, 
-        ville.nom AS centre
+        promotion.id AS id_promotion, 
+        ville.nom AS centre,
+        ville.id AS id_centre
         FROM utilisateur
         JOIN promotion ON utilisateur.id_promotion = promotion.id
         LEFT JOIN ville ON promotion.id_ville = ville.id
-        WHERE utilisateur.type_ = 2 -- Type student
+        WHERE utilisateur.type_ = 3 -- Type student
         AND utilisateur.id LIKE :id_utilisateur";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute(['id_utilisateur' => $pilotId]);    //permet de bind values
+        $stmt->execute(['id_utilisateur' => $studentId]);    //permet de bind values
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
@@ -87,6 +91,33 @@ class Student extends Model {
 
     }
 
+
+    public function deleteStudent($studentId){
+        $sql = "UPDATE utilisateur SET hide = 1 WHERE id = :id;";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $studentId]);
+    }
+
+
+    public function editStudent($id, $nom, $prenom, $mail, $centre, $promo){
+        $sql = "UPDATE utilisateur SET nom = :nom,
+                prenom = :prenom,
+                mail = :mail,
+                id_promotion = (SELECT id 
+                                FROM promotion 
+                                WHERE id_ville = :centre AND nom = :promo)
+                WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            'id' => $id,
+            'nom' => $nom, 
+            'prenom' => $prenom, 
+            'mail' => $mail, 
+            'centre' => $centre, 
+            'promo' => $promo
+        ]);
+
+    }
 
     public function statNbCandidature($studentId){
         $req = "SELECT utilisateur.nom AS nom_etudiant, 

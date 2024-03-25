@@ -1,19 +1,24 @@
 // Fonction pour afficher le popup
-let profil = document.getElementById('profile');
 let infos = document.getElementById('informations');
-let deco = document.getElementById("deco");
-profil.addEventListener('click', () =>{
+
+
+let profil = document.getElementById('profile').addEventListener('click', () =>{
     if (infos.style.display == 'block'){
         infos.style.display = "none";
     }
     else{
     infos.style.display = "block";
-    deco.focus();
     }
 });
-deco.addEventListener('blur', () =>{
-    infos.style.display = "none";
-});
+
+
+
+// let deco = document.getElementById("deco").addEventListener('click', () =>{
+//     session_destroy();
+//     window.location.href = "/index.php";
+// });
+
+
 
 
 

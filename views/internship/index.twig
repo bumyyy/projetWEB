@@ -20,7 +20,16 @@
 
                 <div id="comboboxVille"></div>
 
-                <div id="comboboxPromo"></div>
+                <div id="comboboxPromo">
+                    <select name="promo" class="comboboxVille" id="promo" required>
+                        <option value = 'x'>promotion</option>
+                        <option value = 'A1'>A1</option>
+                        <option value = 'A2'>A2</option>
+                        <option value = 'A3'>A3</option>
+                        <option value = 'A4'>A4</option>
+                        <option value = 'A5'>A5</option>
+                    </select>
+                </div>
 
                 <select id="rate">
                     <option value="x">durée</option>
@@ -32,17 +41,17 @@
                     <option value="6">10-12 mois</option>
                 </select>
 
-                <select id="rate">
+                <select id="date">
                     <option value="x">date</option>
-                    <option value="1">janvier</option>
-                    <option value="2">février</option>
-                    <option value="3">mars</option>
-                    <option value="4">avril</option>
-                    <option value="5">mai</option>
-                    <option value="6">juin</option>
-                    <option value="7">juillet</option>
-                    <option value="8">août</option>
-                    <option value="9">septembre</option>
+                    <option value="01">janvier</option>
+                    <option value="02">février</option>
+                    <option value="03">mars</option>
+                    <option value="04">avril</option>
+                    <option value="05">mai</option>
+                    <option value="06">juin</option>
+                    <option value="07">juillet</option>
+                    <option value="08">août</option>
+                    <option value="09">septembre</option>
                     <option value="10">octobre</option>
                     <option value="11">novembre</option>
                     <option value="12">décembre</option>
@@ -53,8 +62,8 @@
             <div class="wrap">
                 <button type="submit" class="search" id="btnsubmit"><img src="/public/img/loupe.png"></button>
     </form>
-    {% if utilisateur != 3 %}
-        <button onclick="window.location.href='/company/create'" class="create">+</button>
+    {% if userType != 3 %}
+        <button onclick="window.location.href='/internship/create'" class="create">+</button>
     {% endif %} 
          <button onclick="stat()" class="create"><img src="/public/img/tableau-statistique.png"></button>
         </div>
@@ -83,7 +92,7 @@
 <script src="/public/internship/fillCombobox.js"></script>
 <script src="/public/company/pagination.js"></script>
 <script src="/public/internship/fillMain.js"></script>
-<!--<script src="/public/company/editCompany.js"></script>-->
+<script src="/public/internship/buttons.js"></script>
 <script src="/public/company/popup.js"></script>
 
 {# <?php

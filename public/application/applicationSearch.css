@@ -296,6 +296,17 @@ form{
     background-size: contain;
     color: rgb(160, 160, 160); /* Définit la couleur des étoiles par défaut */
 }
+
+.heart {
+    display: inline-block;
+    font-size: clamp(16px,3vw,40px);
+ /*   width: clamp(24px,2.4vw,28px); 
+    height: clamp(24px,2.4vw,28px);*/
+    background-size: contain;
+    color: rgb(160, 160, 160); /* Définit la couleur des étoiles par défaut */
+    text-shadow: 0 0 5px black; /* Ombre pour simuler le contour */
+}
+
 .note{
     font-size: clamp(12px,1.8vw,25px);
 }
@@ -309,7 +320,8 @@ form{
     background-image: url('http://stagetier.fr/public/img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     background-repeat: no-repeat;
-    margin-bottom: 80%;
+    margin-top: 33%;
+    margin-bottom: 33%;
     cursor: pointer;
 }
 .delete{
@@ -320,6 +332,7 @@ form{
     background-size: contain;
     cursor: pointer;
     background-repeat: no-repeat;
+    margin-top: 33%;
     
 }
 .statmod{

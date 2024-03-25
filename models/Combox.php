@@ -46,4 +46,16 @@ class Combox extends Model {
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
+
+    public function company($villeId) {
+        $sql = 'SELECT entreprise.id AS id, entreprise.nom AS nom
+                FROM entreprise
+                JOIN situer on entreprise.id = situer.id_entreprise
+                JOIN ville on ville.id = situer.id_ville
+                WHERE ville.id = :ville_id';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':ville_id' => $villeId]); 
+        $data = $stmt->fetchAll(); 
+        parent::sendJSON($data);
+    }
 }

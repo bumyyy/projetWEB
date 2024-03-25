@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "            <h2>Ont postulé</h2>"+
                 "            <p>"+entreprise.nb_stagiaires_postules+"</p>"+
                 "        </div>"+
+                
                 "<div id='myModal' class='popdown'>"+
                 "<div class='fermer'><button id='closebtn'>x</button></div>"+
                 "<div class='name_popup'>"+

@@ -9,8 +9,8 @@ class Application extends Model {
         entreprise.nom AS nom_entreprise,
         GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
         ville.id AS id_ville,
-        GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
-        promotion.nom AS type_promotion_concerne,
+        GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS nom_ville,
+        promotion.nom AS nom_promotion,
         stage.date_debut AS date_debut_offre, 
         stage.date_fin AS date_fin_offre,
         DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage, -- Calcul de la durée du stage en jour
@@ -40,8 +40,8 @@ class Application extends Model {
         entreprise.nom AS nom_entreprise,
         GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
         ville.id AS id_ville,
-        GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
-        promotion.nom AS type_promotion_concerne,
+        GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS nom_ville,
+        promotion.nom AS nom_promotion,
         stage.date_debut AS date_debut_offre, 
         stage.date_fin AS date_fin_offre,
         DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage, -- Calcul de la durée du stage en jour
@@ -72,8 +72,8 @@ class Application extends Model {
         entreprise.nom AS nom_entreprise,
         GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
         ville.id AS id_ville,
-        GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
-        promotion.nom AS type_promotion_concerne,
+        GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS nom_ville,
+        promotion.nom AS nom_promotion,
         stage.date_debut AS date_debut_offre, 
         stage.date_fin AS date_fin_offre,
         DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage, -- Calcul de la durée du stage en jour
