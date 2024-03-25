@@ -179,6 +179,18 @@ class Internship extends Model {
 
         $this->conn->commit();
     }
+
+
+    public function delete($internshipId) {
+        $sqlRechercher = "DELETE FROM rechercher WHERE id_stage = :id_stage";
+        $stmtRechercher = $this->conn->prepare($sqlRechercher);
+        $stmtRechercher->execute(['id_stage' => $internshipId]);
+
+        // Ensuite, supprimer le stage lui-même de la table 'stage'
+        $sqlStage = "DELETE FROM stage WHERE id = :id_stage";
+        $stmtStage = $this->conn->prepare($sqlStage);
+        $stmtStage->execute(['id_stage' => $internshipId]);
+    }
     
 
     public function statSkill(){
