@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "            <p>"+candidature.nom_entreprise+"</p>" +
                 "        </div>" +
                 "        <div class='localité'>" +
-                "            <h2>"+candidature.ville+"</h2>" +
+                "            <h2>"+candidature.nom_ville+"</h2>" +
                 "            <p>"+candidature.competences_requises+"</p>" +
                 "        </div>" +
                 "        <div class='secteur'>" +
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (userType != 3){
                 html +=
                 "   <div class='mod'>"+
-                "       <span onclick=favorite("+candidature.id_offre+") class='heart' data-value="+candidature.etat_candidature+">&#9829;</span>"+
+                "       <span  class='heart' data-value="+candidature.id_offre+">&#9829;</span>"+
                         "<input type='hidden' id='rating-value' name='rating-value' value='0'>"+
                 "       <span onclick=update("+candidature.id_offre+") class='update'></span>"+
                 "       <span onclick=confirmerSuppression("+candidature.id_offre+") class='delete'></span>"+
@@ -120,49 +120,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 document.getElementById('main').innerHTML += html;
                 
+                
             })
 
-            // Gérer le cœur de notation
-            let isHeartSelected = false; // Variable pour vérifier si une note a été sélectionnée
+            // Attacher des gestionnaires d'événements aux cœurs
             const hearts = document.querySelectorAll('.heart');
-            const heartValue = document.getElementById('rating-value');
-
             hearts.forEach(heart => {
-                heart.addEventListener('click', () => {
-                    const id_offre = heart.parentElement.parentElement.parentElement.id;
-                    const value = parseInt(heart.getAttribute('data-value'));
-                    
-                    // Mettre à jour la valeur de data-value à 1
-                    heart.setAttribute('data-value', '1');
-                    
-                    // Mettre à jour la couleur du cœur
-                    highlightHeart(1); // Mettre à jour la couleur en fonction de la nouvelle valeur
-                    
-                    // Appeler la fonction favorite avec l'ID de l'offre
-                    favorite(id_offre);
-                    
-                    // Mettre à jour la variable pour indiquer qu'une note a été sélectionnée
-                    isHeartSelected = true;
-                    
-                    // Vous pouvez maintenant envoyer la valeur sélectionnée au serveur ou effectuer d'autres actions nécessaires
+                heart.addEventListener('click', function() {
+                    const id_offre = this.getAttribute('data-value');
+                    highlightHeart(id_offre);
                 });
             });
 
+            function highlightHeart(id_offre) {
+                // Sélectionner le cœur associé à l'offre
+                const heart = document.querySelector(`.heart[data-value="${id_offre}"]`);
+                const heartless = 0;
 
-            function highlightHeart(value) {
-                hearts.forEach(heart => {
-                    const heartValue = parseInt(heart.getAttribute('data-value'));
-                    if (heartValue <= value) {
-                        heart.style.color = '#fe8bb2'; // Changer la couleur en jaune
-                    } else {
-                        heart.style.color = '#e4e5e9'; // Changer la couleur en gris
-                    }
-                });
+                // Récupérer la valeur actuelle de data-value
+                const heartValue = parseInt(heart.getAttribute('data-value'));
+
+                if (heartValue != heartless) {
+                    heart.style.color = '#fe8bb2'; // Changer la couleur en rose
+                    console.log("Offre avec l'ID " + id_offre + " ajoutée aux favoris.");
+                    heartless = heartValue;
+                } else {
+                    heart.style.color = '#e4e5e9'; // Changer la couleur en gris
+                    console.log("Offre avec l'ID " + id_offre + " retirée des favoris.");
+                    heartless = 0;
+                }
             }
-            
-            highlightHeart(tabnote);
+                        
             console.log(tabnote);
-            //highlightStars(tabnote);
             pagination();
         })
         .catch(error => console.error('Error:', error));
@@ -174,5 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function favorite(id_offre) {
         // Ici, vous pouvez ajouter la logique pour marquer l'offre avec l'ID spécifié comme favori
         console.log("Offre avec l'ID " + id_offre + " ajoutée aux favoris.");
+        // Appeler highlightHeart avec l'ID de l'offre
     }
+
+    
 

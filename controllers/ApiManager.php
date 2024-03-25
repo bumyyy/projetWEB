@@ -223,4 +223,29 @@ class ApiManager extends Controller{
         }
     }
 
+
+    public function favorite($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+
+        $this->loadModel('Favorite');
+
+        switch ($action) {
+
+            case 'allFavorite':
+                $this->Favorite->$action();
+                break;
+
+            case 'addFavorite':
+                $this->Favorite->$action($field1);
+                break;
+
+            case 'deleteFavorite':
+                $this->Favorite->$action($field1);
+                break;
+            
+            default:
+                echo "Action for 'favorite' not define";
+                break;
+        }
+    }
+
 }
