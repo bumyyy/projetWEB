@@ -2,6 +2,7 @@ function getDataApi(URL, id, name) {
     fetch(URL)
     .then(response => response.json())
     .then(dataResponse => {
+        console.log(id,name);
         // Correction ajoutée ici pour l'attribut name
         let html = '<select id="'+name+'" name="'+name+'">'; // Ajout d'un guillemet après l'id
         html += '<option value="x">'+name+'</option>';

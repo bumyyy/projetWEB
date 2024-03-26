@@ -105,13 +105,16 @@ document.getElementById("moins").addEventListener("click", () => {
 
 
 
-
 document.getElementById('myform').addEventListener('submit', (event) => {
-    
     let namePilot = document.getElementById("form_input1").value;
     let surnamePilot = document.getElementById("form_input2").value;
     let id_ville = document.getElementById("comboboxCentre").value;
     let pilotMail = document.getElementById("pilotMail").value;
+    const container = document.getElementById("localite-container");
+    tab_promo = [];
+    for(let i = 0; i < container.querySelectorAll("select").length; i++){
+    tab_promo.push(container.querySelectorAll("select")[i].value);
+    }
     let promo = tab_promo.join(",");
 
 /*
@@ -124,7 +127,9 @@ if (select.options[0].text == "x") {
 */
 
 // Envoyer une requête fetch pour chaque valeur de ville_nom
+
 alert(`${ROOT}/ApiManager/pilot/editPilot/${id_pilot}/${namePilot}/${surnamePilot}/${pilotMail}/${id_ville}/${promo}`)
+
 fetch(`${ROOT}/ApiManager/pilot/editPilot/${id_pilot}/${namePilot}/${surnamePilot}/${pilotMail}/${id_ville}/${promo}`)
     .then(response => {
         if (response.ok) {
@@ -136,7 +141,6 @@ fetch(`${ROOT}/ApiManager/pilot/editPilot/${id_pilot}/${namePilot}/${surnamePilo
         console.error('Erreur lors de la requête fetch : ', error);
     });
 });
-
 
 
 });
