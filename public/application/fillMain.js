@@ -21,17 +21,18 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
         document.getElementById('main').innerHTML = ''; // reset la page
     
-        
+        let dataFavorite = document.getElementById('checkboxFavorite').checked;
         let dataEtat = document.getElementById('etat').value;
         let dataSearch = document.getElementById('search').value;
         
         let URL_ = dataSearch !== "" 
             ? `${ROOT}/ApiManager/application/applicationBySearch/${dataSearch}` 
             : `${ROOT}/ApiManager/application/allApplication/`;
+            
         fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {
-            return fetch(`${ROOT}/FilterSearch/filterApplication/${dataEtat}`, {
+            return fetch(`${ROOT}/FilterSearch/filterApplication/${dataEtat}/${dataFavorite}`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json', 
@@ -108,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (userType != 3){
                 html +=
                 "   <div class='mod'>"+
-                "       <span  class='heart' data-value="+candidature.id_offre+">&#9829;</span>"+
+                "       <span class='heart' data-value='" + candidature.id_stage_aimé + "' data-id='" + candidature.id_offre + "'>&#9829;</span>" +
                         "<input type='hidden' id='rating-value' name='rating-value' value='0'>"+
                 "       <span onclick=update("+candidature.id_offre+") class='update'></span>"+
                 "       <span onclick=confirmerSuppression("+candidature.id_offre+") class='delete'></span>"+
@@ -119,37 +120,58 @@ document.addEventListener('DOMContentLoaded', function() {
                 "</div>";
                 
                 document.getElementById('main').innerHTML += html;
-                
+
+                // Trouver le dernier cœur ajouté qui correspond à cette candidature et le colorier
+                let favorite = document.querySelector('.heart[data-id="' + candidature.id_offre + '"]');
+                if (candidature.id_stage_aimé != null) {
+                    favorite.style.color = '#fe8bb2'; // Colorier en rose si l'offre est dans 'aimer'
+                } else {
+                    favorite.style.color = '#e4e5e9'; // Sinon, colorier en gris
+                }
                 
             })
+            
 
-            // Attacher des gestionnaires d'événements aux cœurs
+            // Sélectionner tous les cœurs après que le DOM est complètement chargé
             const hearts = document.querySelectorAll('.heart');
+
             hearts.forEach(heart => {
-                heart.addEventListener('click', function() {
-                    const id_offre = this.getAttribute('data-value');
-                    highlightHeart(id_offre);
+                heart.addEventListener('click', function () {
+                    const internshipId = this.getAttribute('data-id');
+                    const internshipLiked = this.getAttribute('data-value');
+                    console.log("valeur :" + internshipLiked);
+
+                    if (internshipLiked != "null") {
+                        // Si déjà favori, décolorer et supprimer de la table aimer
+                        fetch(`${ROOT}/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                response.json();
+                            })
+                            .then(data => {
+                                console.log('Removed from favorites', data);
+                                this.style.color = '#e4e5e9'; // Gris
+                                this.setAttribute('data-value', "null"); // Mettre à jour l'état du cœur
+                                console.log("nouvelle valeur :" + internshipLiked);
+                            })
+                            .catch(error => console.error('Error:', error));
+                    } else {
+                        // Sinon, colorier et ajouter à la table aimer
+                        fetch(`${ROOT}/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Added to favorites', data);
+                                this.style.color = '#fe8bb2'; // Rose
+                                this.setAttribute('data-value', internshipId); // Mettre à jour l'état du cœur
+                                console.log("nouvelle valeur :" + internshipLiked);
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
                 });
             });
 
-            function highlightHeart(id_offre) {
-                // Sélectionner le cœur associé à l'offre
-                const heart = document.querySelector(`.heart[data-value="${id_offre}"]`);
-                const heartless = 0;
-
-                // Récupérer la valeur actuelle de data-value
-                const heartValue = parseInt(heart.getAttribute('data-value'));
-
-                if (heartValue != heartless) {
-                    heart.style.color = '#fe8bb2'; // Changer la couleur en rose
-                    console.log("Offre avec l'ID " + id_offre + " ajoutée aux favoris.");
-                    heartless = heartValue;
-                } else {
-                    heart.style.color = '#e4e5e9'; // Changer la couleur en gris
-                    console.log("Offre avec l'ID " + id_offre + " retirée des favoris.");
-                    heartless = 0;
-                }
-            }
                         
             console.log(tabnote);
             pagination();
@@ -160,11 +182,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
     });//fin du domloadcontent
 
-    function favorite(id_offre) {
-        // Ici, vous pouvez ajouter la logique pour marquer l'offre avec l'ID spécifié comme favori
-        console.log("Offre avec l'ID " + id_offre + " ajoutée aux favoris.");
-        // Appeler highlightHeart avec l'ID de l'offre
-    }
 
     
-

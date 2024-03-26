@@ -1,337 +1,145 @@
-// Définition d'une fonction asynchrone pour permettre l'utilisation de await à l'intérieur
-/*
-Le navigateur envoie une requête POST à l'URL spécifiée.
-Le navigateur attend la réponse du serveur.
-Pendant ce temps, le code JavaScript est suspendu, ce qui signifie qu'il attend également la réponse du serveur.
-Une fois que le serveur a répondu, le navigateur reprend l'exécution du code JavaScript.
-Si la requête est réussie, elle renvoie un objet Response contenant les données de la réponse. Si la requête échoue, elle lance une erreur.
-*/
-let villesSelectionnees = [];
-villesSelectionnees[0] = document.getElementById('combobox').value;
-ROOT = 'https://stagetier.fr';
+ROOT = 'http://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
+let tab_promo=[];
+function selectPilot(){
 
-    // Récupérer les éléments du DOM
-    const urlParams = new URLSearchParams(window.location.search);
-    const id_entreprise = urlParams.get('id');
-    
-    // Récupérer les éléments du DOM
-    const localiteContainer = document.getElementById('localite-container');
-    const villeButton = document.getElementById('ville');
+    id_pilot=window.location.href.split('/')[window.location.href.split('/').length-1];
 
-    // Variables pour suivre le nombre de sélections
-    let localiteSelectCount = 0;
+    fetch(`${ROOT}/ApiManager/pilot/selectPilot/${id_pilot}`)
+    .then(response => response.json())
+    .then(data => {
 
-    // Gérer l'événement click sur le bouton + pour la localité
-    villeButton.addEventListener('click', () => {
-        addLocaliteSelect();
+            //remplir les input
+            console.log(data);
+            document.getElementById("form_input1").value = data[0].prenom_pilote;
+            document.getElementById("form_input2").value = data[0].nom_pilote;
+            document.getElementById("pilotMail").value = data[0].mail_pilote;
+
+            var select = document.getElementById('comboboxCentre');
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].text === `${data[0].nom_centre}`) {
+                    select.selectedIndex = i;
+                    break;
+    }
+}
+    for(let i = 0; i < data.length; i++){
+       tab_promo.push(data[i].nom_promotion);
+       if (i==0){
+
+       }else{
+        ajoutplus();
+       }
+    }
+    for(let i = 0; i < data.length; i++){
+        obtenirEtChangerValeurSelect(i,tab_promo[i]);
+     }
+    console.log(tab_promo);
+
+
+    document.getElementById("plus").addEventListener("click", () => {
+        ajoutplus();
+});
+
+
+    })
+    .catch(error => {
+        console.error('Erreur lors de la requête fetch : ', error);
     });
 
-    // Fonction pour ajouter un nouveau select pour la localité
-    function addLocaliteSelect() {
-        if (localiteSelectCount < 4) {
-            fetch(`${ROOT}/ApiManager/combox/promotion`)
-                .then(response => response.json())
-                .then(data => {
-                    // Créer un nouveau select
-                    const newSelect = document.createElement('select');
-                    newSelect.name = 'localite[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
-                    newSelect.id = localiteSelectCount;
-                    newSelect.classList.add('comboboxVille');
-    
-                    // Ajouter chaque localité comme option au nouveau select
-                    data.forEach(promotion => {
-                        const option = document.createElement('option');
-                        option.value = promotion.id;
-                        option.textContent = promotion.nom;
-                        newSelect.appendChild(option);
-                    });
+}
 
-                    // Ajouter l'événement change pour mettre à jour le tableau de sélection de villes
-                    newSelect.addEventListener('change', () => {
-                        updateVillesSelectionnees();
-                    });
-    
-                    // Ajouter le nouveau select au conteneur
-                    localiteContainer.appendChild(newSelect);
+selectPilot();
 
-                    updateVillesSelectionnees();
+function obtenirEtChangerValeurSelect(i, nouvelleValeur) {
+    const container = document.getElementById("localite-container");
+    // Assurez-vous que 'i' est dans la plage du nombre de 'select' disponibles
+    if (i < container.childElementCount) {
+        // Obtient le 'select' à l'indice spécifié
+        const select = container.querySelectorAll("select")[i];
+        // Récupère la valeur actuelle
+        const valeurActuelle = select.value;
+        
+        // Change la valeur du 'select' à 'nouvelleValeur'
+        // Assurez-vous que 'nouvelleValeur' existe comme 'option' dans ce 'select'
+        select.value = nouvelleValeur;
+        
+        // Pour vérifier si la valeur a été changée
+    }
+}
 
-                    // Incrémenter le compteur
-                    localiteSelectCount++;
-
-                    // Mettre à jour l'affichage du bouton moins
-                    updateMoinsButtonDisplay();
-
-    
-                })
-                .catch(error => {
-                    console.error('Erreur lors de la récupération des localités :', error);
-                });
+function ajoutplus(){
+    const container = document.getElementById("localite-container");
+        // Compte le nombre de 'div' (qui contiennent des 'select') dans le conteneur
+        const numberOfSelects = container.childElementCount;
+        
+        // Vérifie si le nombre de 'select' est inférieur à 5
+        if (numberOfSelects < 5) {
+            // Si oui, permet d'ajouter un autre 'select'
+            const selectHTML = "<select name='localite[]' class='comboboxPromo' required>"+
+                 "<option value='A1'>A1</option>"+
+                 "<option value='A2'>A2</option>"+
+                 "<option value='A3'>A3</option>"+
+                 "<option value='A4'>A4</option>"+
+                 "<option value='A5'>A5</option>"+
+                 "</select>";
+            const wrapper = document.createElement("div");
+            wrapper.innerHTML = selectHTML;
+            container.appendChild(wrapper);
         } else {
-            alert("Vous avez atteint la limite de 5 villes.");
+            // Sinon, affiche un message d'alerte ou ne fait rien
+            alert("Limite de 5 sélecteurs atteinte.");
         }
+}
+document.getElementById("moins").addEventListener("click", () => {
+    const container = document.getElementById("localite-container");
+    // Compte le nombre d'éléments 'div' dans le conteneur
+    const numberOfSelects = container.childElementCount;
+    
+    // Vérifie si le nombre d'éléments 'select' est supérieur à 1
+    if (numberOfSelects > 1) {
+        // Si oui, supprime le dernier élément
+        container.removeChild(container.lastElementChild);
     }
+});
 
-    localiteContainer.addEventListener('change', () => {
-        updateVillesSelectionnees();
-    });
 
-    // Fonction pour mettre à jour le tableau des sélections de villes
-    function updateVillesSelectionnees() {
-        villesSelectionnees = [];
-        const selects = document.querySelectorAll('.comboboxVille');
-        selects.forEach(select => {
-            if (select.value !== "") {
-                villesSelectionnees.push(select.value); // Ajouter la valeur du select au tableau si elle est sélectionnée
-            }            
-        });
-        return villesSelectionnees;
-    }
 
-    // Afficher le bouton + après le chargement de la page
-    villeButton.style.display = 'block';
 
-    const moinsButton = document.getElementById('moins'); // Sélectionnez le bouton moins
-    moinsButton.style.display = "none";
+document.getElementById('myform').addEventListener('submit', (event) => {
+    
+    let namePilot = document.getElementById("form_input1").value;
+    let surnamePilot = document.getElementById("form_input2").value;
+    let id_ville = document.getElementById("comboboxCentre").value;
+    let pilotMail = document.getElementById("pilotMail").value;
+    let promo = tab_promo.join(",");
 
-    // Gérer l'événement click sur le bouton -
-    moinsButton.addEventListener('click', () => {
-        localiteSelectCount--; // Décrémentez le compteur
-        removeLocaliteSelect(); // Supprimer le select localité
-    });
+/*
+// Vérifier si aucun secteur n'a été sélectionné
+if (select.options[0].text == "x") {
+    event.preventDefault();
+    alert('Erreur: Veuillez sélectionner un centre.');
+    return false;
+}
+*/
 
-    // Fonction pour supprimer un select de localité
-    function removeLocaliteSelect() {
-        const selectToRemove = document.getElementById(localiteSelectCount); // Sélectionnez le dernier select ajouté
-        if (selectToRemove) {
-            console.log("Sélecteur à supprimer : ", selectToRemove);
-            selectToRemove.remove(); // Supprimez-le s'il existe
-
-            // Mettre à jour l'affichage du bouton moins
-            updateMoinsButtonDisplay();
-
-            // Mettre à jour les villes sélectionnées
-            updateVillesSelectionnees();
-        }
-    }
-
-    // Fonction pour mettre à jour l'affichage du bouton moins
-    function updateMoinsButtonDisplay() {
-        // Désactiver le bouton - s'il ne reste qu'un seul select (celui de base)
-        if (localiteSelectCount < 1) {
-            moinsButton.style.display = "none";
+// Envoyer une requête fetch pour chaque valeur de ville_nom
+alert(`${ROOT}/ApiManager/pilot/editPilot/${id_pilot}/${namePilot}/${surnamePilot}/${pilotMail}/${id_ville}/${promo}`)
+fetch(`${ROOT}/ApiManager/pilot/editPilot/${id_pilot}/${namePilot}/${surnamePilot}/${pilotMail}/${id_ville}/${promo}`)
+    .then(response => {
+        if (response.ok) {
         } else {
-            moinsButton.style.display = "block";
+            console.error('Erreur lors de la requête fetch : ', response.statusText);
         }
-    }
-
-
-    // Nouvelle fonction pour ajouter un select en fonction des données de l'entreprise
-    function addLocaliteSelectFromData(villes) {
-      villes.forEach((ville, index) => {
-          if (localiteSelectCount < 5) {
-              // Effectuer la requête fetch pour récupérer les données des villes
-              fetch(`${ROOT}/ApiManager/combox/city`)
-                  .then(response => response.json())
-                  .then(data => {
-                      // Créer un nouveau select
-                      const newSelect = document.createElement('select');
-                      newSelect.name = 'localite[]'; // Utiliser un tableau dans le nom pour permettre la soumission multiple
-                      newSelect.id = localiteSelectCount;
-                      newSelect.classList.add('comboboxVille');
-
-                      // Ajouter chaque localité comme option au nouveau select
-                      data.forEach(v => {
-                          const option = document.createElement('option');
-                          option.value = v.id;
-                          option.textContent = v.nom;
-                          newSelect.appendChild(option);
-                      });
-
-                      // Sélectionner la ville correspondant à l'ID de l'entreprise
-                      if (index === 0) {
-                          const villeIndex = data.findIndex(v => v.nom.trim() === ville.trim());
-                          if (villeIndex !== -1) {
-                              newSelect.selectedIndex = villeIndex;
-                          }
-                      }
-
-                      // Ajouter l'événement change pour mettre à jour le tableau de sélection de villes
-                      newSelect.addEventListener('change', () => {
-                          updateVillesSelectionnees();
-                      });
-
-                      // Ajouter le nouveau select au conteneur
-                      localiteContainer.appendChild(newSelect);
-
-                      localiteSelectCount++; // Incrémenter le compteur
-
-                      updateVillesSelectionnees();
-
-                       // Mettre à jour l'affichage du bouton moins
-                      updateMoinsButtonDisplay(); // Ajoutez cette ligne pour mettre à jour le bouton "-"
-                  })
-                  .catch(error => {
-                      console.error('Erreur lors de la récupération des données de ville :', error);
-                  });
-          } else {
-              alert("Vous avez atteint la limite de 5 villes.");
-          }
-      });
-  }
-
-  // Appeler la fonction pour récupérer et remplir les données du formulaire
-  fetchDataAndPopulateForm(id_entreprise);
-
-  function fetchDataAndPopulateForm(id_entreprise) {
-
-  // Vérifier si id_entreprise est un nombre valide
-  if (isNaN(id_entreprise) || id_entreprise <= 0) {
-      console.error('ID d\'entreprise invalide.');
-      return;
-  }
-
-  fetch(`${ROOT}/ApiManager/Company/selectCompany/${id_entreprise}`)
-      .then(response => response.json())
-      .then(data => {
-          // Remplir le formulaire avec les données de l'entreprise
-          console.log(data);
-          document.getElementById('form_input').value = data[0].nom_entreprise;
-          
-          // Sélectionner le secteur d'activité dans le menu déroulant
-          const secteurSelect = document.getElementById('comboboxSecteur');
-          const secteurNom = data[0].secteur_activite;
-
-          console.log("Secteur récupéré : ", secteurNom);
-          for (let i = 0; i < secteurSelect.options.length; i++) {
-              console.log("Option ", i, ": ", secteurSelect.options[i].textContent);
-              if (secteurSelect.options[i].textContent.trim() === secteurNom.trim()) {
-                  secteurSelect.selectedIndex = i;
-                  console.log("Option sélectionnée : ", secteurSelect.options[i].textContent);
-                  break;
-              }
-          }
-
-          // Récupérer les villes de l'entreprise
-          const villes = data[0].ville.split(',').map(ville => ville.trim());
-          const localiteSelect = document.getElementById('comboboxVille');
-
-          if (villes.length === 1) {
-              // Cas où il y a une seule ville
-              console.log("Ville récupérée : ", villes[0]);
-              for (let i = 0; i < localiteSelect.options.length; i++) {
-                  console.log("Option ", i, ": ", localiteSelect.options[i].textContent);
-                  if (localiteSelect.options[i].textContent.trim() === villes[0].trim()) {
-                      localiteSelect.selectedIndex = i;
-                      console.log("Option sélectionnée : ", localiteSelect.options[i].textContent);
-                      // Ajouter la seule ville à villesSelectionnees
-                      updateVillesSelectionnees();
-                  }
-              }
-          } else {
-              // Cas où il y a plusieurs villes
-              // Remplir le premier select avec la première ville
-              for (let i = 0; i < localiteSelect.options.length; i++) {
-                  if (localiteSelect.options[i].textContent.trim() === villes[0].trim()) {
-                      localiteSelect.selectedIndex = i;
-                      break;
-                  }
-              }
-
-              // Ajouter des selects supplémentaires pour les villes restantes
-              for (let i = 1; i < villes.length; i++) {
-                  addLocaliteSelectFromData([villes[i]]); // Envoyer une liste avec une seule ville
-              }
-          }
-
-          // Mettre à jour la moyenne des évaluations et colorer les étoiles
-          const moyenneEvaluations = parseFloat(data[0].moyenne_evaluations);
-          document.getElementById('rating-value').value = moyenneEvaluations;
-          highlightStars(moyenneEvaluations);
-          isRatingSelected = true;
-
-      })
-      .catch(error => {
-          console.error('Erreur lors de la récupération des données de l\'entreprise : ', error);
-      });
-  }
-
-
-    // Gérer les étoiles de notation
-    const stars = document.querySelectorAll('.star');
-    const ratingValue = document.getElementById('rating-value');
-    let isRatingSelected = false; // Variable pour vérifier si une note a été sélectionnée
-
-    stars.forEach(star => {
-        star.addEventListener('click', () => {
-            const value = parseInt(star.getAttribute('data-value'));
-            ratingValue.value = value;
-            highlightStars(value);
-            isRatingSelected = true; // Mettre à jour la variable pour indiquer qu'une note a été sélectionnée
-        });
-    });
-
-    function highlightStars(value) {
-        stars.forEach(star => {
-            const starValue = parseInt(star.getAttribute('data-value'));
-            if (starValue <= value) {
-                star.style.color = '#ffc107'; // Change color to yellow
-            } else {
-                star.style.color = '#e4e5e9'; // Change color to gray
-            }
-        });
-    }
-    
-    document.getElementById('myform').addEventListener('submit', (event) => {
-
-    // Récupérer les valeurs des champs de formulaire
-    let nom_entreprise = document.getElementById('form_input').value;
-    let secteur_id = document.getElementById('comboboxSecteur').value;
-    let note = document.getElementById('rating-value').value;
-    console.log(secteur_id, note, villesSelectionnees);
-
-    const secteurSelect = document.getElementById('comboboxSecteur');
-    
-    if (!isRatingSelected) {
-        event.preventDefault(); // Empêcher la soumission du formulaire si aucune note n'a été sélectionnée
-        alert('Veuillez sélectionner une note.'); // Afficher un message d'erreur
-        return false;
-    } 
-    // Vérifier si aucun secteur n'a été sélectionné
-    if (secteurSelect.value == "x") {
-        event.preventDefault();
-        alert('Erreur: Veuillez sélectionner un secteur.');
-        return false;
-    }
-    
-    // Vérifier si aucun select de ville n'a été sélectionné
-    if (villesSelectionnees[0] == "") {
-        event.preventDefault();
-        alert('Erreur: Veuillez sélectionner une ville.');
-        return false;
-    }
-
-
-    // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`${ROOT}/ApiManager/company/editCompany/${id_entreprise}/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}`)
-        .then(response => {
-            if (response.ok) {
-                // Rediriger l'utilisateur en cas de succès
-                // window.location.href = `${ROOT}/company/`;
-            } else {
-                // Traiter les erreurs éventuelles
-                console.error('Erreur lors de la requête fetch : ', response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la requête fetch : ', error);
-        });
+    })
+    .catch(error => {
+        console.error('Erreur lors de la requête fetch : ', error);
     });
 });
 
 
+
+});
 
 async function confirmerSuppression(idEntreprise) {
 
@@ -361,10 +169,10 @@ async function confirmerSuppression(idEntreprise) {
   }
 }
 
-function update(idEntreprise){
-  window.location.href = "/pilot/edit?id=" + idEntreprise
+function update(idPilot){
+  window.location.href = "/pilot/edit/" + idPilot;
 }
 
 function stat() {
-    window.location.href = "/company/stats"
+    window.location.href = "/company/stats";
 }
