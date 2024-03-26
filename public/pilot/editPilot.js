@@ -147,7 +147,7 @@ fetch(`${ROOT}/ApiManager/pilot/editPilot/${id_pilot}/${namePilot}/${surnamePilo
 
 async function confirmerSuppression(idEntreprise) {
 
-  ROOT = 'http://stagetier.fr';
+  ROOT = 'https://stagetier.fr';
 
   if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
     try {

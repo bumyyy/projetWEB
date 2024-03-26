@@ -1,6 +1,6 @@
 let villesSelectionnees = [];
 villesSelectionnees[0] = document.getElementById('comboboxVille').value;
-ROOT = 'http://stagetier.fr';
+ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
     // Récupérer les éléments du DOM

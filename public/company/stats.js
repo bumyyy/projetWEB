@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     function statnote(){
-        let URL ='http://stagetier.fr/ApiManager/company/statop3';
+        let URL ='https://stagetier.fr/ApiManager/company/statop3';
         fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            let couleurs=[];
 
     function statsecteur(){
-        let URL ='http://stagetier.fr/ApiManager/company/statSector';
+        let URL ='https://stagetier.fr/ApiManager/company/statSector';
         fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
 statsecteur();
 
 function statville(){
-  let URL ='http://stagetier.fr/ApiManager/company/statCity';
+  let URL ='https://stagetier.fr/ApiManager/company/statCity';
   fetch(URL)
   .then(response => {
       if (!response.ok) {

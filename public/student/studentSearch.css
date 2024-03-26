@@ -9,7 +9,7 @@ html, body {
 body {
     font-family: Arial, sans-serif;
     background-color: rgba(255, 255, 255, 0.984);
-    background-image: url('http://stagetier.fr/public/img/etudiant.jpg');
+    background-image: url('https://stagetier.fr/public/img/etudiant.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -310,7 +310,7 @@ form{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
     height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
-    background-image: url('http://stagetier.fr/public/img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-image: url('https://stagetier.fr/public/img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     background-repeat: no-repeat;
     margin-bottom: 70%;
@@ -320,7 +320,7 @@ form{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
     height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
-    background-image: url('http://stagetier.fr/public/img/poubelle.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-image: url('https://stagetier.fr/public/img/poubelle.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     cursor: pointer;
     background-repeat: no-repeat;

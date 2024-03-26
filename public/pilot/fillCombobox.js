@@ -4,7 +4,7 @@ function getDataApi(URL, id, name) {
     .then(dataResponse => {
         console.log(id,name);
         // Correction ajoutée ici pour l'attribut name
-        let html = '<select id="'+name+'" name="'+name+'">'; // Ajout d'un guillemet après l'id
+        let html = '< aria-label="'+name+'" select id="'+name+'" name="'+name+'">'; // Ajout d'un guillemet après l'id
         html += '<option value="x">'+name+'</option>';
         dataResponse.forEach(element => {
             html += '<option value="'+element.id+'">'+element.nom+'</option>';
@@ -16,7 +16,7 @@ function getDataApi(URL, id, name) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    ROOT = 'http://stagetier.fr';
-    getDataApi(`${ROOT}/ApiManager/combox/city`, 'comboboxCentre', 'ville');
+    ROOT = 'https://stagetier.fr';
+    getDataApi(`${ROOT}/ApiManager/combox/city`, 'comboboxVille', 'ville');
 
 });
