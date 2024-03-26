@@ -8,7 +8,7 @@ Si la requête est réussie, elle renvoie un objet Response contenant les donné
 */
 let villesSelectionnees = [];
 villesSelectionnees[0] = document.getElementById('comboboxVille').value;
-ROOT = 'http://stagetier.fr';
+ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function confirmerSuppression(idEntreprise) {
 
-  ROOT = 'http://stagetier.fr';
+  ROOT = 'https://stagetier.fr';
 
   if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
     try {

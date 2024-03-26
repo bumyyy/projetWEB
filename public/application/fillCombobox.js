@@ -15,6 +15,6 @@ function getDataApi(URL, id, name) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    ROOT = 'http://stagetier.fr';
+    ROOT = 'https://stagetier.fr';
     getDataApi(`${ROOT}/ApiManager/combox/state`, 'comboboxVille', 'etat');
 });

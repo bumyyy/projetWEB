@@ -21,7 +21,7 @@
                 <div id="comboboxVille"></div>
 
                 <div id="comboboxPromo">
-                    <select name="promo" class="comboboxVille" id="promo" required>
+                    <select aria-label="Promotion" name="promo" class="comboboxVille" id="promo" required>
                         <option value = 'x'>promotion</option>
                         <option value = 'A1'>A1</option>
                         <option value = 'A2'>A2</option>
@@ -31,7 +31,7 @@
                     </select>
                 </div>
 
-                <select id="rate">
+                <select aria-label="note" id="rate">
                     <option value="x">durée</option>
                     <option value="1">0-2 mois</option>
                     <option value="2">2-4 mois</option>
@@ -41,7 +41,7 @@
                     <option value="6">10-12 mois</option>
                 </select>
 
-                <select id="date">
+                <select aria-label="date" id="date">
                     <option value="x">date</option>
                     <option value="01">janvier</option>
                     <option value="02">février</option>
@@ -60,12 +60,12 @@
             </div>
 
             <div class="wrap">
-                <button type="submit" class="search" id="btnsubmit"><img src="/public/img/loupe.png"></button>
+                <button aria-label="Rechercher" type="submit" class="search" id="btnsubmit"><img alt="Loupe" src="/public/img/loupe.png"></button>
     </form>
     {% if userType != 3 %}
-        <button onclick="window.location.href='/internship/create'" class="create">+</button>
+        <button aria-label="Creer" onclick="window.location.href='/internship/create'" class="create">+</button>
     {% endif %} 
-         <button onclick="stat()" class="create"><img src="/public/img/tableau-statistique.png"></button>
+         <button aria-label="Statistiques" onclick="stat()" class="create"><img alt="Statistique" src="/public/img/tableau-statistique.png"></button>
         </div>
 
 
