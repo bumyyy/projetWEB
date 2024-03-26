@@ -6,15 +6,8 @@ class Application extends Controller{
         $this->render('index');
     }
 
-    public function create(){
-        $this->render('create');
+    public function apply($idCompany){
+        $this->render('apply', ['idCompany' => $idCompany]);
     }
 
-    public function edit(){
-        $this->render('edit');
-    }
-
-    public function stats(){
-        $this->render('stats');
-    }
 }
