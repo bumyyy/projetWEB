@@ -3,6 +3,9 @@
 class Application extends Model {
 
     public function allApplication() {
+        
+        $userId = $_SESSION['userData']['id'];
+
         $sql = "SELECT 
         stage.id AS id_offre,
         stage.nom AS nom_offre,
@@ -30,17 +33,20 @@ class Application extends Model {
         LEFT JOIN competence ON competence.id = rechercher.id_competence
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
-        LEFT JOIN candidater ON stage.id = candidater.id_stage AND candidater.id_utilisateur = 1
-        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = 1
-        WHERE aimer.id_utilisateur = 1 OR candidater.id_utilisateur = 1
+        LEFT JOIN candidater ON stage.id = candidater.id_stage AND candidater.id_utilisateur = :id_user
+        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = :id_user
+        WHERE aimer.id_utilisateur = :id_user OR candidater.id_utilisateur = :id_user
         GROUP BY stage.id";
         $stmt = $this->conn->prepare($sql); 
-        $stmt->execute(); 
+        $stmt->execute(['id_user' => $userId]); 
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
 
     public function applicationBySearch($search) {
+
+        $userId = $_SESSION['userData']['id'];
+
         $sql = "SELECT 
         stage.id AS id_offre,
         stage.nom AS nom_offre,
@@ -68,18 +74,22 @@ class Application extends Model {
         LEFT JOIN competence ON competence.id = rechercher.id_competence
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
-        LEFT JOIN candidater ON stage.id = candidater.id_stage AND candidater.id_utilisateur = 1
-        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = 1
+        LEFT JOIN candidater ON stage.id = candidater.id_stage AND candidater.id_utilisateur = :id_user
+        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = :id_user
         WHERE stage_nom LIKE :recherche
-        AND aimer.id_utilisateur = 1 OR candidater.id_utilisateur = 1
+        AND aimer.id_utilisateur = :id_user OR candidater.id_utilisateur = :id_user
         GROUP BY stage.id";
         $stmt = $this->conn->prepare($sql); 
-        $stmt->execute(['recherche' => '%'.$search.'%']); //permet de bind values et d'ajouter les % pour le like
+        $stmt->execute(['recherche' => '%'.$search.'%',     //permet de bind values et d'ajouter les % pour le like
+                        'id_user' => $userId]); 
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
 
     public function selectApplication($applicationId) {
+
+        $userId = $_SESSION['userData']['id'];
+
         $sql = "SELECT 
         stage.id AS id_offre,
         stage.nom AS nom_offre,
@@ -107,12 +117,13 @@ class Application extends Model {
         LEFT JOIN competence ON competence.id = rechercher.id_competence
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
-        LEFT JOIN candidater ON stage.id = candidater.id_stage AND candidater.id_utilisateur = 1
-        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = 1
+        LEFT JOIN candidater ON stage.id = candidater.id_stage AND candidater.id_utilisateur = :id_user
+        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = :id_user
         WHERE stage.id LIKE :id_stage
         GROUP BY stage.id";
         $stmt = $this->conn->prepare($sql); 
-        $stmt->execute(['id_stage' => $applicationId]); //permet de bind values et d'ajouter les % pour le like
+        $stmt->execute(['id_stage' => $applicationId,
+                        'id_user' => $userId]); //permet de bind values et d'ajouter les % pour le like
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }

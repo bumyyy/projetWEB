@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  ROOT = 'http://stagetier.fr';
+  ROOT = 'https://stagetier.fr';
 
   let id_entreprise = document.getElementById('idCompany').getAttribute('idCompany');
 

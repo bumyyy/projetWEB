@@ -1,4 +1,4 @@
-    /*
+/*
 function toggleSubdivision(division) {
     let subdivision = division.querySelector('.popdown');
     let computedStyle = window.getComputedStyle(subdivision);
@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 */
                 "    </div>";
                 
-                if (userType != 3){
+                if (userType != 2){
                 html +=
                 "   <div class='mod'>"+
                 "   <div class='bord'>"+
