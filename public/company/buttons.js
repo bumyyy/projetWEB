@@ -1,22 +1,15 @@
-function update(idEntreprise){
-    window.location.href = "/student/edit/" + idEntreprise
-}
-
-function stat() {
-    window.location.href = "/company/stats"
-}
-
-
 async function confirmerSuppression(idEntreprise) {
 
     ROOT = 'https://stagetier.fr';
   
-    if (confirm("Voulez-vous vraiment rendre l'étudiant invisble ?")) {
+    if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
       try {
-        const url = `${ROOT}/ApiManager/student/deleteStudent/${idEntreprise}`;
-        const response = await fetch(url);
+        const url = `${ROOT}/ApiManager/company/deleteCompany/${idEntreprise}`;
+        const response = await fetch(url, {
+          method: 'POST'
+        });
         if (response.ok) {
-          console.log('Etudiant rendue invisible');
+          console.log('Entreprise rendue invisible');
           window.location.reload();
         } else {
           // Si la réponse n'est pas dans la plage 2 00-299, affichez une erreur
@@ -31,4 +24,12 @@ async function confirmerSuppression(idEntreprise) {
       console.log('Suppression annulée.');
       alert("Suppression annulée.");
     }
+  }
+  
+  function update(idEntreprise){
+    window.location.href = "/company/edit/" + idEntreprise
+  }
+  
+  function stat() {
+      window.location.href = "/company/stats"
   }

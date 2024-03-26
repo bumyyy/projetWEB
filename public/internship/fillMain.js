@@ -15,7 +15,7 @@ function toggleSubdivision(division) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-ROOT = 'http://stagetier.fr';
+ROOT = 'https://stagetier.fr';
 
 document.getElementById('form').addEventListener('submit', function(e) {
     e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
@@ -99,7 +99,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "</div>"+
             "<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>"+
             "<div class='lien_popup'>"+
-            "<a href='http://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
+            "<a href='https://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
             "</div>"+
             "</div>"+
             "    </div>";

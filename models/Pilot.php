@@ -9,9 +9,8 @@ class Pilot extends Model {
         utilisateur.prenom AS prenom_pilote, 
         utilisateur.mail AS mail_pilote,
         utilisateur.type_, 
-        gerer.id_utilisateur AS id_gerer,
-        gerer.id_promotion AS id_promotion, 
-        promotion.nom AS nom_promotion,
+        GROUP_CONCAT(gerer.id_promotion SEPARATOR ', ') AS id_promotion, 
+        GROUP_CONCAT(promotion.nom SEPARATOR ', ') AS nom_promotion,
         ville.id AS id_centre,
         ville.nom AS nom_centre
         FROM utilisateur
@@ -20,6 +19,7 @@ class Pilot extends Model {
         LEFT JOIN ville ON promotion.id_ville = ville.id
         WHERE utilisateur.type_ = 2 -- Type pilote
         AND utilisateur.hide = 0
+        group by id_pilote
         ORDER BY utilisateur.nom;";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(); 
@@ -140,6 +140,7 @@ class Pilot extends Model {
                 $promotionId = $stmtPromotion->fetchColumn();
     
                 if ($promotionId) {
+                    echo("samazerargzrgzzgzgfz");
                     $sqlLocation = "INSERT INTO gerer (id_utilisateur, id_promotion) VALUES (:utilisateur_id, :promotion_id)";
                     $stmtLocation = $this->conn->prepare($sqlLocation);
                     $stmtLocation->execute([

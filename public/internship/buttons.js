@@ -9,7 +9,7 @@ function stat() {
 
 
 async function confirmerSuppression(idEntreprise) {
-  ROOT = 'http://stagetier.fr';
+  ROOT = 'https://stagetier.fr';
 
   if (confirm("Voulez-vous vraiment supprimer le stage?")) {
     try {

@@ -30,7 +30,7 @@ class Combox extends Model {
     }
 
     public function promotion() {
-        $sql = 'SELECT id, nom FROM promotion';
+        $sql = 'SELECT distinct(nom) FROM promotion';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 
