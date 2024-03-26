@@ -128,5 +128,25 @@ class Application extends Model {
         parent::sendJSON($data);
     }
 
+    public function uploadFile($file) {
+        $_FILES['cv']['name'] = $file['name'];      // 
+        // $_FILES['cv']['tmp_name'] = $file['tmp_name'];   "/tmp/675134xaz.ext"
+
+        $userId = $_SESSION['userData']['id'];
+
+        $dest_filename = "cv_" . $userId . "_" . time() . "_" . $_FILES['cv']['name'];  // ex: cv_12_2345432_cvTEST1.ext
+        $dest_fullpath = "uploads/" . $dest_filename;   // ex: uploads/cv_12_2345432_cvTEST1.ext
+
+        move_uploaded_file($_FILES['cv']['tmp_name'], $dest_fullpath);
+
+        $sql = "UPDATE candidater SET cv = :cv WHERE id_utilisateur = :id_user";
+        $stmt = $this->conn->prepare($sql); 
+        $stmt->execute(['cv' => $dest_filename,
+                        'id_user' => $userId]); //permet de bind values et d'ajouter les % pour le like
+        $data = $stmt->fetchAll(); 
+        parent::sendJSON($data);
+
+    }
+
 
 }

@@ -3,11 +3,14 @@
 class Internship extends Model {
 
     public function allInternship() {
+
+        $userId = $_SESSION['userData']['id'];
+
         $sql = "SELECT 
         stage.id AS id_offre,
         stage.nom AS nom_offre,
         entreprise.nom AS nom_entreprise,
-        competence.id AS id_competence,
+        GROUP_CONCAT(DISTINCT competence.id SEPARATOR ', ') AS id_competence,
         GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
         ville.id AS id_ville,
         GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
@@ -19,7 +22,9 @@ class Internship extends Model {
         FLOOR(DATEDIFF(stage.date_fin, stage.date_debut) / 30) AS duree_mois_stage,
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
-        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
+        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        aimer.id_stage AS id_stage_aimé,
+        aimer.id_utilisateur AS id_utilisateur
         FROM stage
         INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
         LEFT JOIN rechercher ON stage.id = rechercher.id_stage
@@ -27,18 +32,23 @@ class Internship extends Model {
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
-        GROUP BY stage.id, competence.id;   ";
+        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = :id_user
+        GROUP BY stage.id;   ";
         $stmt = $this->conn->prepare($sql); 
-        $stmt->execute(); 
+        $stmt->execute(['id_user' => $userId]); 
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
 
     public function internshipBySearch($search) {
+
+        $userId = $_SESSION['userData']['id'];
+
         $sql = "SELECT 
         stage.id AS id_offre,
         stage.nom AS nom_offre,
         entreprise.nom AS nom_entreprise,
+        GROUP_CONCAT(DISTINCT competence.id SEPARATOR ', ') AS id_competence,
         GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
         ville.id AS id_ville,
         GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS localites,
@@ -49,7 +59,9 @@ class Internship extends Model {
         FLOOR(DATEDIFF(stage.date_fin, stage.date_debut) / 30) AS duree_mois_stage, -- Durée du stage en mois (approximatif)
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
-        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
+        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        aimer.id_stage AS id_stage_aimé,
+        aimer.id_utilisateur AS id_utilisateur
         FROM stage
         INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
         LEFT JOIN rechercher ON stage.id = rechercher.id_stage
@@ -57,19 +69,23 @@ class Internship extends Model {
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
+        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = :id_user
         WHERE stage.nom LIKE :recherche
         GROUP BY stage.id;";
         $stmt = $this->conn->prepare($sql); 
-        $stmt->execute(['recherche' => '%'.$search.'%']); //permet de bind values et d'ajouter les % pour le like
+        $stmt->execute(['recherche' => '%'.$search.'%',   //permet de bind values et d'ajouter les % pour le like
+                        'id_user' => $userId]); 
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
 
     public function selectInternship($internshipId) {
+
         $sql = "SELECT 
         stage.id AS id_offre,
         stage.nom AS nom_offre,
         entreprise.nom AS nom_entreprise,
+        GROUP_CONCAT(DISTINCT competence.id SEPARATOR ', ') AS id_competence,
         GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
         ville.id AS id_ville,
         ville.nom AS nom_ville,
@@ -81,7 +97,9 @@ class Internship extends Model {
         FLOOR(DATEDIFF(stage.date_fin, stage.date_debut) / 30) AS duree_mois_stage, -- Durée du stage en mois (approximatif)
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
-        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
+        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        aimer.id_stage AS id_stage_aimé,
+        aimer.id_utilisateur AS id_utilisateur
         FROM stage
         INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
         LEFT JOIN rechercher ON stage.id = rechercher.id_stage
@@ -89,6 +107,7 @@ class Internship extends Model {
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
+        LEFT JOIN aimer ON stage.id = aimer.id_stage
         WHERE stage.id LIKE :id_stage
         GROUP BY stage.id;";
         $stmt = $this->conn->prepare($sql); 
