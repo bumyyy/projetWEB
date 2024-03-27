@@ -194,6 +194,26 @@ class ApiManager extends Controller{
                 $this->Student->$action($field1, $field2, $field3, $field4, $field5, $field6);
                 break;
             
+            case 'statNbCandidacy':
+                $this->Student->$action($field1);
+                break;
+
+            case 'statNbWaiting':
+                $this->Student->$action($field1);
+                break;
+
+            case 'statNbAdmission':
+                $this->Student->$action($field1);
+                break;
+
+            case 'statNbRefusal':
+                $this->Student->$action($field1);
+                break;
+
+            case 'statNbLike':
+                $this->Student->$action($field1);
+                break;
+
             default:
                 echo "Action for 'student' not define";
                 break;

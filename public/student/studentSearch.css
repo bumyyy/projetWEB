@@ -306,6 +306,20 @@ form{
 .p{
     margin:0;
 }
+
+.btn-img{
+    padding: 100%;
+}
+.stats{
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille min et max de l'image */
+    height: clamp(14px,1.8vw,24px); /* Taille min et max de l'image *//* Taille de l'étoile */
+    background-image: url('http://stagetier.fr/public/img/tableau-statistique.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 70%;
+    cursor: pointer;
+}
 .update{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */

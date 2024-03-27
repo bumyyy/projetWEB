@@ -1,56 +1,117 @@
-/*
-function toggleSubdivision(division) {
-    let subdivision = division.querySelector('.popdown');
-    let computedStyle = window.getComputedStyle(subdivision);
-
-    if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
-        subdivision.style.display = 'block';
-        document.body.classList.add('no-scroll');
-    } else {
-        subdivision.style.display = 'none';
-        document.body.classList.remove('no-scroll');
-    }
-}
-*/
+let tab_donne = [];
+ROOT = 'https://stagetier.fr';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    ROOT = 'https://stagetier.fr';
+
+const id_student=window.location.href.split('/').pop();
+
+    function nbStage(){ 
+        let URL =`https://stagetier.fr/ApiManager/student/statNbCandidacy/${id_student}`;
+        fetch(URL)
+        .then(response => {
+            if (!response.ok) {
+              throw new Error('La requête a échoué avec le code: ' + response.status);
+            }
+            return response.json();
+          })
+          .then(data => {
+          document.getElementById("nombreC").textContent = data[0].nombre_de_candidatures;
+          })
+          .catch(error => {
+            console.error('Une erreur s\'est produite:', error);
+          });
+    }
+    nbStage(); 
+
+    let tableau_couleurs = ['rgb(246, 100, 100)', 'rgb(230, 190, 117)', 'rgb(125, 180, 125)'];            let couleurs=[];
     
-    document.getElementById('form').addEventListener('submit', function(e) {
-        e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
-        document.getElementById('main').innerHTML = ''; // reset la page
     
-        let dataFavorite = document.getElementById('checkboxFavorite').checked;
-        let dataEtat = document.getElementById('etat').value;
-        let dataSearch = document.getElementById('search').value;
-        
-        let URL_ = dataSearch !== "" 
-            ? `${ROOT}/ApiManager/application/applicationBySearch/${dataSearch}` 
-            : `${ROOT}/ApiManager/application/allApplication/`;
+    function nbRefusal(){
+      let URL =`https://stagetier.fr/ApiManager/student/statNbRefusal/${id_student}`;
+      fetch(URL)
+      .then(response => {
+          if (!response.ok) {
+            throw new Error('La requête a échoué avec le code: ' + response.status);
+          }
+          return response.json();
+        })
+        .then(data => {
+          let table = [];
+          if(data == null || data == ""){
+            table.push(0);
+          } else {
+            table.push(data[0].nombre);
+          }
+        nbWaiting(table);
+        })
+        .catch(error => {
+          console.error('Une erreur s\'est produite:', error);
+        });
+    }
+    nbRefusal();
+
+
+    function nbWaiting(table){
+      let URL =`https://stagetier.fr/ApiManager/student/statNbWaiting/${id_student}`;
+      fetch(URL)
+      .then(response => {
+          if (!response.ok) {
+            throw new Error('La requête a échoué avec le code: ' + response.status);
+          }
+          return response.json();
+        })
+        .then(data => {
+          
+          if(data == null || data == ""){
+            table.push(0);
+          } else {
+            table.push(data[0].nombre);
+          }
+          
+        nbAdmission(table);
+        })
+        .catch(error => {
+          console.error('Une erreur s\'est produite:', error);
+        });
+    }
+
+
+    function nbAdmission(table){
+      let URL =`https://stagetier.fr/ApiManager/student/statNbAdmission/${id_student}`;
+      fetch(URL)
+      .then(response => {
+          if (!response.ok) {
+            throw new Error('La requête a échoué avec le code: ' + response.status);
+          }
+          return response.json();
+        })
+        .then(data => {
+          
+          if(data == null || data == ""){
+            table.push(0);
+          } else {
+            table.push(data[0].nombre);
+          }
+          Localité(table, tableau_couleurs);
+        })
+        .catch(error => {
+          console.error('Une erreur s\'est produite:', error);
+        });
+    }
+
+function candidatures(){
+  let URL_ = `${ROOT}/ApiManager/application/allApplication/`;
             
         fetch(URL_)
         .then(response => response.json())
-        .then(dataResponse => {
-            return fetch(`${ROOT}/FilterSearch/filterApplication/${dataEtat}/${dataFavorite}`, {
-                method: 'POST', 
-                headers: {
-                    'Content-Type': 'application/json', 
-                },
-                
-                body: JSON.stringify({
-                    data: dataResponse, 
-                })
-            });
-        })
-        .then(finalData => finalData.json()) 
-        .then(finalData => {
-            let userType = finalData.userType;
+        .then(data => {
+            let userType = data.userType;
             let tabnote = [];
             let etatCandidatureTexte = '';
             
 
-            finalData.candidatures.forEach ((candidature) => {
+            data.forEach ((candidature) => {
                 tabnote.push(candidature.etat_candidature);
 
                 switch (candidature.etat_candidature) {
@@ -158,58 +219,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     favorite.style.color = '#e4e5e9'; // Sinon, colorier en gris
                 }
+              });
                 
-            })
-            
-
-            // Sélectionner tous les cœurs après que le DOM est complètement chargé
-            const hearts = document.querySelectorAll('.heart');
-
-            hearts.forEach(heart => {
-                heart.addEventListener('click', function () {
-                    const internshipId = this.getAttribute('data-id');
-                    const internshipLiked = this.getAttribute('data-value');
-                    console.log("valeur :" + internshipLiked);
-
-                    if (internshipLiked != "null") {
-                        // Si déjà favori, décolorer et supprimer de la table aimer
-                        fetch(`${ROOT}/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
-                            .then(data => {
-                                if (!data.ok) {
-                                    throw new Error('Network response was not ok');
-                                }
-                                console.log('Removed from favorites', data);
-                                this.style.color = '#e4e5e9'; // Gris
-                                this.setAttribute('data-value', "null"); // Mettre à jour l'état du cœur
-                                console.log("nouvelle valeur :" + internshipLiked);
-                            })
-                            .catch(error => alert('Error:', error));
-                    } else {
-                        // Sinon, colorier et ajouter à la table aimer
-                        fetch(`${ROOT}/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
-                            .then(data => {
-                                if (!data.ok) {
-                                    throw new Error('Network response was not ok');
-                                }
-                                console.log('Added to favorites', data);
-                                this.style.color = '#fe8bb2'; // Rose
-                                this.setAttribute('data-value', internshipId); // Mettre à jour l'état du cœur
-                                console.log("nouvelle valeur :" + internshipLiked);
-                            })
-                            .catch(error => alert('Error:', error));
-                        }
-                    });
-                });
-
-                        
-            console.log(tabnote);
-            pagination();
-        })
-        .catch(error => console.error('Error:', error));
-    });
-    
-    
-    });//fin du domloadcontent
+            });
+}
+candidatures();
 
 
-    
+
+
+})//fin du DOM
+
+
+
+
+
+function Localité(valeurs, couleurs){ 
+  let camembert = document.getElementById('Localité');
+  let total = valeurs.reduce((a,b) => a+b,0);
+  let gradientString = 'conic-gradient(';
+  let percentage = 0;
+  let endpercentage = 0;
+  
+  for (let i = 0; i < valeurs.length; i++){
+      endpercentage += (valeurs[i] / total) * 100;
+      gradientString += `${couleurs[i]} ${percentage}% ${endpercentage}%, `;
+      percentage = endpercentage;
+  }
+  
+  gradientString = gradientString.slice(0, -2);
+  gradientString += ')';
+  camembert.style.background = gradientString;
+
+}
+
+

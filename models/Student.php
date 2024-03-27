@@ -119,7 +119,7 @@ class Student extends Model {
 
     }
 
-    public function statNbCandidature($studentId){
+    public function statNbCandidacy($studentId){
         $req = "SELECT utilisateur.nom AS nom_etudiant, 
         utilisateur.prenom AS preonm_etudiant, 
         COUNT(*) AS nombre_de_candidatures
@@ -134,14 +134,13 @@ class Student extends Model {
         parent::sendJSON($data);
     }
     
-    public function statNbAttente($studentId){
+    public function statNbWaiting($studentId){
         $req = "SELECT utilisateur.nom AS nom_etudiant,      
         utilisateur.prenom AS prenom_etudiant, 
-        COUNT(candidater.id_stage) AS nombre_offres_en_attentes 
+        COALESCE(COUNT(candidater.id_stage), 0) AS nombre
         FROM utilisateur 
-        LEFT JOIN candidater ON utilisateur.id = candidater.id_utilisateur
-        WHERE utilisateur.id = :studentId 
-        AND candidater.etat = 0
+        LEFT JOIN candidater ON utilisateur.id = candidater.id_utilisateur AND candidater.etat = 0
+        WHERE utilisateur.id = :studentId
         GROUP BY utilisateur.id, utilisateur.nom, utilisateur.prenom;"; 
         $stmt = $this->conn->prepare($req);
         $stmt->execute(['studentId'=> $studentId]);
@@ -154,11 +153,10 @@ class Student extends Model {
     public function statNbAdmission($studentId){
         $req = "SELECT utilisateur.nom AS nom_etudiant, 
         utilisateur.prenom AS prenom_etudiant,
-        COUNT(candidater.id_stage) AS nombre_offres_acceptees
+        COALESCE(COUNT(candidater.id_stage), 0) AS nombre
         FROM utilisateur 
-        LEFT JOIN candidater ON utilisateur.id = candidater.id_utilisateur 
+        LEFT JOIN candidater ON utilisateur.id = candidater.id_utilisateur AND candidater.etat = 1
         WHERE utilisateur.id = :studentId
-        AND candidater.etat = 1
         GROUP BY utilisateur.id, utilisateur.nom, utilisateur.prenom; ";
         $stmt = $this->conn->prepare($req);
         $stmt->execute(['studentId'=> $studentId]);
@@ -168,14 +166,13 @@ class Student extends Model {
         parent::sendJSON($data);
     }
 
-    public function statNbRefus($studentId){
+    public function statNbRefusal($studentId){
         $req = "SELECT utilisateur.nom AS nom_etudiant, 
         utilisateur.prenom AS prenom_etudiant, 
-        COUNT(candidater.id_stage) AS nombre_offres_acceptees 
+        COALESCE(COUNT(candidater.id_stage), 0) AS nombre 
         FROM utilisateur
-        LEFT JOIN candidater ON utilisateur.id = candidater.id_utilisateur
+        LEFT JOIN candidater ON utilisateur.id = candidater.id_utilisateur AND candidater.etat = 2
         WHERE utilisateur.id = :studentId
-        AND candidater.etat = 2
         GROUP BY utilisateur.id, utilisateur.nom, utilisateur.prenom;"; 
  
         $stmt = $this->conn->prepare($req);
@@ -190,7 +187,7 @@ class Student extends Model {
     public function statNbLike($studentId){
         $req = "SELECT utilisateur.nom AS nom_etudiant,
         utilisateur.prenom AS prenom_etudiant, 
-        COUNT(aimer.id_stage) AS nombre_offres_aimees
+        COALESCE(COUNT(aimer.id_stage), 0) AS nombre_offres_aimees
         FROM utilisateur 
         LEFT JOIN aimer ON utilisateur.id = aimer.id_utilisateur
         WHERE utilisateur.id = :studentId

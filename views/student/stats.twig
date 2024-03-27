@@ -1,0 +1,60 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+	Statistiques Stages
+{% endblock %}
+
+{% block otherCSS %}
+	<link rel="stylesheet" href="\public\student\stats.css">
+{% endblock %}
+
+{% block body %}
+
+	<!--La class carre représente ici les blocks dans lequels sont placé les informations lié aux entreprises-->
+
+	<div class="main">
+
+		<div class="alldiag">
+			<div class="diag1">
+				<div class="diagtitle">
+					<h1>État des Candidatures</h1>
+				</div>
+				<div class="diagcomplet">
+					<div class="diagNbr" id="diagNbr">
+						<p>Nombre de stage auquel l'élève à candidater :</p>
+						<p class='gras' id="nombreC">.
+						</p>
+						<!--<p class="sec1">secteur 1</p> <p class="sec2">secteur 2</p> <p class="sec3">secteur 3</p> -->
+					</div>
+				</div>
+			</div>
+			<div class="diag1">
+				<div class="diagcomplet">
+					<div class="legend" id="legend">
+						<p class='rouge'>Stages refusés</p>
+						<p class='orange'>Stages en attentes</p>
+						<p class='vert'>Stages acceptés</p>
+					</div>
+					<div class="Localité" id="Localité"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="top3">
+			<div class="diag1">
+				<div class="diagtitle2">
+					<h1>Candidatures</h1>
+				</div>
+			</div>
+
+			<ul class="carre" id='carre'>
+
+            </ul>
+
+		</div>
+
+
+	</div>
+
+</div>{% endblock %}{% block otherJS %}
+<script src="\public\student\stats.js"></script>{% endblock %}

@@ -12,7 +12,7 @@ ROOT = 'https://stagetier.fr';
 document.addEventListener("DOMContentLoaded", function() {
 
     // Récupérer les éléments du DOM
-    let id_entreprise = document.getElementById('idCompany').getAttribute('idCompany');
+    let id_entreprise = document.getElementById('idStudent').getAttribute('idStudent');
 
     // Récupérer les éléments du DOM
     const nom = document.getElementById('nom');
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Vérifier si id_entreprise est un nombre valide
     if (isNaN(id_entreprise) || id_entreprise <= 0) {
-        console.error('ID d\'entreprise invalide.');
+        console.error('ID d\'élève invalide.');
         return;
     }
 
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
         })
         .catch(error => {
-            console.error('Erreur lors de la récupération des données de l\'entreprise : ', error);
+            console.error('Erreur lors de la récupération des données de l\'étudiant : ', error);
         });
 
     document.getElementById('myform').addEventListener('submit', (event) => {
@@ -79,3 +79,41 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+// -------------------------bouton.js-------------------------//
+async function confirmerSuppression(idEntreprise) {
+
+    ROOT = 'http://stagetier.fr';
+  
+    if (confirm("Voulez-vous vraiment rendre l'étudiant invisble ?")) {
+      try {
+        const url = `${ROOT}/ApiManager/student/deleteStudent/${idEntreprise}`;
+        const response = await fetch(url);
+        if (response.ok) {
+          console.log('Etudiant rendue invisible');
+          window.location.reload();
+        } else {
+          // Si la réponse n'est pas dans la plage 2 00-299, affichez une erreur
+          alert("Erreur.");
+          throw new Error('Réponse réseau non ok');
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+        alert("Une erreur s'est produite lors de la suppression.");
+      }
+    } else {
+      console.log('Suppression annulée.');
+      alert("Suppression annulée.");
+    }
+  }
+
+  function update(idEntreprise){
+    window.location.href = "/student/edit/" + idEntreprise
+}
+
+function create() {
+    window.location.href = "/student/create"
+}
+
+function stats(id_student) {
+  window.location.href = `/student/stats/${id_student}`
+}
