@@ -64,6 +64,10 @@ class ApiManager extends Controller{
             case 'statop3':
                 $this->Company->$action();
                 break;
+
+            case 'rate':
+                $this->Company->$action($field1, $field2, $field3);
+                break;
                 
             default:
                 echo "Action for 'company' not define";

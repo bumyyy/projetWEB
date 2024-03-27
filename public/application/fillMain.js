@@ -64,7 +64,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         etatCandidatureTexte = "Refusé";
                         break;
                     case 3:
-                        etatCandidatureTexte = "Terminé";
+                        etatCandidatureTexte = "Terminé, à noter";
+                        break;
+                    case 4:
+                        etatCandidatureTexte = "Terminé, note faite";
                         break;
                     case null:
                         etatCandidatureTexte = "Pas candidaté";
@@ -102,36 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 "            <p  title='étudiant(s) ayant déja postulé'>"+candidature.nombre_etudiants_postules+" étudiant(s) ayant postulé</p>"+
                 "            <p>"+etatCandidatureTexte+"</p>"+
                 "        </div>"+        
-       /*         "<div id='myModal' class='popdown'>"+
-                "<div class='fermer'><button id='closebtn'>x</button></div>"+
-                "<div class='name_popup'>"+
-                "<h1>"+stage.nom_entreprise+"</h1>"+
-                "<p>"+stage.secteur_activite+"</p>"+
-                "</div>"+
-                "<div class='localité_popup'>"+
-                "<h2>Localité</h2>"+
-                "<p>"+stage.ville+"</p>"+
-                "</div>"+
-                "<div class='secteur_popup'>"+
-                "<h2>Note</h2>"+
-                "<div class='rating' data-rating='3'>"+
-                    "<input type='hidden' id='rating-value' name='rating-value' value='0'>"+
-                    "<span class='star' data-value='5'>&#9733;</span>"+
-                    "<span class='star' data-value='4'>&#9733;</span>"+
-                    "<span class='star' data-value='3'>&#9733;</span>"+
-                    "<span class='star' data-value='2'>&#9733;</span>"+
-                    "<span class='star'' data-value='1'>&#9733;</span>"+
-                "</div>"+
-                "<div class='note' id='note'>0</div>"+
-                "</div>"+
-                "<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>"+
-                "<div class='lien_popup'>"+
-                "<a href='https://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
-                "</div>"+
-                "</div>"+
-
-
-                */
                 "    </div>";
                 
                 if (userType != 2){
@@ -140,8 +113,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 "   <div class='bord'>"+
                 "       <span class='heart' data-value='" + candidature.id_stage_aimé + "' data-id='" + candidature.id_offre + "'>&#9829;</span>" +
                         "<input type='hidden' id='rating-value' name='rating-value' value='0'>"+
-                "       <span onclick=apply("+candidature.id_offre+") class='post'></span>"+      
-                "   </div>";
+                "       <span onclick=apply("+candidature.id_offre+") class='post'></span>";
+                if (candidature.etat_candidature == 3){
+                let userId = document.getElementById("idUser").getAttribute("data-iduser");
+                console.log(userId);
+                html +="<span onclick='rate("+candidature.id_entreprise+","+userId+")' class='pen'></span>";   
+                }
+                html +="   </div>";
                 "   </div>";
                 };
                 html +=
@@ -212,4 +190,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });//fin du domloadcontent
 
 
+function rate(idCompany, idUser) {
+    // Demande à l'utilisateur de noter l'entreprise
+    let rating = prompt("Veuillez entrer une note entre 1 et 5 pour cette entreprise:", "");
     
+    // Convertit la réponse en nombre et vérifie qu'elle est comprise entre 1 et 5
+    rating = Number(rating);
+    if (!Number.isNaN(rating) && rating >= 1 && rating <= 5) {
+        // Construit l'URL de l'API
+        const apiUrl = `//stagetier.fr/apiManager/company/rate/${idCompany}/${idUser}/${rating}`;
+
+        // Appel de l'API avec fetch
+        fetch(apiUrl)
+        
+        //reset la page
+        location.reload(true);
+
+    } else {
+        // Si l'entrée est invalide, affiche un message d'erreur
+        alert("Veuillez entrer un nombre valide entre 1 et 5.");
+    }
+    }
