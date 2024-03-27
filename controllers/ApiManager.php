@@ -218,6 +218,19 @@ class ApiManager extends Controller{
             case 'selectApplication':
                 $this->Application->$action($field1);
                 break;
+
+            case 'allApplicationByStudent':
+                $this->Application->$action($field1);
+                break;
+
+            case 'uploadFile':
+                $this->Application->$action($field1, $field2);
+                break;
+        
+            case 'submitApplication':
+                $this->Application->$action($field1, $field2);
+                break;
+                    
             
             default:
                 echo "Action for 'application' not define";

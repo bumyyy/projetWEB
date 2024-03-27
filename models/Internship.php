@@ -271,9 +271,10 @@ class Internship extends Model {
     public function statDuration(){
         $req = "SELECT 
         DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage, -- Calcul de la durée du stage en jour
+        FLOOR(DATEDIFF(stage.date_fin, stage.date_debut) / 30) AS duree_mois_stage,
         COUNT(*) AS nombre_apparition
         FROM stage
-        GROUP BY duree_stage
+        GROUP BY duree_mois_stage
         ORDER BY duree_stage DESC";
         $stmt = $this->conn->prepare($req);
         $stmt->execute();
