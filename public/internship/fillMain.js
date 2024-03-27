@@ -69,7 +69,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "        </div>" +
             "        <div class='localité'>" +
             "            <h2>"+stage.localites+"</h2>" +
-            "            <p>"+stage.competences_requises+"</p>" +
+            "            <p class='scroll'>"+stage.competences_requises+"</p>" +
             "        </div>" +
             "        <div class='secteur'>" +
             "            <h2>"+stage.type_promotion_concerne+"</h2>" +
