@@ -248,7 +248,7 @@ class ApiManager extends Controller{
                 break;
         
             case 'submitApplication':
-                $this->Application->$action($field1, $field2);
+                $this->Application->$action($field1, $field2, $field3);
                 break;
                     
             
