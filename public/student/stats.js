@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const id_student=window.location.href.split('/').pop();
 
     function nbStage(){ 
-        let URL =`http://stagetier.fr/ApiManager/student/statNbCandidacy/${id_student}`;
+        let URL =`https://stagetier.fr/ApiManager/student/statNbCandidacy/${id_student}`;
         fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -27,7 +27,7 @@ const id_student=window.location.href.split('/').pop();
     
     
     function nbRefusal(){
-      let URL =`http://stagetier.fr/ApiManager/student/statNbRefusal/${id_student}`;
+      let URL =`https://stagetier.fr/ApiManager/student/statNbRefusal/${id_student}`;
       fetch(URL)
       .then(response => {
           if (!response.ok) {
@@ -52,7 +52,7 @@ const id_student=window.location.href.split('/').pop();
 
 
     function nbWaiting(table){
-      let URL =`http://stagetier.fr/ApiManager/student/statNbWaiting/${id_student}`;
+      let URL =`https://stagetier.fr/ApiManager/student/statNbWaiting/${id_student}`;
       fetch(URL)
       .then(response => {
           if (!response.ok) {
@@ -77,7 +77,7 @@ const id_student=window.location.href.split('/').pop();
 
 
     function nbAdmission(table){
-      let URL =`http://stagetier.fr/ApiManager/student/statNbAdmission/${id_student}`;
+      let URL =`https://stagetier.fr/ApiManager/student/statNbAdmission/${id_student}`;
       fetch(URL)
       .then(response => {
           if (!response.ok) {
@@ -110,6 +110,23 @@ candidatures();
 
 })//fin du DOM
 
+function Localité(valeurs, couleurs){ 
+  let camembert = document.getElementById('Localité');
+  let total = valeurs.reduce((a,b) => a+b,0);
+  let gradientString = 'conic-gradient(';
+  let percentage = 0;
+  let endpercentage = 0;
+  
+  for (let i = 0; i < valeurs.length; i++){
+      endpercentage += (valeurs[i] / total) * 100;
+      gradientString += `${couleurs[i]} ${percentage}% ${endpercentage}%, `;
+      percentage = endpercentage;
+  }
+  
+  gradientString = gradientString.slice(0, -2);
+  gradientString += ')';
+  camembert.style.background = gradientString;
 
+}
 
 
