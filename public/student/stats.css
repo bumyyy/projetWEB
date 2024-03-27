@@ -73,7 +73,7 @@ margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    margin-left: 20px;
 
 }
 .alldiag{
@@ -101,13 +101,14 @@ margin-top: 20px;
 }
 .diagtitle2{
     background-color: #f0f0f07a;
-    width: 40%;
+    width: 60%;
     text-align: center;
     border-radius: 60px;
     margin-bottom: 20px;
 }
 .diagtitle h1{
     font-size: 19px;
+
 }
 .diagtitle2 h1{
     font-size: 19px;
@@ -118,6 +119,7 @@ margin-top: 20px;
     justify-content: center;
     align-items: center;
     margin-bottom: 60px;
+    margin-left: 20px;
 }
 .diagNbr{
     text-align: center;
@@ -126,8 +128,10 @@ margin-top: 20px;
     padding: 2%;
     flex-direction: column;
     display: flex;
-    height: 8vw;
-    width: 20vw;
+    height: 45%;
+    width: 120%;
+    /* height: 8vw;
+    width: 20vw; */
 }
 .Secteur{
 
@@ -206,12 +210,11 @@ margin-top: 20px;
         
     }
     
-    }
-    
       .diagcomplet{
         flex-direction: column;
     }
-}   
+}
+   
 @media only screen and (max-width: 360px) {
     .top3{
         width: 100%;
