@@ -129,6 +129,26 @@ class Application extends Model {
     }
 
     public function allApplicationByStudent($userId) {
+        // // Récupérer le contenu JSON de la requête
+        // $jsonData = file_get_contents('php://input');
+    
+        // // Décoder le contenu JSON en tableau associatif
+        // $candidatures = json_decode($jsonData, true);
+        // $candidatures = $candidatures['data'];
+
+        
+        // // Récupérer le type d'utilisateur depuis la session
+        // $utilisateur = isset($_SESSION['userData']['type']) ? $_SESSION['userData']['type'] : null;
+
+        // // Préparer la réponse
+        // $response = [
+        //     'candidatures' => array_values($candidatures), // Réindexe et inclut les candidatures filtrées
+        //     'userType' => $utilisateur
+        // ];
+
+        // // Encodage et envoi de la réponse
+        // echo json_encode($response);
+
 
         $sql = "SELECT 
         stage.id AS id_offre,
@@ -165,6 +185,9 @@ class Application extends Model {
         $stmt->execute(['id_user' => $userId]); 
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
+
+         
+
     }
 
     public function uploadFile($internshipId, $dest_filename) {

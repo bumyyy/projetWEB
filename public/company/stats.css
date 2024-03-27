@@ -148,8 +148,6 @@ margin-top: 20px;
     padding: 2%;
     margin-left: 25px;
 }
-.loc0,.loc1,.loc2,.loc3{
-}
 
 .diagtitle{
     background-color: #f0f0f07a;
@@ -194,9 +192,6 @@ margin-top: 20px;
     height: 260px;
     border-radius: 50%;
     margin-bottom: 60px;
-}
-.top3{
-    
 }
 .rating {
     display: flex;
