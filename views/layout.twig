@@ -35,13 +35,13 @@
             <ul class="header-nav">
                 <li><a href="/internship/">Stages</a></li>
                 <li><a href="/company/">Entreprises</a></li>
-                {% if utilisateur == 1 %}
-                    <li><a href="/pilot/">Pilotes</a></li>
+                {% if userType == 1 %}
+                <li><a href="/pilot/">Pilotes</a></li>
                 {% endif %} 
-                {% if utilisateur != 3 %}
+                {% if userType != 3 %}
                     <li><a href="/student/">Étudiants</a></li>
                 {% endif %} 
-                {% if utilisateur != 2 %}
+                {% if userType != 2 %}
                     <li><a href="/application/">Candidatures</a></li>
                 {% endif %} 
             </ul>
