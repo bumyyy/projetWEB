@@ -17,12 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ROOT = 'https://stagetier.fr';
 
+
 document.getElementById('form').addEventListener('submit', function(e) {
     e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
     document.getElementById('main').innerHTML = ''; // reset la page
 
-    let dataSecteur = document.getElementById('competence').value;
-    let dataVille = document.getElementById('ville').value;
+    
+    let dataSecteur = 'x';
+    let dataVille = 'x';
+    if (companyName == null || companyName == "") {
+        let dataSecteur = document.getElementById('competence').value;
+        let dataVille = document.getElementById('ville').value;
+    }
+    
     let dataPromo = document.getElementById('promo').value;
     let dataNote = document.getElementById('rate').value;
     let dataDate = document.getElementById('date').value;
@@ -47,6 +54,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
     })
     .then(finalData => finalData.json()) 
     .then(finalData => {
+        
         let userType = finalData.userType;
         finalData.pilotes.forEach ((stage) => {
             //tabnote.push(stage.moyenne_evaluations);
@@ -116,9 +124,9 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "</div>";
             
             document.getElementById('main').innerHTML += html;
+            
         })
         //highlightStars(tabnote);
-        pagination();
     })
     .catch(error => console.error('Error:', error));
 });

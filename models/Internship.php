@@ -57,7 +57,7 @@ class Internship extends Model {
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
-        WHERE stage.nom LIKE :recherche
+        WHERE stage.nom LIKE :recherche OR entreprise.nom LIKE :recherche
         GROUP BY stage.id;";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(['recherche' => '%'.$search.'%']); //permet de bind values et d'ajouter les % pour le like

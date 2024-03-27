@@ -12,9 +12,11 @@ function getDataApiSelect(URL, id, name, cb) {
 
             // Récupérer à nouveau la référence au <select> après sa mise à jour
             const updatedSelect = document.getElementById(id);
+            
             if (typeof(cb) === 'function') {
                 cb(updatedSelect); // Appeler la fonction de rappel avec le <select> mis à jour
             }
+            return updatedSelect;
         })
         .catch(error => console.error('Error fetching data:', error));
 }
