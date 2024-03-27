@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "</div>"+
                 "<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>"+
                 "<div class='lien_popup'>"+
-                "<a href='https://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
+                "<a href='https://stagetier.fr/internship/index/"+entreprise.nom_entreprise+"'>rechercher entreprise dans stage</a>"+
                 "</div>"+
                 "</div>"+
             

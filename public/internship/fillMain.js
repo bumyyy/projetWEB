@@ -17,20 +17,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ROOT = 'https://stagetier.fr';
 
+
 document.getElementById('form').addEventListener('submit', function(e) {
     e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
     document.getElementById('main').innerHTML = ''; // reset la page
 
-    let dataSecteur = document.getElementById('competence').value;
-    let dataVille = document.getElementById('ville').value;
+    
+    let dataSecteur = 'x';
+    let dataVille = 'x';
+    if (companyName == null || companyName == "") {
+        let dataSecteur = document.getElementById('competence').value;
+        let dataVille = document.getElementById('ville').value;
+    }
+    console.log(dataSecteur);
+
     let dataPromo = document.getElementById('promo').value;
     let dataNote = document.getElementById('rate').value;
     let dataDate = document.getElementById('date').value;
     let dataSearch = document.getElementById('search').value;
-    
+
     let URL_ = dataSearch !== "" 
         ? `${ROOT}/ApiManager/internship/internshipBySearch/${dataSearch}` 
         : `${ROOT}/ApiManager/internship/allInternship/`;
+        console.log(URL_);
     fetch(URL_)
     .then(response => response.json())
     .then(dataResponse => {
@@ -63,7 +72,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "            <p>"+stage.competences_requises+"</p>" +
             "        </div>" +
             "        <div class='secteur'>" +
-            "            <h2>"+stage.nom_promotion+"</h2>" +
+            "            <h2>"+stage.type_promotion_concerne+"</h2>" +
             "            <p>"+stage.date_debut_offre+"</p>" +
             "            <p>"+stage.date_fin_offre+"</p>" +
             "        </div>"+
@@ -170,7 +179,6 @@ document.getElementById('form').addEventListener('submit', function(e) {
 
 
         //highlightStars(tabnote);
-        pagination();
     })
     .catch(error => console.error('Error:', error));
 });
