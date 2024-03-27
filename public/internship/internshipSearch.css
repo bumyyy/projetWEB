@@ -19,6 +19,7 @@ body {
 
 .secteur p{
     margin-bottom: 0;
+    font-size: clamp(12px,2.4vw,19px);
 }
 
 .sub {
@@ -249,6 +250,7 @@ form{
     word-wrap: break-word;
     margin: 0px;
     height: 100%;
+    font-size: clamp(12px,2.4vw,19px);
 }
 
 .scroll{
