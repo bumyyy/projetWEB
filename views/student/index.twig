@@ -35,9 +35,9 @@
             <div class="wrap">
                 <button type="submit" class="search" id="btnsubmit"><img src="/public/img/loupe.png"></button>
     </form>
-    {# <?php if ($utilisateur != 3) { ?> #}
-        <button onclick="window.location.href='/student/create'" class="create">+</button>
-    {# <?php } ?> #}
+    {% if utilisateur != 3 %}
+        <button onclick="create()" class="create">+</button>
+    {% endif %} 
     </div>
 
 
@@ -63,7 +63,7 @@
 {% block otherJS %}
 <script src="/public/student/fillCombobox.js"></script>
 <script src="/public/company/pagination.js"></script>
-<script src="/public/student/buttons.js"></script>
+<script src="/public/student/editStudent.js"></script>
 <script src="/public/student/fillMain.js"></script>
 <script src="/public/company/popup.js"></script>
 

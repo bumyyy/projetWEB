@@ -13,7 +13,7 @@ ROOT = 'http://stagetier.fr';
 document.addEventListener("DOMContentLoaded", function() {
 
     // Récupérer les éléments du DOM
-    let id_entreprise = document.getElementById('idCompany').getAttribute('idCompany');
+    let id_entreprise = document.getElementById('idInternship').getAttribute('idInternship');
 
     // Récupérer les éléments du DOM
     const localiteContainer = document.getElementById('localite-container');
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
   }
 
-  fetch(`${ROOT}/ApiManager/Company/selectCompany/${id_entreprise}`)
+  fetch(`${ROOT}/ApiManager/Internship/selectInternship/${id_entreprise}`)
       .then(response => response.json())
       .then(data => {
           // Remplir le formulaire avec les données de l'entreprise
@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`${ROOT}/ApiManager/company/editCompany/${id_entreprise}/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}`)
+    fetch(`${ROOT}/ApiManager/internship/editInternship/${id_entreprise}/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}`)
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
@@ -338,7 +338,7 @@ async function confirmerSuppression(idEntreprise) {
 
   if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
     try {
-      const url = `${ROOT}/ApiManager/company/deleteCompany/${idEntreprise}`;
+      const url = `${ROOT}/ApiManager/internship/deleteInternship/${idEntreprise}`;
       const response = await fetch(url, {
         method: 'POST'
       });
@@ -361,13 +361,9 @@ async function confirmerSuppression(idEntreprise) {
 }
 
 function update(idEntreprise){
-  window.location.href = "/company/edit/" + idEntreprise
+  window.location.href = "/internship/edit/" + idEntreprise
 }
 
 function stat() {
-    window.location.href = "/company/stats"
-}
-
-function create() {
-    window.location.href = "/company/create"
+    window.location.href = "/internship/stats"
 }

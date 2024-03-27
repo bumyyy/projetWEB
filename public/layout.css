@@ -97,6 +97,7 @@ body {
 .btn{
     background-color: transparent;
     cursor: pointer;
+    color: red;
 }
 
 .footer {
