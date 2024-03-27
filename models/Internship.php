@@ -270,11 +270,12 @@ class Internship extends Model {
     
     public function statDuration(){
         $req = "SELECT 
-        DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage, -- Calcul de la durée du stage en jour
+        DATEDIFF(stage.date_fin, stage.date_debut) AS duree_stage,
+        FLOOR(DATEDIFF(stage.date_fin, stage.date_debut) / 30) AS duree_mois_stage, -- Calcul de la durée du stage en jour
         COUNT(*) AS nombre_apparition
         FROM stage
-        GROUP BY duree_stage
-        ORDER BY duree_stage DESC";
+        GROUP BY duree_mois_stage
+        ORDER BY duree_mois_stage DESC";
         $stmt = $this->conn->prepare($req);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -291,7 +292,8 @@ class Internship extends Model {
         FROM stage
         INNER JOIN aimer ON stage.id = aimer.id_stage
         GROUP BY stage.id
-        ORDER BY COUNT(*) DESC";
+        ORDER BY COUNT(*) DESC
+        LIMIT 5";
         $stmt = $this->conn->prepare($req);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
