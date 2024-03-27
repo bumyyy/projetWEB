@@ -26,9 +26,9 @@ if($urlParams[0] != ''){
     $controller = new $controller(); //ex : Accueil = new Accueil
     
     if(method_exists($controller, $action)){ // On verifie que la methode existe
-        unset($urlParams[0]); //On enleve les 2 params qui ont deja été utliser 
+        unset($urlParams[0]); //On enleve les 2 params qui ont deja été utlisés 
         unset($urlParams[1]);
-        call_user_func_array([$controller, $action], $urlParams); //Appeller une class->method en y ajoutant des params
+        call_user_func_array([$controller, $action], $urlParams); //Appeler une class->method en y ajoutant des params
     }else{
         echo "la page n'existe pas 1";
     }

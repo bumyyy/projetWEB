@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('http://stagetier.fr/public/img/candidat.jpg');
+    background-image: url('https://stagetier.fr/public/img/candidat.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -48,6 +48,15 @@ body {
     border-radius: 20px;
     border-color: #00000000;
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.2); /* Ombre de bordure */
+}
+
+.secteur p{
+    margin-bottom: 0;
+    font-size: clamp(12px,2.4vw,19px);
+}
+
+.scroll{
+    overflow-y: scroll;
 }
 
 .combox {    
@@ -247,7 +256,7 @@ form{
     word-wrap: break-word;
     margin: 0px;
     height: 100%;
-    font-size: clamp(12.72px,1.6vw,20px);
+    font-size: clamp(12px,2.4vw,19px);
 }
 
 .localité h2 {
@@ -296,6 +305,17 @@ form{
     background-size: contain;
     color: rgb(160, 160, 160); /* Définit la couleur des étoiles par défaut */
 }
+
+.heart {
+    display: inline-block;
+    font-size: clamp(16px,3vw,40px);
+ /*   width: clamp(24px,2.4vw,28px); 
+    height: clamp(24px,2.4vw,28px);*/
+    background-size: contain;
+    color: rgb(160, 160, 160); /* Définit la couleur des étoiles par défaut */
+    text-shadow: 0 0 5px black; /* Ombre pour simuler le contour */
+}
+
 .note{
     font-size: clamp(12px,1.8vw,25px);
 }
@@ -306,27 +326,44 @@ form{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
     height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
-    background-image: url('http://stagetier.fr/public/img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-image: url('https://stagetier.fr/public/img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     background-repeat: no-repeat;
-    margin-bottom: 80%;
+    margin-top: 33%;
+    margin-bottom: 33%;
     cursor: pointer;
 }
 .delete{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
     height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
-    background-image: url('http://stagetier.fr/public/img/poubelle.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-image: url('https://stagetier.fr/public/img/poubelle.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     cursor: pointer;
     background-repeat: no-repeat;
+    margin-top: 33%;
     
+}
+
+.bord {
+    padding: 100%;
+}
+
+.post{
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    background-image: url('https://stagetier.fr/public/img/lettre.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 50%;
+    cursor: pointer;
 }
 .statmod{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
     height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
-    background-image: url('http://stagetier.fr/public/img/tableau-statistique.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-image: url('https://stagetier.fr/public/img/tableau-statistique.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
     background-size: contain;
     cursor: pointer;
     background-repeat: no-repeat;

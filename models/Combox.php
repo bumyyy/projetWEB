@@ -10,10 +10,16 @@ class Combox extends Model {
         parent::sendJSON($data);
     }
 
-    public function city() {
-        $sql = 'SELECT id, nom FROM ville ORDER BY nom ASC';
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute(); 
+    public function city($villeId = null) {
+        if($villeId == null) {
+            $sql = 'SELECT id, nom FROM ville ORDER BY nom ASC';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(); 
+        } else {
+            $sql = 'SELECT id, nom FROM ville WHERE id = :id_ville ORDER BY nom ASC';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(array('id_ville' => $villeId));  
+        }
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
     }
@@ -24,7 +30,7 @@ class Combox extends Model {
     }
 
     public function promotion() {
-        $sql = 'SELECT id, nom FROM promotion';
+        $sql = 'SELECT distinct(nom) FROM promotion';
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 

@@ -7,13 +7,13 @@ Une fois que le serveur a répondu, le navigateur reprend l'exécution du code J
 Si la requête est réussie, elle renvoie un objet Response contenant les données de la réponse. Si la requête échoue, elle lance une erreur.
 */
 let villesSelectionnees = [];
-villesSelectionnees[0] = document.getElementById('comboboxVille').value;
-ROOT = 'https://stagetier.fr';
+villesSelectionnees[0] = document.getElementById('comboboxPromo').value;
+ROOT = 'http://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
 
     // Récupérer les éléments du DOM
-    let id_entreprise = document.getElementById('idCompany').getAttribute('idCompany');
+    id_pilot=window.location.href.split('/')[window.location.href.split('/').length-1];
 
     // Récupérer les éléments du DOM
     const localiteContainer = document.getElementById('localite-container');
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
         if (localiteSelectCount < 4) {
-            fetch(`${ROOT}/ApiManager/combox/city`)
+            fetch(`${ROOT}/ApiManager/combox/promotion`)
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
@@ -331,3 +331,39 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
+async function confirmerSuppression(idEntreprise) {
+
+  ROOT = 'http://stagetier.fr';
+
+  if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
+    try {
+      const url = `${ROOT}/ApiManager/company/deleteCompany/${idEntreprise}`;
+      const response = await fetch(url, {
+        method: 'POST'
+      });
+      if (response.ok) {
+        console.log('Entreprise rendue invisible');
+        window.location.reload();
+      } else {
+        // Si la réponse n'est pas dans la plage 2 00-299, affichez une erreur
+        alert("Erreur.");
+        throw new Error('Réponse réseau non ok');
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      alert("Une erreur s'est produite lors de la suppression.");
+    }
+  } else {
+    console.log('Suppression annulée.');
+    alert("Suppression annulée.");
+  }
+}
+
+function update(idEntreprise){
+  window.location.href = "/company/edit/" + idEntreprise
+}
+
+function stat() {
+    window.location.href = "/company/stats"
+}

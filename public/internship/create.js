@@ -1,7 +1,7 @@
 let villesSelectionnees = [];
-villesSelectionnees[0] = document.getElementById('comboboxVille').value;
+villesSelectionnees[0] = document.getElementById('comboboxSecteur').value;
 
-ROOT = 'http://stagetier.fr';
+ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
     // Récupérer les éléments du DOM
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour mettre à jour le tableau des sélections de villes
     function updateVillesSelectionnees() {
         villesSelectionnees = [];
-        const selects = document.querySelectorAll('.comboboxSecteur');
+        const selects = document.querySelectorAll('.comboboxVille');
         selects.forEach(select => {
             if (select.value !== "") {
                 villesSelectionnees.push(select.value); // Ajouter la valeur du select au tableau si elle est sélectionnée
@@ -134,8 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let entreprise = document.getElementById('entreprise').value;
     let place = document.getElementById('place').value;
     let idUser = document.getElementById('userData').getAttribute('data-user');  
-
-    console.log("Données :", nom, prix, idUser, localite, competence);
     
     // Vérifier si aucun secteur n'a été sélectionné
     if (localite == "x", villesSelectionnees[0] == "",  promo == "x") {

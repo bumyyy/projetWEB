@@ -15,22 +15,31 @@ function toggleSubdivision(division) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-ROOT = 'http://stagetier.fr';
+ROOT = 'https://stagetier.fr';
+
 
 document.getElementById('form').addEventListener('submit', function(e) {
     e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
     document.getElementById('main').innerHTML = ''; // reset la page
 
-    let dataSecteur = document.getElementById('competence').value;
-    let dataVille = document.getElementById('ville').value;
+    
+    let dataSecteur = 'x';
+    let dataVille = 'x';
+    if (companyName == null || companyName == "") {
+        let dataSecteur = document.getElementById('competence').value;
+        let dataVille = document.getElementById('ville').value;
+    }
+    console.log(dataSecteur);
+
     let dataPromo = document.getElementById('promo').value;
     let dataNote = document.getElementById('rate').value;
     let dataDate = document.getElementById('date').value;
     let dataSearch = document.getElementById('search').value;
-    
+
     let URL_ = dataSearch !== "" 
         ? `${ROOT}/ApiManager/internship/internshipBySearch/${dataSearch}` 
         : `${ROOT}/ApiManager/internship/allInternship/`;
+        console.log(URL_);
     fetch(URL_)
     .then(response => response.json())
     .then(dataResponse => {
@@ -60,20 +69,22 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "        </div>" +
             "        <div class='localité'>" +
             "            <h2>"+stage.localites+"</h2>" +
-            "            <p>"+stage.competences_requises+"</p>" +
+            "            <p class='scroll' title='competences'>"+stage.competences_requises+"</p>" +
             "        </div>" +
             "        <div class='secteur'>" +
-            "            <h2>"+stage.nom_promotion+"</h2>" +
-            "            <p>"+stage.date_debut_offre+"</p>" +
-            "            <p>"+stage.date_fin_offre+"</p>" +
+            "            <h2>"+stage.type_promotion_concerne+"</h2>" +
+            "            <p title='début stage'>"+stage.date_debut_offre+"</p>" +
+            "            <p title='fin stage'>"+stage.date_fin_offre+"</p>" +
             "        </div>"+
             "        <div class='localité'>"+
-            "            <h2>"+stage.remuneration_base+"</h2>"+
-            "            <p>"+stage.duree_mois_stage+"</p>"+
+            "            <h2 title='rémuneration'>"+stage.remuneration_base+" € </h2>"+
+            "            <p title='durée stage'>"+stage.duree_mois_stage+" mois</p>"+
+             "          <p>"+stage.nombre_places_restantes+" place(s) restante(s)</p>"+
+            
             "        </div>"+ 
             "        <div class='localité'>"+
-            "            <h2>"+stage.nombre_places_offertes+"</h2>"+
-            "            <p>"+stage.nombre_etudiants_postules+"</p>"+
+            "            <h2 title='places offertes'>"+stage.nombre_places_offertes+" place(s)</h2>"+
+            "            <p title='étudiant(s) ayant déja postulé'>"+stage.nombre_etudiants_postules+" étudiant(s) ayant postulé</p>"+
             "        </div>"+        
             "<div id='myModal' class='popdown'>"+
             "<div class='fermer'><button id='closebtn'>x</button></div>"+
@@ -99,7 +110,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "</div>"+
             "<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>"+
             "<div class='lien_popup'>"+
-            "<a href='http://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
+            "<a href='https://stagetier.fr/pages/stages'>rechercher entreprise dans stage</a>"+
             "</div>"+
             "</div>"+
             "    </div>";
@@ -107,8 +118,11 @@ document.getElementById('form').addEventListener('submit', function(e) {
             if (userType != 3){
             html +=
             "   <div class='mod'>"+
+            "   <div class='bord'>"+
+            "       <span class='heart' data-value='" + stage.id_stage_aimé + "' data-id='" + stage.id_offre + "'>&#9829;</span>" +
             "       <span onclick=update("+stage.id_offre+") class='update'></span>"+
             "       <span onclick=confirmerSuppression("+stage.id_offre+") class='delete'></span>"+
+            "   </div>";
             "   </div>";
             };
             html +=
@@ -116,9 +130,58 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "</div>";
             
             document.getElementById('main').innerHTML += html;
+
+            // Trouver le dernier cœur ajouté qui correspond à cette candidature et le colorier
+            let favorite = document.querySelector('.heart[data-id="' + stage.id_offre + '"]');
+            if (stage.id_stage_aimé != null) {
+                favorite.style.color = '#fe8bb2'; // Colorier en rose si l'offre est dans 'aimer'
+            } else {
+                favorite.style.color = '#e4e5e9'; // Sinon, colorier en gris
+            }
         })
-        //highlightStars(tabnote);
         pagination();
+        
+        // Sélectionner tous les cœurs après que le DOM est complètement chargé
+        const hearts = document.querySelectorAll('.heart');
+
+        hearts.forEach(heart => {
+            heart.addEventListener('click', function () {
+                const internshipId = this.getAttribute('data-id');
+                const internshipLiked = this.getAttribute('data-value');
+                console.log("valeur :" + internshipLiked);
+
+                if (internshipLiked != "null") {
+                    // Si déjà favori, décolorer et supprimer de la table aimer
+                    fetch(`${ROOT}/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
+                        .then(data => {
+                            if (!data.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            console.log('Removed from favorites', data);
+                            this.style.color = '#e4e5e9'; // Gris
+                            this.setAttribute('data-value', "null"); // Mettre à jour l'état du cœur
+                            console.log("nouvelle valeur :" + internshipLiked);
+                        })
+                        .catch(error => alert('Error:', error));
+                } else {
+                    // Sinon, colorier et ajouter à la table aimer
+                    fetch(`${ROOT}/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
+                        .then(data => {
+                            if (!data.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            console.log('Added to favorites', data);
+                            this.style.color = '#fe8bb2'; // Rose
+                            this.setAttribute('data-value', internshipId); // Mettre à jour l'état du cœur
+                            console.log("nouvelle valeur :" + internshipLiked);
+                        })
+                        .catch(error => alert('Error:', error));
+                    }
+                });
+            });
+
+
+        //highlightStars(tabnote);
     })
     .catch(error => console.error('Error:', error));
 });

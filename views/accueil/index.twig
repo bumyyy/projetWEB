@@ -1,11 +1,12 @@
 {% extends "layout.twig" %}
 
-{% block title %}
+{% block title %}   
 Accueil
 {% endblock %}
 
 {% block otherCSS %}
-    <link rel="stylesheet" href="/public/accueil.css">
+    <link rel="preload" href="/public/accueil.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
 {% endblock %}
 
 {% block body %}

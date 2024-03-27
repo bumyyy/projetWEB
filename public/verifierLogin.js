@@ -1,7 +1,7 @@
 document.getElementById('login').addEventListener('submit', function(e) {
     e.preventDefault(); // Empêcher la soumission standard du formulaire
     
-    ROOT = 'http://stagetier.fr';
+    ROOT = 'https://stagetier.fr';
 
     var mail = document.getElementById('mail').value;
     var mdp = document.getElementById('mdp').value;

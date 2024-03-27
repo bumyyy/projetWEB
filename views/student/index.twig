@@ -19,7 +19,7 @@
 
             <div class="combox">
                 <div id="comboboxPromo">
-                    <select name="promo" class="comboboxVille" id="promo" required>
+                    <select aria-label="promotion" name="promo" class="comboboxVille" id="promo" required>
                         <option value = 'x'>promotion</option>
                         <option value = 'A1'>A1</option>
                         <option value = 'A2'>A2</option>
@@ -33,11 +33,11 @@
             </div>
 
             <div class="wrap">
-                <button type="submit" class="search" id="btnsubmit"><img src="/public/img/loupe.png"></button>
+                <button  aria-label="rechercher" type="submit" class="search" id="btnsubmit"><img alt="loupe" src="/public/img/loupe.png"></button>
     </form>
-    {% if utilisateur != 3 %}
-        <button onclick="create()" class="create">+</button>
-    {% endif %} 
+    {# <?php if ($utilisateur != 3) { ?> #}
+        <button  aria-label="Creer" onclick="window.location.href='/student/create'" class="create">+</button>
+    {# <?php } ?> #}
     </div>
 
 

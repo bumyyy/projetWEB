@@ -17,7 +17,7 @@ class SessionManager extends Controller{
         // Détruisez la session ou supprimez les éléments nécessaires
         session_destroy(); // Cela détruit toutes les données associées à la session actuelle
     
-        header('location:http://stagetier.fr/accueil/');
+        header('location:https://stagetier.fr/accueil/');
     }
 
 

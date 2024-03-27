@@ -113,6 +113,14 @@ class ApiManager extends Controller{
             case 'statWish':
                 $this->Internship->$action();
                 break;
+
+            case 'edit':
+                $this->Internship->$action($field1, $field2, $field3, $field4, $field5, $field6, $field7, $field8, $field9, $field10);
+                break;
+
+            case 'delete':
+                $this->Internship->$action($field1);
+                break;
             
             default:
                 echo "Action for 'internship' not define";
@@ -130,7 +138,9 @@ class ApiManager extends Controller{
             case 'addPilot':
                 $this->Pilot->$action($field1, $field2, $field3, $field4, $field5, $field6);
                 break;
-
+            case 'editPilot':
+                $this->Pilot->$action($field1, $field2, $field3, $field4, $field5, $field6);
+                break;
             case 'allPilot':
                 $this->Pilot->$action();
                 break;
@@ -231,6 +241,31 @@ class ApiManager extends Controller{
             
             default:
                 echo "Action for 'application' not define";
+                break;
+        }
+    }
+
+
+    public function favorite($action, $field1 = "",  $field2 = "",  $field3 = "",  $field4 = "", $field5 = ""){
+
+        $this->loadModel('Favorite');
+
+        switch ($action) {
+
+            case 'allFavorite':
+                $this->Favorite->$action();
+                break;
+
+            case 'addFavorite':
+                $this->Favorite->$action($field1);
+                break;
+
+            case 'deleteFavorite':
+                $this->Favorite->$action($field1);
+                break;
+            
+            default:
+                echo "Action for 'favorite' not define";
                 break;
         }
     }

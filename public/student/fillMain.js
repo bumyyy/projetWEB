@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    ROOT = 'http://stagetier.fr';
+    ROOT = 'https://stagetier.fr';
     
     document.getElementById('form').addEventListener('submit', function(e) {
         e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire

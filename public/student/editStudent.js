@@ -7,7 +7,7 @@ Une fois que le serveur a répondu, le navigateur reprend l'exécution du code J
 Si la requête est réussie, elle renvoie un objet Response contenant les données de la réponse. Si la requête échoue, elle lance une erreur.
 */
 
-ROOT = 'http://stagetier.fr';
+ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
 

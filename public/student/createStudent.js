@@ -8,7 +8,7 @@ Si la requête est réussie, elle renvoie un objet Response contenant les donné
 */
 
 
-ROOT = 'http://stagetier.fr';
+ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
     
