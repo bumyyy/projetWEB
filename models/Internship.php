@@ -19,7 +19,8 @@ class Internship extends Model {
         FLOOR(DATEDIFF(stage.date_fin, stage.date_debut) / 30) AS duree_mois_stage,
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
-        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
+        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        stage.nb_place - COUNT(DISTINCT candidater.id_utilisateur) AS nombre_places_restantes
         FROM stage
         INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
         LEFT JOIN rechercher ON stage.id = rechercher.id_stage
@@ -27,7 +28,7 @@ class Internship extends Model {
         LEFT JOIN ville ON stage.id_ville = ville.id
         LEFT JOIN promotion ON stage.id_promotion = promotion.id
         LEFT JOIN candidater ON stage.id = candidater.id_stage
-        GROUP BY stage.id, competence.id;   ";
+        GROUP BY stage.id, competence.id;";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(); 
         $data = $stmt->fetchAll(); 
@@ -49,7 +50,8 @@ class Internship extends Model {
         FLOOR(DATEDIFF(stage.date_fin, stage.date_debut) / 30) AS duree_mois_stage, -- Durée du stage en mois (approximatif)
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
-        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
+        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        stage.nb_place - COUNT(DISTINCT candidater.id_utilisateur) AS nombre_places_restantes
         FROM stage
         INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
         LEFT JOIN rechercher ON stage.id = rechercher.id_stage
@@ -81,7 +83,8 @@ class Internship extends Model {
         FLOOR(DATEDIFF(stage.date_fin, stage.date_debut) / 30) AS duree_mois_stage, -- Durée du stage en mois (approximatif)
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
-        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
+        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        stage.nb_place - COUNT(DISTINCT candidater.id_utilisateur) AS nombre_places_restantes
         FROM stage
         INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
         LEFT JOIN rechercher ON stage.id = rechercher.id_stage

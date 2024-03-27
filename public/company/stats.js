@@ -72,7 +72,7 @@ function statville(){
       return response.json();
     })
     .then(data => {
-      let diagtab=[];
+      let =[];
       let html = "";
       let villetittre;
       for(let i=0;i<data.length;i++){
@@ -87,6 +87,7 @@ function statville(){
           villetittre.style.marginRight ="10px";
           }
       }
+      console.log(diagtab);
       Localité(diagtab,couleurs);
     })
     .catch(error => {
