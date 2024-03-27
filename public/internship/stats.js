@@ -1,39 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    function statnote(){
-        let URL ='https://stagetier.fr/ApiManager/company/statop3';
-        fetch(URL)
-        .then(response => {
-            if (!response.ok) {
-              throw new Error('La requête a échoué avec le code: ' + response.status);
-            }
-            return response.json();
-          })
-          .then(data => {
-            let entreprise = document.querySelectorAll(".entreprise");
-            let secteur = document.querySelectorAll(".sech1");
-            let localité = document.querySelectorAll(".localh1");
-            let tabnote=[];
-            for(let i=0;i<data.length;i++){
-                entreprise[i].textContent = data[i].nom_entrprise;
-                secteur[i].textContent = data[i].secteur_activite;
-                localité[i].textContent = data[i].ville;
-                tabnote.push(data[i].moyenne_evaluations);
-            }
-            highlightStars(tabnote);
-          })
-          .catch(error => {
-            console.error('Une erreur s\'est produite:', error);
-          });
-    }
-
-    statnote(); 
 
 
-    let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            let couleurs=[];
-
-    function statsecteur(){
-        let URL ='https://stagetier.fr/ApiManager/company/statSector';
+    function statSkill(){
+        let URL ='https://stagetier.fr/ApiManager/internship/statSkill';
         fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -45,11 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
             let diagtab=[];
             let html = "";
             let sectittre;
+            let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            
+            let couleurs=[];
             for(let i=0;i<data.length;i++){
                 diagtab.push(data[i].nombre_apparition);
                 couleurs.push(tableau_couleurs[i]);
                 html = "";
-                html += "<p class='sec"+i+"' id='sec"+i+"'>"+data[i].nom_secteur+"</p>";
+                html += "<p class='sec"+i+"' id='sec"+i+"'>"+data[i].nom_competence+"</p>";
                 document.getElementById("diagsect").innerHTML+= html;
                 sectittre = document.getElementById(`sec${i}`);
                 sectittre.style.color = `${tableau_couleurs[i]}`;
@@ -60,10 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Une erreur s\'est produite:', error);
           });
     }
-statsecteur();
+statSkill();
 
 function statville(){
-  let URL ='https://stagetier.fr/ApiManager/company/statCity';
+  let URL ='https://stagetier.fr/ApiManager/internship/statCity';
   fetch(URL)
   .then(response => {
       if (!response.ok) {
@@ -72,20 +44,19 @@ function statville(){
       return response.json();
     })
     .then(data => {
-      let =[];
+      let diagtab=[];
       let html = "";
       let villetittre;
+      let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            
+      let couleurs=[];
       for(let i=0;i<data.length;i++){
-          diagtab.push(data[i].nombre_entreprise);
+          diagtab.push(data[i].nombre_apparition);
           couleurs.push(tableau_couleurs[i]);
           html = "";
           html += "<p class='loc"+i+"' id='loc"+i+"'>"+data[i].nom_ville+"</p>";
           document.getElementById("diagloc").innerHTML+= html;
           villetittre = document.getElementById(`loc${i}`);
           villetittre.style.color = `${tableau_couleurs[i]}`;
-          if(i!=data.length-1){
-          villetittre.style.marginRight ="10px";
-          }
       }
       console.log(diagtab);
       Localité(diagtab,couleurs);
@@ -95,6 +66,76 @@ function statville(){
     });
 }
 statville();
+
+
+function statPromo(){
+  let URL ='https://stagetier.fr/ApiManager/internship/statPromo';
+  fetch(URL)
+  .then(response => {
+      if (!response.ok) {
+        throw new Error('La requête a échoué avec le code: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      let diagtab=[];
+      let html = "";
+      let villetittre;
+      let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            
+      let couleurs=[];
+      for(let i=0;i<data.length;i++){
+          diagtab.push(data[i].nombre_apparition);
+          couleurs.push(tableau_couleurs[i]);
+          html = "";
+          html += "<p class='loc"+i+"' id='prom"+i+"'>"+data[i].nom_promotion+"</p>";
+          document.getElementById("diagprom").innerHTML+= html;
+          villetittre = document.getElementById(`prom${i}`);
+          villetittre.style.color = `${tableau_couleurs[i]}`;
+      }
+      console.log(diagtab);
+      Promo(diagtab,couleurs);
+    })
+    .catch(error => {
+      console.error('Une erreur s\'est produite:', error);
+    });
+}
+statPromo();
+
+function statDuree(){
+  let URL ='https://stagetier.fr/ApiManager/internship/statDuration';
+  fetch(URL)
+  .then(response => {
+      if (!response.ok) {
+        throw new Error('La requête a échoué avec le code: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      let diagtab=[];
+      let html = "";
+      let villetittre;
+      let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            
+      let couleurs=[];
+      for(let i=0;i<data.length;i++){
+          diagtab.push(data[i].nombre_apparition);
+          couleurs.push(tableau_couleurs[i]);
+          html = "";
+          html += "<p class='loc"+i+"' id='dur"+i+"'>"+data[i].duree_mois_stage+" mois </p>";
+          document.getElementById("diagdur").innerHTML+= html;
+          villetittre = document.getElementById(`dur${i}`);
+          villetittre.style.color = `${tableau_couleurs[i]}`;
+      }
+      console.log(diagtab);
+      Duree(diagtab,couleurs);
+    })
+    .catch(error => {
+      console.error('Une erreur s\'est produite:', error);
+    });
+}
+statDuree();
+
+
+
     function highlightStars(tabnote) {
         const stars = document.querySelectorAll('.star');
         let idebut = 0;
@@ -123,9 +164,32 @@ statville();
       }
 
 
+function htmlToElement() {
+  let URL ='https://stagetier.fr/ApiManager/internship/statWish';
+  fetch(URL)
+  .then(response => {
+      if (!response.ok) {
+        throw new Error('La requête a échoué avec le code: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      let html="";
 
+      data.forEach(element => {
+        html +="<div class='carre'>"+
+               "<div id='name'>"+element.nom_stage+"</div>"+
+               "<div id='nb'>nombre de likes:"+element.nombre_apparition+"</div>"+
+               "</div>";
+      });
+  document.getElementById("diag1").innerHTML += html;
+})
+.catch(error => {
+  console.error('Une erreur s\'est produite:', error);
+});
 
-
+}
+htmlToElement();
 
 })//fin du DOM
 
@@ -162,6 +226,44 @@ function Secteur(valeurs, couleurs){
 
 function Localité(valeurs, couleurs){ 
   let camembert = document.getElementById('Localité');
+  let total = valeurs.reduce((a,b) => a+b,0);
+  let gradientString = 'conic-gradient(';
+  let percentage = 0;
+  let endpercentage = 0;
+  
+  for (let i = 0; i < valeurs.length; i++){
+      endpercentage += (valeurs[i] / total) * 100;
+      gradientString += `${couleurs[i]} ${percentage}% ${endpercentage}%, `;
+      percentage = endpercentage;
+  }
+  
+  gradientString = gradientString.slice(0, -2);
+  gradientString += ')';
+  camembert.style.background = gradientString;
+
+}
+
+function Promo(valeurs, couleurs){ 
+  let camembert = document.getElementById('Promo');
+  let total = valeurs.reduce((a,b) => a+b,0);
+  let gradientString = 'conic-gradient(';
+  let percentage = 0;
+  let endpercentage = 0;
+  
+  for (let i = 0; i < valeurs.length; i++){
+      endpercentage += (valeurs[i] / total) * 100;
+      gradientString += `${couleurs[i]} ${percentage}% ${endpercentage}%, `;
+      percentage = endpercentage;
+  }
+  
+  gradientString = gradientString.slice(0, -2);
+  gradientString += ')';
+  camembert.style.background = gradientString;
+
+}
+
+function Duree(valeurs, couleurs){ 
+  let camembert = document.getElementById('Duree');
   let total = valeurs.reduce((a,b) => a+b,0);
   let gradientString = 'conic-gradient(';
   let percentage = 0;

@@ -36,4 +36,16 @@ class Internship extends Controller {
             $this->render('edit' , ['idCompany' => $idCompany]);
         }
     }
+    public function stats() {
+        if ( !isset($_SESSION['userData']) ){
+            header('Location: http://stagetier.fr/login/');
+            exit(0);
+        }
+        if ( $_SESSION['userData']['type'] == 3 ){
+            echo 'Vous ne pouvez pas acceder à cette page';
+        }
+        else {
+            $this->render('stats');
+        }
+    }
 }
