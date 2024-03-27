@@ -29,15 +29,17 @@ document.getElementById('form').addEventListener('submit', function(e) {
         let dataSecteur = document.getElementById('competence').value;
         let dataVille = document.getElementById('ville').value;
     }
-    
+    console.log(dataSecteur);
+
     let dataPromo = document.getElementById('promo').value;
     let dataNote = document.getElementById('rate').value;
     let dataDate = document.getElementById('date').value;
     let dataSearch = document.getElementById('search').value;
-    
+
     let URL_ = dataSearch !== "" 
         ? `${ROOT}/ApiManager/internship/internshipBySearch/${dataSearch}` 
         : `${ROOT}/ApiManager/internship/allInternship/`;
+        console.log(URL_);
     fetch(URL_)
     .then(response => response.json())
     .then(dataResponse => {
@@ -54,7 +56,6 @@ document.getElementById('form').addEventListener('submit', function(e) {
     })
     .then(finalData => finalData.json()) 
     .then(finalData => {
-        
         let userType = finalData.userType;
         finalData.pilotes.forEach ((stage) => {
             //tabnote.push(stage.moyenne_evaluations);
