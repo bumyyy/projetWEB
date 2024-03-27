@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ROOT = 'https://stagetier.fr';
 
   let id_entreprise = document.getElementById('idCompany').getAttribute('idCompany');
+  let bouton = document.getElementById("submit_btn");
 
 
   // Récupérer les éléments du DOM
@@ -26,12 +27,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('numbers').innerHTML = 'Rémunération : ' + data[0].remuneration_base + ' €  /  Places restantes : ' + data[0].nombre_places_restantes;
     document.getElementById('lettre').innerHTML = data[0].lettre_motivation;
 
-    if (data[0].cv != "null") {
-      document.getElementById('cv').innerHTML = "CV envoyé !";
+    if (data[0].etat_candidature == null) {
+      bouton.style.display = "block";
+    } else {
+      bouton.style.display = "none";
     }
+
+    let lettre = document.getElementById('lettre').value;
+    console.log("caca : " + lettre);
+    
   
   })
   .catch(error => console.error('Error:', error));
+
+
 
 
   

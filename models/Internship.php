@@ -23,6 +23,7 @@ class Internship extends Model {
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
         COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        stage.nb_place - COUNT(DISTINCT candidater.id_utilisateur) AS nombre_places_restantes,
         aimer.id_stage AS id_stage_aimé,
         aimer.id_utilisateur AS id_utilisateur
         FROM stage
@@ -60,6 +61,7 @@ class Internship extends Model {
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
         COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        stage.nb_place - COUNT(DISTINCT candidater.id_utilisateur) AS nombre_places_restantes,
         aimer.id_stage AS id_stage_aimé,
         aimer.id_utilisateur AS id_utilisateur
         FROM stage
@@ -98,6 +100,7 @@ class Internship extends Model {
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
         COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
+        stage.nb_place - COUNT(DISTINCT candidater.id_utilisateur) AS nombre_places_restantes,
         aimer.id_stage AS id_stage_aimé,
         aimer.id_utilisateur AS id_utilisateur
         FROM stage
