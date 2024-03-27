@@ -64,6 +64,10 @@ class ApiManager extends Controller{
             case 'statop3':
                 $this->Company->$action();
                 break;
+
+            case 'rate':
+                $this->Company->$action($field1, $field2, $field3);
+                break;
                 
             default:
                 echo "Action for 'company' not define";
@@ -194,6 +198,26 @@ class ApiManager extends Controller{
                 $this->Student->$action($field1, $field2, $field3, $field4, $field5, $field6);
                 break;
             
+            case 'statNbCandidacy':
+                $this->Student->$action($field1);
+                break;
+
+            case 'statNbWaiting':
+                $this->Student->$action($field1);
+                break;
+
+            case 'statNbAdmission':
+                $this->Student->$action($field1);
+                break;
+
+            case 'statNbRefusal':
+                $this->Student->$action($field1);
+                break;
+
+            case 'statNbLike':
+                $this->Student->$action($field1);
+                break;
+
             default:
                 echo "Action for 'student' not define";
                 break;
@@ -218,6 +242,19 @@ class ApiManager extends Controller{
             case 'selectApplication':
                 $this->Application->$action($field1);
                 break;
+
+            case 'allApplicationByStudent':
+                $this->Application->$action($field1);
+                break;
+
+            case 'uploadFile':
+                $this->Application->$action($field1, $field2);
+                break;
+        
+            case 'submitApplication':
+                $this->Application->$action($field1, $field2);
+                break;
+                    
             
             default:
                 echo "Action for 'application' not define";

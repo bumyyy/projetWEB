@@ -206,4 +206,31 @@ class Company extends Model {
     }
 
 
+    public function rate($idCompany, $idUser, $rate) {
+        // Démarre une transaction
+        $this->conn->beginTransaction();
+    
+            // Mise à jour de l'état dans la table 'candidater' via une jointure avec la table 'stage'
+            $req = "UPDATE candidater
+                    INNER JOIN stage ON stage.id = candidater.id_stage
+                    SET etat = '4'
+                    WHERE id_entreprise = :id_company";
+            $stmt = $this->conn->prepare($req);
+            $stmt->bindParam(':id_company', $idCompany, PDO::PARAM_INT);
+            $stmt->execute();
+    
+            // Insertion de la nouvelle évaluation
+            $req_rate = "INSERT INTO evaluer (id_entreprise, id_utilisateur, note) 
+                         VALUES (:id_company, :id_user, :note)";
+            $stmt_rate = $this->conn->prepare($req_rate);
+            $stmt_rate->bindParam(':id_company', $idCompany, PDO::PARAM_INT);
+            $stmt_rate->bindParam(':id_user', $idUser, PDO::PARAM_INT);
+            $stmt_rate->bindParam(':note', $rate, PDO::PARAM_INT);
+            $stmt_rate->execute();
+    
+            // Valide les transactions
+            $this->conn->commit();
+
+    }
+
 }

@@ -371,22 +371,6 @@ form{
 
 @media only screen and (max-width: 768px) {
   
-    .header-nav {
-      flex-direction: column;
-      color: #000000;
-      align-items: center;
-    }
-    .header-nav li {
-        margin-bottom: 20px;
-    }
-    .header-icons
-    {
-        margin-left: 30px;
-        padding: 0  ;
-    }
-    .header-icons img{
-        padding: 0;
-    }
     .ligne{
         
         margin-top: 3%;
@@ -405,14 +389,7 @@ form{
     }
 }
 @media only screen and (max-width: 300px) {
-    .header-icons
-    {
-        margin-left: 0;
-    }
-    .footer p {
-    padding-right: 0;
-    margin-right: 0;
-    }
+    
 }
 .hidden {
     display: none;

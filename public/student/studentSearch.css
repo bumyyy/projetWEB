@@ -306,6 +306,20 @@ form{
 .p{
     margin:0;
 }
+
+.btn-img{
+    padding: 100%;
+}
+.stats{
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille min et max de l'image */
+    height: clamp(14px,1.8vw,24px); /* Taille min et max de l'image *//* Taille de l'étoile */
+    background-image: url('http://stagetier.fr/public/img/tableau-statistique.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 70%;
+    cursor: pointer;
+}
 .update{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
@@ -371,22 +385,6 @@ form{
 
 @media only screen and (max-width: 768px) {
   
-    .header-nav {
-      flex-direction: column;
-      color: #000000;
-      align-items: center;
-    }
-    .header-nav li {
-        margin-bottom: 20px;
-    }
-    .header-icons
-    {
-        margin-left: 30px;
-        padding: 0  ;
-    }
-    .header-icons img{
-        padding: 0;
-    }
     .ligne{
         
         margin-top: 3%;
@@ -405,14 +403,7 @@ form{
     }
 }
 @media only screen and (max-width: 300px) {
-    .header-icons
-    {
-        margin-left: 0;
-    }
-    .footer p {
-    padding-right: 0;
-    margin-right: 0;
-    }
+    
 }
 .hidden {
     display: none;

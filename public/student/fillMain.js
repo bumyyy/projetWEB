@@ -57,8 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (userType != 3){
                 html +=
                 "   <div class='mod'>"+
-                "       <span onclick=update("+student.id_student+") class='update'></span>"+
-                "       <span onclick=confirmerSuppression("+student.id_student+") class='delete'></span>"+
+                "       <div class='btn-img'>"+
+                    "       <span onclick=stats("+student.id_student+") class='stats'></span>"+
+                    "       <span onclick=update("+student.id_student+") class='update'></span>"+
+                    "       <span onclick=confirmerSuppression("+student.id_student+") class='delete'></span>"+
+                        "</div>"+
                 "   </div>";
                 };
                 html +=
