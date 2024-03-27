@@ -139,7 +139,8 @@ class Application extends Model {
 
         move_uploaded_file($_FILES['cv']['tmp_name'], $dest_fullpath);
 
-        $sql = "UPDATE candidater SET cv = :cv WHERE id_utilisateur = :id_user";
+        $sql = "INSERT INTO candidater (id_stage, id_utilisateur, cv, lettre_de_motivation, etat)
+                VALUES (:id_stage, :id_user, :cv, :lettre, 0);";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(['cv' => $dest_filename,
                         'id_user' => $userId]); //permet de bind values et d'ajouter les % pour le like
