@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 let html =
                 "<div class='completeEntreprise'>" +
-                "<li class='ligne' id='"+candidature.id_offre      +"'>" +
+                "<li class='ligne' id='"+candidature.id_offre+"'>" +
                 "    <div class='carre' onclick='toggleSubdivision(this)'>" +
                 "        <div class='name'>" +
                 "            <h1 id='entrepriseName'>"+candidature.nom_offre+"</h1>" +
@@ -85,20 +85,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 "        </div>" +
                 "        <div class='localité'>" +
                 "            <h2>"+candidature.nom_ville+"</h2>" +
-                "            <p>"+candidature.competences_requises+"</p>" +
+                "            <p title='competences' class='scroll'>"+candidature.competences_requises+"</p>" +
                 "        </div>" +
                 "        <div class='secteur'>" +
                 "            <h2>"+candidature.nom_promotion+"</h2>" +
-                "            <p>"+candidature.date_debut_offre+"</p>" +
-                "            <p>"+candidature.date_fin_offre+"</p>" +
+                "            <p title='début stage'>"+candidature.date_debut_offre+"</p>" +
+                "            <p title='fin stage'>"+candidature.date_fin_offre+"</p>" +
                 "        </div>"+
                 "        <div class='localité'>"+
-                "            <h2>"+candidature.remuneration_base+"</h2>"+
-                "            <p>"+candidature.duree_mois_stage+"</p>"+
+                "            <h2 title='rémuneration'>"+Math.round(candidature.remuneration_base)+"€</h2>"+
+                "            <p title='durée stage'>"+candidature.duree_mois_stage+"mois</p>"+
+                "          <p>"+candidature.nombre_places_restantes+" place(s) restante(s)</p>"+
                 "        </div>"+ 
                 "        <div class='localité'>"+
-                "            <h2>"+candidature.nombre_places_offertes+"</h2>"+
-                "            <p>"+candidature.nombre_etudiants_postules+"</p>"+
+                "            <h2 title='places offertes'>"+candidature.nombre_places_offertes+"place(s)</h2>"+
+                "            <p  title='étudiant(s) ayant déja postulé'>"+candidature.nombre_etudiants_postules+" étudiant(s) ayant postulé</p>"+
                 "            <p>"+etatCandidatureTexte+"</p>"+
                 "        </div>"+        
        /*         "<div id='myModal' class='popdown'>"+
