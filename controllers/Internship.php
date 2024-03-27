@@ -2,9 +2,9 @@
 
 class Internship extends Controller {
 
-    public function index() {
+    public function index($companyName = "") {
         if ( isset($_SESSION['userData'])) {
-            $this->render('index');
+            $this->render('index', ['companyName' => $companyName]);
             } else {
                 header('Location: http://stagetier.fr/login/');
                 exit(0);

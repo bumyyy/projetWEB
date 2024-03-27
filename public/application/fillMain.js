@@ -1,4 +1,4 @@
-    /*
+/*
 function toggleSubdivision(division) {
     let subdivision = division.querySelector('.popdown');
     let computedStyle = window.getComputedStyle(subdivision);
@@ -47,8 +47,34 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(finalData => {
             let userType = finalData.userType;
             let tabnote = [];
+            let etatCandidatureTexte = '';
+            
+
             finalData.candidatures.forEach ((candidature) => {
                 tabnote.push(candidature.etat_candidature);
+
+                switch (candidature.etat_candidature) {
+                    case 0:
+                        etatCandidatureTexte = "En attente";
+                        break;
+                    case 1:
+                        etatCandidatureTexte = "Accepté / En cours";
+                        break;
+                    case 2:
+                        etatCandidatureTexte = "Refusé";
+                        break;
+                    case 3:
+                        etatCandidatureTexte = "Terminé";
+                        break;
+                    case null:
+                        etatCandidatureTexte = "Pas candidaté";
+                        break;
+                    default:
+                        etatCandidatureTexte = "État inconnu";
+                        break;
+                }
+
+
                 let html =
                 "<div class='completeEntreprise'>" +
                 "<li class='ligne' id='"+candidature.id_offre      +"'>" +
@@ -73,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "        <div class='localité'>"+
                 "            <h2>"+candidature.nombre_places_offertes+"</h2>"+
                 "            <p>"+candidature.nombre_etudiants_postules+"</p>"+
+                "            <p>"+etatCandidatureTexte+"</p>"+
                 "        </div>"+        
        /*         "<div id='myModal' class='popdown'>"+
                 "<div class='fermer'><button id='closebtn'>x</button></div>"+
@@ -106,18 +133,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 */
                 "    </div>";
                 
-                if (userType != 3){
+                if (userType != 2){
                 html +=
                 "   <div class='mod'>"+
+                "   <div class='bord'>"+
                 "       <span class='heart' data-value='" + candidature.id_stage_aimé + "' data-id='" + candidature.id_offre + "'>&#9829;</span>" +
                         "<input type='hidden' id='rating-value' name='rating-value' value='0'>"+
-                "       <span onclick=update("+candidature.id_offre+") class='update'></span>"+
-                "       <span onclick=confirmerSuppression("+candidature.id_offre+") class='delete'></span>"+
+                "       <span onclick=apply("+candidature.id_offre+") class='post'></span>"+      
+                "   </div>";
                 "   </div>";
                 };
                 html +=
                 "</div>"+
                 "</div>";
+
                 
                 document.getElementById('main').innerHTML += html;
 
@@ -144,33 +173,32 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (internshipLiked != "null") {
                         // Si déjà favori, décolorer et supprimer de la table aimer
                         fetch(`${ROOT}/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
-                            .then(response => {
-                                if (!response.ok) {
+                            .then(data => {
+                                if (!data.ok) {
                                     throw new Error('Network response was not ok');
                                 }
-                                response.json();
-                            })
-                            .then(data => {
                                 console.log('Removed from favorites', data);
                                 this.style.color = '#e4e5e9'; // Gris
                                 this.setAttribute('data-value', "null"); // Mettre à jour l'état du cœur
                                 console.log("nouvelle valeur :" + internshipLiked);
                             })
-                            .catch(error => console.error('Error:', error));
+                            .catch(error => alert('Error:', error));
                     } else {
                         // Sinon, colorier et ajouter à la table aimer
                         fetch(`${ROOT}/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
-                            .then(response => response.json())
                             .then(data => {
+                                if (!data.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
                                 console.log('Added to favorites', data);
                                 this.style.color = '#fe8bb2'; // Rose
                                 this.setAttribute('data-value', internshipId); // Mettre à jour l'état du cœur
                                 console.log("nouvelle valeur :" + internshipLiked);
                             })
-                            .catch(error => console.error('Error:', error));
-                    }
+                            .catch(error => alert('Error:', error));
+                        }
+                    });
                 });
-            });
 
                         
             console.log(tabnote);

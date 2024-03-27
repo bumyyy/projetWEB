@@ -63,7 +63,10 @@ class FilterSearch extends Controller{
         // Filtrer les stages par compétence
         if ($competence != "x"){
             $stages = array_filter($stages, function ($stage) use ($competence) {
-                return $stage['id_competence'] == $competence;
+                // Convertit la chaîne d'ID de compétences en tableau
+                $competencesStage = explode(", ", $stage['id_competence']);
+                // Vérifie si la compétence recherchée est dans le tableau des compétences du stage
+                return in_array($competence, $competencesStage);
             });
         }
             
