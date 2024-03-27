@@ -335,6 +335,21 @@ form{
     margin-top: 33%;
     
 }
+
+.bord {
+    padding: 100%;
+}
+
+.post{
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    background-image: url('https://stagetier.fr/public/img/lettre.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 50%;
+    cursor: pointer;
+}
 .statmod{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */

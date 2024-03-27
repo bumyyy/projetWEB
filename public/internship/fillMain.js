@@ -115,8 +115,11 @@ document.getElementById('form').addEventListener('submit', function(e) {
             if (userType != 3){
             html +=
             "   <div class='mod'>"+
+            "   <div class='bord'>"+
+            "       <span class='heart' data-value='" + stage.id_stage_aimé + "' data-id='" + stage.id_offre + "'>&#9829;</span>" +
             "       <span onclick=update("+stage.id_offre+") class='update'></span>"+
             "       <span onclick=confirmerSuppression("+stage.id_offre+") class='delete'></span>"+
+            "   </div>";
             "   </div>";
             };
             html +=
@@ -124,8 +127,56 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "</div>";
             
             document.getElementById('main').innerHTML += html;
-            
+
+            // Trouver le dernier cœur ajouté qui correspond à cette candidature et le colorier
+            let favorite = document.querySelector('.heart[data-id="' + stage.id_offre + '"]');
+            if (stage.id_stage_aimé != null) {
+                favorite.style.color = '#fe8bb2'; // Colorier en rose si l'offre est dans 'aimer'
+            } else {
+                favorite.style.color = '#e4e5e9'; // Sinon, colorier en gris
+            }
         })
+
+        // Sélectionner tous les cœurs après que le DOM est complètement chargé
+        const hearts = document.querySelectorAll('.heart');
+
+        hearts.forEach(heart => {
+            heart.addEventListener('click', function () {
+                const internshipId = this.getAttribute('data-id');
+                const internshipLiked = this.getAttribute('data-value');
+                console.log("valeur :" + internshipLiked);
+
+                if (internshipLiked != "null") {
+                    // Si déjà favori, décolorer et supprimer de la table aimer
+                    fetch(`${ROOT}/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
+                        .then(data => {
+                            if (!data.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            console.log('Removed from favorites', data);
+                            this.style.color = '#e4e5e9'; // Gris
+                            this.setAttribute('data-value', "null"); // Mettre à jour l'état du cœur
+                            console.log("nouvelle valeur :" + internshipLiked);
+                        })
+                        .catch(error => alert('Error:', error));
+                } else {
+                    // Sinon, colorier et ajouter à la table aimer
+                    fetch(`${ROOT}/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
+                        .then(data => {
+                            if (!data.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            console.log('Added to favorites', data);
+                            this.style.color = '#fe8bb2'; // Rose
+                            this.setAttribute('data-value', internshipId); // Mettre à jour l'état du cœur
+                            console.log("nouvelle valeur :" + internshipLiked);
+                        })
+                        .catch(error => alert('Error:', error));
+                    }
+                });
+            });
+
+
         //highlightStars(tabnote);
     })
     .catch(error => console.error('Error:', error));

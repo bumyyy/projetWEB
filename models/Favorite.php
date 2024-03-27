@@ -12,16 +12,17 @@ class Favorite extends Model {
     }
 
     public function addFavorite($internshipId) {
+        $userId = $_SESSION['userData']['id'];
         $this->conn->beginTransaction();
 
         // Vérifier d'abord si l'ID de stage existe dans la table stage
         $stageExists = $this->checkStageExists($internshipId);
     
         if ($stageExists) {
-            $sql = "INSERT INTO aimer (id_stage, id_utilisateur) VALUES (:id_stage, 1)";
+            $sql = "INSERT INTO aimer (id_stage, id_utilisateur) VALUES (:id_stage, :id_user)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute(['id_stage' => $internshipId]); 
-                        //'id_utilisateur' => $userId]);
+            $stmt->execute(['id_stage' => $internshipId,
+                            'id_user' => $userId]);
 
             $_SESSION["message"] = "Application added successfully.";
         } else {
@@ -42,9 +43,11 @@ class Favorite extends Model {
     
 
     public function deleteFavorite($internshipId) {
-        $sql = "DELETE FROM aimer WHERE id_stage = :id_stage AND id_utilisateur = 1;";
+        $userId = $_SESSION['userData']['id'];
+        $sql = "DELETE FROM aimer WHERE id_stage = :id_stage AND id_utilisateur = :id_user;";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute(['id_stage' => $internshipId]);
+        $stmt->execute(['id_stage' => $internshipId,
+                        'id_user' => $userId]);
         $_SESSION["message"] = "Deleted";
     }
 
