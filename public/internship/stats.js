@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     statnote(); 
 
 
+    let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            let couleurs=[];
 
     function statsecteur(){
         let URL ='https://stagetier.fr/ApiManager/company/statSector';
@@ -44,8 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
             let diagtab=[];
             let html = "";
             let sectittre;
-            let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            
-            let couleurs=[];
             for(let i=0;i<data.length;i++){
                 diagtab.push(data[i].nombre_apparition);
                 couleurs.push(tableau_couleurs[i]);
@@ -73,11 +72,9 @@ function statville(){
       return response.json();
     })
     .then(data => {
-      let diagtab=[];
+      let =[];
       let html = "";
       let villetittre;
-      let tableau_couleurs = ['#842d73', '#8451a7', '#9b81dd', '#8da3e7', '#7cdeed', '#7cd7b3', '#3cd476', '#caf266', '#e5f037', '#eac85f', '#e58b58', '#ff7f50', '#f26767', '#f4769c', '#d776f4', '#a376c9'];            
-      let couleurs=[];
       for(let i=0;i<data.length;i++){
           diagtab.push(data[i].nombre_entreprise);
           couleurs.push(tableau_couleurs[i]);
