@@ -257,6 +257,7 @@ form{
     margin: 0px;
     height: 100%;
     font-size: clamp(12px,2.4vw,19px);
+    margin-bottom: 10px;
 }
 
 .localité h2 {
@@ -359,6 +360,18 @@ form{
     margin-top: 50%;
     cursor: pointer;
 }
+
+.pen{
+    display: inline-block;
+    width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    height: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
+    background-image: url('https://stagetier.fr/public/img/outil-crayon.png'); /* Remplacez 'etoile.png' par le chemin de votre image d'étoile */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 50%;
+    cursor: pointer;
+}
+
 .statmod{
     display: inline-block;
     width: clamp(14px,1.8vw,24px); /* Taille de l'étoile */
@@ -414,22 +427,6 @@ form{
 
 @media only screen and (max-width: 768px) {
   
-    .header-nav {
-      flex-direction: column;
-      color: #000000;
-      align-items: center;
-    }
-    .header-nav li {
-        margin-bottom: 20px;
-    }
-    .header-icons
-    {
-        margin-left: 30px;
-        padding: 0  ;
-    }
-    .header-icons img{
-        padding: 0;
-    }
     .ligne{
         
         margin-top: 3%;
@@ -447,16 +444,7 @@ form{
         padding: 0;
     }
 }
-@media only screen and (max-width: 300px) {
-    .header-icons
-    {
-        margin-left: 0;
-    }
-    .footer p {
-    padding-right: 0;
-    margin-right: 0;
-    }
-}
+
 .hidden {
     display: none;
   }

@@ -10,6 +10,56 @@ body {
 
 }
 
+
+
+.header {
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.header-logo img {
+    height: 50px;
+}
+.header-nav {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+.header-nav li {
+    padding-right: 10px;
+    cursor: pointer;
+}
+.header-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+.header-nav li:hover {
+    text-decoration: underline;
+}
+.header-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+}
+.header-icons img {
+    height: 24px; /* Ajustez la taille selon vos besoins */
+    cursor: pointer;
+    margin: 5px;
+    padding-right: 25px;
+    padding-bottom: 5px;
+}
+
 .content h1 {
     text-align: center;
     font-size: 150%;
@@ -38,10 +88,13 @@ body {
     padding-left: max(3vw,4.5vw);
     padding-right: max(3vw,4.5vw);
     max-width: 900px;
+    width: 20vw;
+    min-width: 270px;
+    height: 130px;
     background-color: #f0f0f0;
     opacity: 50%;
     border-radius: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 
 
     
@@ -74,7 +127,6 @@ margin-top: 20px;
     flex-direction: column;
     align-items: center;
 
-
 }
 .alldiag{
     display: flex;
@@ -96,7 +148,9 @@ margin-top: 20px;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
     border-radius: 60px;
     padding: 2%;
-    margin-left: 25px;
+    margin-left: 19px;
+}
+.loc0,.loc1,.loc2,.loc3{
 }
 
 .diagtitle{
@@ -119,8 +173,18 @@ margin-top: 20px;
 .diagtitle2 h1{
     font-size: 19px;
 }
+.titletop{
+    background-color: #f0f0f07a;
+    width: 100%;
+    font-size: clamp(10px,2vw,10px);
+    text-align: center;
+    border-radius: 15vw;
+    padding: 0.1%;
+    margin-bottom: 20px;    
+}
 .diagcomplet{
     display: flex;
+    width: 100%;
     flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
@@ -141,7 +205,19 @@ margin-top: 20px;
     width: 260px;
     height: 260px;
     border-radius: 50%;
-    margin-bottom: 60px;
+}
+.Promo{
+
+    width: 260px;
+    height: 260px;
+    min-width: 260px;
+    border-radius: 50%;
+}
+.top3{
+    
+}
+#name{
+    font-size: 35px;
 }
 .rating {
     display: flex;
@@ -165,6 +241,27 @@ margin-top: 20px;
     margin:0;
 }
 
+.footer {
+    width: 100%;
+    height: 60px; /* Hauteur du footer */
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: auto; /* Place le footer en bas du contenu */
+}
+
+.footer img {
+    height: 24px; /* Ajustez la taille des icônes si nécessaire */
+    margin: 0 10px;
+    cursor: pointer;
+}
+.footer p {
+    color: #666;
+    font-size: 14px;
+    padding: 10px;
+}
 
 @media only screen and (max-width: 940px) {
   
@@ -172,9 +269,40 @@ margin-top: 20px;
         flex-wrap: wrap;
         
     }
+    .header-nav {
+        flex-direction: column;
+        color: #000000;
+        align-items: center;
+      }
+      .header-nav li {
+          margin-bottom: 20px;
+      }
+      .header-icons
+      {
+          margin-left: 30px;
+          padding: 0  ;
+          margin: 0;
+      }
+      .footer p{
+        padding-right: 0;
+        font-size: 4px;
+      }
+      .header-icons img{
+          padding: 0;
+      } 
 
       .diagcomplet{
         flex-direction: column;
+    }
+    .diagsect{
+        margin-left: 0;
+        border-radius: 40px;
+        margin-bottom: 20px;
+    }
+    .diagloc{
+        margin-left: 0;
+        border-radius: 40px;
+        margin-bottom: 20px;
     }
 }   
 @media only screen and (max-width: 360px) {

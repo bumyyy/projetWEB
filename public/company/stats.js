@@ -86,9 +86,7 @@ function statville(){
           document.getElementById("diagloc").innerHTML+= html;
           villetittre = document.getElementById(`loc${i}`);
           villetittre.style.color = `${tableau_couleurs[i]}`;
-          if(i!=data.length-1){
-          villetittre.style.marginRight ="10px";
-          }
+    
       }
       console.log(diagtab);
       Localité(diagtab,couleurs);
