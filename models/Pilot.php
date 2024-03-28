@@ -10,7 +10,7 @@ class Pilot extends Model {
         utilisateur.mail AS mail_pilote,
         utilisateur.type_, 
         GROUP_CONCAT(gerer.id_promotion SEPARATOR ', ') AS id_promotion, 
-        GROUP_CONCAT(promotion.nom SEPARATOR ', ') AS nom_promotion,
+        GROUP_CONCAT(DISTINCT promotion.nom SEPARATOR ', ') AS nom_promotion,
         ville.id AS id_centre,
         ville.nom AS nom_centre
         FROM utilisateur
@@ -34,7 +34,9 @@ class Pilot extends Model {
         utilisateur.prenom AS prenom_pilote, 
         utilisateur.mail AS mail_pilote, 
         utilisateur.type_, 
-        promotion.nom AS nom_promotion, 
+        GROUP_CONCAT(gerer.id_promotion SEPARATOR ', ') AS id_promotion, 
+        GROUP_CONCAT(DISTINCT promotion.nom SEPARATOR ', ') AS nom_promotion,
+        ville.id AS id_centre,
         ville.nom AS centre
         FROM utilisateur
         JOIN promotion ON utilisateur.id_promotion = promotion.id
@@ -53,22 +55,22 @@ class Pilot extends Model {
     public function selectPilot($pilotId) {
         $sql = "SELECT 
         utilisateur.id AS id_pilote, 
-         utilisateur.nom AS nom_pilote, 
-         utilisateur.prenom AS prenom_pilote, 
-         utilisateur.mail AS mail_pilote,
-         utilisateur.type_, 
-         gerer.id_utilisateur AS id_gerer,
-         gerer.id_promotion AS id_promotion, 
-         promotion.nom AS nom_promotion,
-         ville.id AS id_centre,
-         ville.nom AS nom_centre
-         FROM utilisateur
-         INNER JOIN gerer ON utilisateur.id = gerer.id_utilisateur
-         JOIN promotion ON gerer.id_promotion = promotion.id
-         LEFT JOIN ville ON promotion.id_ville = ville.id
-         WHERE utilisateur.type_ = 2 -- Type pilote
-         AND utilisateur.hide = 0
-         AND utilisateur.id = :id_utilisateur";
+        utilisateur.nom AS nom_pilote, 
+        utilisateur.prenom AS prenom_pilote, 
+        utilisateur.mail AS mail_pilote,
+        utilisateur.type_,
+        gerer.id_utilisateur AS id_gerer,
+        gerer.id_promotion AS id_promotion, 
+        promotion.nom AS nom_promotion,
+        ville.id AS id_centre,
+        ville.nom AS nom_centre
+        FROM utilisateur
+        INNER JOIN gerer ON utilisateur.id = gerer.id_utilisateur
+        JOIN promotion ON gerer.id_promotion = promotion.id
+        LEFT JOIN ville ON promotion.id_ville = ville.id
+        WHERE utilisateur.type_ = 2 -- Type pilote
+        AND utilisateur.hide = 0
+        AND utilisateur.id = :id_utilisateur";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['id_utilisateur' => $pilotId]);    //permet de bind values
         $data = $stmt->fetchAll(); 
