@@ -36,59 +36,48 @@ document.addEventListener('DOMContentLoaded', function() {
       bouton.style.display = "none";
 
       // Si un CV est présent, affiche le nom du fichier dans un élément séparé
-      if (data[0].cv !== null) {
+      if (data[0].cv === "CV contenu ici") {
         cvInput.style.display = "none";
-
-        cvFileName.setAttribute('href', 'https://www.youtube.com/watch?v=izGwDsrQ1eQ' + data[0].cv);
+        cvFileName.setAttribute('href', 'https://c.tenor.com/yEG23sxXIVQAAAAC/tenor.gif' + data[0].cv);
+        cvFileName.textContent = data[0].cv; // Affiche le nom du fichier CV
+      } else if (data[0].cv !== "") {
+        cvInput.style.display = "none";
+        cvFileName.setAttribute('href', '/uploads/' + data[0].cv);
         cvFileName.textContent = data[0].cv; // Affiche le nom du fichier CV
       }
 
-      // Gestionnaire d'événements pour détecter la sélection d'un fichier CV
-    cvInput.addEventListener('onchange', function() {
-      // Vérifie si un fichier a été sélectionné
-      if (cvInput.files.length > 0) {
-          // Récupère le nom du fichier
-          let fileName = cvInput.files[0].name;
-          // Affiche le nom du fichier dans le lien hypertexte
-          cvFileName.textContent = fileName;
-          // Définit le chemin du fichier CV comme href pour le lien hypertexte
-          cvFileName.setAttribute('href', 'https://www.youtube.com/watch?v=izGwDsrQ1eQ'); // Vous pouvez définir un lien valide si nécessaire
-          // Affiche le lien hypertexte
-          cvFileName.style.display = "inline"; 
-          alert(fileName);
-      } else {
-          // Si aucun fichier n'est sélectionné, masque le lien hypertexte
-          cvFileName.style.display = "none";
-      }
-  });
-
-    }
-
-
-
-    let lettre = document.getElementById('lettre').value;
-    console.log("lettre : " + lettre);
-    
+  
+    }   
   
   })
   .catch(error => console.error('Error:', error));
 
-
-
-
   
-  document.getElementById('form').addEventListener('submit', function(e) {
+  document.getElementById('myform').addEventListener('submit', function(e) {
       e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
 
-      
+      // envoi en js du formulaire
+      let cv_input = document.querySelector('input[type="file"]');
+      let lettre_input = document.getElementById('lettre');
+      if (typeof(cv_input.files[0]) === "undefined") {
+        alert("Un CV doit être fourni pour pouvoir envoyer votre CV");
+        return false;
+      }
+   
+      let data = new FormData();
+      data.append('cv', cv_input.files[0]);
+      data.append('lettre', lettre_input.value);
+      console.log(data);
+
+      fetch(`/ApiManager/application/submitApplication/${id_entreprise}/${cv_input.files[0].name}/${lettre_input.value}`, {
+        method: 'POST',
+        body: data
+      })
+      return false;
   });
 
   
   });//fin du domloadcontent
-
-
-
-
 
 
 function apply(idOffre){

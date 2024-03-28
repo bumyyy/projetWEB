@@ -132,6 +132,26 @@ class Application extends Model {
     }
 
     public function allApplicationByStudent($userId) {
+        // // Récupérer le contenu JSON de la requête
+        // $jsonData = file_get_contents('php://input');
+    
+        // // Décoder le contenu JSON en tableau associatif
+        // $candidatures = json_decode($jsonData, true);
+        // $candidatures = $candidatures['data'];
+
+        
+        // // Récupérer le type d'utilisateur depuis la session
+        // $utilisateur = isset($_SESSION['userData']['type']) ? $_SESSION['userData']['type'] : null;
+
+        // // Préparer la réponse
+        // $response = [
+        //     'candidatures' => array_values($candidatures), // Réindexe et inclut les candidatures filtrées
+        //     'userType' => $utilisateur
+        // ];
+
+        // // Encodage et envoi de la réponse
+        // echo json_encode($response);
+
 
         $sql = "SELECT 
         stage.id AS id_offre,
@@ -168,6 +188,9 @@ class Application extends Model {
         $stmt->execute(['id_user' => $userId]); 
         $data = $stmt->fetchAll(); 
         parent::sendJSON($data);
+
+         
+
     }
 
     public function uploadFile($internshipId, $dest_filename) {
@@ -181,44 +204,42 @@ class Application extends Model {
                         'id_user' => $userId,
                         'cv' => $dest_filename]); //permet de bind values et d'ajouter les % pour le like
 
-        /*
-
-
-        $_FILES['cv']['name'] = $file['name'];      // 
-        // $_FILES['cv']['tmp_name'] = $file['tmp_name'];   "/tmp/675134xaz.ext"
-
-        $userId = $_SESSION['userData']['id'];
-
-        $dest_filename = "cv_" . $userId . "_" . time() . "_" . $_FILES['cv']['name'];  // ex: cv_12_2345432_cvTEST1.ext
-        $dest_fullpath = "uploads/" . $dest_filename;   // ex: uploads/cv_12_2345432_cvTEST1.ext
-
-        move_uploaded_file($_FILES['cv']['tmp_name'], $dest_fullpath);
-
-        $sql = "INSERT INTO candidater (id_stage, id_utilisateur, cv, lettre_de_motivation, etat)
-                VALUES (:id_stage, :id_user, :cv, '', NULL);";
-        $stmt = $this->conn->prepare($sql); 
-        $stmt->execute(['id_stage' => $internshipId,
-                        'id_user' => $userId,
-                        'cv' => $dest_filename]); //permet de bind values et d'ajouter les % pour le like
-        */
+        
 
         $this->conn->commit();
 
     }
 
-    public function submitApplication($internshipId, $letter) {
+    public function submitApplication($internshipId, $file, $letter) {
+
         $userId = $_SESSION['userData']['id'];
 
-        $sql = "UPDATE candidater 
-                SET lettre_de_motivation = :lettre 
-                WHERE id_stage = :id_stage AND id_utilisateur = :id_user;";
+        define("DS", DIRECTORY_SEPARATOR);
+        $dossier_destination = $_SERVER['DOCUMENT_ROOT'] . DS . 'uploads'. DS;
+        // exemple : $dossier_destination contient "C:/www/projetWEB\uploads\"
+
+        if (isset($_FILES['cv'])) {
+            // ok, il y a un fichier uploadé
+            // pour ne pas ré-écrire :
+            $cv = $_FILES['cv'];
+
+            // créer un nouveau nom de fichier :
+            $dest_filename =  time() . "_" . $cv["name"];  // ex: 1499999999999_anglais.pptx
+            // exemple : $cv["tmp_name"] => string(24) "C:\xampp\tmp\php8B01.tmp"
+            //  "C:\xampp\tmp\php8B01.tmp"  =>  "C:/www/projetWEB\uploads\1499999999999_anglais.pptx"
+            move_uploaded_file($cv['tmp_name'], $dossier_destination . $dest_filename);
+        } else {
+            $dest_filename = "";
+        }
+
+        $sql = "INSERT INTO candidater (id_stage, id_utilisateur, cv, lettre_de_motivation, etat)
+                VALUES (:id_stage, :id_user, :cv, :lettre, 0);";
 
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(['id_stage' => $internshipId,
                         'id_user' => $userId,
+                        'cv' => $dest_filename,
                         'lettre' => $letter]); //permet de bind values et d'ajouter les % pour le like
-        
-        $this->conn->commit();
 
     }
 

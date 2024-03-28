@@ -2,6 +2,7 @@ RewriteEngine On
 
 # Ne pas appliquer la réécriture aux fichiers avec les extensions spécifiées
 RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg|webP|txt)$
+RewriteCond %{REQUEST_URI} !^/uploads/(.+)$
 
 # Appliquer la règle de réécriture pour toutes les autres requêtes
 # B pour forcer l'encodage des caractères spéciaux dans la chaîne de requête réécrite

@@ -146,7 +146,10 @@ class FilterSearch extends Controller{
         // Filtrer les pilotes par promotion
         if ($promotion != "x"){
             $pilotes = array_filter($pilotes, function ($pilote) use ($promotion) {
-                return $pilote['nom_promotion'] == $promotion;
+                // Convertit la chaîne d'ID de compétences en tableau
+                $promotionArray = explode(", ", $pilote['nom_promotion']);
+                // Vérifie si la compétence recherchée est dans le tableau des compétences du stage
+                return in_array($promotion, $promotionArray);
             });
         }
             

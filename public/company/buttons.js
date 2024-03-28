@@ -25,6 +25,11 @@ async function confirmerSuppression(idEntreprise) {
       alert("Suppression annulée.");
     }
   }
+
+  function create(){
+    window.location.href = "/company/create/"
+  }
+  
   
   function update(idEntreprise){
     window.location.href = "/company/edit/" + idEntreprise
