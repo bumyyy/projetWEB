@@ -1,0 +1,88 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+    Candidature de l'offre
+{% endblock %}
+
+{% block otherCSS %}
+    <link rel="stylesheet" href="/public/application/applyApplication.css">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    
+ </div>
+
+<div id="idCompany" idCompany="{{ idCompany }}" style="display:none;"></div>
+
+<div class="main">
+    <form class="create_entrep" id="myform" method="POST" > 
+        <h1>Postuler à une offre</h1>
+        <div class="company">
+            <h2 id="offerName">a</h2>
+            <h3 id="details">a</h3>
+            <h3 id="notabene">a</h3>
+            <h3 id="duration">a</h3>  
+            <h3 id="numbers">a</h3>   
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam fermentum urna ac metus varius, sit amet auctor nulla mollis. Integer eu elit velit.</p>
+
+        </div>
+
+        <h2>CV et Lettre de motivation</h2>
+        <div class="activite">
+            <div id="secteur-container">
+                <h3>CV</h3>
+                <input type="file" id="cv">
+                <a id="cvFileName" target="_blank"></a>
+                <h3>Lettre de motivation</h3>
+                <textarea class"lettre" id="lettre"></textarea>
+            </div>
+        </div>
+        <!--
+            <h2>Nom de l'entreprise</h2>
+            <input type="text" name="nom" id="form_input" required>
+        </div>
+
+        <h2>Secteur d'activité</h2>
+    <div class="activite">
+        <div id="secteur-container">
+            <select name="secteur[]" class="comboboxSecteur" id="comboboxSecteur" required>
+            </select>
+        </div>
+    </div>
+
+    <h2>Localité</h2>
+    <div class="localite">
+        <div id="localite-container">
+            <select name="localite[]" class="comboboxVille" id="comboboxVille" required>
+            </select>
+        </div>
+        <input type="button" value="+" id="ville">
+        <input type="button" value="-" id="moins">
+    </div>
+
+
+    <div class="note">
+        <h2>Note</h2>
+        <div class="rating" data-rating="3">
+        <input type="hidden" id="rating-value" name="rating-value" value="0">
+    <span class="star" data-value="1">&#9733;</span>
+    <span class="star" data-value="2">&#9733;</span>
+    <span class="star" data-value="3">&#9733;</span>
+    <span class="star" data-value="4">&#9733;</span>
+    <span class="star" data-value="5">&#9733;</span>
+        </div>
+                -->
+
+
+        <div class="submit">
+            <button type="submit" id="submit_btn">Soumettre</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block otherJS %}
+<script src="/public/application/applyApplication.js"></script>
+{% endblock %}

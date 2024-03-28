@@ -1,0 +1,71 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+    Création Entreprises
+{% endblock %}
+
+{% block otherCSS %}
+    <link rel="stylesheet" href="/public/student/createStudent.css">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    
+</div>
+
+<div id="userData" data-user="{{ utilisateur }}" style="display:none;"></div>
+
+    <div class="main">
+    <form class="create_entrep" id="myform" method="POST" > <!-- action="Entreprises_accueil.php" -->
+        <h1>Ajouter un étudiant</h1>
+        <div class="company">
+            <h2>Nom </h2>
+            <input type="text" name="nom" id="nom" required>
+        </div>
+
+        <div class="company">
+            <h2>Prénom </h2>
+            <input type="text" name="nom" id="prenom" required>
+        </div>
+
+        <div class="company">
+            <h2>Mail</h2>
+            <input type="mail" name="nom" id="mail" required>
+        
+            <h2>Mot de passe</h2>
+            <input type="password" name="nom" id="mdp" required>
+        </div>
+
+            <h2>Centre</h2>
+        <div class="activite">
+            <div id="secteur-container">
+                <select name="secteur[]" class="comboboxSecteur" id="comboboxVille" required>
+                </select>
+            </div>
+        </div>
+
+        <h2>Promotion</h2>
+        <div class="localite">
+            <div id="localite-container">
+                <select name="localite[]" class="comboboxVille" id="comboboxPromo" required>
+                <option value = 'x'>promotion</option>
+                <option value = 'A1'>A1</option>
+                <option value = 'A2'>A2</option>
+                <option value = 'A3'>A3</option>
+                <option value = 'A4'>A4</option>
+                <option value = 'A5'>A5</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="submit">
+            <button type="submit" id="submit_btn">Soumettre</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block otherJS %}
+<script src="/public/student/fillCombobox.js"></script>
+<script src="/public/student/createStudent.js"></script>
+{% endblock %}

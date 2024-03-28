@@ -1,0 +1,208 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%; 
+}
+#login {
+    width: 100%;
+}
+.titre {
+    text-align: center;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.logo img {
+    width: 45%;
+    height: 65%;
+}
+
+.gauche {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.droite {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.titredroite {
+    font-family: Arial;
+    font: lighter;
+    font-size: larger;
+}
+
+
+.champemail input {
+    width: 250px;
+    padding: 2%;
+    margin-top: 10px;
+}
+
+.champmdp input {
+    width: 250px;
+    padding: 2%;
+    margin-top: 50px;
+
+}
+
+.check {
+    margin-top: 5px;
+}
+
+.bouton {
+    width: 200px;
+    height: 10px;
+    padding: 30px;
+    font-size: 20px;
+    margin-top: 50px;
+    line-height: 0px;
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    /*body {background-color: lightcoral;}*/
+
+    .logo img {
+
+        margin-bottom: 5%;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gauche {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    .droite {
+        text-align: center;
+        margin-right: 0%;
+        margin-top: 0%;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    /*body {background-color: lightgreen;}*/
+    
+    .logo img {
+
+        margin-bottom: 5%;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gauche {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    
+    .droite {
+        text-align: center;
+        margin-right: 0%;
+        margin-top: 0%;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+    
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 1200px) {
+    /*body {background-color: lightblue;}*/
+
+    .container {
+        display: flex;
+        height: 100%;
+        width: 100%; 
+        flex-direction: initial;
+    }
+
+    .logo img {
+    }
+    
+    
+    .gauche {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .milieu {
+        margin-left: 5%;
+        height: 100%;
+        width: 40%;
+    }
+    
+    .separator {
+        position: absolute;
+        top: 50px;
+        bottom: 50px;
+        width: 2px;
+        background-color: black;
+    }
+
+        
+    .droite {
+        display: flex ;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    /*body {background-color: orange;}*/
+
+    
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    /*body {background-color: pink;}*/
+  }

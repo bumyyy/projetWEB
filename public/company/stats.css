@@ -1,0 +1,184 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/public/img/bg.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.content h1 {
+    text-align: center;
+    font-size: 150%;
+    
+    color: #f0f0f0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    
+}
+
+.main{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding-top: 60px;
+
+
+
+}
+
+.carre{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 1.7vw;
+    padding-bottom: 1.7vw;
+    padding-left: max(3vw,4.5vw);
+    padding-right: max(3vw,4.5vw);
+    max-width: 900px;
+    background-color: #f0f0f0;
+    opacity: 50%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+
+
+    
+}
+.name{
+    display: flex;
+    justify-content: space-between;
+}
+.name h1 {
+    margin-right: 22px;
+}
+.ligne{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
+ height: 100%;
+margin-bottom: 20px;
+margin-top: 20px;
+
+}
+.downligne{
+    display: flex;
+    justify-content: space-around;
+  
+}
+
+.diag1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+.alldiag{
+    display: flex;
+    flex-direction: column;
+}
+.diagsect{
+    text-align: center;
+    margin-left: 40px;
+    background-color: #d9d9d9dc;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+    border-radius: 60px;
+    padding: 2%;
+    margin-left: 25px;
+}
+.diagloc{
+    text-align: center;
+    margin-left: 40px;
+    background-color: #d9d9d9dc;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+    border-radius: 60px;
+    padding: 2%;
+    margin-left: 25px;
+}
+
+.diagtitle{
+    background-color: #f0f0f07a;
+    width: 100%;
+    text-align: center;
+    border-radius: 60px;
+    margin-bottom: 20px;
+}
+.diagtitle2{
+    background-color: #f0f0f07a;
+    width: 40%;
+    text-align: center;
+    border-radius: 60px;
+    margin-bottom: 20px;
+}
+.diagtitle h1{
+    font-size: 19px;
+}
+.diagtitle2 h1{
+    font-size: 19px;
+}
+.diagcomplet{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.Secteur{
+
+    width: 260px;
+    height: 260px;
+    min-width: 260px;
+    border-radius: 50%;
+}
+.secteur p {
+    text-align: center;
+}
+.Localité{
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    margin-bottom: 60px;
+}
+.rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+   
+}
+
+.star {
+    display: inline-block;
+    font-size: clamp(16px,3vw,40px);
+ /*   width: clamp(24px,2.4vw,28px); 
+    height: clamp(24px,2.4vw,28px);*/
+    background-size: contain;
+    color: rgb(160, 160, 160); /* Définit la couleur des étoiles par défaut */
+}
+.p{
+    margin:0;
+}
+
+
+@media only screen and (max-width: 940px) {
+  
+    .main{
+        flex-wrap: wrap;
+        
+    }
+
+      .diagcomplet{
+        flex-direction: column;
+    }
+}   
+@media only screen and (max-width: 360px) {
+    .top3{
+        width: 100%;
+    }
+}

@@ -1,0 +1,20 @@
+.content h1 {
+    text-align: center;
+    justify-content: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(239, 236, 151, 0.984);
+}
+
+.content {
+    flex: 1; /* Permet au contenu de remplir l'espace disponible */
+    display: flex; /* Active flexbox pour le contenu */
+    flex-direction: column; /* Organise les enfants du contenu en colonne */
+    justify-content: center; /* Centre le contenu verticalement */
+    align-items: center; /* Centre le contenu horizontalement */
+}
+
+
+

@@ -1,0 +1,84 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+    Pilotes
+{% endblock %}
+
+{% block otherCSS %}
+    <link rel="stylesheet" href="/public/pilot/pilotSearch.css">
+{% endblock %}
+
+{% block body %}
+{# <?php $utilisateur = 1 ?> #}
+
+    <form id="form" method="POST">
+        <div class="sub">
+
+            <input type="text" id="search" placeholder="Rechercher pilotes">
+
+            <div class="combox">
+                <div id="comboboxPromo">
+                    <select name="promo" class="comboboxVille" id="promo" required>
+                        <option value = 'x'>promotion</option>
+                        <option value = 'A1'>A1</option>
+                        <option value = 'A2'>A2</option>
+                        <option value = 'A3'>A3</option>
+                        <option value = 'A4'>A4</option>
+                        <option value = 'A5'>A5</option>
+                    </select>
+                </div>
+
+                <div id="comboboxCentre"></div>
+            </div>
+
+            <div class="wrap">
+                <button type="submit" class="search" id="btnsubmit"><img src="/public/img/loupe.png"></button>
+    </form>
+    {# <?php if ($utilisateur != 3) { ?> #}
+        <button onclick="window.location.href='/pilot/create'" class="create">+</button>
+    {# <?php } ?> #}
+    </div>
+
+
+    </div>
+
+
+    <ul class="main" id="main">
+    </ul>
+
+    <nav class="pagination-container">
+        <div id="pagination-numbers"></div>
+    </nav>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p>L'entreprise a été créée avec succès !</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block otherJS %}
+<script src="/public/pilot/fillCombobox.js"></script>
+<script src="/public/company/pagination.js"></script>
+<script src="/public/pilot/fillMain.js"></script>
+<script src="/public/pilot/editPilot.js"></script>
+<script src="/public/company/popup.js"></script>
+
+{# <?php
+session_start();
+if (isset ($_SESSION["message"]) && $_SESSION["message"] == "Deleted") {
+    echo "<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            alert('Entreprise caché avec succès!');
+            document.getElementById('btnsubmit').click();
+        }, 1000);
+    });
+    </script>";
+    unset($_SESSION["message"]);
+}
+?> #}
+
+{% endblock %}

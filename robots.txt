@@ -1,0 +1,10 @@
+# Autoriser tous les robots à tout explorer
+User-agent: *
+Disallow:
+
+# Interdire l'accès aux ressources qui ne sont pas destinées à être indexées
+User-agent: *
+Disallow: /public/
+
+# Indiquer l'emplacement du sitemap (facultatif, mais recommandé)
+Sitemap: https://www.stagetier.com/accueil/

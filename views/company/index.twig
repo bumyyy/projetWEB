@@ -1,0 +1,84 @@
+{% extends "layout.twig" %}
+
+{% block title %}
+    Entreprises
+{% endblock %}
+
+{% block otherCSS %}
+    <link rel="stylesheet" href="/public/company/companySearch.css">
+{% endblock %}
+
+{% block body %}
+
+    <form id="form" method="POST">
+        <div class="sub">
+
+            <input type="text" id="search" placeholder="Rechercher entreprises">
+
+            <div class="combox">
+                <div id="comboboxSecteur"></div>
+
+                <div id="comboboxVille"></div>
+
+                <select aria-label="note" id="rate">
+                    <option value="x">note</option>
+                    <option value="1">1 étoile</option>
+                    <option value="2">2 étoiles</option>
+                    <option value="3">3 étoiles</option>
+                    <option value="4">4 étoiles</option>
+                    <option value="5">5 étoiles</option>
+                </select>
+            </div>
+
+            <div class="wrap">
+                <button aria-label="rechercher" type="submit" class="search" id="btnsubmit"><img alt="loupe" src="/public/img/loupe.png"></button>
+    </form>
+    {% if utilisateur != 3 %}
+        <button onclick="create()" class="create">+</button>
+    {% endif %}
+         <button aria-label="statistiques" onclick="stat()" class="create"><img alt="statistiques" src="/public/img/tableau-statistique.png"></button>
+        </div>
+
+
+    </div>
+
+
+    <ul class="main" id="main">
+    </ul>
+
+    <nav class="pagination-container">
+        <div id="pagination-numbers"></div>
+    </nav>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p>L'entreprise a été créée avec succès !</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block otherJS %}
+<script src="/public/company/fillCombobox.js"></script>
+<script src="/public/company/pagination.js"></script>
+<script src="/public/company/fillMain.js"></script>
+<script src="/public/company/buttons.js"></script>
+<script src="/public/company/popup.js"></script>
+
+{# <?php
+session_start();
+if (isset ($_SESSION["message"]) && $_SESSION["message"] == "Deleted") {
+    echo "<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            alert('Entreprise caché avec succès!');
+            document.getElementById('btnsubmit').click();
+        }, 1000);
+    });
+    </script>";
+    unset($_SESSION["message"]);
+}
+?> #}
+
+{% endblock %}
