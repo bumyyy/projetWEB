@@ -118,7 +118,8 @@ main {
     align-items: center;
 }
 .submit button{
-    width: 45%;
+    margin-top: 20px;
+    width: 30%;
     border-radius: 5vw;
     border-color: #00000057;
 }
@@ -145,7 +146,12 @@ main {
     border-radius: 2vw;
     border-color: #00000057;
 }
-
+#cv{
+    border-radius: 0;
+}
+.lettre{
+    resize: none;
+}
 .activite, .localite {
     display: flex;
     justify-content: center;

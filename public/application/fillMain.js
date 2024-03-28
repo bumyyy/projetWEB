@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 "<div class='completeEntreprise'>" +
                 "<li class='ligne' id='"+candidature.id_offre+"'>" +
                 "    <div class='carre' onclick='toggleSubdivision(this)'>" +
+                "<div class='partcomplet'>" +
+                "<div class='partie1'>" +
                 "        <div class='name'>" +
                 "            <h1 id='entrepriseName'>"+candidature.nom_offre+"</h1>" +
                 "            <p>"+candidature.nom_entreprise+"</p>" +
@@ -95,16 +97,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 "            <p title='début stage'>"+candidature.date_debut_offre+"</p>" +
                 "            <p title='fin stage'>"+candidature.date_fin_offre+"</p>" +
                 "        </div>"+
+                " </div>"+
+                "<div class='partie2'>" +
                 "        <div class='localité'>"+
-                "            <h2 title='rémuneration'>"+Math.round(candidature.remuneration_base)+"€</h2>"+
-                "            <p title='durée stage'>"+candidature.duree_mois_stage+"mois</p>"+
+                "            <h2 title='rémuneration'> Rémuneration: "+Math.round(candidature.remuneration_base)+"€/mois</h2>"+
+                "            <p title='durée stage'> Duree du stage: "+candidature.duree_mois_stage+"mois</p>"+
                 "          <p>"+candidature.nombre_places_restantes+" place(s) restante(s)</p>"+
                 "        </div>"+ 
                 "        <div class='localité'>"+
-                "            <h2 title='places offertes'>"+candidature.nombre_places_offertes+"place(s)</h2>"+
+                "            <h2 title='places offertes'>"+candidature.nombre_places_offertes+"place(s) offertes </h2>"+
                 "            <p  title='étudiant(s) ayant déja postulé'>"+candidature.nombre_etudiants_postules+" étudiant(s) ayant postulé</p>"+
                 "            <p>"+etatCandidatureTexte+"</p>"+
-                "        </div>"+        
+                "        </div>"+     
+                "</div>"+  
+                "</div>"+
                 "    </div>";
                 
                 if (userType != 2){
