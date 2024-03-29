@@ -1,7 +1,7 @@
 ROOT = "https://stagetier.fr";
 
 let tab_promo = [];
-let id_pilot;
+let id_pilot=window.location.href.split("/").pop();
 
 function selectPilot() {
   id_pilot =
@@ -119,15 +119,12 @@ if (select.options[0].text == "x") {
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
 
-    alert(
-      `${ROOT}/ApiManager/pilot/editPilot/${id_pilot}/${namePilot}/${surnamePilot}/${pilotMail}/${id_ville}/${promo}`
-    );
-
     fetch(
       `${ROOT}/ApiManager/pilot/editPilot/${id_pilot}/${namePilot}/${surnamePilot}/${pilotMail}/${id_ville}/${promo}`
     )
       .then((response) => {
         if (response.ok) {
+          window.location.href = "/pilot";
         } else {
           console.error(
             "Erreur lors de la requête fetch : ",
@@ -141,12 +138,12 @@ if (select.options[0].text == "x") {
   });
 });
 
-async function confirmerSuppression(idEntreprise) {
+async function confirmerSuppression(id_pilot) {
   ROOT = "https://stagetier.fr";
 
-  if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
+  if (confirm("Voulez-vous vraiment rendre le pilote invisble ?")) {
     try {
-      const url = `${ROOT}/ApiManager/company/deleteCompany/${idEntreprise}`;
+      const url = `${ROOT}/ApiManager/pilot/deletePilot/${id_pilot}`;
       const response = await fetch(url, {
         method: "POST",
       });

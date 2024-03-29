@@ -158,4 +158,11 @@ class Pilot extends Model {
             throw $e;
         }
     }
+
+    public function deletePilot($id_pilote) {
+        $sql = "UPDATE utilisateur SET hide = 1 WHERE id = :id;";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id' => $id_pilote]);
+        $_SESSION["message"] = "Deleted";
+    }
 }

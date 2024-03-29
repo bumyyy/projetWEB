@@ -126,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let pilotMail = document.getElementById("pilotMail").value;
     let pilotMdp = document.getElementById("pilotMdp").value;
     let name_promotion = document.getElementById("comboboxPromo").value;
-    alert(namePilot + " " + surnamePilot + " " + id_ville + " " + pilotMail + " " +pilotMdp  + " " + name_promotion)
     const secteurSelect = document.getElementById('comboboxCentre');
     
     // Vérifier si aucun secteur n'a été sélectionné
@@ -148,8 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => {
             if (response.ok) {
                 alert('Votre pilot a été ajouté.');
-                // Rediriger l'utilisaxteur en cas de succès
-                //window.location.href = `${ROOT}/company`;
+                window.location.href = "/pilot";
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);

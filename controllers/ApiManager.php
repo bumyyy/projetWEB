@@ -157,11 +157,14 @@ class ApiManager extends Controller{
                 $this->Pilot->$action($field1);
                 break;
 
-            
             case 'addPilot':
                 $this->Pilot->$action($field1, $field2, $field3, $field4, $field5);
                 break;
-            
+
+            case 'deletePilot':
+                $this->Pilot->$action($field1);
+                break;
+
             default:
                 echo "Action for 'pilot' not define";
                 break;
