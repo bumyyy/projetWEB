@@ -33,7 +33,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
         finalData.pilotes.forEach ((pilote) => { 
             let html =
             "<div class='completeEntreprise'>" +
-            "<li class='ligne' id='"+pilote.id_pilote   +"'>" +
+            "<li class='ligne' id="+pilote.id_pilote+">"+
             "    <div class='carre' onclick='toggleSubdivision(this)'>" +
             "        <div class='name'>" +
             "            <h1 id='entrepriseName'>Nom</h1>" +

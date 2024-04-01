@@ -312,13 +312,13 @@ document.addEventListener("DOMContentLoaded", function() {
         return false;
     }
 
-
     // Envoyer une requête fetch pour chaque valeur de ville_nom
     fetch(`${ROOT}/ApiManager/company/editCompany/${id_entreprise}/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}`)
         .then(response => {
             if (response.ok) {
+
                 // Rediriger l'utilisateur en cas de succès
-                // window.location.href = `${ROOT}/company/`;
+                window.location.href = `/company/`;
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);

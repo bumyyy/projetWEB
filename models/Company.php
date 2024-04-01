@@ -132,7 +132,7 @@ class Company extends Model {
         }
 
         // Modifier l'évaluation de l'entreprise
-        $sqlRating = "UPDATE evaluer SET note = :note WHERE id_entreprise = :id_entreprise AND id_utilisateur = 1";
+        $sqlRating = "UPDATE evaluer SET note = :note WHERE id_entreprise = :id_entreprise Limit 1";
         $stmtRating = $this->conn->prepare($sqlRating);
         $stmtRating->execute(['id_entreprise' => $companyId ,
                         //'id_utilisateur' => $userId;

@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
-                window.location.href = `${ROOT}/company`;
+                window.location.href = `/company`;
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);
@@ -191,3 +191,4 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+    
