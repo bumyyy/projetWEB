@@ -34,18 +34,20 @@ class Pilot extends Model {
         utilisateur.prenom AS prenom_pilote, 
         utilisateur.mail AS mail_pilote, 
         utilisateur.type_, 
-        GROUP_CONCAT(gerer.id_promotion SEPARATOR ', ') AS id_promotion, 
+        GROUP_CONCAT(DISTINCT gerer.id_promotion SEPARATOR ', ') AS id_promotion, 
         GROUP_CONCAT(DISTINCT promotion.nom SEPARATOR ', ') AS nom_promotion,
         ville.id AS id_centre,
         ville.nom AS centre
-        FROM utilisateur
-        JOIN promotion ON utilisateur.id_promotion = promotion.id
-        LEFT JOIN ville ON promotion.id_ville = ville.id
-        WHERE utilisateur.type_ = 2 -- Type pilote
-        AND utilisateur.hide = 0
-        AND (utilisateur.nom LIKE :recherche -- Remplacez par le critère de recherche sur le nom
-        OR utilisateur.prenom LIKE :recherche) 
-        ORDER BY utilisateur.nom";
+    FROM utilisateur
+    LEFT JOIN gerer ON utilisateur.id = gerer.id_utilisateur
+    LEFT JOIN promotion ON gerer.id_promotion = promotion.id
+    LEFT JOIN ville ON promotion.id_ville = ville.id
+    WHERE utilisateur.type_ = 2 -- Type pilote
+    AND utilisateur.hide = 0
+    AND (utilisateur.nom LIKE :recherche OR utilisateur.prenom LIKE :recherche) 
+    GROUP BY utilisateur.id
+    ORDER BY utilisateur.nom;
+    ";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute(['recherche' => '%'.$search.'%']); //permet de bind values et d'ajouter les % pour le like
         $data = $stmt->fetchAll(); 
