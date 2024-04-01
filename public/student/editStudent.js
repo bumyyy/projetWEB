@@ -12,7 +12,7 @@ ROOT = 'https://stagetier.fr';
 document.addEventListener("DOMContentLoaded", function() {
 
     // Récupérer les éléments du DOM
-    let id_entreprise = document.getElementById('idStudent').getAttribute('idStudent');
+    let id_entreprise = window.location.href.split("/")[window.location.href.split("/").length - 1];;
 
     // Récupérer les éléments du DOM
     const nom = document.getElementById('nom');
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // -------------------------bouton.js-------------------------//
 async function confirmerSuppression(idEntreprise) {
 
-    ROOT = 'http://stagetier.fr';
+    ROOT = 'https://stagetier.fr';
   
     if (confirm("Voulez-vous vraiment rendre l'étudiant invisble ?")) {
       try {
