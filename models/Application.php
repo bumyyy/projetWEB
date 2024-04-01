@@ -55,7 +55,7 @@ class Application extends Model {
         entreprise.id AS id_entreprise,
         GROUP_CONCAT(DISTINCT competence.nom SEPARATOR ', ') AS competences_requises,
         ville.id AS id_ville,
-        GROUP_CONCAT(DISTINCT ville.nom SEPARATOR ', ') AS nom_ville,
+        ville.nom AS nom_ville,
         promotion.nom AS nom_promotion,
         stage.date_debut AS date_debut_offre, 
         stage.date_fin AS date_fin_offre,
@@ -64,23 +64,19 @@ class Application extends Model {
         stage.remuneration AS remuneration_base,
         stage.nb_place AS nombre_places_offertes,
         stage.nb_place - COUNT(DISTINCT candidater.id_utilisateur) AS nombre_places_restantes,
-        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules,
-        candidater.etat AS etat_candidature,
-        CASE WHEN aimer.id_utilisateur IS NOT NULL THEN aimer.id_stage ELSE NULL END AS id_stage_aimé,
-        CASE WHEN candidater.id_utilisateur IS NOT NULL THEN stage.id ELSE NULL END AS id_stage_candidaté,
-        candidater.cv AS cv,
-        candidater.lettre_de_motivation AS lettre_motivation
-        FROM stage
-        INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
-        LEFT JOIN rechercher ON stage.id = rechercher.id_stage
-        LEFT JOIN competence ON competence.id = rechercher.id_competence
-        LEFT JOIN ville ON stage.id_ville = ville.id
-        LEFT JOIN promotion ON stage.id_promotion = promotion.id
-        LEFT JOIN candidater ON stage.id = candidater.id_stage AND candidater.id_utilisateur = :id_user
-        LEFT JOIN aimer ON stage.id = aimer.id_stage AND aimer.id_utilisateur = :id_user
-        WHERE stage_nom LIKE :recherche
-        AND aimer.id_utilisateur = :id_user OR candidater.id_utilisateur = :id_user
-        GROUP BY stage.id";
+        COUNT(DISTINCT candidater.id_utilisateur) AS nombre_etudiants_postules
+    FROM stage
+    INNER JOIN entreprise ON stage.id_entreprise = entreprise.id
+    LEFT JOIN rechercher ON stage.id = rechercher.id_stage
+    LEFT JOIN competence ON competence.id = rechercher.id_competence
+    LEFT JOIN ville ON stage.id_ville = ville.id
+    LEFT JOIN promotion ON stage.id_promotion = promotion.id
+    LEFT JOIN candidater ON stage.id = candidater.id_stage
+    LEFT JOIN aimer ON stage.id = aimer.id_stage
+    WHERE stage.nom LIKE :recherche
+    AND (aimer.id_utilisateur = :id_user OR candidater.id_utilisateur = :id_user)
+    GROUP BY stage.id;
+    ";
         $stmt = $this->conn->prepare($sql); 
         $stmt->execute(['recherche' => '%'.$search.'%',     //permet de bind values et d'ajouter les % pour le like
                         'id_user' => $userId]); 
