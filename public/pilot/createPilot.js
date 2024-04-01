@@ -1,9 +1,9 @@
 let villesSelectionnees = [];
-villesSelectionnees[0] = document.getElementById("comboboxPromo").value;
 ROOT = "https://stagetier.fr";
 
 document.addEventListener("DOMContentLoaded", function () {
   // Récupérer les éléments du DOM
+  villesSelectionnees[0] = document.getElementById("comboboxPromo").value;
   const localiteContainer = document.getElementById("localite-container");
   const villeButton = document.getElementById("ville");
 
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // Ajouter chaque localité comme option au nouveau select
           data.forEach((ville) => {
             const option = document.createElement("option");
-            option.value = ville.id;
+            option.value = ville.nom;
             option.textContent = ville.nom;
             newSelect.appendChild(option);
           });
@@ -115,46 +115,49 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  
   document.getElementById("myform").addEventListener("submit", (event) => {
     // Récupérer les valeurs des champs de formulaire
-    
+
     let namePilot = document.getElementById("form_input1").value;
     let surnamePilot = document.getElementById("form_input2").value;
-    
+
     let id_ville = document.getElementById("comboboxCentre").value;
     let pilotMail = document.getElementById("pilotMail").value;
     let pilotMdp = document.getElementById("pilotMdp").value;
-    let name_promotion = document.getElementById("comboboxPromo").value;
-    const secteurSelect = document.getElementById('comboboxCentre');
-    
+    const secteurSelect = document.getElementById("comboboxCentre");
+
     // Vérifier si aucun secteur n'a été sélectionné
     if (secteurSelect.value == "x") {
-        event.preventDefault();
-        alert('Erreur: Veuillez sélectionner un centre.');
-        return false;
+      event.preventDefault();
+      alert("Erreur: Veuillez sélectionner un centre.");
+      return false;
     }
-    
+
     // Vérifier si aucun select de ville n'a été sélectionné
     if (villesSelectionnees[0] == "") {
-        event.preventDefault();
-        alert('Erreur: Veuillez sélectionner une promotion.');
-        return false;
+      event.preventDefault();
+      alert("Erreur: Veuillez sélectionner une promotion.");
+      return false;
     }
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`${ROOT}/ApiManager/pilot/addPilot/${namePilot}/${surnamePilot}/${pilotMail}/${pilotMdp}/${id_ville}/${name_promotion}`)
-        .then(response => {
-            if (response.ok) {
-                alert('Votre pilot a été ajouté.');
-                window.location.href = "/pilot";
-            } else {
-                // Traiter les erreurs éventuelles
-                console.error('Erreur lors de la requête fetch : ', response.statusText);
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de la requête fetch : ', error);
-        });
+    fetch(
+      `${ROOT}/ApiManager/pilot/addPilot/${namePilot}/${surnamePilot}/${pilotMail}/${pilotMdp}/${id_ville}/${villesSelectionnees}`
+    )
+      .then((response) => {
+        if (response.ok) {
+          alert("Votre pilot a été ajouté.");
+          window.location.href = "/pilot";
+        } else {
+          // Traiter les erreurs éventuelles
+          console.error(
+            "Erreur lors de la requête fetch : ",
+            response.statusText
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la requête fetch : ", error);
+      });
   });
 });
