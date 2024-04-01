@@ -16,7 +16,6 @@ async function confirmerSuppression(idEntreprise) {
         const url = `${ROOT}/ApiManager/student/deleteStudent/${idEntreprise}`;
         const response = await fetch(url);
         if (response.ok) {
-          console.log('Etudiant rendue invisible');
           window.location.reload();
         } else {
           // Si la réponse n'est pas dans la plage 2 00-299, affichez une erreur
@@ -28,7 +27,6 @@ async function confirmerSuppression(idEntreprise) {
         alert("Une erreur s'est produite lors de la suppression.");
       }
     } else {
-      console.log('Suppression annulée.');
       alert("Suppression annulée.");
     }
   }

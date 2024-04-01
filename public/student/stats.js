@@ -4,7 +4,7 @@ ROOT = 'https://stagetier.fr';
 document.addEventListener('DOMContentLoaded', function() {
 
 
-const id_student=window.location.href.split('/').pop();
+const id_student = window.location.href.split('/').pop();
 
     function nbStage(){ 
         let URL =`/ApiManager/student/statNbCandidacy/${id_student}`;
@@ -131,7 +131,6 @@ function candidatures(){
           return response.json();
         })
         .then(data => {
-          console.log(data);
           if ((typeof(data) === "object") && Array.isArray(data)) {
             if (data.length > 0) {
               let tabnote = [];

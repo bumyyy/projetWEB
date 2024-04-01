@@ -7,7 +7,6 @@ document.getElementById('pagination-numbers').innerHTML = ''; // reset la page
 const paginationNumbers = document.getElementById("pagination-numbers");
 const paginatedList = document.getElementById("main");
 const listItems = paginatedList.querySelectorAll(".completeEntreprise");
-console.log(paginationNumbers, paginatedList, listItems);
 
 const paginationLimit = 5;
 const pageCount = Math.ceil(listItems.length / paginationLimit);

@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataPromo = document.getElementById('promo').value;
         let dataVille = document.getElementById('ville').value;
         let dataSearch = document.getElementById('search').value;
-        console.log(dataVille);
         
         let URL_ = dataSearch !== ""
             ? `${ROOT}/ApiManager/student/studentBySearch/${dataSearch}` 
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
             let userType = finalData.userType;
     
             finalData.pilotes.forEach ((student) => { 
-                console.log(student);
                 let html =
                 "<div class='completeEntreprise'>" +
                 "<li class='ligne' id='"+student.id_student   +"'>" +
