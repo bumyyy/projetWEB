@@ -1,9 +1,10 @@
 let villesSelectionnees = [];
-villesSelectionnees[0] = document.getElementById('comboboxSecteur').value;
-
 ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
+    
+    villesSelectionnees[0] = document.getElementById('comboboxSecteur').value;
+
     // Récupérer les éléments du DOM
     const localiteContainer = document.getElementById('secteur-container');
     const villeButton = document.getElementById('ville');
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour mettre à jour le tableau des sélections de villes
     function updateVillesSelectionnees() {
         villesSelectionnees = [];
-        const selects = document.querySelectorAll('.comboboxVille');
+        const selects = document.querySelectorAll('.comboboxSecteur');
         selects.forEach(select => {
             if (select.value !== "") {
                 villesSelectionnees.push(select.value); // Ajouter la valeur du select au tableau si elle est sélectionnée
@@ -143,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
+    alert(`${ROOT}/ApiManager/internship/addInternship/${villesSelectionnees}/${nom}/${entreprise}/${localite}/${promo}/${dateDebut}/${dateFin}/${prix}/${place}`);
     fetch(`${ROOT}/ApiManager/internship/addInternship/${villesSelectionnees}/${nom}/${entreprise}/${localite}/${promo}/${dateDebut}/${dateFin}/${prix}/${place}`)
         .then(response => {
             if (response.ok) {
