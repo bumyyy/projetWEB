@@ -62,7 +62,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
             let html =
             "<div class='completeEntreprise'>" +
             "<li class='ligne' id='"+stage.id_offre      +"'>" +
-            "    <div class='carre' onclick='toggleSubdivision(this)'>" +
+            "    <div class='carre'>" +
             "        <div class='name'>" +
             "            <h1 id='entrepriseName'>"+stage.nom_offre+"</h1>" +
             "            <p>"+stage.nom_entreprise+"</p>" +

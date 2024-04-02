@@ -73,6 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
         method: 'POST',
         body: data
       })
+      alert("Votre candidature a bien été envoyé");
+      window.location.href = "/application/";
       return false;
   });
 
