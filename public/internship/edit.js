@@ -268,27 +268,25 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
 
-    document.getElementById('myform').addEventListener('submit', (event) => {
+    document.getElementById("myform").addEventListener('submit', (event) => {
     event.preventDefault();
+
 
     // Récupérer les valeurs des champs de formulaire
     let nom = document.getElementById('nom').value;
     let localite = document.getElementById('comboboxVille').value;
-    let competence = document.getElementById('comboboxSecteur').value;
     let promo = document.getElementById('promo').value;
     let dateDebut = document.getElementById('dateDebut').value;
     let dateFin = document.getElementById('dateFin').value;
     let prix = document.getElementById('prix').value;
     let entreprise = document.getElementById('entreprise').value;
     let place = document.getElementById('place').value;
-    
     // Vérifier si aucun secteur n'a été sélectionné
     if (localite == "x", villesSelectionnees[0] == "",  promo == "x") {
         event.preventDefault();
         alert('Erreur: Veuillez sélectionner.');
         return false;
     }
-
     // Envoyer une requête fetch pour chaque valeur de ville_nom
     fetch(`${ROOT}/ApiManager/internship/edit/${id_entreprise}/${villesSelectionnees}/${nom}/${entreprise}/${localite}/${promo}/${dateDebut}/${dateFin}/${prix}/${place}`)
         .then(response => {

@@ -1,21 +1,6 @@
-    /*
-function toggleSubdivision(division) {
-    let subdivision = division.querySelector('.popdown');
-    let computedStyle = window.getComputedStyle(subdivision);
-
-    if (computedStyle.display === 'none' || subdivision.style.display === 'none') {
-        subdivision.style.display = 'block';
-        document.body.classList.add('no-scroll');
-    } else {
-        subdivision.style.display = 'none';
-        document.body.classList.remove('no-scroll');
-    }
-}
-*/
-
 document.addEventListener('DOMContentLoaded', function() {
 
-ROOT = 'https://stagetier.fr';
+const ROOT = 'https://stagetier.fr';
 
 
 document.getElementById('form').addEventListener('submit', function(e) {
@@ -26,27 +11,24 @@ document.getElementById('form').addEventListener('submit', function(e) {
     let dataSecteur = 'x';
     let dataVille = 'x';
     if (companyName == null || companyName == "") {
-        let dataSecteur = document.getElementById('competence').value;
-        let dataVille = document.getElementById('ville').value;
+        dataSecteur = document.getElementById('competence').value;
+        dataVille = document.getElementById('ville').value;
     }
-    console.log(dataSecteur);
 
     let dataPromo = document.getElementById('promo').value;
     let dataNote = document.getElementById('rate').value;
     let dataDate = document.getElementById('date').value;
     let dataSearch = document.getElementById('search').value;
-
     let URL_ = dataSearch !== "" 
         ? `${ROOT}/ApiManager/internship/internshipBySearch/${dataSearch}` 
         : `${ROOT}/ApiManager/internship/allInternship/`;
-        console.log(URL_);
     fetch(URL_)
     .then(response => response.json())
     .then(dataResponse => {
         return fetch(`${ROOT}/FilterSearch/filterInternship/${dataSecteur}/${dataVille}/${dataPromo}/${dataNote}/${dataDate}`, {
             method: 'POST', 
             headers: {
-                'Content-Type': 'application/json', 
+                'Content-Type': 'application/json',
             },
             
             body: JSON.stringify({
@@ -61,7 +43,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
             //tabnote.push(stage.moyenne_evaluations);
             let html =
             "<div class='completeEntreprise'>" +
-            "<li class='ligne' id='"+stage.id_offre      +"'>" +
+            "<li class='ligne' id='"+stage.id_offre+"'>" +
             "    <div class='carre'>" +
             "        <div class='name'>" +
             "            <h1 id='entrepriseName'>"+stage.nom_offre+"</h1>" +
@@ -79,8 +61,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
             "        <div class='localité'>"+
             "            <h2 title='rémuneration'>"+stage.remuneration_base+" € </h2>"+
             "            <p title='durée stage'>"+stage.duree_mois_stage+" mois</p>"+
-             "          <p>"+stage.nombre_places_restantes+" place(s) restante(s)</p>"+
-            
+            "          <p>"+stage.nombre_places_restantes+" place(s) restante(s)</p>"+
             "        </div>"+ 
             "        <div class='localité'>"+
             "            <h2 title='places offertes'>"+stage.nombre_places_offertes+" place(s)</h2>"+

@@ -25,7 +25,7 @@ async function confirmerSuppression(idEntreprise) {
         alert("Erreur.");
         throw new Error('Réponse réseau non ok');
       }
-    } catch (error) {
+    }  catch (error) {
       console.error('Erreur:', error);
       alert("Une erreur s'est produite lors de la suppression.");
     }

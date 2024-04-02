@@ -3,12 +3,12 @@ function getDataApi(URL, id, name) {
     .then(response => response.json())
     .then(dataResponse => {
         // Correction ajoutée ici pour l'attribut name
-        let html = '<select aria-label="'+name+'" id="'+name+'" name="'+name+'">'; // Ajout d'un guillemet après l'id
-        html += '<option value="x">'+name+'</option>';
+        let html = `<select aria-label="${name}" id="${name}" name="${name}">`; // Ajout d'un guillemet après l'id
+        html += `<option value= x>${name}</option>`;
         dataResponse.forEach(element => {
-            html += '<option value="'+element.id+'">'+element.nom+'</option>';
+            html += `<option value='${element.id}'>${element.nom}</option>`;
         });
-        html += '</select>';
+        html += "</select>";
         document.getElementById(id).innerHTML = html;
     })
     .catch(error => console.error('Error fetching data:', error));
