@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     function statnote(){
-        let URL ='https://stagetier.fr/ApiManager/company/statop3';
+        let URL ='/ApiManager/company/statop3';
         fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function statsecteur(){
-        let URL ='https://stagetier.fr/ApiManager/company/statSector';
+        let URL ='/ApiManager/company/statSector';
         fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 statsecteur();
 
 function statville(){
-  let URL ='https://stagetier.fr/ApiManager/company/statCity';
+  let URL ='/ApiManager/company/statCity';
   fetch(URL)
   .then(response => {
       if (!response.ok) {

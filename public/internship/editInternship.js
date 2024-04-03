@@ -8,7 +8,7 @@ Si la requête est réussie, elle renvoie un objet Response contenant les donné
 */
 let villesSelectionnees = [];
 villesSelectionnees[0] = document.getElementById('comboboxVille').value;
-ROOT = 'http://stagetier.fr';
+
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
         if (localiteSelectCount < 4) {
-            fetch(`${ROOT}/ApiManager/combox/city`)
+            fetch(`/ApiManager/combox/city`)
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
       villes.forEach((ville, index) => {
           if (localiteSelectCount < 5) {
               // Effectuer la requête fetch pour récupérer les données des villes
-              fetch(`${ROOT}/ApiManager/combox/city`)
+              fetch(`/ApiManager/combox/city`)
                   .then(response => response.json())
                   .then(data => {
                       // Créer un nouveau select
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
   }
 
-  fetch(`${ROOT}/ApiManager/Internship/selectInternship/${id_entreprise}`)
+  fetch(`/ApiManager/Internship/selectInternship/${id_entreprise}`)
       .then(response => response.json())
       .then(data => {
           // Remplir le formulaire avec les données de l'entreprise
@@ -314,11 +314,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`${ROOT}/ApiManager/internship/editInternship/${id_entreprise}/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}`)
+    fetch(`/ApiManager/internship/editInternship/${id_entreprise}/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}`)
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
-                // window.location.href = `${ROOT}/company/`;
+                // window.location.href = `/company/`;
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);
@@ -334,11 +334,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function confirmerSuppression(idEntreprise) {
 
-  ROOT = 'http://stagetier.fr';
 
   if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
     try {
-      const url = `${ROOT}/ApiManager/internship/deleteInternship/${idEntreprise}`;
+      const url = `/ApiManager/internship/deleteInternship/${idEntreprise}`;
       const response = await fetch(url, {
         method: 'POST'
       });

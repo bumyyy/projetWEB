@@ -15,7 +15,6 @@ function toggleSubdivision(division) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    ROOT = 'https://stagetier.fr';
     
     document.getElementById('form').addEventListener('submit', function(e) {
         e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
@@ -26,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataSearch = document.getElementById('search').value;
         
         let URL_ = dataSearch !== "" 
-            ? `${ROOT}/ApiManager/application/applicationBySearch/${dataSearch}` 
-            : `${ROOT}/ApiManager/application/allApplication/`;
+            ? `/ApiManager/application/applicationBySearch/${dataSearch}` 
+            : `/ApiManager/application/allApplication/`;
             
         fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {
-            return fetch(`${ROOT}/FilterSearch/filterApplication/${dataEtat}/${dataFavorite}`, {
+            return fetch(`/FilterSearch/filterApplication/${dataEtat}/${dataFavorite}`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json', 
@@ -157,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (internshipLiked != "null") {
                         // Si déjà favori, décolorer et supprimer de la table aimer
-                        fetch(`${ROOT}/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
+                        fetch(`/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
                             .then(data => {
                                 if (!data.ok) {
                                     throw new Error('Network response was not ok');
@@ -170,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             .catch(error => alert('Error:', error));
                     } else {
                         // Sinon, colorier et ajouter à la table aimer
-                        fetch(`${ROOT}/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
+                        fetch(`/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
                             .then(data => {
                                 if (!data.ok) {
                                     throw new Error('Network response was not ok');

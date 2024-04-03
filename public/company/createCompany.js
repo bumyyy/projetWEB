@@ -1,6 +1,6 @@
 let villesSelectionnees = [];
 villesSelectionnees[0] = document.getElementById('comboboxVille').value;
-ROOT = 'https://stagetier.fr';
+
 
 document.addEventListener("DOMContentLoaded", function() {
     // Récupérer les éléments du DOM
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
         if (localiteSelectCount < 4) {
-            fetch(`${ROOT}/ApiManager/combox/city`)
+            fetch(`/ApiManager/combox/city`)
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`${ROOT}/ApiManager/company/addCompany/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}/${idUser}`)
+    fetch(`/ApiManager/company/addCompany/${nom_entreprise}/${villesSelectionnees}/${secteur_id}/${note}/${idUser}`)
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès

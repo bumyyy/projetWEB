@@ -1,10 +1,9 @@
 async function confirmerSuppression(idEntreprise) {
 
-    ROOT = 'https://stagetier.fr';
   
     if (confirm("Voulez-vous vraiment rendre l'entreprise invisble ?")) {
       try {
-        const url = `${ROOT}/ApiManager/company/deleteCompany/${idEntreprise}`;
+        const url = `/ApiManager/company/deleteCompany/${idEntreprise}`;
         const response = await fetch(url, {
           method: 'POST'
         });

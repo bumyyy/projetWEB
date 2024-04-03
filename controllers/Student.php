@@ -4,7 +4,7 @@ class Student extends Controller{
     
     public function index(){
         if ( !isset($_SESSION['userData']) ){
-            header('Location: https://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){
@@ -17,7 +17,7 @@ class Student extends Controller{
 
     public function create(){
         if ( !isset($_SESSION['userData']) ){
-            header('Location: https://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){
@@ -30,7 +30,7 @@ class Student extends Controller{
 
     public function edit($idCompany){
         if ( !isset($_SESSION['userData']) ){
-            header('Location: https://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){
@@ -43,7 +43,7 @@ class Student extends Controller{
 
     public function stats(){
         if ( !isset($_SESSION['userData']) ){
-            header('Location: https://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){

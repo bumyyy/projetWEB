@@ -6,14 +6,14 @@ class Internship extends Controller {
         if ( isset($_SESSION['userData'])) {
             $this->render('index', ['companyName' => $companyName]);
             } else {
-                header('Location: http://stagetier.fr/login/');
+                header('Location: /login/');
                 exit(0);
             }
     }
 
     public function create() {
         if ( !isset($_SESSION['userData']) ){
-            header('Location: http://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){
@@ -26,7 +26,7 @@ class Internship extends Controller {
 
     public function edit($idCompany ) {
         if ( !isset($_SESSION['userData']) ){
-            header('Location: http://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){
@@ -38,7 +38,7 @@ class Internship extends Controller {
     }
     public function stats() {
         if ( !isset($_SESSION['userData']) ){
-            header('Location: http://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){

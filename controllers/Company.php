@@ -6,14 +6,14 @@ class Company extends Controller{
         if ( isset($_SESSION['userData'])) {
         $this->render('index');
         } else {
-            header('Location: https://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
     }
 
     public function create(){     
         if ( !isset($_SESSION['userData']) ){
-            header('Location: https://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){
@@ -26,7 +26,7 @@ class Company extends Controller{
 
     public function edit($idCompany){
         if ( !isset($_SESSION['userData']) ){
-            header('Location: https://stagetier.fr/login/');
+            header('Location: /login/');
             exit(0);
         }
         if ( $_SESSION['userData']['type'] == 3 ){
@@ -41,7 +41,7 @@ class Company extends Controller{
         if ( isset($_SESSION['userData'])) {
             $this->render('stats');
             } else {
-                header('Location: https://stagetier.fr/login/');
+                header('Location: /login/');
                 exit(0);
             }
     }

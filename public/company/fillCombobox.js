@@ -15,7 +15,7 @@ function getDataApi(URL, id, name) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    ROOT = 'https://stagetier.fr';
-    getDataApi(`${ROOT}/ApiManager/combox/sector`, 'comboboxSecteur', 'secteur');
-    getDataApi(`${ROOT}/ApiManager/combox/city`, 'comboboxVille', 'ville');
+
+    getDataApi(`/ApiManager/combox/sector`, 'comboboxSecteur', 'secteur');
+    getDataApi(`/ApiManager/combox/city`, 'comboboxVille', 'ville');
 });
