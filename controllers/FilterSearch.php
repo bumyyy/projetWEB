@@ -80,9 +80,13 @@ class FilterSearch extends Controller{
         // Filtrer les stages par promotion
         if ($promotion != "x"){
             $stages = array_filter($stages, function ($stage) use ($promotion) {
-                return $stage['nom_promotion'] == $promotion;
+                // Convertit la chaîne d'ID de compétences en tableau
+                $promotionArray = explode(", ", $stage['type_promotion_concerne']);
+                // Vérifie si la compétence recherchée est dans le tableau des compétences du stage
+                return in_array($promotion, $promotionArray);
             });
         }
+                    
         
         // Filtrer les stages par durée
         if ($duree != "x"){

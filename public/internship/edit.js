@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
-                //window.location.href = `${ROOT}/internship`;
+                window.location.href = `/internship`;
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);
