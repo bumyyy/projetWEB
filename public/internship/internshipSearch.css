@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('https://stagetier.fr/public/img/stage.jpg');
+    background-image: url('/public/img/stage.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
