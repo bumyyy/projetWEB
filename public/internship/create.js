@@ -143,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    alert(`/ApiManager/internship/addInternship/${villesSelectionnees}/${nom}/${entreprise}/${localite}/${promo}/${dateDebut}/${dateFin}/${prix}/${place}`);
     fetch(`/ApiManager/internship/addInternship/${villesSelectionnees}/${nom}/${entreprise}/${localite}/${promo}/${dateDebut}/${dateFin}/${prix}/${place}`)
         .then(response => {
             if (response.ok) {
