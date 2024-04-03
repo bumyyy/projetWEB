@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function statSkill(){
-        let URL ='https://stagetier.fr/ApiManager/internship/statSkill';
+        let URL ='/ApiManager/internship/statSkill';
         fetch(URL)
         .then(response => {
             if (!response.ok) {
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 statSkill();
 
 function statville(){
-  let URL ='https://stagetier.fr/ApiManager/internship/statCity';
+  let URL ='/ApiManager/internship/statCity';
   fetch(URL)
   .then(response => {
       if (!response.ok) {
@@ -69,7 +69,7 @@ statville();
 
 
 function statPromo(){
-  let URL ='https://stagetier.fr/ApiManager/internship/statPromo';
+  let URL ='/ApiManager/internship/statPromo';
   fetch(URL)
   .then(response => {
       if (!response.ok) {
@@ -102,7 +102,7 @@ function statPromo(){
 statPromo();
 
 function statDuree(){
-  let URL ='https://stagetier.fr/ApiManager/internship/statDuration';
+  let URL ='/ApiManager/internship/statDuration';
   fetch(URL)
   .then(response => {
       if (!response.ok) {
@@ -165,7 +165,7 @@ statDuree();
 
 
 function htmlToElement() {
-  let URL ='https://stagetier.fr/ApiManager/internship/statWish';
+  let URL ='/ApiManager/internship/statWish';
   fetch(URL)
   .then(response => {
       if (!response.ok) {

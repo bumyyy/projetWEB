@@ -8,7 +8,6 @@ Si la requête est réussie, elle renvoie un objet Response contenant les donné
 */
 
 
-ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
     
@@ -30,11 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
  
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`${ROOT}/ApiManager/student/addStudent/${nom}/${prenom}/${mail}/${mdp}/${centre}/${promo}`)
+    fetch(`/ApiManager/student/addStudent/${nom}/${prenom}/${mail}/${mdp}/${centre}/${promo}`)
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
-                window.location.href = `${ROOT}/student/`;
+                window.location.href = `/student/`;
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);

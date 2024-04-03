@@ -13,7 +13,6 @@ function toggleSubdivision(division) {
     
 document.addEventListener('DOMContentLoaded', function() {
 
-    ROOT = 'https://stagetier.fr';
     
     document.getElementById('form').addEventListener('submit', function(e) {
         e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
@@ -25,12 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataSearch = document.getElementById('search').value;
         
         let URL_ = dataSearch !== "" 
-            ? `${ROOT}/ApiManager/company/companyBySearch/${dataSearch}` 
-            : `${ROOT}/ApiManager/company/allCompany/`;
+            ? `/ApiManager/company/companyBySearch/${dataSearch}` 
+            : `/ApiManager/company/allCompany/`;
         fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {
-            return fetch(`${ROOT}/FilterSearch/filter/${encodeURIComponent(dataSecteur)}/${encodeURIComponent(dataVille)}/${encodeURIComponent(dataNote)}`, {
+            return fetch(`/FilterSearch/filter/${encodeURIComponent(dataSecteur)}/${encodeURIComponent(dataVille)}/${encodeURIComponent(dataNote)}`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json', 

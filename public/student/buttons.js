@@ -1,19 +1,22 @@
 function update(idEntreprise){
-    window.location.href = "/student/edit/" + idEntreprise
+  window.location.href = "/student/edit/" + idEntreprise
 }
 
-function stat() {
-    window.location.href = "/company/stats"
+function create() {
+  window.location.href = "/student/create"
+}
+
+function stats(id_student) {
+  window.location.href = `/student/stats/${id_student}`
 }
 
 
 async function confirmerSuppression(idEntreprise) {
 
-    ROOT = 'https://stagetier.fr';
   
     if (confirm("Voulez-vous vraiment rendre l'étudiant invisble ?")) {
       try {
-        const url = `${ROOT}/ApiManager/student/deleteStudent/${idEntreprise}`;
+        const url = `/ApiManager/student/deleteStudent/${idEntreprise}`;
         const response = await fetch(url);
         if (response.ok) {
           window.location.reload();

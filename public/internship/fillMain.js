@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-const ROOT = 'https://stagetier.fr';
 
 
 document.getElementById('form').addEventListener('submit', function(e) {
@@ -20,12 +19,12 @@ document.getElementById('form').addEventListener('submit', function(e) {
     let dataDate = document.getElementById('date').value;
     let dataSearch = document.getElementById('search').value;
     let URL_ = dataSearch !== "" 
-        ? `${ROOT}/ApiManager/internship/internshipBySearch/${dataSearch}` 
-        : `${ROOT}/ApiManager/internship/allInternship/`;
+        ? `/ApiManager/internship/internshipBySearch/${dataSearch}` 
+        : `/ApiManager/internship/allInternship/`;
     fetch(URL_)
     .then(response => response.json())
     .then(dataResponse => {
-        return fetch(`${ROOT}/FilterSearch/filterInternship/${dataSecteur}/${dataVille}/${dataPromo}/${dataNote}/${dataDate}`, {
+        return fetch(`/FilterSearch/filterInternship/${dataSecteur}/${dataVille}/${dataPromo}/${dataNote}/${dataDate}`, {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
@@ -133,7 +132,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
 
                 if (internshipLiked != "null") {
                     // Si déjà favori, décolorer et supprimer de la table aimer
-                    fetch(`${ROOT}/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
+                    fetch(`/ApiManager/favorite/deleteFavorite/${internshipId}`, { method: 'POST' })
                         .then(data => {
                             if (!data.ok) {
                                 throw new Error('Network response was not ok');
@@ -146,7 +145,7 @@ document.getElementById('form').addEventListener('submit', function(e) {
                         .catch(error => alert('Error:', error));
                 } else {
                     // Sinon, colorier et ajouter à la table aimer
-                    fetch(`${ROOT}/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
+                    fetch(`/ApiManager/favorite/addFavorite/${internshipId}`, { method: 'POST' })
                         .then(data => {
                             if (!data.ok) {
                                 throw new Error('Network response was not ok');

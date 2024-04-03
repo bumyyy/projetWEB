@@ -7,7 +7,6 @@ Une fois que le serveur a répondu, le navigateur reprend l'exécution du code J
 Si la requête est réussie, elle renvoie un objet Response contenant les données de la réponse. Si la requête échoue, elle lance une erreur.
 */
 
-ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    fetch(`${ROOT}/ApiManager/student/selectStudent/${id_entreprise}`)
+    fetch(`/ApiManager/student/selectStudent/${id_entreprise}`)
         .then(response => response.json())
         .then(data => {
           // Remplir le formulaire avec les données de l'entreprise
@@ -60,11 +59,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         
         // Envoyer une requête fetch pour chaque valeur de ville_nom
-        fetch(`${ROOT}/ApiManager/student/editStudent/${id_entreprise}/${newNom}/${newPrenom}/${newMail}/${newCentre}/${newPromotion}`)
+        fetch(`/ApiManager/student/editStudent/${id_entreprise}/${newNom}/${newPrenom}/${newMail}/${newCentre}/${newPromotion}`)
             .then(response => {
                 if (response.ok) {
                     // Rediriger l'utilisateur en cas de succès
-                    window.location.href = `${ROOT}/student/`;
+                    window.location.href = `/student/`;
                 } else {
                     // Traiter les erreurs éventuelles
                     console.error('Erreur lors de la requête fetch : ', response.statusText);
@@ -81,11 +80,10 @@ document.addEventListener("DOMContentLoaded", function() {
 // -------------------------bouton.js-------------------------//
 async function confirmerSuppression(idEntreprise) {
 
-    ROOT = 'https://stagetier.fr';
   
     if (confirm("Voulez-vous vraiment rendre l'étudiant invisble ?")) {
       try {
-        const url = `${ROOT}/ApiManager/student/deleteStudent/${idEntreprise}`;
+        const url = `/ApiManager/student/deleteStudent/${idEntreprise}`;
         const response = await fetch(url);
         if (response.ok) {
           window.location.reload();
@@ -102,15 +100,3 @@ async function confirmerSuppression(idEntreprise) {
       alert("Suppression annulée.");
     }
   }
-
-  function update(idEntreprise){
-    window.location.href = "/student/edit/" + idEntreprise
-}
-
-function create() {
-    window.location.href = "/student/create"
-}
-
-function stats(id_student) {
-  window.location.href = `/student/stats/${id_student}`
-}

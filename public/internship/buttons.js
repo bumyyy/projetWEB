@@ -9,11 +9,11 @@ function stat() {
 
 
 async function confirmerSuppression(idEntreprise) {
-  ROOT = 'https://stagetier.fr';
+
 
   if (confirm("Voulez-vous vraiment supprimer le stage?")) {
     try {
-      const url = `${ROOT}/ApiManager/internship/delete/${idEntreprise}`;
+      const url = `/ApiManager/internship/delete/${idEntreprise}`;
       const response = await fetch(url, {
         method: 'POST'
       });

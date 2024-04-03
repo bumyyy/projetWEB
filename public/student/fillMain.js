@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    ROOT = 'https://stagetier.fr';
     
     document.getElementById('form').addEventListener('submit', function(e) {
         e.preventDefault(); // Empêcher l'envoi traditionnel du formulaire
@@ -11,12 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let dataSearch = document.getElementById('search').value;
         
         let URL_ = dataSearch !== ""
-            ? `${ROOT}/ApiManager/student/studentBySearch/${dataSearch}` 
-            : `${ROOT}/ApiManager/student/allStudent/`;
+            ? `/ApiManager/student/studentBySearch/${dataSearch}` 
+            : `/ApiManager/student/allStudent/`;
         fetch(URL_)
         .then(response => response.json())
         .then(dataResponse => {
-            return fetch(`${ROOT}/FilterSearch/filterPilot/${encodeURIComponent(dataPromo)}/${encodeURIComponent(dataVille)}/`, {
+            return fetch(`/FilterSearch/filterPilot/${encodeURIComponent(dataPromo)}/${encodeURIComponent(dataVille)}/`, {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json', 

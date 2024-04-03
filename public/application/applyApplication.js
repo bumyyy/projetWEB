@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-  ROOT = 'https://stagetier.fr';
-
   let id_entreprise = document.getElementById('idCompany').getAttribute('idCompany');
   let bouton = document.getElementById("submit_btn");
   let cvInput = document.getElementById('cv');
@@ -16,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('ID d\'entreprise invalide.');
       return;
   }
-  fetch(`${ROOT}/ApiManager/application/selectApplication/${id_entreprise}`)
+  fetch(`/ApiManager/application/selectApplication/${id_entreprise}`)
   .then(response => response.json())
   .then(data => {
       // Remplir le formulaire avec les données de l'entreprise

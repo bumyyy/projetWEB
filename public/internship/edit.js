@@ -1,7 +1,6 @@
 let villesSelectionnees = [];
 villesSelectionnees[0] = document.getElementById('comboboxSecteur').value;
 
-ROOT = 'https://stagetier.fr';
 
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fonction pour ajouter un nouveau select pour la localité
     function addLocaliteSelect() {
         if (localiteSelectCount < 4) {
-            fetch(`${ROOT}/ApiManager/combox/skill`)
+            fetch(`/ApiManager/combox/skill`)
                 .then(response => response.json())
                 .then(data => {
                     // Créer un nouveau select
@@ -125,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
       villes.forEach((ville, index) => {
           if (localiteSelectCount < 5) {
               // Effectuer la requête fetch pour récupérer les données des villes
-              fetch(`${ROOT}/ApiManager/combox/skill`)
+              fetch(`/ApiManager/combox/skill`)
                   .then(response => response.json())
                   .then(data => {
                       // Créer un nouveau select
@@ -185,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function() {
       return;
   }
 
-    fetch(`${ROOT}/ApiManager/Internship/selectInternship/${id_entreprise}`)
+    fetch(`/ApiManager/Internship/selectInternship/${id_entreprise}`)
         .then(response => response.json())
         .then(data => {
             // Remplir le formulaire avec les données de l'entreprise
@@ -210,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Utilisation de la fonction `getDataApi` avec une fonction de rappel pour sélectionner l'option désirée
             const villeId = document.getElementById('comboboxVille').value;
             const nomEntreprise = data[0].nom_entreprise;
-            getDataApiSelect(`${ROOT}/ApiManager/combox/company/${villeId}`, 'entreprise', 'entreprise', 
+            getDataApiSelect(`/ApiManager/combox/company/${villeId}`, 'entreprise', 'entreprise', 
                 (updatedSelect) => {
                     for (let i = 0; i < updatedSelect.options.length; i++) {
                         console.log('test', updatedSelect.options[i].textContent.trim(), nomEntreprise.trim());
@@ -264,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById('comboboxVille').addEventListener('change', function() {
         idCity = document.getElementById('comboboxVille').value;
-        getDataApi(`${ROOT}/ApiManager/combox/company/${idCity}`, 'entreprise', 'entreprise');
+        getDataApi(`/ApiManager/combox/company/${idCity}`, 'entreprise', 'entreprise');
     })
 
 
@@ -288,11 +287,11 @@ document.addEventListener("DOMContentLoaded", function() {
         return false;
     }
     // Envoyer une requête fetch pour chaque valeur de ville_nom
-    fetch(`${ROOT}/ApiManager/internship/edit/${id_entreprise}/${villesSelectionnees}/${nom}/${entreprise}/${localite}/${promo}/${dateDebut}/${dateFin}/${prix}/${place}`)
+    fetch(`/ApiManager/internship/edit/${id_entreprise}/${villesSelectionnees}/${nom}/${entreprise}/${localite}/${promo}/${dateDebut}/${dateFin}/${prix}/${place}`)
         .then(response => {
             if (response.ok) {
                 // Rediriger l'utilisateur en cas de succès
-                //window.location.href = `${ROOT}/internship`;
+                //window.location.href = `/internship`;
             } else {
                 // Traiter les erreurs éventuelles
                 console.error('Erreur lors de la requête fetch : ', response.statusText);

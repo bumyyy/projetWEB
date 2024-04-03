@@ -8,6 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('companyName').setAttribute("data-companyName" , "");
         console.log("PASSE");
         // Changer l'url
-        history.replaceState(null, null, 'https://stagetier.fr/internship');
+        history.replaceState(null, null, '/internship');
     }
 });

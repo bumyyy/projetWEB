@@ -1,5 +1,4 @@
 let tab_donne = [];
-ROOT = 'https://stagetier.fr';
 
 document.addEventListener('DOMContentLoaded', function() {
 
