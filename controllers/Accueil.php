@@ -6,7 +6,7 @@ class Accueil extends Controller {
         if ( isset($_SESSION['userData'])) {
             $this->render('index');
             } else {
-                header('Location: https://stagetier.fr/login/');
+                header('Location: /login/');
                 exit(0);
             }
     }
