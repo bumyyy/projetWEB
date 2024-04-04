@@ -1,0 +1,29 @@
+{
+  "name": "StageTier",
+   "short_name": "StageTier",
+   "start_url": "/",
+   "display": "standalone",
+   "background_color": "#FFFFFF",
+   "theme_color": "#03a9f4",
+   "orientation": "portrait-primary",
+   "icons": [
+   {
+   "src": "public/img/logo_carre.png",
+   "type": "image/png",
+   "sizes": "484x484"
+   }
+  ],
+   "screenshots": [
+      {
+        "src": "public/img/Screen.png",
+        "form_factor": "wide",
+        "sizes": "1920x920",
+        "type": "Screen.png"
+      },
+      {
+        "src": "public/img/Screen.png",
+        "sizes": "1920x920",
+        "type": "Screen.png"
+      }
+   ]
+}
