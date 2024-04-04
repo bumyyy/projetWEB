@@ -12,7 +12,7 @@ body {
     text-align: center;
     font-size: 150%;
     
-    color: #f0f0f0;
+    color: #d9d9d9dc;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     
 }
@@ -43,7 +43,7 @@ body {
     text-align: center;
     font-size: 200%;
     margin-top: 2%;
-    color: #f0f0f0;
+    color: #d9d9d9dc;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
@@ -179,7 +179,7 @@ form{
     padding: max(2.4vw,2.4vw);
     width: 90%;
     max-width: 900px;
-    background-color: #f0f0f08d;
+    background-color: #d9d9d9dc;
     border-radius: 15px;
 
     
@@ -189,7 +189,7 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: center;    
-    background-color: #f0f0f08d;
+    background-color: #d9d9d9dc;
     border-radius: 1.4vw;
     width: 7%;
     height:100%;
