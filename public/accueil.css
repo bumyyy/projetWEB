@@ -1,11 +1,18 @@
 .content h1 {
     text-align: center;
     justify-content: center;
+    color: #ffffff;
+    text-shadow: 1px 0 0 #000000, 0 -1px 0 #000000, 0 1px 0 #000000, -1px 0 0 #000000;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background-color: rgba(239, 236, 151, 0.984);
+    background-image: url('/public/img/photogroup.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*background-color: rgba(239, 236, 151, 0.984);*/
 }
 
 .content {
