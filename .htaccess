@@ -1,5 +1,9 @@
 RewriteEngine On
 
+# Rediriger stagetier.fr vers stagetier.fr/accueil/
+RewriteCond %{HTTP_HOST} ^stagetier.fr$ [NC]
+RewriteRule ^$ /accueil/ [L,R=301]
+
 # Ne pas appliquer la réécriture aux fichiers avec les extensions spécifiées
 RewriteCond %{REQUEST_URI} !\.(js|css|png|jpg|webP|txt|json)$
 RewriteCond %{REQUEST_URI} !^/uploads/(.+)$
@@ -7,7 +11,6 @@ RewriteCond %{REQUEST_URI} !^/uploads/(.+)$
 # Appliquer la règle de réécriture pour toutes les autres requêtes
 # B pour forcer l'encodage des caractères spéciaux dans la chaîne de requête réécrite
 RewriteRule ^(.*)$ index.php?p=$1 [QSA,B]
-
 
 <Files "secure.json">
     AuthType Basic
