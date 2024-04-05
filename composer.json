@@ -1,6 +1,6 @@
 {
     "require": {
-        "twig/twig": "3.x"
+        "twig/twig": "3.x-dev"
     },
 
     "autoload": {
