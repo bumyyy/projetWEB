@@ -34,16 +34,16 @@
         </div>
         <nav>
             <ul class="header-nav">
-                <li><a href="/internship/">Stages</a></li>
-                <li><a href="/company/">Entreprises</a></li>
+                <li class="{% if active_page == 'internship' %}active{% endif %}"><a href="/internship/">Stages</a></li>
+                <li class="{% if active_page == 'company' %}active{% endif %}"><a href="/company/">Entreprises</a></li>
                 {% if userType == 1 %}
-                <li><a href="/pilot/">Pilotes</a></li>
+                <li class="{% if active_page == 'pilot' %}active{% endif %}"><a href="/pilot/">Pilotes</a></li>
                 {% endif %} 
                 {% if userType != 3 %}
-                    <li><a href="/student/">Étudiants</a></li>
+                    <li class="{% if active_page == 'student' %}active{% endif %}"><a href="/student/">Étudiants</a></li>
                 {% endif %} 
                 {% if userType != 2 %}
-                    <li><a href="/application/">Candidatures</a></li>
+                    <li class="{% if active_page == 'application' %}active{% endif %}"><a href="/application/">Candidatures</a></li>
                 {% endif %} 
             </ul>
         </nav>

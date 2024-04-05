@@ -3,8 +3,9 @@
 class Pilot extends Controller{
     
     public function index(){
+        $active_page = "pilot";
         if ( isset($_SESSION['userData'])) {
-            $this->render('index');
+            $this->render('index', ['active_page' => $active_page]);
             } else {
                 header('Location: /login/');
                 exit(0);
@@ -12,8 +13,9 @@ class Pilot extends Controller{
     }
 
     public function create(){
+        $active_page = "pilot";
         if ( isset($_SESSION['userData'])) {
-            $this->render('create');
+            $this->render('create', ['active_page' => $active_page]);
             } else {
                 header('Location: /login/');
                 exit(0);
@@ -21,8 +23,9 @@ class Pilot extends Controller{
     }
 
     public function edit(){
+        $active_page = "pilot";
         if ( isset($_SESSION['userData'])) {
-            $this->render('edit');
+            $this->render('edit', ['active_page' => $active_page]);
             } else {
                 header('Location: /login/');
                 exit(0);
@@ -30,8 +33,9 @@ class Pilot extends Controller{
     }
 
     public function stats(){
+        $active_page = "pilot";
         if ( isset($_SESSION['userData'])) {
-            $this->render('stats');
+            $this->render('stats', ['active_page' => $active_page]);
             } else {
                 header('Location: /login/');
                 exit(0);
