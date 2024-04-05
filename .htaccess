@@ -7,3 +7,11 @@ RewriteCond %{REQUEST_URI} !^/uploads/(.+)$
 # Appliquer la règle de réécriture pour toutes les autres requêtes
 # B pour forcer l'encodage des caractères spéciaux dans la chaîne de requête réécrite
 RewriteRule ^(.*)$ index.php?p=$1 [QSA,B]
+
+
+<Files "secure.json">
+    AuthType Basic
+    AuthName "Zone restreinte"
+    AuthUserFile "c:/www/users"
+    Require valid-user
+</Files>
