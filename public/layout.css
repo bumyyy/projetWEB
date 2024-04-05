@@ -47,6 +47,11 @@ body {
 .header-nav li:hover {
     text-decoration: underline;
 }
+.header-nav li.active a {
+    font-weight: bold;
+    text-decoration: underline; /* Souligne le texte */
+}
+
 .header-icons {
     display: flex;
     flex-wrap: wrap;
